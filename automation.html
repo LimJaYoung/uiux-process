@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ko">
+  <head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>디자이너용 CLAUDE.md 만들기 | Claude Code Lab</title><link rel="stylesheet" href="styles.css" /></head>
+  <body>
+    <header class="site-header"><a class="brand" href="index.html"><span class="brand-mark">CC</span><span>Claude Code Lab</span></a><button class="menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false"><span></span><span></span><span></span></button><nav class="nav-links detail-nav"><a href="launch.html">이전</a><a href="index.html">홈</a><a href="guide.html">가이드</a></nav></header>
+    <main>
+      <section class="detail-hero lesson-hero"><a class="back-link" href="launch.html">← 이전: 배포</a><p class="eyebrow">7단계 자동화</p><h1>디자이너용 CLAUDE.md 만들기</h1><p>내 디자인 원칙, 검수 기준, 협업 방식을 Claude Code가 매번 따르도록 프로젝트 규칙으로 저장합니다.</p><div class="meta-row"><span>예상 시간 25분</span><span>난이도 중급</span><span>결과물 CLAUDE.md 초안</span></div></section>
+      <section class="detail-layout"><aside class="detail-toc"><a href="#make">오늘 만들 것</a><a href="#prompt">템플릿</a><a href="#check">확인 기준</a><a href="#finish">완주 완료</a></aside><article class="detail-content">
+        <section id="make"><h2>오늘 만들 것</h2><p>다음 프로젝트에서도 같은 품질 기준을 반복할 수 있도록 Claude Code의 작업 규칙을 만듭니다.</p><ul class="deliverables"><li>디자인 원칙</li><li>UI 구현 기준</li><li>검수 체크리스트</li><li>협업 보고 방식</li></ul></section>
+        <section id="prompt"><h2>디자이너용 CLAUDE.md 템플릿</h2><div class="prompt-box"><button class="copy-button" type="button" data-copy-target="automation-prompt">복사</button><pre id="automation-prompt"><code># Designer Claude Code Rules
+
+You are helping a UI/UX designer build production-quality product interfaces.
+
+## Priorities
+- Build the usable screen first.
+- Keep layout clear, responsive, and accessible.
+- Use consistent spacing, typography, and component structure.
+- Avoid decorative UI that does not support the product goal.
+- Explain implementation decisions in designer-friendly language.
+
+## UI Standards
+- Clear visual hierarchy
+- Readable mobile text
+- Hover, focus, empty, loading, and error states
+- Reusable components
+- Product-like density over generic marketing decoration
+
+## After Every Change
+- Summarize what changed.
+- List files touched.
+- Tell me what to review in the browser.
+- Suggest one next improvement.</code></pre></div></section>
+        <section id="check"><h2>확인 기준</h2><div class="checklist"><label><input type="checkbox" /> 내 디자인 원칙이 구체적으로 적혀 있다.</label><label><input type="checkbox" /> 반응형, 접근성, 상태 UI 기준이 포함되어 있다.</label><label><input type="checkbox" /> 변경 후 보고 방식이 정해져 있다.</label><label><input type="checkbox" /> 다음 프로젝트에 복사해 쓸 수 있다.</label></div></section>
+        <section id="finish" class="next-panel"><h2>완주 완료</h2><p>이제 기획부터 배포까지 한 번의 프로덕트 완주 흐름이 연결되었습니다. 다음 반복에서는 더 큰 프로덕트나 팀 워크플로우로 확장할 수 있습니다.</p><a class="button primary ink-button" href="index.html">홈으로 돌아가기</a></section>
+      </article></section>
+    </main><script src="script.js"></script>
+  </body>
+</html>

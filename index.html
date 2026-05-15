@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UI/UX 디자이너를 위한 Claude Code Lab</title>
+    <meta
+      name="description"
+      content="Claude와 함께 프로덕트를 완주하는 디자이너 워크플로우. 기획부터 배포까지 Claude Code로 실습합니다."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Claude Code Lab 홈">
+        <span class="brand-mark">CC</span>
+        <span>Claude Code Lab</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="nav-links" aria-label="주요 메뉴">
+        <a href="#diagnosis">진단</a>
+        <a href="#planning">기획</a>
+        <a href="#structure">설계</a>
+        <a href="#design">디자인</a>
+        <a href="#build">개발</a>
+        <a href="#review">검수</a>
+        <a href="#launch">배포</a>
+        <a href="#automation">자동화</a>
+        <a href="resources.html">자료실</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero section-band">
+        <div class="hero-copy">
+          <p class="eyebrow">UI/UX Designer Claude Code Lab</p>
+          <h1>UI/UX 디자이너를 위한 Claude Code Lab</h1>
+          <p class="hero-lede">Claude와 함께 프로덕트를 완주하는 디자이너 워크플로우</p>
+          <p class="hero-desc">
+            기획부터 설계, 디자인, 개발, 검수, 배포까지 Claude Code로 하나의 프로덕트를
+            끝까지 완성해보세요.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="diagnosis.html">내 수준 진단하기</a>
+            <a class="button secondary" href="first-product.html">첫 프로덕트 시작하기</a>
+          </div>
+        </div>
+        <div class="hero-panel" aria-label="완주 단계 요약">
+          <div class="panel-label">Product Run</div>
+          <ol class="mini-roadmap">
+            <li>기획</li>
+            <li>설계</li>
+            <li>디자인</li>
+            <li>개발</li>
+            <li>검수</li>
+            <li>배포</li>
+          </ol>
+          <p>사이트에서 배우고, Claude Code에서 실행하고, 브라우저에서 확인합니다.</p>
+        </div>
+      </section>
+
+      <section class="guide-banner" aria-labelledby="guide-title">
+        <div>
+          <p class="eyebrow">First Step</p>
+          <h2 id="guide-title">Claude Code가 처음이라면 여기부터</h2>
+          <p>
+            설치, 프로젝트 열기, 프롬프트 실행, 브라우저 확인까지 실습 전 필요한 기본
+            사용법을 디자이너 눈높이로 정리했습니다.
+          </p>
+        </div>
+        <a class="button dark" href="guide.html">Claude Code 활용 가이드 보기</a>
+      </section>
+
+      <section class="quick-path section" aria-labelledby="quick-title">
+        <div class="section-heading">
+          <p class="eyebrow">Quick Path</p>
+          <h2 id="quick-title">나는 지금 무엇을 하고 싶나요?</h2>
+        </div>
+        <div class="path-grid">
+          <a class="path-card" href="orientation.html">
+            <span>처음이에요</span>
+            <p>Claude Code와 완주 흐름을 먼저 이해합니다.</p>
+          </a>
+          <a class="path-card" href="#planning">
+            <span>기획하고 싶어요</span>
+            <p>아이디어를 제품 문제와 MVP 범위로 바꿉니다.</p>
+          </a>
+          <a class="path-card" href="structure.html">
+            <span>화면을 설계하고 싶어요</span>
+            <p>사용자 흐름, IA, 화면 목록을 정리합니다.</p>
+          </a>
+          <a class="path-card" href="#build">
+            <span>구현하고 싶어요</span>
+            <p>Claude Code로 작동하는 화면을 만듭니다.</p>
+          </a>
+          <a class="path-card" href="#launch">
+            <span>배포까지 해보고 싶어요</span>
+            <p>GitHub와 Vercel로 공유 가능한 URL을 만듭니다.</p>
+          </a>
+          <a class="path-card" href="#automation">
+            <span>자동화하고 싶어요</span>
+            <p>내 디자인 원칙과 반복 루틴을 Claude에게 학습시킵니다.</p>
+          </a>
+        </div>
+      </section>
+
+      <section class="section roadmap-section" aria-labelledby="roadmap-title">
+        <div class="section-heading">
+          <p class="eyebrow">Workflow</p>
+          <h2 id="roadmap-title">완주 로드맵</h2>
+          <p>진단에서 자동화까지, 하나의 프로덕트를 끝까지 만드는 순서입니다.</p>
+        </div>
+        <div class="roadmap">
+          <a href="#diagnosis">진단</a>
+          <a href="#planning">기획</a>
+          <a href="structure.html">설계</a>
+          <a href="design.html">디자인</a>
+          <a href="build.html">개발</a>
+          <a href="review.html">검수</a>
+          <a href="launch.html">배포</a>
+          <a href="automation.html">자동화</a>
+        </div>
+      </section>
+
+      <section class="section method-section" aria-labelledby="method-title">
+        <div class="section-heading">
+          <p class="eyebrow">How It Works</p>
+          <h2 id="method-title">이 사이트는 이렇게 사용합니다</h2>
+        </div>
+        <div class="method-grid">
+          <article>
+            <span>01</span>
+            <h3>사이트에서 학습</h3>
+            <p>단계별 목표, 준비물, 프롬프트, 체크리스트를 확인합니다.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Claude Code에서 실행</h3>
+            <p>프롬프트를 복사해 프로젝트 폴더에서 실제 파일을 수정합니다.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>브라우저에서 확인</h3>
+            <p>로컬 화면이나 배포 URL로 결과를 직접 봅니다.</p>
+          </article>
+          <article>
+            <span>04</span>
+            <h3>체크리스트로 개선</h3>
+            <p>UX, UI, 접근성, 반응형 기준으로 다시 요청하고 다듬습니다.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section starter-section" aria-labelledby="starter-title">
+        <div class="section-heading">
+          <p class="eyebrow">Start Here</p>
+          <h2 id="starter-title">처음이라면 이 3개부터</h2>
+        </div>
+        <div class="cards three">
+          <article class="lesson-card">
+            <span class="tag">진단</span>
+            <h3>5분 오리엔테이션</h3>
+            <p>Claude Code Lab의 완주 흐름과 실습 방식을 빠르게 이해합니다.</p>
+            <footer>5분 · 입문</footer>
+            <a class="card-link" href="orientation.html">시작하기</a>
+          </article>
+          <article class="lesson-card">
+            <span class="tag">기획</span>
+            <h3>첫 제품 아이디어 정리</h3>
+            <p>막연한 아이디어를 사용자 문제, 타깃, MVP 범위로 바꿉니다.</p>
+            <footer>20분 · 입문</footer>
+            <a class="card-link" href="first-product.html">실습 시작</a>
+          </article>
+          <article class="lesson-card">
+            <span class="tag">개발</span>
+            <h3>첫 화면 구현하기</h3>
+            <p>Claude Code로 메인 화면을 만들고 브라우저에서 확인합니다.</p>
+            <footer>30분 · 입문</footer>
+          </article>
+        </div>
+      </section>
+
+      <section class="section curriculum" aria-labelledby="curriculum-title">
+        <div class="section-heading">
+          <p class="eyebrow">Curriculum</p>
+          <h2 id="curriculum-title">단계별 커리큘럼</h2>
+        </div>
+
+        <div class="curriculum-block" id="diagnosis">
+          <div class="stage-head">
+            <span>진단</span>
+            <h3>나는 Claude와 프로덕트를 어디까지 만들 수 있을까?</h3>
+          </div>
+          <div class="cards">
+            <article class="lesson-card"><h4>Claude Code Lab 5분 오리엔테이션</h4><p>사이트의 목적과 완주 흐름을 이해합니다.</p><a class="card-link" href="orientation.html">시작하기</a></article>
+            <article class="lesson-card"><h4>내 활용 단계 진단</h4><p>현재 수준에 맞는 시작 지점을 찾습니다.</p><a class="card-link" href="diagnosis.html">진단하기</a></article>
+            <article class="lesson-card"><h4>디자이너가 Claude로 할 수 있는 일</h4><p>기획, 설계, 구현, QA, 배포 활용 사례를 봅니다.</p></article>
+          </div>
+        </div>
+
+        <div class="curriculum-block" id="planning">
+          <div class="stage-head">
+            <span>1단계 기획</span>
+            <h3>아이디어를 사용자 문제와 제품 컨셉으로 바꾸기</h3>
+          </div>
+          <div class="cards">
+            <article class="lesson-card"><h4>아이디어를 제품 문제로 바꾸기</h4><p>막연한 아이디어를 해결할 문제로 정리합니다.</p><a class="card-link" href="first-product.html">실습 시작</a></article>
+            <article class="lesson-card"><h4>타깃 사용자 정의하기</h4><p>누구의 어떤 상황을 도울지 명확히 합니다.</p></article>
+            <article class="lesson-card"><h4>MVP 범위 정하기</h4><p>처음 만들 기능과 나중으로 미룰 기능을 나눕니다.</p></article>
+          </div>
+        </div>
+
+        <div class="curriculum-block" id="structure">
+          <div class="stage-head">
+            <span>2단계 설계</span>
+            <h3>사용자 흐름, 정보구조, 화면 목록 만들기</h3>
+          </div>
+          <div class="cards">
+            <article class="lesson-card"><h4>사용자 여정 만들기</h4><p>사용자가 목적을 달성하는 흐름을 씁니다.</p><a class="card-link" href="structure.html">실습 시작</a></article>
+            <article class="lesson-card"><h4>정보구조 IA 만들기</h4><p>페이지와 메뉴, 콘텐츠의 관계를 정리합니다.</p><a class="card-link" href="structure.html">실습 시작</a></article>
+            <article class="lesson-card"><h4>상태별 화면 정의하기</h4><p>빈 상태, 로딩, 에러, 성공 화면까지 챙깁니다.</p><a class="card-link" href="structure.html">실습 시작</a></article>
+          </div>
+        </div>
+
+        <div class="curriculum-block" id="design">
+          <div class="stage-head">
+            <span>3단계 디자인</span>
+            <h3>와이어프레임, UI 방향, 디자인 시스템 정리하기</h3>
+          </div>
+          <div class="cards">
+            <article class="lesson-card"><h4>와이어프레임 만들기</h4><p>화면 구조와 콘텐츠 우선순위를 잡습니다.</p><a class="card-link" href="design.html">실습 시작</a></article>
+            <article class="lesson-card"><h4>UI 방향 정하기</h4><p>프로덕트 성격에 맞는 시각 언어를 고릅니다.</p><a class="card-link" href="design.html">실습 시작</a></article>
+            <article class="lesson-card"><h4>디자인 시스템 기초 만들기</h4><p>컬러, 타이포, 간격, 컴포넌트 규칙을 정리합니다.</p><a class="card-link" href="design.html">실습 시작</a></article>
+          </div>
+        </div>
+
+        <div class="curriculum-block" id="build">
+          <div class="stage-head">
+            <span>4단계 개발</span>
+            <h3>Claude Code로 실제 작동하는 화면 구현하기</h3>
+          </div>
+          <div class="cards">
+            <article class="lesson-card"><h4>스타터 프로젝트 준비하기</h4><p>실습할 폴더와 기본 파일을 준비합니다.</p><a class="card-link" href="build.html">실습 시작</a></article>
+            <article class="lesson-card"><h4>첫 화면 구현하기</h4><p>Claude Code로 메인 화면을 만들고 확인합니다.</p><a class="card-link" href="build.html">실습 시작</a></article>
+            <article class="lesson-card"><h4>컴포넌트로 나누기</h4><p>반복 UI를 재사용 가능한 구조로 정리합니다.</p><a class="card-link" href="build.html">실습 시작</a></article>
+          </div>
+        </div>
+
+        <div class="curriculum-block" id="review">
+          <div class="stage-head">
+            <span>5단계 검수</span>
+            <h3>UX, UI, 접근성, 반응형, 상태 화면 점검하기</h3>
+          </div>
+          <div class="cards">
+            <article class="lesson-card"><h4>디자인 QA 체크하기</h4><p>간격, 위계, 대비, 상태 UI를 검수합니다.</p><a class="card-link" href="review.html">실습 시작</a></article>
+            <article class="lesson-card"><h4>모바일 깨짐 수정하기</h4><p>작은 화면에서 읽기와 조작성을 확인합니다.</p><a class="card-link" href="review.html">실습 시작</a></article>
+            <article class="lesson-card"><h4>개선 프롬프트 적용하기</h4><p>문제를 구체적으로 설명하고 반복 개선합니다.</p><a class="card-link" href="review.html">실습 시작</a></article>
+          </div>
+        </div>
+
+        <div class="curriculum-block" id="launch">
+          <div class="stage-head">
+            <span>6단계 배포</span>
+            <h3>GitHub과 Vercel로 공유 가능한 URL 만들기</h3>
+          </div>
+          <div class="cards">
+            <article class="lesson-card"><h4>GitHub에 프로젝트 올리기</h4><p>프로젝트를 저장소로 관리합니다.</p><a class="card-link" href="launch.html">실습 시작</a></article>
+            <article class="lesson-card"><h4>Vercel로 배포하기</h4><p>브라우저에서 열 수 있는 URL을 만듭니다.</p><a class="card-link" href="launch.html">실습 시작</a></article>
+            <article class="lesson-card"><h4>포트폴리오 설명 정리하기</h4><p>문제, 역할, 결과를 짧게 정리합니다.</p><a class="card-link" href="launch.html">실습 시작</a></article>
+          </div>
+        </div>
+
+        <div class="curriculum-block" id="automation">
+          <div class="stage-head">
+            <span>7단계 자동화</span>
+            <h3>나만의 디자이너 워크플로우를 Claude에게 학습시키기</h3>
+          </div>
+          <div class="cards">
+            <article class="lesson-card"><h4>디자이너용 CLAUDE.md 만들기</h4><p>내 UI 원칙과 작업 방식을 프로젝트에 저장합니다.</p><a class="card-link" href="automation.html">실습 시작</a></article>
+            <article class="lesson-card"><h4>반복 프롬프트 템플릿 만들기</h4><p>자주 쓰는 요청을 라이브러리로 정리합니다.</p><a class="card-link" href="automation.html">실습 시작</a></article>
+            <article class="lesson-card"><h4>팀 협업 워크플로우 만들기</h4><p>디자이너, PM, 개발자가 함께 쓰는 규칙을 만듭니다.</p><a class="card-link" href="automation.html">실습 시작</a></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section resources" id="resources" aria-labelledby="resources-title">
+        <div class="section-heading">
+          <p class="eyebrow">Resources</p>
+          <h2 id="resources-title">자료실</h2>
+          <p>실습 중 막힐 때 바로 찾는 도구 모음입니다.</p>
+        </div>
+        <div class="resource-grid">
+          <article>
+            <h3>Claude Code 활용 가이드</h3>
+            <p>설치, 프로젝트 열기, 프롬프트 실행, 로컬 확인까지 처음부터 따라합니다.</p>
+            <a class="card-link" href="guide.html">가이드 보기</a>
+          </article>
+          <article>
+            <h3>프롬프트 템플릿</h3>
+            <p>기획, 설계, 디자인, 개발, 검수, 배포 단계별 요청문을 복사합니다.</p>
+            <a class="card-link" href="resources.html#prompts">템플릿 보기</a>
+          </article>
+          <article>
+            <h3>체크리스트</h3>
+            <p>기획 품질, UX 흐름, UI 완성도, 접근성, 배포 전 기준을 확인합니다.</p>
+            <a class="card-link" href="resources.html#checklists">체크리스트 보기</a>
+          </article>
+          <article>
+            <h3>디자이너용 CLAUDE.md</h3>
+            <p>Claude Code가 내 디자인 원칙과 작업 방식을 기억하게 만듭니다.</p>
+            <a class="card-link" href="automation.html">템플릿 보기</a>
+          </article>
+          <article>
+            <h3>스타터 프로젝트</h3>
+            <p>랜딩, 대시보드, 모바일 UI, 디자인 시스템 실습 파일을 제공합니다.</p>
+            <a class="card-link" href="resources.html#starter">준비 중</a>
+          </article>
+          <article>
+            <h3>용어 사전</h3>
+            <p>터미널, Git, 컴포넌트, 빌드, 배포처럼 낯선 말을 쉽게 풀이합니다.</p>
+            <a class="card-link" href="resources.html#glossary">용어 보기</a>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p class="brand-line">Claude Code Lab</p>
+      <p>UI/UX 디자이너를 위한 Claude Code 실전 워크플로우</p>
+      <div>
+        <a href="#diagnosis">진단</a>
+        <a href="#planning">기획</a>
+        <a href="resources.html">자료실</a>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
