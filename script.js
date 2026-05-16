@@ -59,6 +59,105 @@ document.querySelectorAll(".hero-card_swiper").forEach((swiper) => {
   });
 });
 
+document.querySelectorAll(".portfolio-process-grid").forEach((slider) => {
+  let isDragging = false;
+  let startX = 0;
+  let startScrollLeft = 0;
+  let lastX = 0;
+  let lastTime = 0;
+  let velocity = 0;
+  let momentumFrame = 0;
+
+  const stopMomentum = () => {
+    if (momentumFrame) {
+      window.cancelAnimationFrame(momentumFrame);
+      momentumFrame = 0;
+    }
+  };
+
+  const runMomentum = () => {
+    slider.scrollLeft -= velocity;
+    velocity *= 0.96;
+
+    if (Math.abs(velocity) > 0.08) {
+      momentumFrame = window.requestAnimationFrame(runMomentum);
+      return;
+    }
+
+    momentumFrame = 0;
+  };
+
+  slider.addEventListener("pointerdown", (event) => {
+    isDragging = true;
+    startX = event.clientX;
+    startScrollLeft = slider.scrollLeft;
+    lastX = event.clientX;
+    lastTime = performance.now();
+    velocity = 0;
+    stopMomentum();
+    slider.classList.add("is-dragging");
+    slider.setPointerCapture(event.pointerId);
+  });
+
+  slider.addEventListener("pointermove", (event) => {
+    if (!isDragging) return;
+    event.preventDefault();
+
+    const now = performance.now();
+    const deltaX = event.clientX - startX;
+    const frameDelta = event.clientX - lastX;
+    const frameTime = Math.max(16, now - lastTime);
+
+    slider.scrollLeft = startScrollLeft - deltaX * 1.18;
+    velocity = (frameDelta / frameTime) * 22;
+    lastX = event.clientX;
+    lastTime = now;
+  });
+
+  const stopDrag = (event) => {
+    if (!isDragging) return;
+    isDragging = false;
+    slider.classList.remove("is-dragging");
+
+    if (slider.hasPointerCapture(event.pointerId)) {
+      slider.releasePointerCapture(event.pointerId);
+    }
+
+    runMomentum();
+  };
+
+  slider.addEventListener("pointerup", stopDrag);
+  slider.addEventListener("pointercancel", stopDrag);
+  slider.addEventListener("lostpointercapture", () => {
+    isDragging = false;
+    slider.classList.remove("is-dragging");
+  });
+});
+
+document.querySelectorAll(".portfolio-process-section").forEach((section) => {
+  const slider = section.querySelector("[data-process-slider]");
+  const prevButton = section.querySelector("[data-process-prev]");
+  const nextButton = section.querySelector("[data-process-next]");
+  if (!slider) return;
+
+  const getStep = () => {
+    const card = slider.querySelector(".process-card");
+    if (!card) return slider.clientWidth * 0.8;
+
+    const styles = window.getComputedStyle(slider);
+    const gap = parseFloat(styles.columnGap || styles.gap) || 0;
+    return card.getBoundingClientRect().width + gap;
+  };
+
+  prevButton?.addEventListener("click", () => {
+    slider.scrollBy({ left: -getStep(), behavior: "smooth" });
+  });
+
+  nextButton?.addEventListener("click", () => {
+    slider.scrollBy({ left: getStep(), behavior: "smooth" });
+  });
+});
+
 let serviceScrollResizeObserver;
 
 const setupServiceScroll = () => {
