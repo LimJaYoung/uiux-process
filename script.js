@@ -183,51 +183,27 @@ const diagnosisTool = document.querySelector("[data-diagnosis]");
 if (diagnosisTool) {
   const recommendations = [
     {
-      max: 1,
-      level: "Level 0",
-      title: "Claude Code 활용 가이드부터 시작하세요",
-      copy:
-        "설치, 프로젝트 열기, 프롬프트 실행, 브라우저 확인 흐름을 먼저 익히면 이후 실습이 훨씬 편해집니다.",
-      href: "guide.html",
-    },
-    {
       max: 2,
-      level: "Level 1",
-      title: "첫 프로덕트 기획부터 시작하세요",
+      level: "Beginner",
+      title: "초급 코스: 첫 UIUX 포트폴리오부터 시작하세요",
       copy:
-        "아이디어가 아직 흐릿하다면 사용자 문제, 타깃, MVP 범위를 먼저 좁히는 편이 좋습니다.",
+        "AI 코딩과 배포가 낯설다면 작은 MVP를 기획, 설계, 디자인, 코딩, 배포까지 완주하는 흐름이 좋습니다.",
       href: "first-product.html",
     },
     {
-      max: 3,
-      level: "Level 2",
-      title: "사용자 흐름과 IA를 설계하세요",
+      max: 4,
+      level: "Intermediate",
+      title: "중급 코스: 서비스형 프로덕트 포트폴리오로 가세요",
       copy:
-        "아이디어가 있다면 바로 화면을 만들기보다 사용자 여정, 화면 목록, 상태 화면을 정리하세요.",
+        "Figma나 UX 기획 경험이 있다면 다중 화면, 디자인 시스템, 케이스 스터디를 묶는 코스가 맞습니다.",
       href: "structure.html",
     },
     {
-      max: 4,
-      level: "Level 3",
-      title: "와이어프레임과 UI 방향을 잡으세요",
-      copy:
-        "화면 구조가 보인다면 UI 기준, 컴포넌트, 반응형 규칙을 구현 가능한 언어로 바꿀 차례입니다.",
-      href: "design.html",
-    },
-    {
-      max: 5,
-      level: "Level 4",
-      title: "Claude Code로 첫 화면을 구현하세요",
-      copy:
-        "프로젝트와 디자인 기준이 준비됐다면 Claude Code에서 실제 작동하는 화면을 만들어보세요.",
-      href: "build.html",
-    },
-    {
       max: 6,
-      level: "Level 5",
-      title: "검수, 배포, 자동화 단계로 가세요",
+      level: "Advanced",
+      title: "고급 코스: 실무형 포트폴리오를 고도화하세요",
       copy:
-        "이미 구현 경험이 있다면 QA와 배포 URL, CLAUDE.md로 반복 가능한 워크플로우를 완성하세요.",
+        "팀프로젝트, 퍼스널 브랜딩, 자동화 워크플로우까지 묶어 취업·이직용 결과물을 만듭니다.",
       href: "review.html",
     },
   ];
@@ -262,7 +238,7 @@ if (lessonHero && !diagnosisTool) {
     </div>
     <ol>
       <li><strong>사이트에서 읽기</strong><span>목표, 준비물, 프롬프트를 확인합니다.</span></li>
-      <li><strong>Claude Code에서 실행</strong><span>프롬프트를 복사해 프로젝트에 적용합니다.</span></li>
+      <li><strong>AI 도구에서 실행</strong><span>프롬프트를 복사해 프로젝트에 적용합니다.</span></li>
       <li><strong>브라우저에서 검수</strong><span>체크리스트로 결과를 보고 다시 개선합니다.</span></li>
     </ol>
   `;

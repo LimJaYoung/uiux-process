@@ -331,7 +331,7 @@ main > section:first-child {
 }
 
 .hero-panel::before {
-  content: "Claude Code Lab";
+  content: "AI Product Design Lab";
   display: flex;
   height: 46px;
   align-items: center;
@@ -447,7 +447,7 @@ main > section:first-child {
 
 .guide-card-list {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 12px;
 }
 
@@ -546,6 +546,165 @@ main > section:first-child {
   margin-top: 12px;
   color: var(--muted);
   font-weight: 600;
+}
+
+.posts-section,
+.portfolio-services,
+.personal-brand-section,
+.course-diagnosis-section,
+.designer-sites-section,
+.content-automation-section {
+  margin-top: var(--section-gap);
+}
+
+.post-grid,
+.course-grid,
+.feed-grid,
+.brand-portfolio-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.post-grid,
+.course-grid,
+.feed-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.post-card,
+.course-card,
+.feed-grid article,
+.brand-system-card,
+.profile-channel-card {
+  min-height: 260px;
+  border: 1px solid var(--card-border);
+  border-radius: 24px;
+  padding: 26px;
+  background: var(--paper);
+}
+
+.post-card.featured {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.58)),
+    url("awesomic-images/68c2a33d71ce477bc4cfb02d_small banner hills decoration.avif") center / cover;
+}
+
+.post-card span,
+.course-card span,
+.feed-grid span,
+.brand-system-card span,
+.profile-channel-card span {
+  display: inline-flex;
+  min-height: 28px;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0 10px;
+  background: #eeeeee;
+  color: var(--graphite);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.post-card h3,
+.course-card h3,
+.feed-grid h3,
+.brand-system-card h3,
+.profile-channel-card h3 {
+  margin: 34px 0 0;
+  font-size: clamp(22px, 2.4vw, 32px);
+  line-height: 1.12;
+}
+
+.post-card p,
+.course-card p,
+.feed-grid p,
+.brand-system-card p,
+.profile-channel-card p {
+  margin: 14px 0 0;
+  color: var(--muted);
+}
+
+.portfolio-lane {
+  display: flex;
+  gap: 12px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.portfolio-lane .service-card {
+  min-width: min(420px, 82vw);
+  min-height: 430px;
+  flex: 0 0 min(420px, 82vw);
+}
+
+.brand-portfolio-grid {
+  grid-template-columns: 1.15fr 1fr 1fr;
+}
+
+.brand-system-card {
+  display: flex;
+  min-height: 390px;
+  flex-direction: column;
+  justify-content: space-between;
+  background: var(--obsidian);
+  color: var(--paper);
+}
+
+.brand-system-card p {
+  color: rgba(255, 255, 255, 0.64);
+}
+
+.profile-channel-card {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.52)),
+    url("awesomic-images/68c2a33d71ce477bc4cfb02d_small banner hills decoration.avif") center / cover;
+}
+
+.course-card.dark,
+.feed-grid article.dark {
+  border-color: var(--obsidian);
+  background: var(--obsidian);
+  color: var(--paper);
+}
+
+.course-card.dark p,
+.course-card.dark small,
+.feed-grid article.dark p {
+  color: rgba(255, 255, 255, 0.64);
+}
+
+.progress-track {
+  height: 10px;
+  margin: 28px 0 12px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e5e7eb;
+}
+
+.progress-track i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--ink);
+}
+
+.course-card.dark .progress-track {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.course-card.dark .progress-track i {
+  background: var(--paper);
+}
+
+.course-card small {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.designer-sites-section .choose-mosaic {
+  margin-top: 28px;
 }
 
 .service-strip {
@@ -2398,12 +2557,20 @@ main > section:first-child {
     max-width: 680px;
   }
 
+  .guide-card-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .proof-strip,
   .outcome-grid,
   .split-heading,
   .bottleneck-section,
   .lab-method,
-  .faq-section {
+  .faq-section,
+  .post-grid,
+  .course-grid,
+  .feed-grid,
+  .brand-portfolio-grid {
     grid-template-columns: 1fr;
   }
 
@@ -2465,7 +2632,11 @@ main > section:first-child {
   .path-grid,
   .cards,
   .resource-grid,
-  .method-grid {
+  .method-grid,
+  .post-grid,
+  .course-grid,
+  .feed-grid,
+  .brand-portfolio-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -2595,7 +2766,11 @@ main > section:first-child {
   .cards,
   .resource-grid,
   .method-grid,
-  .roadmap {
+  .roadmap,
+  .post-grid,
+  .course-grid,
+  .feed-grid,
+  .brand-portfolio-grid {
     grid-template-columns: 1fr;
   }
 
