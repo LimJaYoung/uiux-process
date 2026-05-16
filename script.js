@@ -167,13 +167,18 @@ document.querySelectorAll(".copy-button").forEach((button) => {
 
     if (!text) return;
 
-    await navigator.clipboard.writeText(text);
-    button.textContent = "복사됨";
-    button.classList.add("is-copied");
+    try {
+      await navigator.clipboard.writeText(text);
+      button.textContent = "복사됨";
+      button.classList.add("is-copied");
+    } catch {
+      button.textContent = "복사 실패";
+      button.classList.add("is-copy-failed");
+    }
 
     window.setTimeout(() => {
       button.textContent = "복사";
-      button.classList.remove("is-copied");
+      button.classList.remove("is-copied", "is-copy-failed");
     }, 1600);
   });
 });
