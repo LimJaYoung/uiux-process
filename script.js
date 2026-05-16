@@ -229,6 +229,40 @@ if (diagnosisTool) {
 const lessonHero = document.querySelector(".lesson-hero");
 
 if (lessonHero && !diagnosisTool) {
+  const courseSteps = [
+    { file: "first-product.html", label: "기획", progress: 15 },
+    { file: "structure.html", label: "설계", progress: 30 },
+    { file: "design.html", label: "디자인", progress: 50 },
+    { file: "build.html", label: "코딩", progress: 70 },
+    { file: "review.html", label: "케이스", progress: 84 },
+    { file: "launch.html", label: "배포", progress: 94 },
+    { file: "automation.html", label: "자동화", progress: 100 },
+  ];
+  const currentFile = window.location.pathname.split("/").pop() || "index.html";
+  const currentStepIndex = Math.max(
+    0,
+    courseSteps.findIndex((step) => step.file === currentFile),
+  );
+  const currentStep = courseSteps[currentStepIndex] || courseSteps[0];
+  const progressPanel = document.createElement("section");
+  progressPanel.className = "course-progress";
+  progressPanel.innerHTML = `
+    <div class="course-progress-head">
+      <span>Portfolio Course Progress</span>
+      <span>${currentStep.label} · ${currentStep.progress}%</span>
+    </div>
+    <div class="course-progress-track"><i style="width: ${currentStep.progress}%"></i></div>
+    <div class="course-progress-steps">
+      ${courseSteps
+        .map(
+          (step, index) =>
+            `<span class="${index <= currentStepIndex ? "is-active" : ""}">${step.label}</span>`,
+        )
+        .join("")}
+    </div>
+  `;
+  lessonHero.insertAdjacentElement("afterend", progressPanel);
+
   const practicePanel = document.createElement("section");
   practicePanel.className = "practice-panel";
   practicePanel.innerHTML = `
@@ -242,5 +276,5 @@ if (lessonHero && !diagnosisTool) {
       <li><strong>브라우저에서 검수</strong><span>체크리스트로 결과를 보고 다시 개선합니다.</span></li>
     </ol>
   `;
-  lessonHero.insertAdjacentElement("afterend", practicePanel);
+  progressPanel.insertAdjacentElement("afterend", practicePanel);
 }

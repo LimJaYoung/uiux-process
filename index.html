@@ -8,7 +8,7 @@
       name="description"
       content="UIUX·프로덕트 디자이너가 AI로 기획, 설계, 디자인, 코딩, 배포까지 완주해 고퀄리티 포트폴리오를 만드는 코스입니다."
     />
-    <link rel="stylesheet" href="styles.css?v=ai-portfolio-course1" />
+    <link rel="stylesheet" href="styles.css?v=ai-portfolio-course2" />
   </head>
   <body>
     <header class="site-header">
@@ -68,20 +68,20 @@
           <p>진단 없이 바로 시작해도 좋고, 5분 테스트로 초급·중급·고급 코스를 추천받아도 됩니다.</p>
         </div>
         <div class="guide-card-list" aria-label="처음 시작 경로">
-          <a href="orientation.html">
+          <a href="#course-beginner">
             <span>01</span>
             <h3>초급: 첫 UIUX 포트폴리오</h3>
             <p>작은 MVP를 기획하고 코딩해 배포 URL까지 완성합니다.</p>
           </a>
-          <a href="diagnosis.html">
+          <a href="#course-intermediate">
             <span>02</span>
             <h3>중급: 서비스형 포트폴리오</h3>
-            <p>다중 화면, 디자인 시스템, 케이스 스터디까지 구성합니다.</p>
+            <p>하네스형 프롬프트로 다중 화면과 케이스 스터디를 구성합니다.</p>
           </a>
-          <a href="first-product.html">
+          <a href="#course-advanced">
             <span>03</span>
             <h3>고급: 실무형 포트폴리오</h3>
-            <p>팀프로젝트, 퍼스널 브랜딩, 자동화까지 고도화합니다.</p>
+            <p>하네스, n8n, 팀프로젝트, 퍼스널 브랜딩까지 고도화합니다.</p>
           </a>
           <a href="diagnosis.html">
             <span>04</span>
@@ -113,7 +113,7 @@
           <article class="post-card">
             <span>배포</span>
             <h3>작동하는 화면을 포트폴리오 URL로 공유하기</h3>
-            <p>AI 코딩 도구와 Vercel을 연결해 결과물을 공개합니다.</p>
+            <p>AI 도구와 Vercel을 연결해 결과물을 공개합니다.</p>
           </article>
         </div>
       </section>
@@ -225,7 +225,7 @@
         </div>
       </section>
 
-      <section class="section portfolio-services team-portfolio-section" aria-labelledby="team-title">
+      <section class="section portfolio-services team-portfolio-section" id="team-portfolio" aria-labelledby="team-title">
         <div class="section-heading split-heading">
           <div>
             <p class="eyebrow">Team Project Portfolio</p>
@@ -246,9 +246,9 @@
           </article>
           <article class="service-card portfolio-image-card">
             <div class="z-index-1">
-              <span>UX Flow</span>
-              <h3>사용자 흐름과 역할 분담</h3>
-              <div class="service-card_tags"><b>Flow</b><b>Role</b><b>Decision</b></div>
+              <span>Research to Flow</span>
+              <h3>리서치, 사용자 흐름, 역할 분담</h3>
+              <div class="service-card_tags"><b>Research</b><b>Flow</b><b>Role</b></div>
             </div>
             <img class="hero-card_image" src="awesomic-images/68c2a33d71ce477bc4cfaaa8_how-tabs-4.avif" alt="" />
           </article>
@@ -267,10 +267,18 @@
               <div class="story__pagination"><i></i><i></i><i></i></div>
             </div>
           </article>
+          <article class="service-card portfolio-image-card team-result-card">
+            <div class="z-index-1">
+              <span>Interview Story</span>
+              <h3>면접에서 설명되는 팀프로젝트 결과물</h3>
+              <div class="service-card_tags"><b>Metric</b><b>Retrospective</b><b>Portfolio</b></div>
+            </div>
+            <img class="hero-card_image" src="awesomic-images/68c2a33d71ce477bc4cfaad2_product-design-card.avif" alt="" />
+          </article>
         </div>
       </section>
 
-      <section class="section personal-brand-section" aria-labelledby="brand-title">
+      <section class="section personal-brand-section" id="personal-branding" aria-labelledby="brand-title">
         <div class="portfolio-heading">
           <div>
             <p class="eyebrow">Personal Branding Portfolio</p>
@@ -285,13 +293,17 @@
             <p>포지셔닝 문장, 강점 키워드, 대표 프로젝트를 한 화면에 정리합니다.</p>
           </article>
           <article class="portfolio-card web">
-            <span>Case Study Package</span>
+            <span>Personal Site</span>
             <h3>About → Project → Contact</h3>
           </article>
           <article class="profile-channel-card">
             <span>Channels</span>
             <h3>Read.cv, Behance, LinkedIn, 개인 웹사이트 연결</h3>
             <div class="service-card_tags"><b>Profile</b><b>Career</b><b>Contact</b></div>
+          </article>
+          <article class="portfolio-card brand personal-brand-card">
+            <span>Brand Assets</span>
+            <h3>썸네일, 자기소개, 프로젝트 표지까지 한 톤으로</h3>
           </article>
         </div>
       </section>
@@ -305,26 +317,29 @@
           <a class="button primary" href="diagnosis.html">5분 진단 시작</a>
         </div>
         <div class="course-grid">
-          <article class="course-card">
+          <article class="course-card" id="course-beginner">
             <span>Beginner</span>
             <h3>초급: 간단한 MVP 포트폴리오</h3>
             <p>AI 코딩이 낯선 디자이너가 작은 서비스 아이디어를 배포까지 완주합니다.</p>
             <div class="progress-track"><i style="width: 33%"></i></div>
             <small>기획 15% → 설계 30% → 디자인 50% → 코딩 70% → 배포 100%</small>
+            <a class="card-link" href="orientation.html">초급 코스 시작</a>
           </article>
-          <article class="course-card dark">
+          <article class="course-card dark" id="course-intermediate">
             <span>Intermediate</span>
             <h3>중급: 서비스형 프로덕트 포트폴리오</h3>
             <p>하네스형 프롬프트로 다중 화면, 디자인 시스템, 케이스 스터디를 완성합니다.</p>
             <div class="progress-track"><i style="width: 66%"></i></div>
             <small>문제정의 → UX 설계 → UI 시스템 → 프론트 구현 → 케이스 스터디</small>
+            <a class="card-link" href="first-product.html">중급 코스 시작</a>
           </article>
-          <article class="course-card">
+          <article class="course-card" id="course-advanced">
             <span>Advanced</span>
             <h3>고급: 자동화 기반 실무형 포트폴리오</h3>
             <p>하네스와 n8n 자동화까지 연결해 팀프로젝트와 브랜딩 포트폴리오를 고도화합니다.</p>
             <div class="progress-track"><i style="width: 100%"></i></div>
             <small>전략 → 인터랙션 → 자동화 → 퍼블리싱 → 발표자료</small>
+            <a class="card-link" href="automation.html">고급 코스 시작</a>
           </article>
         </div>
       </section>
@@ -347,7 +362,7 @@
           <article>
             <span>02</span>
             <h3>AI 도구에서 실행</h3>
-            <p>Codex, AI 코딩 도구, 디자인 도구에 맞춰 프롬프트를 실행합니다.</p>
+            <p>Codex, AI 도구, 디자인 도구에 맞춰 프롬프트를 실행합니다.</p>
           </article>
           <article>
             <span>03</span>
@@ -386,27 +401,28 @@
           <h2 id="toolkit-title">디자이너에게 도움이 되는 사이트 추천</h2>
         </div>
         <div class="choose-mosaic site-mosaic">
-          <article class="metric-card">
-            <strong>UIUX</strong>
-            <span>Mobbin, Page Flows, Awwwards로 화면 패턴을 수집합니다.</span>
+          <article class="metric-card site-link-card">
+            <strong>UIUX Design</strong>
+            <span>Mobbin, Page Flows, Awwwards로 화면 패턴과 UX 흐름을 수집합니다.</span>
           </article>
           <article class="preview-card tall">
             <div class="avatar-preview" aria-hidden="true"></div>
             <h3>찾기 → 분석 → 내 프로젝트에 적용 → 포트폴리오에 기록</h3>
+            <p>추천 사이트를 단순 링크 모음이 아니라, 프로젝트 근거를 만드는 리서치 루틴으로 씁니다.</p>
           </article>
-          <article class="metric-card muted">
+          <article class="metric-card muted site-link-card">
             <strong>Design.md</strong>
             <span>내 디자인 원칙과 AI 작업 규칙을 문서화합니다.</span>
           </article>
           <article class="image-tile moss" aria-label="인터랙션 레퍼런스"></article>
           <article class="image-tile dark-tile" aria-label="바이브코딩 정보"></article>
-          <article class="metric-card">
+          <article class="metric-card site-link-card">
             <strong>Interaction</strong>
-            <span>인터랙션, 모션, 마이크로카피 레퍼런스</span>
+            <span>Godly, Refero, Lapa Ninja, Framer Gallery에서 인터랙션 흐름을 봅니다.</span>
           </article>
-          <article class="metric-card black">
+          <article class="metric-card black site-link-card">
             <strong>Vibe Coding</strong>
-            <span>AI 코딩에 유용한 도구, 팁, 프롬프트</span>
+            <span>Codex, Cursor, v0, Lovable, n8n에 맞는 프롬프트와 제작 팁을 정리합니다.</span>
           </article>
         </div>
       </section>
@@ -417,7 +433,7 @@
             <p class="eyebrow">Daily Curation</p>
             <h2 id="automation-feed-title">AI + 디자인 뉴스와 유튜브 큐레이션</h2>
           </div>
-          <p>정적 사이트에서는 GitHub Actions가 매일 JSON을 갱신하고, Vercel이 다시 배포하는 방식으로 운영할 수 있습니다.</p>
+          <p>가능합니다. GitHub Actions가 매일 JSON을 갱신하고, Vercel이 자동 배포하면 정적 사이트도 매일 업데이트됩니다.</p>
         </div>
         <div class="feed-grid">
           <article>
@@ -432,8 +448,8 @@
           </article>
           <article class="dark">
             <span>Automation MVP</span>
-            <h3>자동 수집 → 검수 PR → 승인 후 배포</h3>
-            <p>API 키는 프론트에 넣지 않고 GitHub Secrets에 보관합니다.</p>
+            <h3>자동 수집 → JSON 업데이트 → Vercel 배포</h3>
+            <p>API 키는 프론트에 넣지 않고 GitHub Secrets에 보관하고, 저작권 문제를 피하기 위해 링크와 짧은 요약만 보여줍니다.</p>
           </article>
         </div>
       </section>
@@ -499,7 +515,7 @@
           </div>
           <div class="cards">
             <article class="lesson-card"><h4>스타터 프로젝트 준비하기</h4><p>실습할 폴더와 기본 파일을 준비합니다.</p><a class="card-link" href="build.html">실습 시작</a></article>
-            <article class="lesson-card"><h4>첫 화면 구현하기</h4><p>AI 코딩 도구로 메인 화면을 만들고 확인합니다.</p><a class="card-link" href="build.html">실습 시작</a></article>
+            <article class="lesson-card"><h4>첫 화면 구현하기</h4><p>AI 도구로 메인 화면을 만들고 확인합니다.</p><a class="card-link" href="build.html">실습 시작</a></article>
             <article class="lesson-card"><h4>컴포넌트로 나누기</h4><p>반복 UI를 재사용 가능한 구조로 정리합니다.</p><a class="card-link" href="build.html">실습 시작</a></article>
           </div>
         </div>
@@ -652,7 +668,7 @@
         <div class="faq-list">
           <details open>
             <summary>코드를 전혀 몰라도 시작할 수 있나요?</summary>
-            <p>처음에는 HTML, CSS, JavaScript 파일을 열고 AI 코딩 도구와 함께 수정하는 방식으로 시작합니다.</p>
+            <p>처음에는 HTML, CSS, JavaScript 파일을 열고 AI 도구와 함께 수정하는 방식으로 시작합니다.</p>
           </details>
           <details>
             <summary>Figma 디자인을 바로 개발로 바꾸는 사이트인가요?</summary>
@@ -684,12 +700,12 @@
       <p class="brand-line">AI Product Design Lab</p>
       <p>UIUX·프로덕트 디자이너를 위한 AI 포트폴리오 완주 코스</p>
       <div>
-        <a href="#diagnosis">진단</a>
+        <a href="#diagnosis-course">진단</a>
         <a href="#planning">기획</a>
         <a href="resources.html">자료실</a>
       </div>
     </footer>
 
-    <script src="script.js?v=ai-portfolio-course1"></script>
+    <script src="script.js?v=ai-portfolio-course2"></script>
   </body>
 </html>
