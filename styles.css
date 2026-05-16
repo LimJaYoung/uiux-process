@@ -254,7 +254,8 @@ main > section:first-child {
   font-family: "Comica", Arial, sans-serif;
   font-size: clamp(58px, 6.8vw, 74px);
   font-weight: 600;
-  line-height: 0.98;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
 }
 
 .hero h1 span {
