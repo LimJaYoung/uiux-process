@@ -13,6 +13,179 @@ navLinks?.addEventListener("click", (event) => {
   }
 });
 
+const setupHomeSectionOrder = () => {
+  const main = document.querySelector("main");
+  if (!main) return;
+
+  const placeAfter = (targetSelector, anchorSelector) => {
+    const target = main.querySelector(targetSelector);
+    const anchor = main.querySelector(anchorSelector);
+    if (target && anchor && anchor.nextElementSibling !== target) {
+      anchor.after(target);
+    }
+  };
+
+  placeAfter(".outcome-section", ".proof-strip");
+  placeAfter(".bottleneck-section", ".outcome-section");
+  placeAfter(".lab-method", ".bottleneck-section");
+  placeAfter(".roadmap-section", ".lab-method");
+  placeAfter(".curriculum", ".roadmap-section");
+  placeAfter(".service-strip", ".curriculum");
+  placeAfter(".prompt-gallery", ".service-strip");
+  placeAfter(".resources", ".prompt-gallery");
+  placeAfter(".testimonial-section", ".resources");
+  placeAfter(".faq-section", ".testimonial-section");
+  placeAfter(".final-home-cta", ".faq-section");
+};
+
+setupHomeSectionOrder();
+
+document.querySelectorAll(".hero-card_swiper").forEach((swiper) => {
+  const track = swiper.querySelector(".swiper-wrapper");
+  if (!track) return;
+
+  let isDragging = false;
+  let startX = 0;
+  let currentX = 0;
+  let lastX = 0;
+
+  const getMaxOffset = () => Math.min(0, swiper.clientWidth - track.scrollWidth);
+  const clamp = (value) => Math.max(getMaxOffset(), Math.min(0, value));
+  const setX = (value) => {
+    currentX = clamp(value);
+    track.style.transform = `translate3d(${currentX}px, 0, 0)`;
+  };
+
+  swiper.addEventListener("pointerdown", (event) => {
+    isDragging = true;
+    startX = event.clientX;
+    lastX = currentX;
+    swiper.classList.add("is-dragging", "is-user-controlled");
+    swiper.setPointerCapture(event.pointerId);
+  });
+
+  swiper.addEventListener("pointermove", (event) => {
+    if (!isDragging) return;
+    setX(lastX + event.clientX - startX);
+  });
+
+  const stopDrag = (event) => {
+    if (!isDragging) return;
+    isDragging = false;
+    swiper.classList.remove("is-dragging");
+    if (swiper.hasPointerCapture(event.pointerId)) {
+      swiper.releasePointerCapture(event.pointerId);
+    }
+  };
+
+  swiper.addEventListener("pointerup", stopDrag);
+  swiper.addEventListener("pointercancel", stopDrag);
+  swiper.addEventListener("lostpointercapture", () => {
+    isDragging = false;
+    swiper.classList.remove("is-dragging");
+  });
+});
+
+let serviceScrollResizeObserver;
+
+const setupServiceScroll = () => {
+  const strips = Array.from(document.querySelectorAll(".service-strip"));
+  if (!strips.length) return;
+
+  let ticking = false;
+
+  const clamp = (value, min = 0, max = 1) => Math.min(max, Math.max(min, value));
+  const setPxProperty = (element, property, value) => {
+    const nextValue = `${Math.max(0, Math.ceil(value))}px`;
+    if (element.style.getPropertyValue(property) !== nextValue) {
+      element.style.setProperty(property, nextValue);
+    }
+  };
+
+  const measure = () => {
+    strips.forEach((strip) => {
+      const track = strip.querySelector("[data-service-track]");
+      const sticky = strip.querySelector(".service-sticky");
+      if (!track) return;
+
+      const viewport = sticky || strip;
+      const viewportStyles = window.getComputedStyle(viewport);
+      const leftPadding = parseFloat(viewportStyles.paddingLeft) || 0;
+      const rightPadding = parseFloat(viewportStyles.paddingRight) || 0;
+      const visibleWidth = viewport.clientWidth - leftPadding - rightPadding;
+      const distance = Math.max(0, Math.ceil(track.scrollWidth - visibleWidth));
+
+      setPxProperty(strip, "--service-distance", distance);
+      strip.dataset.distance = String(distance);
+
+      if (distance <= 0) {
+        track.style.transform = "translate3d(0, 0, 0)";
+        track.dataset.serviceX = "0";
+      }
+    });
+  };
+
+  const update = () => {
+    strips.forEach((strip) => {
+      const track = strip.querySelector("[data-service-track]");
+      const distance = Number(strip.dataset.distance || 0);
+      if (!track) return;
+
+      if (distance <= 0) {
+        track.style.transform = "translate3d(0, 0, 0)";
+        track.dataset.serviceX = "0";
+        return;
+      }
+
+      const stripTop = strip.getBoundingClientRect().top;
+      const progress = clamp(-stripTop / distance);
+      const nextX = progress <= 0 ? 0 : progress >= 0.999 ? -distance : -distance * progress;
+
+      if (track.dataset.serviceX !== String(nextX)) {
+        track.style.transform = `translate3d(${nextX}px, 0, 0)`;
+        track.dataset.serviceX = String(nextX);
+      }
+    });
+    ticking = false;
+  };
+
+  const requestUpdate = () => {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(update);
+  };
+
+  measure();
+  update();
+
+  window.addEventListener("scroll", requestUpdate, { passive: true });
+  window.addEventListener("resize", () => {
+    measure();
+    requestUpdate();
+  });
+
+  if ("ResizeObserver" in window) {
+    serviceScrollResizeObserver?.disconnect();
+    serviceScrollResizeObserver = new ResizeObserver(() => {
+      measure();
+      requestUpdate();
+    });
+
+    strips.forEach((strip) => {
+      serviceScrollResizeObserver.observe(strip);
+      const track = strip.querySelector("[data-service-track]");
+      if (track) serviceScrollResizeObserver.observe(track);
+    });
+  }
+
+  document.fonts?.ready.then(() => {
+    measure();
+    requestUpdate();
+  });
+};
+
+window.addEventListener("load", setupServiceScroll);
+
 document.querySelectorAll(".copy-button").forEach((button) => {
   button.addEventListener("click", async () => {
     const targetId = button.getAttribute("data-copy-target");
