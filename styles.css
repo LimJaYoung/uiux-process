@@ -549,20 +549,20 @@ main > section:first-child {
 }
 
 .service-strip {
-  --service-stage-height: 430px;
-  --service-stage-offset: max(120px, calc((100svh - var(--service-stage-height)) / 2));
+  --service-stage-height: clamp(420px, calc(100svh - 178px), 520px);
+  --service-stage-offset: clamp(86px, 12svh, 128px);
   position: relative;
   z-index: 2;
   height: calc(
     var(--service-stage-offset) +
-    var(--service-stage-offset) +
     var(--service-stage-height) +
-    var(--service-distance, 0px)
+    var(--service-distance, 0px) +
+    80px
   );
   min-height: calc(
     var(--service-stage-offset) +
-    var(--service-stage-offset) +
-    var(--service-stage-height)
+    var(--service-stage-height) +
+    80px
   );
   width: 100%;
   max-width: 100%;
@@ -570,7 +570,8 @@ main > section:first-child {
   overflow: clip;
   padding:
     var(--service-stage-offset)
-    0;
+    0
+    80px;
   background: #f1f1f2;
   touch-action: pan-y;
   user-select: none;
@@ -605,8 +606,8 @@ main > section:first-child {
 .service-card {
   position: relative;
   display: flex;
-  min-width: min(327px, 78vw);
-  min-height: 430px;
+  min-width: min(520px, 84vw);
+  min-height: var(--service-stage-height);
   flex-direction: column;
   justify-content: space-between;
   overflow: hidden;
@@ -614,7 +615,13 @@ main > section:first-child {
   border-radius: 24px;
   padding: 24px;
   background: var(--paper);
-  flex: 0 0 min(327px, 78vw);
+  flex: 0 0 min(520px, 84vw);
+}
+
+.portfolio-intro,
+.portfolio-intro.light {
+  min-width: min(420px, 84vw);
+  flex-basis: min(420px, 84vw);
 }
 
 .service-card span,
@@ -674,8 +681,15 @@ main > section:first-child {
 }
 
 .portfolio-intro h3 {
-  max-width: 260px;
-  font-size: 28px;
+  max-width: 340px;
+  font-size: clamp(30px, 3.1vw, 42px);
+  line-height: 1.02;
+  word-break: keep-all;
+}
+
+.portfolio-intro.light h3 {
+  max-width: 300px;
+  font-size: clamp(30px, 2.8vw, 38px);
 }
 
 .portfolio-intro.light {
@@ -1475,7 +1489,7 @@ main > section:first-child {
   border-radius: 36px;
   padding: clamp(34px, 6vw, 72px);
   background:
-    linear-gradient(180deg, rgba(9, 9, 11, 0.08), rgba(9, 9, 11, 0.62)),
+    linear-gradient(180deg, rgba(9, 9, 11, 0.36), rgba(9, 9, 11, 0.72)),
     url("awesomic-images/CTA img.jpg") center / cover;
   color: var(--paper);
   text-align: center;
@@ -1487,11 +1501,32 @@ main > section:first-child {
 
 .final-home-cta h2 {
   max-width: 760px;
-  margin: 0 0 28px;
+  margin: 0 0 18px;
   font-family:
     "Comica", Arial, Pretendard, -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: clamp(36px, 5vw, 64px);
   line-height: 1.02;
+}
+
+.final-home-flow {
+  max-width: 780px;
+  margin: 0 0 24px;
+  color: rgba(255, 255, 255, 0.74);
+  font-size: clamp(15px, 2vw, 18px);
+  font-weight: 600;
+}
+
+.final-home-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.final-home-actions .button.secondary {
+  border-color: rgba(255, 255, 255, 0.24);
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--paper);
 }
 
 .quick-path,
@@ -1846,8 +1881,14 @@ main > section:first-child {
 
 .curriculum-block {
   scroll-margin-top: 92px;
-  padding: clamp(112px, 11vw, 168px) 0;
+  padding: clamp(76px, 8vw, 118px) 0;
   border-top: 1px solid var(--line);
+}
+
+.curriculum + .prompt-gallery,
+.prompt-gallery + .resources,
+.resources + .testimonial-section {
+  margin-top: clamp(42px, 6vw, 82px);
 }
 
 .stage-head {
@@ -2383,7 +2424,8 @@ main > section:first-child {
   }
 
   .service-card {
-    min-width: 300px;
+    min-width: min(430px, 82vw);
+    flex-basis: min(430px, 82vw);
   }
 
   .evidence-strip,
@@ -2585,6 +2627,14 @@ main > section:first-child {
     margin-bottom: 34px;
     padding-right: 0;
     padding-left: 0;
+  }
+
+  .service-card,
+  .portfolio-intro,
+  .portfolio-intro.light {
+    min-width: 82vw;
+    min-height: 420px;
+    flex-basis: 82vw;
   }
 
   .evidence-strip {

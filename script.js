@@ -13,33 +13,6 @@ navLinks?.addEventListener("click", (event) => {
   }
 });
 
-const setupHomeSectionOrder = () => {
-  const main = document.querySelector("main");
-  if (!main) return;
-
-  const placeAfter = (targetSelector, anchorSelector) => {
-    const target = main.querySelector(targetSelector);
-    const anchor = main.querySelector(anchorSelector);
-    if (target && anchor && anchor.nextElementSibling !== target) {
-      anchor.after(target);
-    }
-  };
-
-  placeAfter(".outcome-section", ".proof-strip");
-  placeAfter(".bottleneck-section", ".outcome-section");
-  placeAfter(".lab-method", ".bottleneck-section");
-  placeAfter(".roadmap-section", ".lab-method");
-  placeAfter(".curriculum", ".roadmap-section");
-  placeAfter(".service-strip", ".curriculum");
-  placeAfter(".prompt-gallery", ".service-strip");
-  placeAfter(".resources", ".prompt-gallery");
-  placeAfter(".testimonial-section", ".resources");
-  placeAfter(".faq-section", ".testimonial-section");
-  placeAfter(".final-home-cta", ".faq-section");
-};
-
-setupHomeSectionOrder();
-
 document.querySelectorAll(".hero-card_swiper").forEach((swiper) => {
   const track = swiper.querySelector(".swiper-wrapper");
   if (!track) return;
