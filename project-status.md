@@ -305,3 +305,20 @@ The next agent should move quickly, avoid broad rewrites, and treat Awesomic.com
   - homepage Beginner level panel
   - diagnosis Beginner recommendation
   - resources page
+
+## 11. Container 1344 Homepage Alignment
+
+- Updated the `.container-1344` homepage sections so they connect directly to the Beginner MVP page content.
+- `designer-ai-section` now frames AI tools around Beginner MVP stages:
+  - item selection
+  - research
+  - problem definition
+  - UX documentation
+  - first screen draft
+  - implementation
+  - deployment/case study
+- `designer-reference-section` now explains reference collection as MVP decision support, not generic visual collection.
+- `level-process-section` Beginner panel now points to the copied-prompt flow:
+  - Claude/ChatGPT for item, research, problem definition
+  - Stitch/Figma AI for first screen/state references
+  - Codex for implementation, QA, and Vercel deployment
