@@ -351,3 +351,26 @@ The next agent should move quickly, avoid broad rewrites, and treat Awesomic.com
   - diagnosis Intermediate recommendation
   - resources page
 - Updated diagnosis copy for Intermediate so it points to SKILL, PRD, Design.md, and QA rather than only structure/design.
+
+## 13. Advanced Page Update
+
+- Added `advanced.html` from the downloaded `prompt-guide-advanced.html` source.
+- Preserved the original Advanced flow:
+  - parallel agents
+  - coordinator SKILL
+  - automation SKILL
+  - n8n setup
+  - 3 core n8n workflows
+  - n8n + Claude/API integration
+  - GitHub Actions auto deploy
+  - Claude Code / Codex project instructions
+  - Advanced case study
+- Converted unstable wording into safer guidance:
+  - exact model names become current-model placeholders where needed
+  - n8n plan details are framed as something to verify before use
+  - API keys are always stored in Credentials or GitHub Secrets, never in code
+- Connected entry points:
+  - homepage Advanced card
+  - homepage Advanced level panel
+  - diagnosis Advanced recommendation
+  - resources page

@@ -267,10 +267,10 @@ if (diagnosisTool) {
     {
       max: 6,
       level: "Advanced",
-      title: "Advanced: 구현, QA, 배포를 고도화하세요",
+      title: "Advanced: 자동으로 업데이트되는 운영 시스템을 설계하세요",
       copy:
-        "이미 설계나 화면이 있다면 작동 품질, 반응형, 접근성, 배포 URL, Design.md와 자동화 루틴까지 연결하세요.",
-      href: "review.html",
+        "이미 설계나 화면이 있다면 병렬 에이전트, n8n, GitHub Actions, 코드 에이전트를 연결해 자동화 포트폴리오로 고도화하세요.",
+      href: "advanced.html",
     },
   ];
 
