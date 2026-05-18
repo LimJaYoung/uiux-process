@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Claude 활용법 | AI Product Design Lab</title>
+    <meta name="description" content="UIUX 디자이너가 Claude로 UX 흐름, 긴 문서, 케이스 스터디 서사를 정리하는 방법입니다." />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html"><span class="brand-mark">AI</span><span>AI Product Design Lab</span></a>
+      <button class="menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false"><span></span><span></span><span></span></button>
+      <nav class="nav-links detail-nav" aria-label="상세 메뉴"><a href="index.html#designer-ai">AI 도구</a><a href="structure.html">설계</a><a href="resources.html">자료실</a></nav>
+    </header>
+    <main>
+      <section class="detail-hero">
+        <a class="back-link" href="index.html#designer-ai">← AI 도구로 돌아가기</a>
+        <p class="eyebrow">AI Toolkit · Claude</p>
+        <h1>Claude로 UX 흐름과 문서를 다듬기</h1>
+        <p>긴 자료를 읽고 구조화하는 데 강한 도구로, 사용자 시나리오, IA, 의사결정 이유, 발표 문장을 정리할 때 유용합니다.</p>
+        <div class="meta-row"><span>추천 단계 UX Structure</span><span>결과물 UX 문서</span><span>공식 주소 claude.ai</span></div>
+      </section>
+      <section class="detail-layout">
+        <aside class="detail-toc" aria-label="페이지 목차"><a href="#why">언제 쓰나</a><a href="#how">활용 방법</a><a href="#prompt">프롬프트</a><a href="#links">연결 주소</a><a href="#next">다음 단계</a></aside>
+        <article class="detail-content">
+          <section id="why"><h2>언제 쓰나</h2><p>리서치 메모, 회의 기록, 경쟁 분석, 화면 요구사항처럼 긴 입력을 하나의 UX 문서로 묶어야 할 때 좋습니다.</p></section>
+          <section id="how"><h2>활용 방법</h2><ul class="deliverables"><li>사용자 여정을 단계별로 정리합니다.</li><li>화면 목록과 상태 화면을 빠짐없이 점검합니다.</li><li>디자인 의사결정의 이유를 면접 답변처럼 다듬습니다.</li><li>케이스 스터디의 시작, 중간, 끝 구조를 잡습니다.</li></ul></section>
+          <section id="prompt"><h2>바로 쓰는 프롬프트</h2><div class="prompt-box"><button class="copy-button" type="button" data-copy-target="claude-prompt">복사</button><pre id="claude-prompt"><code>당신은 시니어 UX 디자이너이자 포트폴리오 멘토입니다.
+아래 기획 자료를 바탕으로 UX 설계 문서를 정리해주세요.
+
+1. 핵심 사용자 목표
+2. 사용자 여정 단계
+3. 필요한 화면 목록
+4. 각 화면의 목적과 핵심 콘텐츠
+5. 빈 상태, 오류 상태, 성공 상태
+6. 포트폴리오에서 설명할 의사결정 이유
+
+기획 자료:
+[여기에 자료를 붙여넣으세요]</code></pre></div></section>
+          <section id="links"><h2>연결 주소</h2><p><a class="card-link" href="https://claude.ai" target="_blank" rel="noreferrer">Claude 공식 사이트 열기</a></p><p><a class="card-link" href="https://www.anthropic.com/product/claude-code" target="_blank" rel="noreferrer">Claude Code 제품 페이지 열기</a></p></section>
+          <section id="next" class="next-panel"><h2>다음 단계</h2><p>정리한 UX 흐름을 와이어프레임과 UI 방향으로 바꿉니다.</p><a class="button primary ink-button" href="design.html">UI 방향 잡기</a></section>
+        </article>
+      </section>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>

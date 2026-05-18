@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Perplexity와 n8n 활용법 | AI Product Design Lab</title>
+    <meta name="description" content="UIUX 디자이너가 Perplexity로 레퍼런스를 찾고 n8n으로 수집과 업데이트 루틴을 자동화하는 방법입니다." />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html"><span class="brand-mark">AI</span><span>AI Product Design Lab</span></a>
+      <button class="menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false"><span></span><span></span><span></span></button>
+      <nav class="nav-links detail-nav" aria-label="상세 메뉴"><a href="index.html#designer-ai">AI 도구</a><a href="index.html#designer-reference">레퍼런스</a><a href="automation.html">자동화</a></nav>
+    </header>
+    <main>
+      <section class="detail-hero">
+        <a class="back-link" href="index.html#designer-ai">← AI 도구로 돌아가기</a>
+        <p class="eyebrow">AI Toolkit · Perplexity + n8n</p>
+        <h1>레퍼런스 조사와 자동화 루틴 만들기</h1>
+        <p>Perplexity로 출처 있는 레퍼런스를 찾고, n8n으로 반복 수집, 요약, 알림 흐름을 만들어 포트폴리오와 학습 자료를 계속 업데이트합니다.</p>
+        <div class="meta-row"><span>추천 단계 Reference</span><span>결과물 자동화 루틴</span><span>공식 주소 perplexity.ai · n8n.io</span></div>
+      </section>
+      <section class="detail-layout">
+        <aside class="detail-toc" aria-label="페이지 목차"><a href="#why">언제 쓰나</a><a href="#how">활용 방법</a><a href="#prompt">프롬프트</a><a href="#links">연결 주소</a><a href="#next">다음 단계</a></aside>
+        <article class="detail-content">
+          <section id="why"><h2>언제 쓰나</h2><p>최신 AI 디자인 도구, 경쟁 서비스, 레퍼런스 사이트, UX 패턴을 조사하고 그 결과를 매주 자동으로 모으고 싶을 때 씁니다.</p></section>
+          <section id="how"><h2>활용 방법</h2><ul class="deliverables"><li>Perplexity에서 출처가 있는 자료를 먼저 찾습니다.</li><li>좋은 링크를 주제, 사용 이유, 적용 포인트로 분류합니다.</li><li>n8n에서 RSS, 웹훅, 스프레드시트, 슬랙 알림을 연결합니다.</li><li>수집 결과는 포트폴리오 레퍼런스 보드나 자료실 JSON으로 관리합니다.</li></ul></section>
+          <section id="prompt"><h2>바로 쓰는 프롬프트</h2><div class="prompt-box"><button class="copy-button" type="button" data-copy-target="perplexity-prompt">복사</button><pre id="perplexity-prompt"><code>UIUX 디자이너가 포트폴리오 프로젝트에 참고할 수 있는 최신 레퍼런스를 찾아주세요.
+
+조건:
+1. 웹/모바일 UI 패턴 중심
+2. 출처 링크 포함
+3. 각 링크에서 배울 점 1개씩 정리
+4. 내 프로젝트에 적용할 수 있는 방식 제안
+5. 신뢰도가 낮거나 광고성 자료는 제외
+
+프로젝트 주제:
+[여기에 주제를 적어주세요]</code></pre></div></section>
+          <section id="links"><h2>연결 주소</h2><p><a class="card-link" href="https://www.perplexity.ai/" target="_blank" rel="noreferrer">Perplexity 공식 사이트 열기</a></p><p><a class="card-link" href="https://n8n.io/" target="_blank" rel="noreferrer">n8n 공식 사이트 열기</a></p></section>
+          <section id="next" class="next-panel"><h2>다음 단계</h2><p>수집 기준을 Design.md와 자동화 규칙으로 저장합니다.</p><a class="button primary ink-button" href="automation.html">자동화 단계 보기</a></section>
+        </article>
+      </section>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>

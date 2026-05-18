@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Codex 활용법 | AI Product Design Lab</title>
+    <meta name="description" content="UIUX 디자이너가 Codex로 HTML, CSS, JS를 수정하고 배포 가능한 프로토타입을 만드는 방법입니다." />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html"><span class="brand-mark">AI</span><span>AI Product Design Lab</span></a>
+      <button class="menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false"><span></span><span></span><span></span></button>
+      <nav class="nav-links detail-nav" aria-label="상세 메뉴"><a href="index.html#designer-ai">AI 도구</a><a href="build.html">구현</a><a href="review.html">QA</a></nav>
+    </header>
+    <main>
+      <section class="detail-hero">
+        <a class="back-link" href="index.html#designer-ai">← AI 도구로 돌아가기</a>
+        <p class="eyebrow">AI Toolkit · Codex</p>
+        <h1>Codex로 실제 화면을 구현하기</h1>
+        <p>디자인 기준을 코드로 옮기고, 반응형과 인터랙션을 검수하며, 배포 가능한 포트폴리오 화면으로 만드는 AI 코딩 파트너입니다.</p>
+        <div class="meta-row"><span>추천 단계 AI Build</span><span>결과물 작동 화면</span><span>공식 주소 openai.com/codex</span></div>
+      </section>
+      <section class="detail-layout">
+        <aside class="detail-toc" aria-label="페이지 목차"><a href="#why">언제 쓰나</a><a href="#how">활용 방법</a><a href="#prompt">프롬프트</a><a href="#links">연결 주소</a><a href="#next">다음 단계</a></aside>
+        <article class="detail-content">
+          <section id="why"><h2>언제 쓰나</h2><p>디자인 기준은 있지만 실제 작동 화면이 없을 때 씁니다. HTML, CSS, JS를 수정하고 테스트와 QA까지 연결할 수 있습니다.</p></section>
+          <section id="how"><h2>활용 방법</h2><ul class="deliverables"><li>기존 파일 구조를 먼저 읽게 합니다.</li><li>화면 단위로 작게 구현을 요청합니다.</li><li>모바일, hover, focus, 빈 상태를 함께 요청합니다.</li><li>수정 파일과 검수 결과를 디자이너가 이해할 말로 설명하게 합니다.</li></ul></section>
+          <section id="prompt"><h2>바로 쓰는 프롬프트</h2><div class="prompt-box"><button class="copy-button" type="button" data-copy-target="codex-prompt">복사</button><pre id="codex-prompt"><code>당신은 UIUX 디자이너와 협업하는 시니어 프론트엔드 엔지니어입니다.
+기존 파일 구조를 먼저 파악한 뒤, 아래 디자인 기준에 맞게 화면을 구현해주세요.
+
+작업 기준:
+1. 기존 스타일 규칙을 최대한 유지
+2. 모바일과 데스크톱 모두 확인
+3. 버튼, 링크, 카드의 hover와 focus 상태 포함
+4. 텍스트가 버튼이나 카드 밖으로 넘치지 않게 처리
+5. 수정한 파일과 확인 방법을 짧게 설명
+
+디자인 기준:
+[여기에 UI 방향을 붙여넣으세요]</code></pre></div></section>
+          <section id="links"><h2>연결 주소</h2><p><a class="card-link" href="https://openai.com/codex/" target="_blank" rel="noreferrer">Codex 공식 페이지 열기</a></p></section>
+          <section id="next" class="next-panel"><h2>다음 단계</h2><p>구현된 화면을 디자이너 기준으로 QA합니다.</p><a class="button primary ink-button" href="review.html">디자인 QA 하기</a></section>
+        </article>
+      </section>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>

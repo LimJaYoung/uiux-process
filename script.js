@@ -59,103 +59,65 @@ document.querySelectorAll(".hero-card_swiper").forEach((swiper) => {
   });
 });
 
-document.querySelectorAll(".portfolio-process-grid").forEach((slider) => {
-  let isDragging = false;
-  let startX = 0;
-  let startScrollLeft = 0;
-  let lastX = 0;
-  let lastTime = 0;
-  let velocity = 0;
-  let momentumFrame = 0;
+document.querySelectorAll("[data-level-tabs]").forEach((tabs) => {
+  const tabButtons = Array.from(tabs.querySelectorAll("[data-level-tab]"));
+  const panels = Array.from(tabs.querySelectorAll("[data-level-panel]"));
 
-  const stopMomentum = () => {
-    if (momentumFrame) {
-      window.cancelAnimationFrame(momentumFrame);
-      momentumFrame = 0;
+  const activateTab = (key, shouldFocus = false) => {
+    tabButtons.forEach((button) => {
+      const isActive = button.dataset.levelTab === key;
+      button.classList.toggle("is-active", isActive);
+      button.setAttribute("aria-selected", String(isActive));
+      button.tabIndex = isActive ? 0 : -1;
+
+      if (isActive && shouldFocus) {
+        button.focus();
+      }
+    });
+
+    panels.forEach((panel) => {
+      const isActive = panel.dataset.levelPanel === key;
+      panel.classList.toggle("is-active", isActive);
+      panel.hidden = !isActive;
+    });
+  };
+
+  tabButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      activateTab(button.dataset.levelTab);
+    });
+
+    button.addEventListener("keydown", (event) => {
+      const currentIndex = tabButtons.indexOf(button);
+      const lastIndex = tabButtons.length - 1;
+      let nextIndex = currentIndex;
+
+      if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+        nextIndex = currentIndex === lastIndex ? 0 : currentIndex + 1;
+      } else if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
+        nextIndex = currentIndex === 0 ? lastIndex : currentIndex - 1;
+      } else if (event.key === "Home") {
+        nextIndex = 0;
+      } else if (event.key === "End") {
+        nextIndex = lastIndex;
+      } else {
+        return;
+      }
+
+      event.preventDefault();
+      activateTab(tabButtons[nextIndex].dataset.levelTab, true);
+    });
+  });
+
+  const activateFromHash = () => {
+    const hash = window.location.hash.replace("#course-", "");
+    if (tabButtons.some((button) => button.dataset.levelTab === hash)) {
+      activateTab(hash);
     }
   };
 
-  const runMomentum = () => {
-    slider.scrollLeft -= velocity;
-    velocity *= 0.96;
-
-    if (Math.abs(velocity) > 0.08) {
-      momentumFrame = window.requestAnimationFrame(runMomentum);
-      return;
-    }
-
-    momentumFrame = 0;
-  };
-
-  slider.addEventListener("pointerdown", (event) => {
-    isDragging = true;
-    startX = event.clientX;
-    startScrollLeft = slider.scrollLeft;
-    lastX = event.clientX;
-    lastTime = performance.now();
-    velocity = 0;
-    stopMomentum();
-    slider.classList.add("is-dragging");
-    slider.setPointerCapture(event.pointerId);
-  });
-
-  slider.addEventListener("pointermove", (event) => {
-    if (!isDragging) return;
-    event.preventDefault();
-
-    const now = performance.now();
-    const deltaX = event.clientX - startX;
-    const frameDelta = event.clientX - lastX;
-    const frameTime = Math.max(16, now - lastTime);
-
-    slider.scrollLeft = startScrollLeft - deltaX * 1.18;
-    velocity = (frameDelta / frameTime) * 22;
-    lastX = event.clientX;
-    lastTime = now;
-  });
-
-  const stopDrag = (event) => {
-    if (!isDragging) return;
-    isDragging = false;
-    slider.classList.remove("is-dragging");
-
-    if (slider.hasPointerCapture(event.pointerId)) {
-      slider.releasePointerCapture(event.pointerId);
-    }
-
-    runMomentum();
-  };
-
-  slider.addEventListener("pointerup", stopDrag);
-  slider.addEventListener("pointercancel", stopDrag);
-  slider.addEventListener("lostpointercapture", () => {
-    isDragging = false;
-    slider.classList.remove("is-dragging");
-  });
-});
-
-document.querySelectorAll(".portfolio-process-section").forEach((section) => {
-  const slider = section.querySelector("[data-process-slider]");
-  const prevButton = section.querySelector("[data-process-prev]");
-  const nextButton = section.querySelector("[data-process-next]");
-  if (!slider) return;
-
-  const getStep = () => {
-    const card = slider.querySelector(".process-card");
-    if (!card) return slider.clientWidth * 0.8;
-
-    const styles = window.getComputedStyle(slider);
-    const gap = parseFloat(styles.columnGap || styles.gap) || 0;
-    return card.getBoundingClientRect().width + gap;
-  };
-
-  prevButton?.addEventListener("click", () => {
-    slider.scrollBy({ left: -getStep(), behavior: "smooth" });
-  });
-
-  nextButton?.addEventListener("click", () => {
-    slider.scrollBy({ left: getStep(), behavior: "smooth" });
-  });
+  activateFromHash();
+  window.addEventListener("hashchange", activateFromHash);
 });
 
 let serviceScrollResizeObserver;
@@ -289,25 +251,25 @@ if (diagnosisTool) {
     {
       max: 2,
       level: "Beginner",
-      title: "초급 코스: 첫 UIUX 포트폴리오부터 시작하세요",
+      title: "Beginner: 기획 단계부터 작게 완주하세요",
       copy:
-        "AI 코딩과 배포가 낯설다면 작은 MVP를 기획, 설계, 디자인, 코딩, 배포까지 완주하는 흐름이 좋습니다.",
+        "AI 구현과 배포가 낯설다면 작은 MVP를 문제 정의, 화면 구조, 작동 화면, 배포 URL까지 연결하는 흐름이 좋습니다.",
       href: "first-product.html",
     },
     {
       max: 4,
       level: "Intermediate",
-      title: "중급 코스: 서비스형 프로덕트 포트폴리오로 가세요",
+      title: "Intermediate: 구조나 디자인 단계부터 시작하세요",
       copy:
-        "Figma나 UX 기획 경험이 있다면 다중 화면, 디자인 시스템, 케이스 스터디를 묶는 코스가 맞습니다.",
+        "UX 기획이나 Figma 경험이 있다면 사용자 흐름, IA, 디자인 시스템을 구현 조건으로 바꾸는 단계가 잘 맞습니다.",
       href: "structure.html",
     },
     {
       max: 6,
       level: "Advanced",
-      title: "고급 코스: 실무형 포트폴리오를 고도화하세요",
+      title: "Advanced: 구현, QA, 배포를 고도화하세요",
       copy:
-        "팀프로젝트, 퍼스널 브랜딩, 자동화 워크플로우까지 묶어 취업·이직용 결과물을 만듭니다.",
+        "이미 설계나 화면이 있다면 작동 품질, 반응형, 접근성, 배포 URL, Design.md와 자동화 루틴까지 연결하세요.",
       href: "review.html",
     },
   ];
@@ -352,7 +314,7 @@ if (lessonHero && !diagnosisTool) {
   progressPanel.className = "course-progress";
   progressPanel.innerHTML = `
     <div class="course-progress-head">
-      <span>Portfolio Course Progress</span>
+      <span>Portfolio Production Flow</span>
       <span>${currentStep.label} · ${currentStep.progress}%</span>
     </div>
     <div class="course-progress-track"><i style="width: ${currentStep.progress}%"></i></div>
