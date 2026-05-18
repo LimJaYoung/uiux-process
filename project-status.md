@@ -322,3 +322,11 @@ The next agent should move quickly, avoid broad rewrites, and treat Awesomic.com
   - Claude/ChatGPT for item, research, problem definition
   - Stitch/Figma AI for first screen/state references
   - Codex for implementation, QA, and Vercel deployment
+- Added direct `beginner-mvp.html` anchor links throughout `.container-1344` cards so users can jump into the relevant Beginner MVP page sections:
+  - `#item`
+  - `#research`
+  - `#problem`
+  - `#ux`
+  - `#build`
+  - `#deploy`
+  - `#checklist`
