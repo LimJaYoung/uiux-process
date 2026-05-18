@@ -330,3 +330,24 @@ The next agent should move quickly, avoid broad rewrites, and treat Awesomic.com
   - `#build`
   - `#deploy`
   - `#checklist`
+
+## 12. Intermediate Page Update
+
+- Added `intermediate.html` from the downloaded `prompt-guide-intermediate.html` source.
+- Preserved the original Intermediate flow:
+  - SKILL 4종
+  - 에이전트팀 구성
+  - PRD 문서 제작
+  - 레퍼런스 분석
+  - tokens.css 생성
+  - Design.md 작성
+  - SKILL + Design.md 통합
+  - 화면 구현 & QA
+  - 포트폴리오 케이스 스터디
+- Converted the standalone dark HTML guide into the existing site detail-page pattern using `detail-hero`, `detail-layout`, `detail-toc`, `detail-content`, and `prompt-box`.
+- Connected entry points:
+  - homepage Intermediate card
+  - homepage Intermediate level panel
+  - diagnosis Intermediate recommendation
+  - resources page
+- Updated diagnosis copy for Intermediate so it points to SKILL, PRD, Design.md, and QA rather than only structure/design.

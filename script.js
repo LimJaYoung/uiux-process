@@ -259,10 +259,10 @@ if (diagnosisTool) {
     {
       max: 4,
       level: "Intermediate",
-      title: "Intermediate: 구조나 디자인 단계부터 시작하세요",
+      title: "Intermediate: AI 에이전트팀으로 서비스형 포트폴리오를 만드세요",
       copy:
-        "UX 기획이나 Figma 경험이 있다면 사용자 흐름, IA, 디자인 시스템을 구현 조건으로 바꾸는 단계가 잘 맞습니다.",
-      href: "structure.html",
+        "UX 기획이나 Figma 경험이 있다면 SKILL, PRD, Design.md, QA 리포트를 연결해 다중 화면 포트폴리오를 만드는 흐름이 잘 맞습니다.",
+      href: "intermediate.html",
     },
     {
       max: 6,
