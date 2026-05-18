@@ -254,7 +254,7 @@ if (diagnosisTool) {
       title: "Beginner: 기획 단계부터 작게 완주하세요",
       copy:
         "AI 구현과 배포가 낯설다면 작은 MVP를 문제 정의, 화면 구조, 작동 화면, 배포 URL까지 연결하는 흐름이 좋습니다.",
-      href: "first-product.html",
+      href: "beginner-mvp.html",
     },
     {
       max: 4,

@@ -281,3 +281,27 @@ The user wants the existing structure preserved, unnecessary sections removed, a
 7. How they continue through shared production steps, resources, and curation
 
 The next agent should move quickly, avoid broad rewrites, and treat Awesomic.com as the visual quality bar.
+
+## 10. Beginner MVP Page Update
+
+- Added `beginner-mvp.html` from the downloaded `prompt-guide-beginner-mvp.html` source.
+- Preserved the useful original flow and prompt content:
+  - AI start/session prompt
+  - item selection
+  - research and competitor analysis
+  - HMW/problem definition
+  - solution/value proposition
+  - UX journey/IA/screen spec
+  - implementation prompt
+  - GitHub/Vercel deployment
+  - case study and interview answers
+- Corrected confusing or stale wording:
+  - `Claude 설치` became `AI 시작하기`, because Claude and ChatGPT are web tools.
+  - exact paid-plan pricing was removed to avoid stale information.
+  - AI research now explicitly asks students to verify current facts and numbers.
+  - implementation stage now recommends using Claude/ChatGPT for drafts and Codex for file edits/QA.
+- Connected entry points:
+  - homepage Beginner card
+  - homepage Beginner level panel
+  - diagnosis Beginner recommendation
+  - resources page
