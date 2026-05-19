@@ -120,6 +120,62 @@ document.querySelectorAll("[data-level-tabs]").forEach((tabs) => {
   window.addEventListener("hashchange", activateFromHash);
 });
 
+document.querySelectorAll(".detail-toc").forEach((toc) => {
+  const links = Array.from(toc.querySelectorAll('a[href^="#"]'));
+  const items = links
+    .map((link) => {
+      const id = decodeURIComponent(link.getAttribute("href").slice(1));
+      const section = document.getElementById(id);
+      return section ? { link, section } : null;
+    })
+    .filter(Boolean);
+
+  if (!items.length) return;
+
+  let ticking = false;
+
+  const setActiveLink = (activeLink) => {
+    items.forEach(({ link }) => {
+      const isActive = link === activeLink;
+      link.classList.toggle("is-active", isActive);
+      if (isActive) {
+        link.setAttribute("aria-current", "true");
+      } else {
+        link.removeAttribute("aria-current");
+      }
+    });
+  };
+
+  const updateActiveLink = () => {
+    const offset = Math.min(180, window.innerHeight * 0.32);
+    let current = items[0];
+
+    items.forEach((item) => {
+      if (item.section.getBoundingClientRect().top <= offset) {
+        current = item;
+      }
+    });
+
+    setActiveLink(current.link);
+    ticking = false;
+  };
+
+  const requestUpdate = () => {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(updateActiveLink);
+  };
+
+  links.forEach((link) => {
+    link.addEventListener("click", () => setActiveLink(link));
+  });
+
+  updateActiveLink();
+  window.addEventListener("scroll", requestUpdate, { passive: true });
+  window.addEventListener("resize", requestUpdate);
+  window.addEventListener("hashchange", requestUpdate);
+});
+
 let serviceScrollResizeObserver;
 
 const setupServiceScroll = () => {
