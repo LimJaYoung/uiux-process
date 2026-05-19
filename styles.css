@@ -1843,20 +1843,23 @@ main > section.portfolio-process-section {
 .portfolio-process-heading {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: 24px;
   width: min(calc(100% - var(--site-gutter)), 1344px);
   margin-right: auto;
   margin-left: auto;
-  margin-bottom: 34px;
+  margin-bottom: 30px;
   padding: 0;
+  text-align: center;
 }
 
 .portfolio-process-heading h2 {
-  max-width: 680px;
+  max-width: 960px;
   margin: 0;
-  font-size: clamp(22px, 2.8vw, 30px);
-  line-height: 1.15;
+  font-family:
+    "Comica", Arial, Pretendard, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(34px, 4.8vw, 60px);
+  line-height: 1;
   font-weight: 600;
   letter-spacing: 0;
 }
@@ -1896,11 +1899,83 @@ main > section.portfolio-process-section {
 }
 
 .portfolio-process-grid {
-  display: block;
+  display: grid;
+  gap: 14px;
   overflow: hidden;
   width: 100%;
   margin-left: 0;
   padding: 0;
+}
+
+.award-marquee-row {
+  display: grid;
+  gap: 10px;
+}
+
+.award-marquee-row > p {
+  width: min(calc(100% - var(--site-gutter)), 1344px);
+  margin: 0 auto;
+  color: rgba(9, 10, 12, 0.48);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.award-marquee {
+  display: block;
+  width: 100%;
+}
+
+.award-track {
+  display: inline-flex;
+  width: max-content;
+  gap: 12px;
+  padding: 0 6px;
+}
+
+.award-card {
+  display: grid;
+  width: clamp(286px, 24vw, 380px);
+  min-height: 156px;
+  align-content: space-between;
+  flex: 0 0 clamp(286px, 24vw, 380px);
+  border: 1px solid #dddddd;
+  border-radius: 24px;
+  padding: 22px 24px;
+  background: var(--paper);
+  color: #090a0c;
+}
+
+.award-card.is-grand,
+.award-card:nth-child(5n) {
+  border-color: #090a0c;
+  background: #090a0c;
+  color: var(--paper);
+}
+
+.award-card span {
+  display: block;
+  color: inherit;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.2;
+  opacity: 0.55;
+}
+
+.award-card h3 {
+  margin: 14px 0 0;
+  font-size: clamp(22px, 2vw, 28px);
+  font-weight: 800;
+  line-height: 1.05;
+}
+
+.award-card p {
+  margin: 18px 0 0;
+  color: inherit;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.35;
+  opacity: 0.58;
 }
 
 .process-card {
