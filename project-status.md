@@ -1,6 +1,15 @@
 # Project Status: UIUX Process / AI Portfolio Course
 
-Last updated: 2026-05-18
+Last updated: 2026-05-19
+
+## Current Snapshot
+
+- Production deployment: https://claude-lab-seven.vercel.app
+- Latest Vercel deployment: https://claude-e1whc597q-limjayoungs-projects.vercel.app
+- Homepage typography pass is complete for the current iteration: main `h2` titles use `NexonLv2Gothic`, key feature-card headings use the same Korean-first type system, and selected emphasis words use smaller block spans.
+- `proof-strip` was removed from the homepage flow. The portfolio awards marquee now sits after the guide banner.
+- Main homepage sections currently flow as: hero, graduate portfolio strip, guide banner, portfolio awards marquee, designer AI workflow, designer reference board, level process, curation feed, FAQ, final CTA.
+- Final CTA has extra bottom spacing for visual breathing room before the footer.
 
 ## 1. Current Goal
 
@@ -56,7 +65,7 @@ Must-follow section layout references:
 Workspace:
 
 ```text
-/Users/limjayoung/Documents/New project
+D:\uiux-process\New project
 ```
 
 Git remote:
