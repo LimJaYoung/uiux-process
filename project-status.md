@@ -385,7 +385,7 @@ The next agent should move quickly, avoid broad rewrites, and treat Awesomic.com
 - Added `designer-reference-sites.html` as the detailed archive page.
 - The detail page contains:
   - 8 reference categories
-  - 80 total site cards
+  - 79 total site cards
   - category quick links
   - site name, URL, free/freemium/paid badge, description, and tags
 - Categories included:
@@ -394,7 +394,7 @@ The next agent should move quickly, avoid broad rewrites, and treat Awesomic.com
   - Design System & Design.md
   - 애니메이션
   - 영상 레퍼런스
-  - 프롬프트 & AI 활용
+  - design.md 모두 골라!
   - 타이포그래피
   - 컬러 & 에셋
 - Added dedicated responsive CSS for the reference catalog while keeping the `.container-1344` section structure.
