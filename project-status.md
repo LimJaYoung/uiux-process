@@ -374,3 +374,22 @@ The next agent should move quickly, avoid broad rewrites, and treat Awesomic.com
   - homepage Advanced level panel
   - diagnosis Advanced recommendation
   - resources page
+
+## 14. Designer Reference Section Update
+
+- Replaced the homepage `designer-reference-section` content with the curated source from `/Users/limjayoung/Downloads/designer-reference-sites.html`.
+- The section now contains:
+  - 8 reference categories
+  - 80 total site cards
+  - category quick links
+  - site name, URL, free/freemium/paid badge, description, and tags
+- Categories included:
+  - 디자인 영감
+  - 인터랙티브 요소
+  - Design System & Design.md
+  - 애니메이션
+  - 영상 레퍼런스
+  - 프롬프트 & AI 활용
+  - 타이포그래피
+  - 컬러 & 에셋
+- Added dedicated responsive CSS for the reference catalog while keeping the `.container-1344` section structure.
