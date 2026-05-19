@@ -377,8 +377,13 @@ The next agent should move quickly, avoid broad rewrites, and treat Awesomic.com
 
 ## 14. Designer Reference Section Update
 
-- Replaced the homepage `designer-reference-section` content with the curated source from `/Users/limjayoung/Downloads/designer-reference-sites.html`.
-- The section now contains:
+- Reworked `designer-reference-section` after layout review.
+- Homepage now follows the `designer-ai-section` card-board pattern:
+  - 1 featured reference guide card
+  - 8 curated category cards
+  - category-specific CTA links into `designer-reference-sites.html`
+- Added `designer-reference-sites.html` as the detailed archive page.
+- The detail page contains:
   - 8 reference categories
   - 80 total site cards
   - category quick links
