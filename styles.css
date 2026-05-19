@@ -1923,7 +1923,23 @@ main > section.portfolio-process-section {
 
 .award-marquee {
   display: block;
+  overflow: hidden;
   width: 100%;
+}
+
+.award-loop {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+.award-loop-left {
+  animation: award-marquee-left 42s linear infinite;
+}
+
+.award-loop-right {
+  animation: award-marquee-right 42s linear infinite;
+  transform: translate3d(-50%, 0, 0);
 }
 
 .award-track {
@@ -1931,6 +1947,10 @@ main > section.portfolio-process-section {
   width: max-content;
   gap: 12px;
   padding: 0 6px;
+}
+
+.portfolio-process-grid:hover .award-loop {
+  animation-play-state: paused;
 }
 
 .award-card {
@@ -2173,6 +2193,26 @@ main > section.portfolio-process-section {
 
   to {
     transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes award-marquee-left {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes award-marquee-right {
+  from {
+    transform: translate3d(-50%, 0, 0);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
   }
 }
 
@@ -4189,7 +4229,8 @@ main > section.portfolio-process-section {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .marquee-track {
+  .marquee-track,
+  .award-loop {
     animation: none;
     transform: none;
   }
