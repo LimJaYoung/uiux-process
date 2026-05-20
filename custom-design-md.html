@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Custom Design.md 생성하기 | AI Product Design Lab</title>
+    <meta
+      name="description"
+      content="J.영 Design.md를 기준으로 폰트, 웨이트, 포인트 컬러, 프라이머리 컬러를 입력해 custom.md 파일을 생성합니다."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="AI Product Design Lab 홈">
+        <span class="brand-mark">AI</span>
+        <span>AI Product Design Lab</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="nav-links detail-nav" aria-label="상세 메뉴">
+        <a href="beginner-mvp.html">Beginner MVP</a>
+        <a href="jyoung-design.md" download="Jyoung.md">J.영 Design.md</a>
+        <a href="index.html#level-process">프로세스</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="detail-hero lesson-hero">
+        <a class="back-link" href="beginner-mvp.html">← Beginner MVP로</a>
+        <p class="eyebrow">Design.md Kit</p>
+        <h1>Custom Design.md 생성하기</h1>
+        <p>
+          J.영 Design.md를 기본 기준으로 두고, 프로젝트에 맞는 폰트와 컬러 토큰을 입력해
+          AI가 흔들리지 않고 같은 디자인 기준으로 작업하도록 custom.md 파일을 만듭니다.
+        </p>
+      </section>
+
+      <section class="custom-design-section">
+        <article class="custom-design-builder" data-design-md-builder>
+          <div class="custom-design-head">
+            <div>
+              <span>Prompt Builder</span>
+              <h2>디자인 기준값을 직접 입력하세요</h2>
+            </div>
+            <button class="custom-design-download" type="button" data-design-md-download>custom.md 다운로드</button>
+          </div>
+
+          <div class="custom-design-grid" data-design-md-form>
+            <label>
+              폰트 스타일
+              <input type="text" data-design-md-field="fontStyle" value="Pretendard, Noto Sans KR, sans-serif" />
+            </label>
+            <label>
+              폰트 웨이트
+              <input type="text" data-design-md-field="fontWeight" value="400 / 600 / 800" />
+            </label>
+            <label>
+              포인트 칼라
+              <input type="text" data-design-md-field="pointColor" value="#0099ff" />
+            </label>
+            <label>
+              프라이머리 칼라
+              <input type="text" data-design-md-field="primaryColor" value="#101010" />
+            </label>
+            <label>
+              버튼 라운드
+              <input type="text" data-design-md-field="buttonRadius" value="12px" />
+            </label>
+            <label>
+              카드 라운드
+              <input type="text" data-design-md-field="cardRadius" value="24px" />
+            </label>
+            <label class="wide">
+              Jyoung.md 추가 기준
+              <textarea data-design-md-field="extraRules" rows="5">Minimal, Clean, Professional, Spacious, Modern, Editorial 톤을 유지한다.</textarea>
+            </label>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

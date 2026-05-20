@@ -37,10 +37,10 @@ document.querySelectorAll("[data-ai-diagnosis]").forEach((diagnosis) => {
   ];
 
   const choices = [
-    { icon: "✓", main: "네, 자주 씁니다", desc: "실무나 프로젝트에서 정기적으로 활용 중", score: 3, color: "#2dd4a0", bg: "rgba(45,212,160,0.15)" },
-    { icon: "↻", main: "해봤지만 가끔만요", desc: "몇 번 시도해봤으나 지속적이진 않음", score: 2, color: "#e8a830", bg: "rgba(232,168,48,0.15)" },
-    { icon: "·", main: "알지만 아직 안 해봤어요", desc: "존재는 알지만 직접 사용 경험 없음", score: 1, color: "#8b85f0", bg: "rgba(139,133,240,0.15)" },
-    { icon: "?", main: "잘 모르겠어요", desc: "이 기능이나 툴에 대해 잘 모름", score: 0, color: "#888890", bg: "rgba(100,100,120,0.15)" },
+    { icon: "fa-check", main: "네, 자주 씁니다", desc: "실무나 프로젝트에서 정기적으로 활용 중", score: 3 },
+    { icon: "fa-rotate", main: "해봤지만 가끔만요", desc: "몇 번 시도해봤으나 지속적이진 않음", score: 2 },
+    { icon: "fa-lightbulb", main: "알지만 아직 안 해봤어요", desc: "존재는 알지만 직접 사용 경험 없음", score: 1 },
+    { icon: "fa-question", main: "잘 모르겠어요", desc: "이 기능이나 툴에 대해 잘 모름", score: 0 },
   ];
 
   const levels = [
@@ -94,9 +94,9 @@ document.querySelectorAll("[data-ai-diagnosis]").forEach((diagnosis) => {
       button.type = "button";
       button.className = `ai-choice${answers[currentIndex] === index ? " is-selected" : ""}`;
       button.innerHTML = `
-        <span class="ai-choice-icon" style="background:${choice.bg};color:${choice.color}">${choice.icon}</span>
+        <span class="ai-choice-icon"><i class="fa-solid ${choice.icon}" aria-hidden="true"></i></span>
         <span><strong>${choice.main}</strong><small>${choice.desc}</small></span>
-        <span class="ai-choice-score" style="background:${choice.bg};color:${choice.color}">+${choice.score}</span>
+        <span class="ai-choice-score">+${choice.score}</span>
       `;
       button.addEventListener("click", () => {
         answers[currentIndex] = index;
@@ -678,6 +678,82 @@ ${runText}
   });
 
   updatePreview();
+});
+
+document.querySelectorAll("[data-design-md-builder]").forEach((builder) => {
+  const toggleButton = builder.querySelector("[data-design-md-toggle]");
+  const form = builder.querySelector("[data-design-md-form]");
+  const downloadButton = builder.querySelector("[data-design-md-download]");
+  const fields = Array.from(builder.querySelectorAll("[data-design-md-field]"));
+
+  const getValues = () =>
+    fields.reduce((values, field) => {
+      values[field.dataset.designMdField] = field.value.trim();
+      return values;
+    }, {});
+
+  const createCustomDesignMd = (values) => `# Custom Design.md
+
+## Based on
+
+- Base file: Jyoung.md
+- Purpose: AI가 UIUX 프로젝트를 만들 때 흔들리지 않도록 디자인 기준을 먼저 고정한다.
+
+---
+
+## Custom Typography
+
+\`\`\`css
+font-family: ${values.fontStyle || "Pretendard, Noto Sans KR, sans-serif"};
+font-weight: ${values.fontWeight || "400 / 600 / 800"};
+\`\`\`
+
+## Custom Color Tokens
+
+\`\`\`css
+:root {
+  --primary-color: ${values.primaryColor || "#101010"};
+  --point-color: ${values.pointColor || "#0099ff"};
+  --button-radius: ${values.buttonRadius || "12px"};
+  --card-radius: ${values.cardRadius || "24px"};
+}
+\`\`\`
+
+## Jyoung.md Additional Rules
+
+${values.extraRules || "Minimal, Clean, Professional, Spacious, Modern, Editorial 톤을 유지한다."}
+
+---
+
+## AI Implementation Rule
+
+- 감성적인 표현보다 CSS 속성 기반으로 판단한다.
+- 색상, 폰트, 여백, 카드 반경, 버튼 상태를 먼저 고정한다.
+- 화면을 만들 때 이 custom.md와 Jyoung.md를 함께 기준으로 사용한다.
+- 결과물이 흔들리면 이 파일의 Typography와 Color Tokens를 우선 적용한다.
+`;
+
+  toggleButton?.addEventListener("click", () => {
+    if (!form) return;
+
+    form.hidden = !form.hidden;
+    toggleButton.textContent = form.hidden ? "Custom Design.md 생성하기" : "Custom 입력 닫기";
+  });
+
+  downloadButton?.addEventListener("click", () => {
+    const blob = new Blob([createCustomDesignMd(getValues())], {
+      type: "text/markdown;charset=utf-8",
+    });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+
+    link.href = url;
+    link.download = "custom.md";
+    document.body.append(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(url);
+  });
 });
 
 document.querySelectorAll(".copy-button").forEach((button) => {

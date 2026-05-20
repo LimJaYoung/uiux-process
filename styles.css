@@ -554,6 +554,13 @@ main > section:first-child {
   letter-spacing: 0px;
 }
 
+.guide-banner-section {
+  width: 100%;
+  max-width: 100%;
+  margin-top: var(--section-gap);
+  padding: clamp(58px, 8vw, 96px) 0 0;
+}
+
 .guide-banner {
   display: grid;
   grid-template-columns: minmax(280px, 0.72fr) minmax(0, 1fr);
@@ -566,6 +573,10 @@ main > section:first-child {
   background: var(--ink);
   color: var(--paper);
   box-shadow: var(--shadow);
+}
+
+.guide-banner-section .designer-section-heading {
+  margin-bottom: clamp(28px, 4vw, 44px);
 }
 
 .guide-banner h3 {
@@ -590,7 +601,8 @@ main > section:first-child {
   margin-bottom: 10px;
   font-size: clamp(20px, 2.8vw, 22px);
   line-height: 1.16;
-  font-weight: 400;
+  font-weight: 600;
+  opacity: 1;
 }
 
 .guide-banner p,
@@ -662,27 +674,53 @@ main > section:first-child {
 
 .guide-diagnostic-panel article {
   display: grid;
-  min-height: 214px;
-  align-content: space-between;
+  min-height: 232px;
+  align-content: start;
+  gap: 0;
   border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 20px;
   padding: 20px;
   background: #171719;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease;
+}
+
+.guide-diagnostic-panel article:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.28);
+  background: #202023;
 }
 
 .guide-diagnostic-panel span {
-  color: rgba(255, 255, 255, 0.4);
-  font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 13px;
-  font-weight: 700;
+  display: block;
+  margin: 30px 0;
+  color: rgba(255, 255, 255, 0.88);
+  font-family:
+    "Comica", Arial, Pretendard, -apple-system,
+    BlinkMacSystemFont, sans-serif;
+  font-size: clamp(36px, 3.8vw, 48px);
+  font-weight: 600;
+  line-height: 0.85;
+  letter-spacing: 0;
+}
+
+.guide-diagnostic-panel h4 {
+  margin: 0;
+  color: var(--paper);
+  font-family: "NexonLv2Gothic", Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  font-size: clamp(17px, 1.55vw, 21px);
+  font-weight: 600;
+  line-height: 1.18;
 }
 
 .guide-diagnostic-panel p {
-  margin: 0;
-  color: rgba(255, 255, 255, 0.78);
-  font-size: clamp(17px, 1.5vw, 20px);
-  font-weight: 700;
-  line-height: 1.35;
+  margin: 10px 0 0;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: clamp(13px, 1vw, 14px);
+  font-weight: 400;
+  line-height: 1.5;
 }
 
 .ai-diagnosis-page {
@@ -1161,6 +1199,12 @@ main > section:first-child {
   margin: 0 auto;
 }
 
+.ai-diagnosis-intro[hidden],
+.ai-diagnosis-quiz[hidden],
+.ai-diagnosis-result[hidden] {
+  display: none !important;
+}
+
 .ai-diagnosis-quiz {
   border-radius: 34px;
   padding: clamp(22px, 4vw, 42px);
@@ -1339,7 +1383,7 @@ main > section:first-child {
 
 .ai-choice strong {
   font-family: "NexonLv2Gothic", Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-  font-size: clamp(20px, 1.8vw, 25px);
+  font-size: clamp(18px, 1.55vw, 22px);
   font-weight: 600;
   line-height: 1.22;
   letter-spacing: 0;
@@ -1358,6 +1402,50 @@ main > section:first-child {
   width: 44px;
   height: 44px;
   font-size: 15px;
+}
+
+.ai-choice-icon,
+.ai-choice-score {
+  border: 1px solid var(--card-border);
+  background: var(--paper);
+  color: var(--graphite);
+}
+
+.ai-choice-icon {
+  border-color: var(--obsidian);
+  border-radius: 12px;
+  background: var(--obsidian);
+  color: var(--paper);
+  font-size: 16px;
+}
+
+.ai-choice-icon i {
+  line-height: 1;
+}
+
+.ai-choice-score {
+  border-radius: 999px;
+  font-family:
+    "Comica", Arial, Pretendard, -apple-system,
+    BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.ai-choice:hover .ai-choice-icon,
+.ai-choice.is-selected .ai-choice-icon {
+  border-color: var(--obsidian);
+  background: var(--obsidian);
+  color: var(--paper);
+}
+
+@media (max-width: 520px) {
+  .ai-choice-score {
+    grid-column: 2;
+    width: fit-content;
+    height: 28px;
+    padding: 0 12px;
+  }
 }
 
 .ai-diagnosis-start,
@@ -1889,6 +1977,12 @@ main > section.level-process-section {
 }
 
 main > section.level-process-section {
+  scroll-margin-top: 112px;
+}
+
+.section-anchor {
+  display: block;
+  height: 0;
   scroll-margin-top: 112px;
 }
 
@@ -2424,10 +2518,11 @@ main > section.level-process-section {
 
 .level-panel h3 span {
   display: block;
-  margin-bottom: 10px;
-  font-size: clamp(20px, 2.8vw, 22px);
-  line-height: 1.16;
-  font-weight: 400;
+  margin-bottom: 0;
+  font-size: clamp(24px, 2.8vw, 28px);
+  font-weight: 600;
+  line-height: 1.22;
+  opacity: 1;
 }
 
 .level-panel p {
@@ -3186,10 +3281,6 @@ main > section.portfolio-process-section {
   margin: 0 0 var(--section-gap);
   margin-right: 0;
   margin-left: 0;
-}
-
-.guide-banner + .portfolio-process-section {
-  margin-top: 0;
 }
 
 .portfolio-process-inner {
@@ -4874,14 +4965,26 @@ main > section.portfolio-process-section {
 }
 
 .detail-hero {
-  padding: clamp(58px, 8vw, 104px) clamp(20px, 4vw, 56px);
-  background: var(--soft);
+  display: grid;
+  align-content: center;
+  min-height: clamp(520px, 52vw, 680px);
+  overflow: hidden;
+  border: 0;
+  border-radius: 34px;
+  padding: clamp(78px, 9vw, 118px) clamp(24px, 5vw, 64px) clamp(48px, 7vw, 88px);
+  background:
+    linear-gradient(120deg, rgba(244, 244, 245, 0.96), rgba(244, 244, 245, 0.82)),
+    url("awesomic-images/68c2a33d71ce477bc4cfb035_-cards-comlex-bg-light.avif") right bottom / 42% auto no-repeat,
+    #f4f4f5;
   color: var(--graphite);
-  border-bottom: 1px solid var(--line);
+  box-shadow: var(--shadow);
 }
 
 .lesson-hero {
-  background: var(--soft);
+  background:
+    linear-gradient(120deg, rgba(244, 244, 245, 0.96), rgba(244, 244, 245, 0.82)),
+    url("awesomic-images/68c2a33d71ce477bc4cfb035_-cards-comlex-bg-light.avif") right bottom / 42% auto no-repeat,
+    #f4f4f5;
 }
 
 .detail-hero h1 {
@@ -4901,29 +5004,68 @@ main > section.portfolio-process-section {
 
 .back-link {
   display: inline-flex;
+  min-height: 38px;
+  align-items: center;
   margin-bottom: 28px;
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 0 14px;
+  background: rgba(255, 255, 255, 0.82);
   color: var(--graphite);
   font-weight: 600;
 }
 
 .meta-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 28px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: clamp(28px, 4vw, 44px);
 }
 
 .meta-row span {
-  display: inline-flex;
-  min-height: 34px;
-  align-items: center;
-  border-radius: 999px;
-  padding: 0 12px;
-  background: var(--paper);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 12px;
+  row-gap: 6px;
+  min-height: 82px;
+  align-items: start;
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.86);
   color: var(--graphite);
-  font-size: 14px;
-  font-weight: 600;
+  font-family: "NexonLv2Gothic", Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  font-size: clamp(13px, 1.05vw, 15px);
+  font-weight: 400;
+  line-height: 1.38;
   box-shadow: var(--shadow);
+}
+
+.meta-row strong {
+  grid-row: span 2;
+  font-family:
+    "Comica", Arial, Pretendard, -apple-system,
+    BlinkMacSystemFont, sans-serif;
+  font-size: clamp(34px, 3vw, 52px);
+  font-weight: 600;
+  line-height: 0.92;
+  letter-spacing: 0;
+}
+
+.meta-row b {
+  display: block;
+  color: inherit;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.28;
+  opacity: 0.58;
+  text-transform: uppercase;
+}
+
+.meta-row span:nth-child(2) {
+  border-color: var(--obsidian);
+  background: var(--obsidian);
+  color: var(--paper);
 }
 
 .detail-layout {
@@ -4932,6 +5074,13 @@ main > section.portfolio-process-section {
   gap: clamp(28px, 5vw, 72px);
   align-items: start;
   padding: clamp(38px, 6vw, 72px) clamp(20px, 4vw, 56px);
+}
+
+.detail-sidebar {
+  position: sticky;
+  top: 92px;
+  display: grid;
+  gap: 24px;
 }
 
 .practice-panel {
@@ -4999,8 +5148,6 @@ main > section.portfolio-process-section {
 }
 
 .detail-toc {
-  position: sticky;
-  top: 92px;
   display: grid;
   gap: 8px;
   border: 1px solid var(--card-border);
@@ -5047,6 +5194,189 @@ main > section.portfolio-process-section {
 .detail-toc a.is-active::after {
   opacity: 0.72;
   transform: scaleX(1);
+}
+
+.design-md-tools {
+  display: grid;
+  gap: 16px;
+  border: 1px solid var(--card-border);
+  border-radius: 24px;
+  padding: 24px;
+  background: #f4f4f5;
+}
+
+.design-md-tools > span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.design-md-tools h3 {
+  margin: 0;
+  font-family: "NexonLv2Gothic", Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  font-size: clamp(24px, 2.4vw, 32px);
+  line-height: 1.25;
+}
+
+.design-md-button {
+  display: inline-flex;
+  min-height: 58px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 0 18px;
+  background: var(--paper);
+  color: var(--graphite);
+  font: inherit;
+  font-size: clamp(16px, 1.35vw, 20px);
+  font-weight: 600;
+  line-height: 1.35;
+  text-align: center;
+  cursor: pointer;
+}
+
+.design-md-button.primary {
+  border-color: var(--obsidian);
+  background: var(--obsidian);
+  color: var(--paper);
+}
+
+.design-md-button.secondary {
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--ink);
+}
+
+.custom-design-section {
+  width: min(calc(100% - var(--site-gutter)), var(--site-width));
+  margin: clamp(44px, 7vw, 78px) auto clamp(80px, 10vw, 140px);
+}
+
+.custom-design-builder {
+  display: grid;
+  gap: clamp(26px, 4vw, 42px);
+  border: 1px solid var(--card-border);
+  border-radius: 24px;
+  padding: clamp(24px, 4vw, 40px);
+  background: #f4f4f5;
+}
+
+.custom-design-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.custom-design-head span {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.custom-design-head h2 {
+  margin: 10px 0 0;
+  font-family: "NexonLv2Gothic", Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  font-size: clamp(34px, 4.2vw, 52px);
+  font-weight: 600;
+  line-height: 1.16;
+}
+
+.custom-design-download {
+  display: inline-flex;
+  min-height: 58px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--ink);
+  border-radius: 12px;
+  padding: 0 24px;
+  background: var(--ink);
+  color: var(--paper);
+  font: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.custom-design-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.custom-design-grid label {
+  display: grid;
+  gap: 10px;
+  color: var(--ink);
+  font-family: "NexonLv2Gothic", Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.custom-design-grid .wide {
+  grid-column: 1 / -1;
+}
+
+.custom-design-grid input,
+.custom-design-grid textarea {
+  width: 100%;
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 16px 18px;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  font-size: 16px;
+  line-height: 1.45;
+  resize: vertical;
+}
+
+.custom-design-grid input:focus,
+.custom-design-grid textarea:focus {
+  border-color: var(--obsidian);
+  outline: 3px solid rgba(9, 9, 11, 0.12);
+}
+
+.design-md-form {
+  display: grid;
+  gap: 10px;
+  border-top: 1px solid var(--card-border);
+  padding-top: 12px;
+}
+
+.design-md-form[hidden] {
+  display: none;
+}
+
+.design-md-form label {
+  display: grid;
+  gap: 6px;
+  color: var(--graphite);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.design-md-form input,
+.design-md-form textarea {
+  width: 100%;
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  padding: 10px 11px;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  font-size: 13px;
+  line-height: 1.4;
+  resize: vertical;
+}
+
+.design-md-form input:focus,
+.design-md-form textarea:focus {
+  border-color: var(--obsidian);
+  outline: 3px solid rgba(9, 9, 11, 0.12);
 }
 
 .detail-content {
@@ -5444,6 +5774,10 @@ h2,
     grid-template-columns: 1fr;
   }
 
+  .detail-sidebar {
+    position: static;
+  }
+
   .practice-panel {
     grid-template-columns: 1fr;
     margin-right: 20px;
@@ -5578,6 +5912,22 @@ h2,
 
   .harness-prompt-link {
     width: 100%;
+  }
+
+  .custom-design-head {
+    display: grid;
+  }
+
+  .custom-design-download {
+    width: 100%;
+  }
+
+  .custom-design-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .meta-row {
+    grid-template-columns: 1fr;
   }
 
   .harness-method-grid .harness-method-card {
