@@ -120,19 +120,80 @@
           <section class="detail-content">
             <section>
               <h2>두 가지 실행 방법</h2>
+              <p>
+                같은 Harness Prompt를 쓰더라도 실행하는 장소가 다릅니다. Claude.ai 웹은 대화로 연습하기 좋고,
+                Claude Code CLI는 실제 프로젝트 폴더 안에서 파일을 만들고 고치며 완주하기 좋습니다.
+              </p>
               <div class="harness-method-grid">
-                <article>
-                  <span>방법 1</span>
-                  <h3>Claude.ai 웹</h3>
-                  <p>설치 없이 브라우저에서 시작합니다. 프롬프트를 첫 메시지로 붙여넣고, 두 번째 메시지로 AUTO-RUN을 요청합니다.</p>
-                  <b>처음 배우는 사람에게 추천</b>
+                <article class="harness-method-card web">
+                  <div class="method-card-head">
+                    <span>방법 1</span>
+                    <h3>Claude.ai 웹에서 먼저 연습</h3>
+                    <p>설치 없이 브라우저에서 시작합니다. 결과 흐름을 눈으로 확인하고 감을 잡기 좋습니다.</p>
+                  </div>
+                  <div class="method-card-body">
+                    <div>
+                      <b>추천 대상</b>
+                      <p>터미널이 아직 낯설고, 프롬프트 결과가 어떻게 나오는지 먼저 보고 싶은 사람</p>
+                    </div>
+                    <div>
+                      <b>준비물</b>
+                      <p>Claude.ai 계정, Builder로 만든 md 파일, 메모장</p>
+                    </div>
+                    <div>
+                      <b>프롬프트 넣는 곳</b>
+                      <p>md 파일을 열어 전체 복사한 뒤 Claude 대화창 첫 메시지에 붙여넣습니다.</p>
+                    </div>
+                    <div>
+                      <b>결과물</b>
+                      <p>PRD, IA, 화면 구성, 카피, 코드 초안처럼 대화 안에서 확인할 수 있는 산출물</p>
+                    </div>
+                  </div>
+                  <div class="method-card-footer">
+                    <strong>주의</strong>
+                    <p>웹에서 받은 코드는 사용자가 직접 파일로 옮겨야 합니다.</p>
+                  </div>
                 </article>
-                <article>
-                  <span>방법 2</span>
-                  <h3>Claude Code CLI</h3>
-                  <p>프로젝트 폴더에 CLAUDE.md를 두고 터미널에서 실행합니다. 파일 생성, 수정, Git 작업까지 자동화하기 좋습니다.</p>
-                  <b>실제 프로젝트 완주에 추천</b>
+                <article class="harness-method-card cli">
+                  <div class="method-card-head">
+                    <span>방법 2</span>
+                    <h3>Claude Code CLI로 실제 완주</h3>
+                    <p>프로젝트 폴더 안에서 실행합니다. 파일 생성, 수정, QA, Git 준비까지 이어가기 좋습니다.</p>
+                  </div>
+                  <div class="method-card-body">
+                    <div>
+                      <b>추천 대상</b>
+                      <p>실제 HTML/CSS/JS 파일을 만들고, 수정과 검수까지 한 번에 진행하고 싶은 사람</p>
+                    </div>
+                    <div>
+                      <b>준비물</b>
+                      <p>Node.js, 터미널, Claude Code, 프로젝트 폴더, CLAUDE.md</p>
+                    </div>
+                    <div>
+                      <b>프롬프트 넣는 곳</b>
+                      <p>md 파일 내용을 프로젝트 폴더의 CLAUDE.md에 붙여넣고 터미널에서 claude를 실행합니다.</p>
+                    </div>
+                    <div>
+                      <b>결과물</b>
+                      <p>실제 코드 파일, README, QA 수정안, GitHub와 배포 준비에 가까운 산출물</p>
+                    </div>
+                  </div>
+                  <div class="method-card-footer">
+                    <strong>주의</strong>
+                    <p>터미널에서 먼저 내 프로젝트 폴더로 들어간 뒤 claude를 실행해야 합니다. 그래야 Claude가 어떤 파일을 만들고 고쳐야 하는지 알 수 있습니다.</p>
+                  </div>
                 </article>
+              </div>
+              <div class="harness-choice-panel">
+                <div>
+                  <span>추천 순서</span>
+                  <h3>처음이면 웹으로 감 잡고, 실제 완주는 CLI로 갑니다.</h3>
+                </div>
+                <ol>
+                  <li>Builder를 작성해 md 파일을 다운로드합니다.</li>
+                  <li>Claude.ai 웹에서 md 내용을 붙여넣고 결과 흐름을 먼저 봅니다.</li>
+                  <li>프로젝트를 실제 파일로 만들 때는 같은 md 내용을 CLAUDE.md에 넣고 CLI를 실행합니다.</li>
+                </ol>
               </div>
             </section>
 
@@ -140,29 +201,81 @@
               <h2>Claude.ai 웹으로 시작하기</h2>
               <ol class="steps">
                 <li>새 Claude 대화를 엽니다. 기존 대화는 이전 맥락이 섞일 수 있습니다.</li>
-                <li>Harness prompt 탭의 SYSTEM ROLE 블록을 복사합니다.</li>
-                <li>[대괄호] 항목을 내 프로젝트명, 타깃 사용자, 레퍼런스 URL로 바꿉니다.</li>
-                <li>수정한 SYSTEM ROLE을 첫 메시지로 보냅니다.</li>
-                <li>AUTO-RUN 명령어를 두 번째 메시지로 보내 Phase 01부터 순서대로 진행합니다.</li>
+                <li>아래 버튼으로 Harness prompt 탭으로 이동합니다.</li>
+                <li>Builder에 프로젝트명, 타깃 사용자, 레퍼런스 URL 같은 정보를 입력합니다.</li>
+                <li>Markdown 다운로드 버튼으로 완성된 md 파일을 받습니다.</li>
+                <li>md 파일을 메모장으로 열고 전체 내용을 복사해 Claude 첫 메시지로 붙여넣습니다.</li>
               </ol>
-              <div class="prompt-box">
-                <button class="copy-button" type="button" data-copy-target="harness-web-autorun">복사</button>
-                <pre id="harness-web-autorun"><code>전체 파이프라인 AUTO-RUN 해줘.
-중간에 묻지 말고 PHASE 01 → 07 순서대로 완주해줘.
-모호한 결정은 레퍼런스 URL과 프로젝트 정보 기반으로 자체 판단해줘.
-Fix 항목은 가장 합리적인 대안으로 수정하고 재체크해줘.
-완료 시 최종 결과물 요약과 배포 URL을 출력해줘.</code></pre>
+              <div class="harness-guide-actions">
+                <button class="harness-prompt-link" type="button" data-open-detail-tab="prompt">Harness prompt 작성하러 가기</button>
               </div>
             </section>
 
             <section>
               <h2>Claude Code CLI로 자동화하기</h2>
-              <ol class="steps">
-                <li>Node.js 18 이상을 설치하고 Claude Code를 준비합니다.</li>
-                <li>프로젝트 루트에 CLAUDE.md를 만듭니다.</li>
-                <li>CLAUDE.md 상단에 프로젝트 정보를 채우고, 아래에 하네스 프롬프트를 붙입니다.</li>
-                <li>터미널에서 Claude Code를 실행하고 AUTO-RUN 명령을 보냅니다.</li>
-              </ol>
+              <p>터미널은 “컴퓨터에게 글자로 명령하는 창”입니다. 아래 순서대로 그대로 따라 하면 됩니다.</p>
+              <div class="cli-visual-guide" aria-label="Claude Code CLI 설치 단계">
+                <article>
+                  <span>01</span>
+                  <h3>Node.js LTS 설치</h3>
+                  <p>브라우저에서 nodejs.org를 열고 LTS 버전을 설치합니다. 설치 화면은 계속 Next를 눌러도 괜찮습니다.</p>
+                  <div class="cli-picture">
+                    <b>nodejs.org</b>
+                    <i>Download Node.js LTS</i>
+                  </div>
+                </article>
+                <article>
+                  <span>02</span>
+                  <h3>터미널 열기</h3>
+                  <p>Windows는 시작 메뉴에서 Terminal 또는 PowerShell을 검색합니다. Mac은 Terminal 앱을 엽니다.</p>
+                  <div class="cli-picture dark">
+                    <b>Terminal</b>
+                    <i>명령어를 붙여넣는 검은 창</i>
+                  </div>
+                </article>
+                <article>
+                  <span>03</span>
+                  <h3>설치 확인</h3>
+                  <p>아래 명령어를 한 줄씩 입력합니다. 숫자가 나오면 Node.js와 npm이 설치된 것입니다.</p>
+                  <div class="terminal-card">
+                    <code>node -v</code>
+                    <code>npm -v</code>
+                  </div>
+                </article>
+                <article>
+                  <span>04</span>
+                  <h3>Claude Code 설치</h3>
+                  <p>아래 명령어를 터미널에 붙여넣고 Enter를 누릅니다. 설치가 끝날 때까지 창을 닫지 않습니다.</p>
+                  <div class="terminal-card">
+                    <code>npm install -g @anthropic-ai/claude-code</code>
+                  </div>
+                </article>
+                <article>
+                  <span>05</span>
+                  <h3>프로젝트 폴더로 이동</h3>
+                  <p>작업할 폴더를 만들고, 터미널에서 그 폴더로 들어갑니다. 폴더 주소는 탐색기 주소창에서 복사할 수 있습니다.</p>
+                  <div class="terminal-card">
+                    <code>cd 내-프로젝트-폴더-경로</code>
+                  </div>
+                </article>
+                <article>
+                  <span>06</span>
+                  <h3>Claude 실행</h3>
+                  <p>터미널에 claude를 입력합니다. 로그인 안내가 나오면 브라우저에서 로그인하고 다시 터미널로 돌아옵니다.</p>
+                  <div class="terminal-card">
+                    <code>claude</code>
+                  </div>
+                </article>
+              </div>
+              <div class="cli-note">
+                <strong>처음 보는 오류가 나면</strong>
+                <p>터미널을 닫았다가 새로 열고 다시 시도하세요. 그래도 안 되면 Node.js LTS가 설치됐는지, `node -v`와 `npm -v`가 숫자를 보여주는지 먼저 확인합니다.</p>
+              </div>
+              <div class="cli-note">
+                <strong>CLI에서 프롬프트 넣는 방법</strong>
+                <p>Harness prompt 탭에서 md 파일을 다운로드한 뒤, 그 내용을 프로젝트 폴더의 CLAUDE.md 파일에 붙여넣으세요. 그다음 터미널에서 claude를 실행하고 “CLAUDE.md를 기준으로 전체 파이프라인 AUTO-RUN 해줘”라고 입력하면 됩니다.</p>
+                <button class="harness-prompt-link" type="button" data-open-detail-tab="prompt">Harness prompt 작성하러 가기</button>
+              </div>
               <div class="prompt-box">
                 <button class="copy-button" type="button" data-copy-target="harness-cli-template">복사</button>
                 <pre id="harness-cli-template"><code># CLAUDE.md — 프로젝트 정보만 수정하세요
@@ -199,6 +312,53 @@ GitHub 계정: [내 GitHub 아이디]
             <section>
               <h2>복사해서 쓰는 SYSTEM ROLE</h2>
               <p>[대괄호]만 내 프로젝트에 맞게 바꾼 뒤 Claude 대화 첫 메시지로 보내세요.</p>
+              <div class="harness-builder" data-harness-builder>
+                <div class="harness-builder-head">
+                  <div>
+                    <span>Prompt Builder</span>
+                    <h3>대괄호 값을 직접 입력하세요</h3>
+                  </div>
+                  <button class="harness-download-button" type="button" data-harness-download>Markdown 다운로드</button>
+                </div>
+                <div class="harness-input-grid">
+                  <label>
+                    프로젝트명
+                    <input type="text" data-harness-field="projectName" placeholder="예: AI 포트폴리오 진단 서비스" />
+                  </label>
+                  <label>
+                    타깃 사용자
+                    <input type="text" data-harness-field="targetUser" placeholder="예: 취업 준비 중인 주니어 UIUX 디자이너" />
+                  </label>
+                  <label>
+                    해결 문제
+                    <textarea data-harness-field="coreProblem" rows="3" placeholder="예: 포트폴리오 주제를 고르지 못하고 결과물 완성까지 이어지지 않는다."></textarea>
+                  </label>
+                  <label>
+                    레퍼런스 URL
+                    <textarea data-harness-field="referenceUrls" rows="3" placeholder="https://example.com&#10;https://example.com/product"></textarea>
+                  </label>
+                  <label>
+                    원하는 톤
+                    <input type="text" data-harness-field="mood" placeholder="예: 차분한 SaaS, 에디토리얼, 프리미엄" />
+                  </label>
+                  <label>
+                    기술 스택
+                    <input type="text" data-harness-field="techStack" placeholder="예: HTML / CSS / Vanilla JS" />
+                  </label>
+                  <label>
+                    배포 플랫폼
+                    <input type="text" data-harness-field="deployPlatform" placeholder="예: Vercel" />
+                  </label>
+                  <label>
+                    GitHub 계정
+                    <input type="text" data-harness-field="githubAccount" placeholder="예: your-github-id" />
+                  </label>
+                  <label>
+                    저장소 이름
+                    <input type="text" data-harness-field="repoName" placeholder="예: uiux-portfolio-project" />
+                  </label>
+                </div>
+              </div>
               <div class="prompt-box">
                 <button class="copy-button" type="button" data-copy-target="harness-system-role">복사</button>
                 <pre id="harness-system-role"><code>########################################

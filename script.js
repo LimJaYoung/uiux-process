@@ -372,6 +372,19 @@ document.querySelectorAll("[data-detail-tabs]").forEach((tabs) => {
     }
   };
 
+  tabs.querySelectorAll("[data-open-detail-tab]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const key = button.dataset.openDetailTab;
+      const targetTab = tabButtons.find((tabButton) => tabButton.dataset.detailTab === key);
+
+      if (!targetTab) return;
+
+      activateTab(key);
+      history.replaceState(null, "", `#${key}`);
+      targetTab.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+  });
+
   activateFromHash();
   window.addEventListener("hashchange", activateFromHash);
 });
@@ -531,6 +544,141 @@ const setupServiceScroll = () => {
 };
 
 window.addEventListener("load", setupServiceScroll);
+
+document.querySelectorAll("[data-harness-builder]").forEach((builder) => {
+  const fields = Array.from(builder.querySelectorAll("[data-harness-field]"));
+  const downloadButton = builder.querySelector("[data-harness-download]");
+  const systemRole = document.getElementById("harness-system-role");
+  const phasePrompt = document.getElementById("harness-phase-prompt");
+  const runCommands = document.getElementById("harness-run-commands");
+
+  if (!systemRole || !downloadButton) return;
+
+  const fallbackValues = {
+    projectName: "[프로젝트명]",
+    targetUser: "[타깃 사용자]",
+    coreProblem: "[핵심 문제]",
+    referenceUrls: "[레퍼런스 URL 1~3개]",
+    mood: "[예: 차분한 SaaS / 에디토리얼 / 프리미엄]",
+    techStack: "[HTML/CSS/JS 또는 React]",
+    deployPlatform: "[Vercel / GitHub Pages]",
+    githubAccount: "[GitHub 계정]",
+    repoName: "[저장소 이름]",
+  };
+
+  const getValues = () =>
+    fields.reduce((values, field) => {
+      values[field.dataset.harnessField] = field.value.trim();
+      return values;
+    }, {});
+
+  const valueOrFallback = (values, key) => values[key] || fallbackValues[key] || "";
+
+  const createSystemRole = (values) => `########################################
+## UIUX PRODUCT HARNESS v1.0
+## 기획 → UI 시스템 → 프론트엔드 → QA → React → GitHub → 배포
+########################################
+
+## SYSTEM ROLE
+당신은 아래 7개 전문 역할을 순서대로 수행하는 풀스택 디자인 AI 에이전트입니다.
+
+역할 1 | UX_PLANNER      → 기획 문서 생성
+역할 2 | UI_DESIGNER     → 디자인 시스템 정의
+역할 3 | FE_PUBLISHER    → HTML/CSS/JS 구현
+역할 4 | QA_EVALUATOR    → 품질 검수 및 수정
+역할 5 | REACT_REFACTOR  → React 컴포넌트 리팩토링
+역할 6 | GIT_AGENT       → GitHub 커밋·푸시 안내
+역할 7 | DEPLOY_AGENT    → 배포 설정 및 검증
+
+## 프로젝트 정보
+- 프로젝트명: ${valueOrFallback(values, "projectName")}
+- 타깃 사용자: ${valueOrFallback(values, "targetUser")}
+- 해결 문제: ${valueOrFallback(values, "coreProblem")}
+- 레퍼런스 URL: ${valueOrFallback(values, "referenceUrls")}
+- 원하는 톤: ${valueOrFallback(values, "mood")}
+- 기술 스택: ${valueOrFallback(values, "techStack")}
+- 배포 플랫폼: ${valueOrFallback(values, "deployPlatform")}
+- GitHub 계정: ${valueOrFallback(values, "githubAccount")}
+- 저장소 이름: ${valueOrFallback(values, "repoName")}
+
+## 핵심 작동 규칙
+- 각 Phase 완료 후 반드시 Evaluator 체크를 수행한다.
+- Fix 항목 발생 시 즉시 수정 후 재체크한다.
+- 모든 항목 Pass 선언 후 다음 Phase로 이동한다.
+- 모호한 결정은 레퍼런스 URL과 프로젝트 목적을 기준으로 자체 판단한다.
+- 결과물은 포트폴리오에 설명 가능한 근거와 함께 정리한다.
+
+## 공통 평가 기준
+1. Design Quality: 색상, 타이포, 레이아웃이 일관된 정체성을 만드는가?
+2. Originality: AI 기본 패턴이 아니라 프로젝트 맞춤 결정이 보이는가?
+3. Craft: 여백, 위계, 명도 대비, 반응형, 접근성 기준을 지키는가?
+4. Functionality: 사용자가 주요 액션을 직관적으로 이해하고 수행할 수 있는가?`;
+
+  const createMarkdown = (values) => {
+    const phaseText = phasePrompt?.innerText.trim() || "";
+    const runText = runCommands?.innerText.trim() || "";
+
+    return `# ${valueOrFallback(values, "projectName")} Harness Prompt
+
+## Project Brief
+- Project name: ${valueOrFallback(values, "projectName")}
+- Target user: ${valueOrFallback(values, "targetUser")}
+- Core problem: ${valueOrFallback(values, "coreProblem")}
+- Reference URLs: ${valueOrFallback(values, "referenceUrls")}
+- Desired mood: ${valueOrFallback(values, "mood")}
+- Tech stack: ${valueOrFallback(values, "techStack")}
+- Deploy platform: ${valueOrFallback(values, "deployPlatform")}
+- GitHub account: ${valueOrFallback(values, "githubAccount")}
+- Repository name: ${valueOrFallback(values, "repoName")}
+
+---
+
+${createSystemRole(values)}
+
+---
+
+${phaseText}
+
+---
+
+${runText}
+`;
+  };
+
+  const updatePreview = () => {
+    systemRole.textContent = createSystemRole(getValues());
+  };
+
+  const createFilename = (value) => {
+    const slug = value
+      .trim()
+      .toLowerCase()
+      .replace(/[^a-z0-9가-힣]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+
+    return `${slug || "uiux-product-harness"}.md`;
+  };
+
+  fields.forEach((field) => {
+    field.addEventListener("input", updatePreview);
+  });
+
+  downloadButton.addEventListener("click", () => {
+    const values = getValues();
+    const blob = new Blob([createMarkdown(values)], { type: "text/markdown;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+
+    link.href = url;
+    link.download = createFilename(valueOrFallback(values, "projectName"));
+    document.body.append(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(url);
+  });
+
+  updatePreview();
+});
 
 document.querySelectorAll(".copy-button").forEach((button) => {
   button.addEventListener("click", async () => {
