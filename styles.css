@@ -56,6 +56,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 112px;
   overflow-x: clip;
 }
 
@@ -480,6 +481,31 @@ main > section:first-child {
   text-align: left;
 }
 
+.mini-roadmap li:nth-child(4),
+.mini-roadmap li:nth-child(6) {
+  background: #f1f1f2;
+}
+
+.mini-roadmap li:nth-child(3),
+.mini-roadmap li:nth-child(5),
+.mini-roadmap li:nth-child(7) {
+  background: var(--paper);
+}
+
+.mini-roadmap li:nth-child(2),
+.mini-roadmap li:nth-child(8) {
+  border-color: var(--obsidian);
+  background: var(--obsidian);
+  color: var(--paper);
+}
+
+.mini-roadmap li:nth-child(2)::before,
+.mini-roadmap li:nth-child(8)::before,
+.mini-roadmap li:nth-child(2) span,
+.mini-roadmap li:nth-child(8) span {
+  color: rgba(255, 255, 255, 0.68);
+}
+
 .mini-roadmap li::before {
   content: "0" counter(roadmap);
   font-family:
@@ -581,7 +607,8 @@ main > section:first-child {
   max-width: 420px;
 }
 
-.guide-card-list {
+.guide-card-list,
+.guide-diagnostic-panel {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
@@ -631,6 +658,770 @@ main > section:first-child {
   color: rgba(255, 255, 255, 0.62);
   font-size: 14px;
   line-height: 1.45;
+}
+
+.guide-diagnostic-panel article {
+  display: grid;
+  min-height: 214px;
+  align-content: space-between;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 20px;
+  padding: 20px;
+  background: #171719;
+}
+
+.guide-diagnostic-panel span {
+  color: rgba(255, 255, 255, 0.4);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.guide-diagnostic-panel p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: clamp(17px, 1.5vw, 20px);
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.ai-diagnosis-page {
+  width: 100%;
+  min-height: calc(100vh - 86px);
+  padding: clamp(86px, 10vw, 132px) 0 clamp(54px, 8vw, 96px);
+  background:
+    radial-gradient(circle at 18% 8%, rgba(139, 133, 240, 0.2), transparent 28%),
+    radial-gradient(circle at 82% 20%, rgba(45, 212, 160, 0.14), transparent 30%),
+    #0e0e10;
+  color: #f0f0f2;
+}
+
+.ai-diagnosis-shell {
+  width: min(calc(100% - var(--site-gutter)), 760px);
+  margin: 0 auto;
+}
+
+.ai-diagnosis-intro,
+.ai-diagnosis-result {
+  text-align: center;
+}
+
+.ai-diagnosis-intro .back-link {
+  margin: 0 auto 28px;
+  border-color: rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.ai-diagnosis-intro .eyebrow,
+.ai-diagnosis-result .eyebrow {
+  color: #8b85f0;
+}
+
+.ai-diagnosis-intro h1,
+.ai-result-hero h1 {
+  margin: 0;
+  font-size: clamp(38px, 6vw, 68px);
+  line-height: 1.04;
+  letter-spacing: 0;
+}
+
+.ai-diagnosis-intro p,
+.ai-result-hero p {
+  max-width: 560px;
+  margin: 18px auto 0;
+  color: #a6a6ad;
+  line-height: 1.7;
+}
+
+.ai-diagnosis-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 28px;
+}
+
+.ai-diagnosis-meta span {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  padding: 8px 14px;
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.ai-diagnosis-start,
+.ai-quiz-actions button,
+.ai-result-actions button,
+.ai-result-actions a {
+  min-height: 46px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  padding: 0 18px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 850;
+  cursor: pointer;
+}
+
+.ai-diagnosis-start {
+  margin-top: 34px;
+  border-color: transparent;
+  background: linear-gradient(135deg, #8b85f0, #6878f2);
+  color: #fff;
+}
+
+.ai-progress {
+  margin-bottom: 22px;
+}
+
+.ai-progress div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 10px;
+  color: #888890;
+  font-size: 12px;
+}
+
+.ai-progress b {
+  border-radius: 999px;
+  padding: 4px 10px;
+  background: rgba(139, 133, 240, 0.14);
+  color: #8b85f0;
+}
+
+.ai-progress i {
+  display: block;
+  height: 4px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.ai-progress span[data-ai-progress-fill] {
+  display: block;
+  width: 6%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #8b85f0, #2dd4a0);
+  transition: width 220ms ease;
+}
+
+.ai-question-card,
+.ai-choice,
+.ai-result-panel {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.ai-question-card {
+  padding: clamp(22px, 4vw, 32px);
+}
+
+.ai-question-card h2 {
+  margin: 8px 0 0;
+  font-size: clamp(24px, 3.5vw, 34px);
+  line-height: 1.3;
+}
+
+.ai-question-card p:not(.eyebrow) {
+  margin: 12px 0 0;
+  color: #a6a6ad;
+  line-height: 1.65;
+}
+
+.ai-choice-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.ai-choice {
+  display: grid;
+  grid-template-columns: 42px 1fr auto;
+  gap: 14px;
+  align-items: center;
+  padding: 16px;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 160ms ease, background 160ms ease;
+}
+
+.ai-choice:hover,
+.ai-choice.is-selected {
+  border-color: rgba(139, 133, 240, 0.65);
+  background: rgba(139, 133, 240, 0.12);
+}
+
+.ai-choice-icon,
+.ai-choice-score {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border-radius: 10px;
+  background: rgba(139, 133, 240, 0.14);
+  color: #8b85f0;
+  font-weight: 900;
+}
+
+.ai-choice strong {
+  display: block;
+  color: #f0f0f2;
+}
+
+.ai-choice small {
+  display: block;
+  margin-top: 3px;
+  color: #888890;
+}
+
+.ai-quiz-actions,
+.ai-result-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.ai-quiz-actions button,
+.ai-result-actions button,
+.ai-result-actions a {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.04);
+  color: #f0f0f2;
+}
+
+.ai-quiz-actions button:last-child,
+.ai-result-actions a {
+  border-color: transparent;
+  background: #8b85f0;
+  color: #fff;
+}
+
+.ai-quiz-actions button:disabled {
+  opacity: 0.38;
+  cursor: default;
+}
+
+.ai-result-badge {
+  display: grid;
+  width: 132px;
+  height: 132px;
+  place-items: center;
+  margin: 0 auto 24px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
+  background: rgba(139, 133, 240, 0.12);
+}
+
+.ai-result-badge span {
+  font-size: 42px;
+  line-height: 1;
+}
+
+.ai-result-badge b {
+  color: #8b85f0;
+  font-size: 12px;
+}
+
+.ai-result-hero strong {
+  display: block;
+  margin-top: 14px;
+  color: #8b85f0;
+}
+
+.ai-result-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 14px;
+  margin-top: 28px;
+  text-align: left;
+}
+
+.ai-result-panel {
+  padding: 20px;
+}
+
+.ai-result-panel h2 {
+  margin: 0 0 14px;
+  color: #888890;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ai-area-scores,
+.ai-recommend-list {
+  display: grid;
+  gap: 10px;
+}
+
+.ai-area-card,
+.ai-recommend-card {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 14px;
+  background: rgba(14, 14, 16, 0.42);
+}
+
+.ai-area-card div {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  color: #a6a6ad;
+  font-size: 13px;
+}
+
+.ai-area-card strong {
+  color: #f0f0f2;
+}
+
+.ai-area-bar {
+  display: block;
+  height: 4px;
+  margin-top: 10px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.ai-area-bar i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+}
+
+.ai-recommend-card {
+  display: grid;
+  gap: 8px;
+}
+
+.ai-recommend-card header {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.ai-recommend-card h3 {
+  flex: 1;
+  margin: 0;
+  color: #f0f0f2;
+  font-size: 16px;
+}
+
+.ai-recommend-card b {
+  border-radius: 999px;
+  padding: 4px 9px;
+  font-size: 11px;
+}
+
+.ai-recommend-card p {
+  margin: 0;
+  color: #a6a6ad;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+@media (max-width: 760px) {
+  .ai-result-grid,
+  .guide-diagnostic-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .ai-quiz-actions,
+  .ai-result-actions {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 520px) {
+  .ai-diagnosis-page {
+    padding-top: 104px;
+  }
+
+  .ai-choice {
+    grid-template-columns: 36px 1fr;
+  }
+
+  .ai-choice-score {
+    grid-column: 2;
+    width: fit-content;
+    height: 26px;
+    padding: 0 10px;
+    border-radius: 999px;
+  }
+
+  .ai-progress div {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+/* Site-aligned AI diagnosis theme */
+.ai-diagnosis-page {
+  min-height: auto;
+  padding: clamp(92px, 10vw, 132px) 0 clamp(58px, 8vw, 104px);
+  background: var(--paper);
+  color: var(--graphite);
+}
+
+.ai-diagnosis-shell {
+  width: min(calc(100% - var(--site-gutter)), var(--site-width));
+  margin-inline: auto;
+}
+
+.ai-diagnosis-intro {
+  display: grid;
+  width: 100%;
+  min-height: clamp(520px, 52vw, 680px);
+  align-content: end;
+  overflow: hidden;
+  border: 0;
+  border-radius: 34px;
+  padding: clamp(26px, 5vw, 58px);
+  background-color: #f4f4f5;
+  background:
+    linear-gradient(120deg, rgba(244, 244, 245, 0.94), rgba(244, 244, 245, 0.76)),
+    url("awesomic-images/68c2a33d71ce477bc4cfb035_-cards-comlex-bg-light.avif") right bottom / 54% auto no-repeat,
+    #f4f4f5;
+  box-shadow: var(--shadow);
+  text-align: left;
+}
+
+.ai-diagnosis-intro .back-link {
+  width: fit-content;
+  margin: 0 0 auto;
+  border-color: var(--card-border);
+  color: var(--graphite);
+}
+
+.ai-diagnosis-intro .eyebrow,
+.ai-diagnosis-result .eyebrow,
+.ai-question-card .eyebrow {
+  color: var(--muted);
+}
+
+.ai-diagnosis-intro h1,
+.ai-result-hero h1 {
+  max-width: 780px;
+  color: var(--ink);
+  font-family: "NexonLv2Gothic", Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  font-size: clamp(42px, 6.8vw, 78px);
+  font-weight: 600;
+  line-height: 1.16;
+}
+
+.ai-diagnosis-intro p,
+.ai-result-hero p,
+.ai-question-card p:not(.eyebrow) {
+  max-width: 620px;
+  margin-right: 0;
+  margin-left: 0;
+  color: var(--muted);
+}
+
+.ai-diagnosis-meta {
+  justify-content: flex-start;
+}
+
+.ai-diagnosis-meta span {
+  border-color: var(--card-border);
+  background: #f7f7f8;
+  color: var(--graphite);
+}
+
+.ai-diagnosis-start,
+.ai-quiz-actions button,
+.ai-result-actions button,
+.ai-result-actions a {
+  border-color: var(--card-border);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--graphite);
+}
+
+.ai-diagnosis-start,
+.ai-quiz-actions button:last-child,
+.ai-result-actions a {
+  border-color: var(--obsidian);
+  background: var(--obsidian);
+  color: var(--paper);
+}
+
+.ai-diagnosis-quiz,
+.ai-diagnosis-result {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.ai-diagnosis-quiz {
+  border-radius: 34px;
+  padding: clamp(22px, 4vw, 42px);
+  background: #f4f4f5;
+}
+
+.ai-progress div {
+  color: var(--muted);
+}
+
+.ai-progress i,
+.ai-area-bar {
+  background: var(--card-border);
+}
+
+.ai-progress span[data-ai-progress-fill] {
+  background: var(--obsidian);
+}
+
+.ai-question-card,
+.ai-choice,
+.ai-result-panel {
+  border-color: var(--card-border);
+  background: var(--paper);
+  color: var(--graphite);
+  box-shadow: var(--shadow);
+}
+
+.ai-question-card {
+  border-radius: 28px;
+}
+
+.ai-question-card h2 {
+  color: var(--ink);
+  font-family: "NexonLv2Gothic", Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 600;
+  line-height: 1.24;
+}
+
+.ai-choice {
+  border-radius: 18px;
+  background: #fafafa;
+  box-shadow: none;
+}
+
+.ai-choice:hover,
+.ai-choice.is-selected {
+  border-color: var(--obsidian);
+  background: var(--paper);
+}
+
+.ai-choice.is-selected {
+  box-shadow: inset 0 0 0 1px var(--obsidian);
+}
+
+.ai-choice strong,
+.ai-area-card strong,
+.ai-recommend-card h3 {
+  color: var(--ink);
+}
+
+.ai-choice small,
+.ai-area-card div,
+.ai-recommend-card p {
+  color: var(--muted);
+}
+
+.ai-result-hero {
+  border: 1px solid var(--card-border);
+  border-radius: 36px;
+  padding: clamp(28px, 5vw, 52px);
+  background: #f4f4f5;
+  box-shadow: var(--shadow);
+  text-align: left;
+}
+
+.ai-result-badge {
+  width: 104px;
+  height: 104px;
+  margin: 0 0 22px;
+  border-color: var(--obsidian);
+  border-radius: 24px;
+  background: var(--obsidian);
+}
+
+.ai-result-badge span,
+.ai-result-badge b {
+  color: var(--paper);
+}
+
+.ai-result-hero strong {
+  color: var(--ink);
+}
+
+.ai-result-panel {
+  border-radius: 28px;
+}
+
+.ai-result-panel h2 {
+  color: var(--muted);
+}
+
+.ai-area-card,
+.ai-recommend-card {
+  border-color: var(--card-border);
+  background: #fafafa;
+}
+
+.ai-recommend-card b {
+  border: 1px solid currentColor;
+}
+
+.ai-result-actions button {
+  background: var(--paper);
+}
+
+.ai-diagnosis-page {
+  padding-top: clamp(112px, 10vw, 152px);
+  padding-bottom: clamp(96px, 9vw, 148px);
+}
+
+.ai-diagnosis-intro {
+  padding-top: clamp(34px, 5vw, 64px);
+  padding-bottom: clamp(38px, 6vw, 74px);
+}
+
+.ai-diagnosis-meta {
+  margin-top: clamp(26px, 3vw, 40px);
+}
+
+.ai-diagnosis-start {
+  margin-top: clamp(30px, 4vw, 52px);
+}
+
+.ai-diagnosis-quiz {
+  padding: clamp(34px, 5vw, 64px);
+}
+
+.ai-diagnosis-quiz > * + * {
+  margin-top: clamp(20px, 2.8vw, 34px);
+}
+
+.ai-choice-list {
+  gap: 12px;
+  margin-top: clamp(20px, 2.6vw, 32px);
+}
+
+.ai-choice {
+  min-height: 82px;
+  padding: clamp(16px, 2vw, 22px);
+}
+
+.ai-choice strong {
+  font-family: "NexonLv2Gothic", Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  font-size: clamp(20px, 1.8vw, 25px);
+  font-weight: 600;
+  line-height: 1.22;
+  letter-spacing: 0;
+}
+
+.ai-choice small {
+  margin-top: 8px;
+  font-size: clamp(15px, 1.15vw, 17px);
+  font-weight: 400;
+  line-height: 1.45;
+  letter-spacing: 0;
+}
+
+.ai-choice-icon,
+.ai-choice-score {
+  width: 44px;
+  height: 44px;
+  font-size: 15px;
+}
+
+.ai-diagnosis-start,
+.ai-quiz-actions button,
+.ai-result-actions button,
+.ai-result-actions a {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 0 24px;
+  font-family:
+    "Comica", Arial, Pretendard, -apple-system,
+    BlinkMacSystemFont, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.ai-diagnosis-start:hover,
+.ai-quiz-actions button:hover,
+.ai-result-actions button:hover,
+.ai-result-actions a:hover {
+  transform: translateY(-1px);
+}
+
+.ai-diagnosis-start,
+.ai-quiz-actions button:last-child,
+.ai-result-actions a {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.ai-quiz-actions button:first-child,
+.ai-result-actions button {
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--graphite);
+}
+
+.ai-quiz-actions,
+.ai-result-actions {
+  margin-top: clamp(26px, 3.4vw, 44px);
+}
+
+.ai-result-hero {
+  padding: clamp(34px, 5vw, 64px);
+}
+
+.ai-result-grid {
+  gap: clamp(18px, 2.4vw, 28px);
+  margin-top: clamp(26px, 4vw, 52px);
+}
+
+.ai-result-panel {
+  padding: clamp(24px, 3vw, 38px);
+}
+
+.ai-area-scores,
+.ai-recommend-list {
+  gap: 12px;
+}
+
+.ai-area-card,
+.ai-recommend-card {
+  padding: clamp(15px, 1.8vw, 20px);
+}
+
+@media (max-width: 760px) {
+  .ai-diagnosis-intro {
+    min-height: auto;
+    background:
+      linear-gradient(180deg, rgba(244, 244, 245, 0.96), rgba(244, 244, 245, 0.82)),
+      url("awesomic-images/68c2a33d71ce477bc4cfb035_-cards-comlex-bg-light.avif") right bottom / 92% auto no-repeat,
+      #f4f4f5;
+  }
+
+  .ai-result-hero {
+    text-align: left;
+  }
 }
 
 .guide-diagnosis-cta {
@@ -1040,6 +1831,10 @@ main > section.level-process-section {
   margin-right: 0;
   margin-left: 0;
   padding: clamp(58px, 8vw, 96px) 0;
+}
+
+main > section.level-process-section {
+  scroll-margin-top: 112px;
 }
 
 .designer-ai-section,
@@ -1614,6 +2409,113 @@ main > section.level-process-section {
   color: var(--paper);
   font-size: 12px;
   font-weight: 700;
+}
+
+.detail-tabs-shell {
+  width: min(calc(100% - var(--site-gutter)), 1180px);
+  margin: 28px auto clamp(54px, 8vw, 96px);
+}
+
+.detail-tab-list {
+  position: sticky;
+  top: 88px;
+  z-index: 12;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+  border: 1px solid var(--card-border);
+  border-radius: 18px;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(16px);
+}
+
+.detail-tab {
+  min-height: 44px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  padding: 0 16px;
+  background: transparent;
+  color: var(--graphite);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.detail-tab.is-active {
+  border-color: var(--obsidian);
+  background: var(--obsidian);
+  color: var(--paper);
+}
+
+.detail-tab:focus-visible {
+  outline: 3px solid rgba(9, 9, 11, 0.22);
+  outline-offset: 3px;
+}
+
+.detail-tab-panel[hidden] {
+  display: none;
+}
+
+.detail-tab-panel > .detail-content {
+  display: grid;
+  gap: 18px;
+}
+
+.harness-flow-grid,
+.harness-method-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.harness-method-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.harness-flow-grid article,
+.harness-method-grid article {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  min-height: 190px;
+  border: 1px solid var(--card-border);
+  border-radius: 18px;
+  padding: 18px;
+  background: #f7f7f8;
+}
+
+.harness-flow-grid b,
+.harness-method-grid span {
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.harness-flow-grid h3,
+.harness-method-grid h3 {
+  margin: 0;
+  font-size: clamp(18px, 2vw, 24px);
+  line-height: 1.18;
+}
+
+.harness-flow-grid p,
+.harness-method-grid p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.harness-method-grid article b {
+  margin-top: auto;
+  border-top: 1px solid var(--card-border);
+  padding-top: 12px;
+  color: var(--graphite);
+  font-size: 13px;
 }
 
 .service-strip {
@@ -2872,6 +3774,7 @@ main > section.portfolio-process-section {
   cursor: pointer;
   min-height: 118px;
   padding: 22px 0 18px;
+  font-family: "NexonLv2Gothic", Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
   font-size: clamp(16px, 1.35vw, 19px);
   font-weight: 800;
   line-height: 1.32;
@@ -3944,7 +4847,9 @@ h2,
 
   .designer-section-heading,
   .level-tabs,
-  .level-panel {
+  .level-panel,
+  .harness-flow-grid,
+  .harness-method-grid {
     grid-template-columns: 1fr;
   }
 
@@ -4228,6 +5133,10 @@ h2,
 
   .reference-site-card {
     min-height: 220px;
+  }
+
+  .detail-tab-list {
+    position: static;
   }
 
   .designer-feature-card,

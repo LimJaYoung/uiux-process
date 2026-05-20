@@ -3,131 +3,103 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>내 AI 포트폴리오 시작점 진단 | AI Product Design Lab</title>
+    <title>AI 활용능력 진단 | AI Product Design Lab</title>
     <meta
       name="description"
-      content="UI/UX 디자이너가 AI로 기획부터 배포까지 완주하기 위해 지금 어느 제작 단계에서 시작하면 좋을지 진단합니다."
+      content="UIUX 디자이너를 위한 AI 활용능력 진단. 12문항으로 AI 툴 활용, 프롬프트 설계, 워크플로우 통합, 포트폴리오 연결 역량을 확인합니다."
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <header class="site-header">
-      <a class="brand" href="index.html"><span class="brand-mark">AI</span><span>AI Product Design Lab</span></a>
-      <button class="menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false"><span></span><span></span><span></span></button>
+      <a class="brand" href="index.html" aria-label="AI Product Design Lab 홈">
+        <span class="brand-mark">AI</span>
+        <span>AI Product Design Lab</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
       <nav class="nav-links detail-nav" aria-label="상세 메뉴">
-        <a href="orientation.html">오리엔테이션</a>
-        <a href="first-product.html">첫 실습</a>
         <a href="index.html">홈</a>
+        <a href="index.html#level-process">프로세스</a>
+        <a href="resources.html">자료실</a>
       </nav>
     </header>
 
     <main>
-      <section class="detail-hero lesson-hero">
-        <a class="back-link" href="index.html">← 홈으로</a>
-        <p class="eyebrow">Diagnosis</p>
-        <h1>내 AI 포트폴리오 시작점 진단</h1>
-        <p>
-          지금 내 위치를 확인하고, 기획부터 설계, 디자인, 구현, 검수, 배포까지
-          어떤 제작 단계에서 시작하면 좋을지 고릅니다.
-        </p>
-        <div class="meta-row">
-          <span>예상 시간 5분</span>
-          <span>공통 제작 흐름</span>
-          <span>결과물 추천 시작점</span>
-        </div>
-      </section>
-
-      <section class="section diagnosis-page">
-        <div class="section-heading">
-          <p class="eyebrow">Self Check</p>
-          <h2>3개 질문으로 내 제작 시작점을 찾습니다</h2>
-          <p>정답을 맞히는 테스트가 아니라, 공통 제작 흐름 안에서 지금 바로 시작하기 좋은 단계를 고르는 안내입니다.</p>
-        </div>
-
-        <div class="diagnosis-tool" data-diagnosis>
-          <form class="diagnosis-form">
-            <fieldset>
-              <legend>1. AI로 화면이나 코드를 만들어본 경험이 있나요?</legend>
-              <label><input type="radio" name="tool" value="0" checked /> 아직 열어본 적이 없어요</label>
-              <label><input type="radio" name="tool" value="1" /> 프롬프트를 복사해서 화면을 만들어본 적은 있어요</label>
-              <label><input type="radio" name="tool" value="2" /> 프로젝트 파일을 수정하고 배포 전 화면까지 확인해봤어요</label>
-            </fieldset>
-
-            <fieldset>
-              <legend>2. 만들고 싶은 프로덕트 아이디어는 얼마나 선명한가요?</legend>
-              <label><input type="radio" name="idea" value="0" checked /> 아직 막연해요</label>
-              <label><input type="radio" name="idea" value="1" /> 대략적인 아이디어는 있어요</label>
-              <label><input type="radio" name="idea" value="2" /> 사용자와 핵심 기능이 어느 정도 정리됐어요</label>
-            </fieldset>
-
-            <fieldset>
-              <legend>3. 배포나 자동화 단계까지 해본 적 있나요?</legend>
-              <label><input type="radio" name="ship" value="0" checked /> 아직 화면 구현 전이에요</label>
-              <label><input type="radio" name="ship" value="1" /> 브라우저에서 결과 화면을 확인한 적은 있어요</label>
-              <label><input type="radio" name="ship" value="2" /> 배포 URL이나 자동화 흐름을 만들어본 적이 있어요</label>
-            </fieldset>
-          </form>
-
-          <aside class="diagnosis-result" aria-live="polite">
-            <span class="tag" id="diagnosis-level">Beginner</span>
-            <h3 id="diagnosis-title">Beginner: 기획 단계부터 작게 완주하세요</h3>
-            <p id="diagnosis-copy">
-              작은 서비스 아이디어를 문제 정의, 화면 구조, 작동 화면, 배포 URL까지 연결하며 첫 포트폴리오를 만듭니다.
+      <section class="ai-diagnosis-page" data-ai-diagnosis>
+        <div class="ai-diagnosis-shell">
+          <div class="ai-diagnosis-intro" data-ai-intro>
+            <a class="back-link" href="index.html">← 홈으로</a>
+            <p class="eyebrow">AI Skill Diagnosis</p>
+            <h1>나는 AI를 얼마나<br />잘 활용하는 디자이너인가?</h1>
+            <p>
+              UIUX · 프로덕트 디자이너를 위한 AI 활용능력 진단입니다.
+              12문항을 풀고 현재 레벨과 다음 포트폴리오 미션을 확인하세요.
             </p>
-            <a class="button primary ink-button" id="diagnosis-link" href="beginner-mvp.html">추천 시작점으로 이동</a>
-          </aside>
-        </div>
+            <div class="ai-diagnosis-meta" aria-label="진단 정보">
+              <span>12문항</span>
+              <span>약 5분</span>
+              <span>5단계 레벨</span>
+            </div>
+            <button class="ai-diagnosis-start" type="button" data-ai-start>진단 시작하기</button>
+          </div>
 
-        <div class="section-heading diagnosis-library-heading">
-          <p class="eyebrow">Start Points</p>
-          <h2>공통 제작 흐름 안에서 고르는 시작점</h2>
-        </div>
+          <div class="ai-diagnosis-quiz" data-ai-quiz hidden>
+            <div class="ai-progress">
+              <div>
+                <span data-ai-progress-label>1 / 12</span>
+                <b data-ai-area-chip>영역 1 · AI 툴 활용</b>
+              </div>
+              <i><span data-ai-progress-fill></span></i>
+            </div>
 
-        <div class="level-grid">
-          <article class="level-card">
-            <span class="tag">Beginner</span>
-            <h3>AI 작업 환경부터 익히기</h3>
-            <p>도구가 낯설다면 먼저 작업 방식과 완주 흐름을 짧게 훑습니다.</p>
-            <a class="card-link" href="orientation.html">추천: 오리엔테이션</a>
-          </article>
-          <article class="level-card">
-            <span class="tag">Beginner</span>
-            <h3>첫 MVP를 끝까지 완주하기</h3>
-            <p>아이템 선정, 리서치, UX 설계, 구현, 배포, 케이스 스터디까지 단계별 프롬프트로 연결합니다.</p>
-            <a class="card-link" href="beginner-mvp.html">추천: Beginner MVP</a>
-          </article>
-          <article class="level-card">
-            <span class="tag">Intermediate</span>
-            <h3>서비스형 포트폴리오로 확장하기</h3>
-            <p>SKILL, 에이전트팀, PRD, Design.md로 다중 화면과 디자인 시스템을 연결합니다.</p>
-            <a class="card-link" href="intermediate.html">추천: Intermediate 가이드</a>
-          </article>
-          <article class="level-card">
-            <span class="tag">Intermediate</span>
-            <h3>디자인 시스템을 코드로 연결하고 싶어요</h3>
-            <p>와이어프레임, UI 방향, 컴포넌트 기준을 구현 조건으로 정리합니다.</p>
-            <a class="card-link" href="design.html">추천: 디자인 단계</a>
-          </article>
-          <article class="level-card">
-            <span class="tag">Advanced</span>
-            <h3>자동화 운영 시스템까지 확장하기</h3>
-            <p>병렬 에이전트, n8n, GitHub Actions로 포트폴리오가 자동 업데이트되는 흐름을 설계합니다.</p>
-            <a class="card-link" href="advanced.html">추천: Advanced 가이드</a>
-          </article>
-          <article class="level-card">
-            <span class="tag">Advanced</span>
-            <h3>배포와 운영까지 포트폴리오에 넣고 싶어요</h3>
-            <p>URL 공유, QA, Design.md, 자동 수집 콘텐츠까지 운영 관점으로 정리합니다.</p>
-            <a class="card-link" href="launch.html">추천: 배포 단계</a>
-          </article>
-        </div>
-      </section>
+            <div class="ai-question-card">
+              <p class="eyebrow" data-ai-question-area>Question</p>
+              <h2 data-ai-question-title></h2>
+              <p data-ai-question-sub></p>
+            </div>
 
-      <section class="section">
-        <div class="next-panel final-cta">
-          <h2>확신이 없다면 처음부터 완주하기</h2>
-          <p>가장 안정적인 방법은 기획부터 시작해 구조, 디자인, 구현, 검수, 배포 순서로 공통 제작 흐름을 따라가는 것입니다.</p>
-          <a class="button primary ink-button" href="beginner-mvp.html">Beginner MVP부터 시작</a>
+            <div class="ai-choice-list" data-ai-choices></div>
+
+            <div class="ai-quiz-actions">
+              <button type="button" data-ai-prev>이전</button>
+              <button type="button" data-ai-next disabled>다음</button>
+            </div>
+          </div>
+
+          <div class="ai-diagnosis-result" data-ai-result hidden>
+            <div class="ai-result-hero">
+              <div class="ai-result-badge" data-ai-badge>
+                <span data-ai-badge-emoji></span>
+                <b data-ai-badge-level></b>
+              </div>
+              <p class="eyebrow">Diagnosis Result</p>
+              <h1 data-ai-result-title></h1>
+              <p data-ai-result-desc></p>
+              <strong data-ai-result-score></strong>
+            </div>
+
+            <div class="ai-result-grid">
+              <section class="ai-result-panel">
+                <h2>영역별 점수</h2>
+                <div class="ai-area-scores" data-ai-area-scores></div>
+              </section>
+
+              <section class="ai-result-panel">
+                <h2>추천 포트폴리오 로드맵</h2>
+                <div class="ai-recommend-list" data-ai-recommend-list></div>
+              </section>
+            </div>
+
+            <div class="ai-result-actions">
+              <button type="button" data-ai-retry>다시 진단</button>
+              <button type="button" data-ai-share>결과 복사하기</button>
+              <a href="index.html#level-process">레벨별 프로세스 보기</a>
+            </div>
+          </div>
         </div>
       </section>
     </main>

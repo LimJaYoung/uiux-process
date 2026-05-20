@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Harness UIUX Automatic | AI Product Design Lab</title>
+    <meta
+      name="description"
+      content="Claude 하네스로 UIUX 프로덕트 기획, 디자인 시스템, 구현, QA, React 리팩토링, GitHub, 배포를 자동화하는 초보자용 가이드입니다."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="AI Product Design Lab 홈">
+        <span class="brand-mark">AI</span>
+        <span>AI Product Design Lab</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="nav-links detail-nav" aria-label="상세 메뉴">
+        <a href="index.html">홈</a>
+        <a href="intermediate.html">Intermediate</a>
+        <a href="advanced.html">Advanced</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="detail-hero">
+        <a class="back-link" href="index.html#level-process">← 레벨 프로세스로</a>
+        <p class="eyebrow">Intermediate · Claude Harness Automatic</p>
+        <h1>Harness UIUX Automatic</h1>
+        <p>
+          Claude 하네스는 AI에게 한 번에 “잘 만들어줘”라고 맡기는 방식이 아니라,
+          생성자와 평가자를 나눠 기준에 통과할 때까지 스스로 점검하고 개선하게 만드는
+          UIUX 프로덕트 제작 방식입니다.
+        </p>
+        <div class="meta-row">
+          <span>대상 AI 결과물 품질을 안정화하고 싶은 중급자</span>
+          <span>도구 Claude.ai · Claude Code · GitHub · Vercel</span>
+          <span>결과물 PRD + UI 시스템 + 코드 + QA + 배포 URL</span>
+        </div>
+      </section>
+
+      <section class="detail-tabs-shell" data-detail-tabs>
+        <div class="detail-tab-list" role="tablist" aria-label="Harness UIUX Automatic 상세 탭">
+          <button class="detail-tab is-active" type="button" id="harness-tab-intro" role="tab" aria-selected="true" aria-controls="intro" data-detail-tab="intro">
+            Harness 소개
+          </button>
+          <button class="detail-tab" type="button" id="harness-tab-guide" role="tab" aria-selected="false" aria-controls="guide" data-detail-tab="guide" tabindex="-1">
+            Harness guide
+          </button>
+          <button class="detail-tab" type="button" id="harness-tab-prompt" role="tab" aria-selected="false" aria-controls="prompt" data-detail-tab="prompt" tabindex="-1">
+            Harness prompt
+          </button>
+        </div>
+
+        <article class="detail-tab-panel is-active" id="intro" role="tabpanel" aria-labelledby="harness-tab-intro" data-detail-panel="intro">
+          <section class="detail-content">
+            <section>
+              <h2>하네스란 무엇인가?</h2>
+              <p>
+                하네스는 AI 에이전트가 원하는 방향으로만 움직이도록 역할, 기준, 반복 루프를 묶어두는 제어 구조입니다.
+                UIUX 작업에서는 Generator가 화면과 코드를 만들고, Evaluator가 디자인 품질, 독창성, 완성도, 기능성을 채점합니다.
+              </p>
+              <ul class="deliverables">
+                <li>Planner: 짧은 아이디어를 PRD, IA, 유저플로우로 확장합니다.</li>
+                <li>Generator: UI 구조, 디자인 시스템, HTML/CSS/JS 또는 React 코드를 생성합니다.</li>
+                <li>Evaluator: 기준표로 결과물을 채점하고 Fix 항목을 찾습니다.</li>
+                <li>Refiner: 수정 항목을 반영해 다시 생성하고 재검수합니다.</li>
+              </ul>
+            </section>
+
+            <section>
+              <h2>왜 UIUX 프로덕트에 유용한가?</h2>
+              <p>
+                일반 프롬프트는 결과가 매번 달라지기 쉽습니다. 하네스는 평가 기준을 먼저 고정하기 때문에
+                “그럴듯한 화면”이 아니라 포트폴리오에 설명 가능한 산출물로 이어집니다.
+              </p>
+              <div class="harness-flow-grid" aria-label="하네스 핵심 흐름">
+                <article>
+                  <b>01</b>
+                  <h3>기준 정의</h3>
+                  <p>색상, 타이포, 여백, 접근성, 사용성 기준을 먼저 언어화합니다.</p>
+                </article>
+                <article>
+                  <b>02</b>
+                  <h3>생성</h3>
+                  <p>Claude가 PRD, 디자인 시스템, 코드, 배포 체크리스트를 단계별로 만듭니다.</p>
+                </article>
+                <article>
+                  <b>03</b>
+                  <h3>평가</h3>
+                  <p>Evaluator가 Pass / Fix / Fail로 판정하고 근거를 남깁니다.</p>
+                </article>
+                <article>
+                  <b>04</b>
+                  <h3>재수정</h3>
+                  <p>Fix 항목을 반영한 뒤 다시 체크해 다음 Phase로 이동합니다.</p>
+                </article>
+              </div>
+            </section>
+
+            <section>
+              <h2>초보자가 기억할 평가 기준 4가지</h2>
+              <ul class="deliverables">
+                <li>Design Quality: 색상, 타이포, 레이아웃이 하나의 분위기를 만드는가?</li>
+                <li>Originality: AI 기본 패턴이 아니라 프로젝트에 맞는 선택이 보이는가?</li>
+                <li>Craft: 여백, 위계, 명도 대비, 반응형 기준을 지키는가?</li>
+                <li>Functionality: 사용자가 주요 액션을 바로 이해하고 수행할 수 있는가?</li>
+              </ul>
+            </section>
+          </section>
+        </article>
+
+        <article class="detail-tab-panel" id="guide" role="tabpanel" aria-labelledby="harness-tab-guide" data-detail-panel="guide" hidden>
+          <section class="detail-content">
+            <section>
+              <h2>두 가지 실행 방법</h2>
+              <div class="harness-method-grid">
+                <article>
+                  <span>방법 1</span>
+                  <h3>Claude.ai 웹</h3>
+                  <p>설치 없이 브라우저에서 시작합니다. 프롬프트를 첫 메시지로 붙여넣고, 두 번째 메시지로 AUTO-RUN을 요청합니다.</p>
+                  <b>처음 배우는 사람에게 추천</b>
+                </article>
+                <article>
+                  <span>방법 2</span>
+                  <h3>Claude Code CLI</h3>
+                  <p>프로젝트 폴더에 CLAUDE.md를 두고 터미널에서 실행합니다. 파일 생성, 수정, Git 작업까지 자동화하기 좋습니다.</p>
+                  <b>실제 프로젝트 완주에 추천</b>
+                </article>
+              </div>
+            </section>
+
+            <section>
+              <h2>Claude.ai 웹으로 시작하기</h2>
+              <ol class="steps">
+                <li>새 Claude 대화를 엽니다. 기존 대화는 이전 맥락이 섞일 수 있습니다.</li>
+                <li>Harness prompt 탭의 SYSTEM ROLE 블록을 복사합니다.</li>
+                <li>[대괄호] 항목을 내 프로젝트명, 타깃 사용자, 레퍼런스 URL로 바꿉니다.</li>
+                <li>수정한 SYSTEM ROLE을 첫 메시지로 보냅니다.</li>
+                <li>AUTO-RUN 명령어를 두 번째 메시지로 보내 Phase 01부터 순서대로 진행합니다.</li>
+              </ol>
+              <div class="prompt-box">
+                <button class="copy-button" type="button" data-copy-target="harness-web-autorun">복사</button>
+                <pre id="harness-web-autorun"><code>전체 파이프라인 AUTO-RUN 해줘.
+중간에 묻지 말고 PHASE 01 → 07 순서대로 완주해줘.
+모호한 결정은 레퍼런스 URL과 프로젝트 정보 기반으로 자체 판단해줘.
+Fix 항목은 가장 합리적인 대안으로 수정하고 재체크해줘.
+완료 시 최종 결과물 요약과 배포 URL을 출력해줘.</code></pre>
+              </div>
+            </section>
+
+            <section>
+              <h2>Claude Code CLI로 자동화하기</h2>
+              <ol class="steps">
+                <li>Node.js 18 이상을 설치하고 Claude Code를 준비합니다.</li>
+                <li>프로젝트 루트에 CLAUDE.md를 만듭니다.</li>
+                <li>CLAUDE.md 상단에 프로젝트 정보를 채우고, 아래에 하네스 프롬프트를 붙입니다.</li>
+                <li>터미널에서 Claude Code를 실행하고 AUTO-RUN 명령을 보냅니다.</li>
+              </ol>
+              <div class="prompt-box">
+                <button class="copy-button" type="button" data-copy-target="harness-cli-template">복사</button>
+                <pre id="harness-cli-template"><code># CLAUDE.md — 프로젝트 정보만 수정하세요
+
+## 프로젝트 정보
+프로젝트명: [내 프로젝트 이름]
+타깃 사용자: [예: 20대 K-POP 팬]
+레퍼런스 URL: [예: https://www.weverse.io]
+레퍼런스 톤: [예: 다크 모던, 프리미엄]
+기술 스택: [HTML / CSS / Vanilla JS 또는 React]
+GitHub 계정: [내 GitHub 아이디]
+저장소 이름: [저장소 이름]
+배포 플랫폼: [Vercel / GitHub Pages]
+
+---
+아래에 Harness prompt 탭의 SYSTEM ROLE과 PHASE 01~07을 붙여넣기</code></pre>
+              </div>
+            </section>
+
+            <section>
+              <h2>중간에 멈추지 않게 하는 준비</h2>
+              <ul class="deliverables">
+                <li>[대괄호]를 비워두지 않습니다. 비어 있으면 Claude가 질문하며 멈춥니다.</li>
+                <li>“중간에 묻지 말고”와 “Fix는 자체 수정”을 실행 명령에 포함합니다.</li>
+                <li>배포 플랫폼, 저장소 이름, 기술 스택처럼 본인만 아는 정보는 미리 제공합니다.</li>
+                <li>Phase별 결과를 포트폴리오 자료로 남길 수 있게 README와 케이스 스터디를 요청합니다.</li>
+              </ul>
+            </section>
+          </section>
+        </article>
+
+        <article class="detail-tab-panel" id="prompt" role="tabpanel" aria-labelledby="harness-tab-prompt" data-detail-panel="prompt" hidden>
+          <section class="detail-content">
+            <section>
+              <h2>복사해서 쓰는 SYSTEM ROLE</h2>
+              <p>[대괄호]만 내 프로젝트에 맞게 바꾼 뒤 Claude 대화 첫 메시지로 보내세요.</p>
+              <div class="prompt-box">
+                <button class="copy-button" type="button" data-copy-target="harness-system-role">복사</button>
+                <pre id="harness-system-role"><code>########################################
+## UIUX PRODUCT HARNESS v1.0
+## 기획 → UI 시스템 → 프론트엔드 → QA → React → GitHub → 배포
+########################################
+
+## SYSTEM ROLE
+당신은 아래 7개 전문 역할을 순서대로 수행하는 풀스택 디자인 AI 에이전트입니다.
+
+역할 1 | UX_PLANNER      → 기획 문서 생성
+역할 2 | UI_DESIGNER     → 디자인 시스템 정의
+역할 3 | FE_PUBLISHER    → HTML/CSS/JS 구현
+역할 4 | QA_EVALUATOR    → 품질 검수 및 수정
+역할 5 | REACT_REFACTOR  → React 컴포넌트 리팩토링
+역할 6 | GIT_AGENT       → GitHub 커밋·푸시 안내
+역할 7 | DEPLOY_AGENT    → 배포 설정 및 검증
+
+## 프로젝트 정보
+- 프로젝트명: [프로젝트명]
+- 타깃 사용자: [타깃 사용자]
+- 해결 문제: [핵심 문제]
+- 레퍼런스 URL: [레퍼런스 URL 1~3개]
+- 원하는 톤: [예: 차분한 SaaS / 에디토리얼 / 프리미엄 앱]
+- 기술 스택: [HTML/CSS/JS 또는 React]
+- 배포 플랫폼: [Vercel / GitHub Pages]
+
+## 핵심 작동 규칙
+- 각 Phase 완료 후 반드시 Evaluator 체크를 수행한다.
+- Fix 항목 발생 시 즉시 수정 후 재체크한다.
+- 모든 항목 Pass 선언 후 다음 Phase로 이동한다.
+- 모호한 결정은 레퍼런스 URL과 프로젝트 목적을 기준으로 자체 판단한다.
+- 결과물은 포트폴리오에 설명 가능한 근거와 함께 정리한다.
+
+## 공통 평가 기준
+1. Design Quality: 색상, 타이포, 레이아웃이 일관된 정체성을 만드는가?
+2. Originality: AI 기본 패턴이 아니라 프로젝트 맞춤 결정이 보이는가?
+3. Craft: 여백, 위계, 명도 대비, 반응형, 접근성 기준을 지키는가?
+4. Functionality: 사용자가 주요 액션을 직관적으로 이해하고 수행할 수 있는가?</code></pre>
+              </div>
+            </section>
+
+            <section>
+              <h2>PHASE 01 → 07 실행 프롬프트</h2>
+              <div class="prompt-box">
+                <button class="copy-button" type="button" data-copy-target="harness-phase-prompt">복사</button>
+                <pre id="harness-phase-prompt"><code>## PHASE 01 | UX_PLANNER
+서비스 목적, 타깃 사용자, 핵심 문제, IA, 핵심 유저플로우 3개, 화면 목록, 와이어프레임 텍스트 명세를 작성해줘.
+Evaluator: 목적 명확성, IA 완성도, 유저플로우 현실성, 화면 목록 누락 여부를 Pass/Fix로 체크.
+
+## PHASE 02 | UI_DESIGNER
+레퍼런스를 분석해 색상 토큰, 타이포 스케일, 간격 시스템, 컴포넌트 규칙, 금지 스타일을 정의해줘.
+Evaluator: 디자인 시스템 일관성, 접근성 대비, 모바일 우선, 레퍼런스 반영 여부를 체크.
+
+## PHASE 03 | FE_PUBLISHER
+Phase 02 기준으로 index.html, style.css, main.js를 구현해줘.
+반응형 기준은 375px, 768px, 1280px이며 hover, focus, active, disabled 상태를 포함해줘.
+Evaluator: 시맨틱 HTML, CSS 변수 사용, 반응형 무결성, 인터랙션 상태 정의를 체크.
+
+## PHASE 04 | QA_EVALUATOR
+완성 코드를 WCAG 2.1 AA, 성능, UX 휴리스틱, 디자인 시스템 준수 기준으로 검수해줘.
+Fix 항목은 수정 코드까지 제공하고 재체크해줘.
+
+## PHASE 05 | REACT_REFACTOR
+확정된 HTML/CSS/JS를 React 컴포넌트 구조로 전환해줘.
+컴포넌트 폴더 구조, props 명세, Custom Hook 후보, CSS Modules 또는 토큰 이전 방식을 제안해줘.
+Evaluator: 단일 책임, props 타입, 토큰 유지, 리팩토링 전후 UI 일치 여부를 체크.
+
+## PHASE 06 | GIT_AGENT
+.gitignore, README.md, 커밋 메시지 컨벤션, 초기 커밋 명령어, Phase별 커밋 기준을 작성해줘.
+Evaluator: 민감정보 제외, README 완성도, 실행 방법, 배포 URL placeholder 포함 여부를 체크.
+
+## PHASE 07 | DEPLOY_AGENT
+배포 플랫폼에 맞는 설정, OG 태그, robots.txt, sitemap 기본 구조, 최종 배포 전 체크리스트를 작성해줘.
+Evaluator: 콘솔 에러 0건, OG 태그, HTTPS, 주요 기능 3개 검증 기준을 체크.</code></pre>
+              </div>
+            </section>
+
+            <section>
+              <h2>단계별 실행 명령어</h2>
+              <div class="prompt-box">
+                <button class="copy-button" type="button" data-copy-target="harness-run-commands">복사</button>
+                <pre id="harness-run-commands"><code># 전체 자동 실행
+전체 파이프라인 AUTO-RUN 해줘.
+프로젝트: [프로젝트명]
+레퍼런스 URL: [URL]
+배포 플랫폼: Vercel
+중간에 묻지 말고 PHASE 01 → 07 순서대로 완주해줘.
+Fix 항목은 자체 수정하고 재체크해줘.
+
+# 단계별 실행
+PHASE 01 실행해줘. 프로젝트: [프로젝트명]
+PHASE 02 실행해줘. Phase 01 결과물 기반으로.
+PHASE 03 실행해줘. 우선 핵심 화면부터 구현해줘.
+PHASE 04 실행해줘. Phase 03 코드 전체 검수해줘.
+PHASE 05 실행해줘. React 컴포넌트 구조로 리팩토링해줘.
+PHASE 06 실행해줘. GitHub README와 커밋 기준 작성해줘.
+PHASE 07 실행해줘. 배포 체크리스트와 설정 파일을 만들어줘.
+
+# Evaluator만 따로 실행
+지금 결과물을 공통 평가 기준 4가지로 채점해줘.
+Fix 항목만 모아서 수정 우선순위와 수정 코드를 제공해줘.</code></pre>
+              </div>
+            </section>
+          </section>
+        </article>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

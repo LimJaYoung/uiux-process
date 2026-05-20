@@ -407,3 +407,130 @@ The next agent should move quickly, avoid broad rewrites, and treat Awesomic.com
   - 타이포그래피
   - 컬러 & 에셋
 - Added dedicated responsive CSS for the reference catalog while keeping the `.container-1344` section structure.
+
+## 15. Current Handoff Notes - 2026-05-20 10:21 KST
+
+### Conversation Context
+
+- User was frustrated because previous changes were made too quickly without enough planning/design checking.
+- Important user instruction for the next chat:
+  - Do not blindly paste standalone Claude-generated page styling into this site.
+  - Always compare against `index.html` layout and existing CSS patterns before editing.
+  - Preserve the useful interaction/content structure from attachments, but restyle to match the current site.
+  - Avoid broad, unrelated changes. Keep edits tightly scoped.
+
+### Uncommitted Files Right Now
+
+- Modified:
+  - `index.html`
+  - `diagnosis.html`
+  - `script.js`
+  - `styles.css`
+- New/untracked:
+  - `harness-uiux-automatic.html`
+
+### Guide Banner Direction
+
+- `guide-banner` should no longer duplicate `level-process-section`.
+- It should be a short entry point for **내 AI활용능력 진단하기**.
+- Current homepage banner copy now frames the diagnostic around:
+  - AI tool usage
+  - prompt design
+  - workflow integration
+  - portfolio storytelling
+- `level-process-section` remains the place for actual level/path selection.
+
+### Diagnosis Page Direction
+
+- Source attachment referenced by user:
+  - `C:\Users\J.영\Downloads\ai-diagnosis.html`
+- Useful structure from that attachment:
+  - 12 questions
+  - 4 score areas:
+    - AI 툴 활용
+    - 프롬프트 설계
+    - 워크플로우 통합
+    - 포트폴리오 연결
+  - 5 levels:
+    - Lv.1 탐색자
+    - Lv.2 실험자
+    - Lv.3 적용자
+    - Lv.4 통합자
+    - Lv.5 선도자
+  - Result recommendations by level
+- Current `diagnosis.html` was replaced with a site-integrated version using `data-ai-diagnosis`.
+- Current `script.js` contains the quiz logic near the top:
+  - question rendering
+  - choice scoring
+  - result calculation
+  - recommendation rendering
+  - result copy button
+- `node --check script.js` has passed after the latest edits.
+
+### Diagnosis Design Corrections Already Made
+
+- User objected that the first imported diagnostic design looked like the Claude standalone dark app and did not match this website.
+- Latest CSS changes in `styles.css` attempt to align `.ai-diagnosis-page` with the existing site:
+  - page background changed back to white
+  - large card background uses `#f4f4f5`, inspired by `.hero-panel`
+  - shell uses the 1280 site container width
+  - quiz/result width no longer constrained to 900px
+  - section/card spacing added
+  - `.ai-choice-list` text enlarged to match homepage card typography
+  - diagnosis buttons restyled to match `.hero-actions .button`
+- User specifically asked:
+  - `.ai-diagnosis-page` page background should not be gray
+  - the card itself should be gray like `hero-panel`
+  - cards should fill the 1280 area, not feel narrow
+  - section spacing should be added
+  - `.ai-choice-list` text was too small
+  - buttons should use `.hero-actions` style
+
+### Important Styling References
+
+- Reference existing patterns before making more changes:
+  - `.hero-panel`
+  - `.hero-actions`
+  - `.button`, `.button.primary`, `.button.secondary`
+  - `.designer-tool-card h3`
+  - `.designer-tool-card p`
+  - `.level-panel`
+  - `.container-1344`
+- Avoid:
+  - dark standalone app styling on `diagnosis.html`
+  - purple/teal gradient-heavy UI
+  - tiny form-like text in diagnostic choices
+  - pill buttons that do not match homepage buttons
+  - narrow centered diagnostic cards unless the user explicitly asks for that
+
+### Level Process / Anchor Fix
+
+- User reported that “레벨별 프로세스 보기” seemed to move to `designer-reference-section`.
+- Link itself is `index.html#level-process`.
+- Added anchor scroll correction:
+  - `html { scroll-padding-top: 112px; }`
+  - `main > section.level-process-section { scroll-margin-top: 112px; }`
+- If the issue persists, inspect actual rendered scroll position in browser rather than assuming the href is wrong.
+
+### Harness UIUX Automatic Work
+
+- Added new level tab/panel in `index.html`:
+  - `Harness UIUX Automatic`
+  - detail page link: `harness-uiux-automatic.html`
+- Added new file:
+  - `harness-uiux-automatic.html`
+- Added generic detail tab JS in `script.js` for `[data-detail-tabs]`.
+- Added related CSS for:
+  - `.detail-tabs-shell`
+  - `.detail-tab-list`
+  - `.detail-tab`
+  - `.harness-flow-grid`
+  - `.harness-method-grid`
+- User did not ask to remove this work, but next agent should verify whether it still fits the intended information architecture before expanding it.
+
+### Caution for Next Chat
+
+- Before editing further, first state what section/file will be touched and why.
+- For visual changes, inspect existing `index.html` and `styles.css` nearby patterns before writing CSS.
+- Prefer CSS overrides scoped to the relevant section rather than changing global site behavior.
+- Do not undo user/previous dirty changes unless explicitly asked.
