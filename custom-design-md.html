@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
@@ -14,7 +14,7 @@
     <header class="site-header">
       <a class="brand" href="index.html" aria-label="AI Product Design Lab 홈">
         <span class="brand-mark">AI</span>
-        <span>AI Product Design Lab</span>
+        <span>J.영의 AX Lab</span>
       </a>
       <button class="menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false">
         <span></span>
@@ -23,7 +23,7 @@
       </button>
       <nav class="nav-links detail-nav" aria-label="상세 메뉴">
         <a href="beginner-mvp.html">Beginner MVP</a>
-        <a href="jyoung-design.md" download="Jyoung.md">J.영 Design.md</a>
+        <a href="jyoung-uiux.md" download="jyoung-uiux.md">J.영 Design.md</a>
         <a href="index.html#level-process">프로세스</a>
       </nav>
     </header>
@@ -40,7 +40,7 @@
       </section>
 
       <section class="custom-design-section">
-        <article class="custom-design-builder" data-design-md-builder>
+        <article class="custom-design-builder" data-design-md-builder data-design-md-base="jyoung-uiux.md">
           <div class="custom-design-head">
             <div>
               <span>Prompt Builder</span>
@@ -75,9 +75,13 @@
               <input type="text" data-design-md-field="cardRadius" value="24px" />
             </label>
             <label class="wide">
-              Jyoung.md 추가 기준
+              jyoung-uiux.md 추가 기준
               <textarea data-design-md-field="extraRules" rows="5">Minimal, Clean, Professional, Spacious, Modern, Editorial 톤을 유지한다.</textarea>
             </label>
+          </div>
+          <div class="custom-design-output">
+            <span>Output</span>
+            <pre data-design-md-output></pre>
           </div>
         </article>
       </section>

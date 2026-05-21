@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
@@ -9,12 +9,13 @@
       content="Claude 하네스로 UIUX 프로덕트 기획, 디자인 시스템, 구현, QA, React 리팩토링, GitHub, 배포를 자동화하는 초보자용 가이드입니다."
     />
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
   </head>
   <body>
     <header class="site-header">
       <a class="brand" href="index.html" aria-label="AI Product Design Lab 홈">
         <span class="brand-mark">AI</span>
-        <span>AI Product Design Lab</span>
+        <span>J.영의 AX Lab</span>
       </a>
       <button class="menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false">
         <span></span>
@@ -32,16 +33,27 @@
       <section class="detail-hero">
         <a class="back-link" href="index.html#level-process">← 레벨 프로세스로</a>
         <p class="eyebrow">Intermediate · Claude Harness Automatic</p>
-        <h1>Harness UIUX Automatic</h1>
+        <h1>Claude Harness</h1>
         <p>
-          Claude 하네스는 AI에게 한 번에 “잘 만들어줘”라고 맡기는 방식이 아니라,
-          생성자와 평가자를 나눠 기준에 통과할 때까지 스스로 점검하고 개선하게 만드는
-          UIUX 프로덕트 제작 방식입니다.
+          Claude 하네스는 AI를 생성자와 평가자로 분리해, 기준을 통과할 때까지 스스로 반복 검증하게 만드는 구조입니다.<br>
+          "한 번에 완성"이 아니라, 루프를 돌며 품질을 높이는 방식으로 UIUX 산출물을 만들어냅니다.
         </p>
         <div class="meta-row">
-          <span><strong>01</strong><b>대상</b>AI 결과물 품질을 안정화하고 싶은 중급자</span>
-          <span><strong>02</strong><b>도구</b>Claude.ai · Claude Code · GitHub · Vercel</span>
-          <span><strong>03</strong><b>결과물</b>PRD + UI 시스템 + 코드 + QA + 배포 URL</span>
+          <span>
+            <strong>01</strong>
+            <b>대상</b>
+            <i>AI 결과물이 매번 들쭉날쭉한 게 고민인 중급자</i>
+          </span>
+          <span>
+            <strong>02</strong>
+            <b>도구</b>
+            <i>Claude.ai · Claude Code · GitHub · Vercel</i>
+          </span>
+          <span>
+            <strong>03</strong>
+            <b>결과물</b>
+            <i><em>PRD부터 배포 URL까지</em>기획·디자인·코드·QA 한 사이클 완성</i>
+          </span>
         </div>
       </section>
 
@@ -57,55 +69,54 @@
             Harness prompt
           </button>
         </div>
-
         <article class="detail-tab-panel is-active" id="intro" role="tabpanel" aria-labelledby="harness-tab-intro" data-detail-panel="intro">
           <section class="detail-content">
             <section>
               <h2>하네스란 무엇인가?</h2>
-              <p>
-                하네스는 AI 에이전트가 원하는 방향으로만 움직이도록 역할, 기준, 반복 루프를 묶어두는 제어 구조입니다.
-                UIUX 작업에서는 Generator가 화면과 코드를 만들고, Evaluator가 디자인 품질, 독창성, 완성도, 기능성을 채점합니다.
+              <p class="harness-lead-copy">
+                <b>하네스는 AI가 엉뚱한 방향으로 흐르지 않도록, 에이전트에게 역할·제작 기준·반복 루프를 하나로 묶어 제어하는 구조입니다.<br> UIUX에서는 만드는 AI와 검토하는 AI를 분리해, 기준을 통과할 때까지 반복합니다.</b>
               </p>
-              <ul class="deliverables">
-                <li>Planner: 짧은 아이디어를 PRD, IA, 유저플로우로 확장합니다.</li>
-                <li>Generator: UI 구조, 디자인 시스템, HTML/CSS/JS 또는 React 코드를 생성합니다.</li>
-                <li>Evaluator: 기준표로 결과물을 채점하고 Fix 항목을 찾습니다.</li>
-                <li>Refiner: 수정 항목을 반영해 다시 생성하고 재검수합니다.</li>
+              <p>
+                단순히 프롬프트를 잘 쓰는 것과 다릅니다. AI가 스스로 만들고 → 채점하고 → 고치는 흐름을 설계하는 방식으로, 프로덕트의 퀄리티를 높입니다
+              </p>
+              <ul class="deliverables harness-agent-list">
+                <li><span><i class="fa-solid fa-diagram-project" aria-hidden="true"></i></span><strong>Planner</strong> — 아이디어 한 줄을 PRD·IA·유저플로우로 펼칩니다</li>
+                <li><span><i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i></span><strong>Generator</strong> — UI 구조와 디자인 시스템, 실제 동작하는 코드를 만듭니다</li>
+                <li><span><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i></span><strong>Evaluator</strong> — 기준표로 결과물을 채점하고 고칠 것만 골라냅니다</li>
+                <li><span><i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i></span><strong>Refiner</strong> — Fix 항목을 반영해 다시 만들고, 다시 검수합니다</li>
               </ul>
             </section>
 
             <section>
               <h2>왜 UIUX 프로덕트에 유용한가?</h2>
+              <p class="harness-lead-copy">
+                <b>하네스는 기준을 먼저 잡고, 그 기준을 통과할 때까지 반복합니다.</b>
+              </p>
               <p>
-                일반 프롬프트는 결과가 매번 달라지기 쉽습니다. 하네스는 평가 기준을 먼저 고정하기 때문에
-                “그럴듯한 화면”이 아니라 포트폴리오에 설명 가능한 산출물로 이어집니다.
+                프롬프트만으로는 얻기 어려운 일관성과 완성도, 하네스가 만드는 차이입니다.
               </p>
               <div class="harness-flow-grid" aria-label="하네스 핵심 흐름">
                 <article>
-                  <b>01</b>
-                  <h3>기준 정의</h3>
-                  <p>색상, 타이포, 여백, 접근성, 사용성 기준을 먼저 언어화합니다.</p>
+                  <h3>Planner <small>(기획)</small></h3>
+                  <p>색상·타이포·여백·접근성을 기준표로 먼저 만듭니다. 기준이 없으면 평가도 없습니다.</p>
                 </article>
                 <article>
-                  <b>02</b>
-                  <h3>생성</h3>
-                  <p>Claude가 PRD, 디자인 시스템, 코드, 배포 체크리스트를 단계별로 만듭니다.</p>
+                  <h3>Generator <small>(생성)</small></h3>
+                  <p>PRD부터 코드·배포까지 단계별로 만들어냅니다.</p>
                 </article>
                 <article>
-                  <b>03</b>
-                  <h3>평가</h3>
-                  <p>Evaluator가 Pass / Fix / Fail로 판정하고 근거를 남깁니다.</p>
+                  <h3>Evaluator <small>(평가)</small></h3>
+                  <p>Pass·Fix·Fail로 판정하고, 왜 그런지 근거까지 기록합니다.</p>
                 </article>
                 <article>
-                  <b>04</b>
-                  <h3>재수정</h3>
-                  <p>Fix 항목을 반영한 뒤 다시 체크해 다음 Phase로 이동합니다.</p>
+                  <h3>Refiner <small>(재수정)</small></h3>
+                  <p>Fix 항목만 골라 다시 만들고, 통과하면 다음 단계로 넘어갑니다.</p>
                 </article>
               </div>
             </section>
 
             <section>
-              <h2>초보자가 기억할 평가 기준 4가지</h2>
+              <h2>Evaluator의 평가기준</h2>
               <ul class="deliverables">
                 <li>Design Quality: 색상, 타이포, 레이아웃이 하나의 분위기를 만드는가?</li>
                 <li>Originality: AI 기본 패턴이 아니라 프로젝트에 맞는 선택이 보이는가?</li>
@@ -157,7 +168,7 @@
                 <article class="harness-method-card cli">
                   <div class="method-card-head">
                     <span>방법 2</span>
-                    <h3>Claude Code CLI로 실제 완주</h3>
+                    <h3>Claude Code CLI로 완주</h3>
                     <p>프로젝트 폴더 안에서 실행합니다. 파일 생성, 수정, QA, Git 준비까지 이어가기 좋습니다.</p>
                   </div>
                   <div class="method-card-body">

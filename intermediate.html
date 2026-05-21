@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
@@ -14,7 +14,7 @@
     <header class="site-header">
       <a class="brand" href="index.html" aria-label="AI Product Design Lab 홈">
         <span class="brand-mark">AI</span>
-        <span>AI Product Design Lab</span>
+        <span>J.영의 AX Lab</span>
       </a>
       <button class="menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false">
         <span></span>
@@ -46,17 +46,23 @@
       </section>
 
       <section class="detail-layout">
-        <aside class="detail-toc" aria-label="Intermediate 목차">
-          <a href="#overview">개요</a>
-          <a href="#skill">01 SKILL 설계</a>
-          <a href="#team">02 에이전트팀</a>
-          <a href="#prd">03 PRD</a>
-          <a href="#reference">04 레퍼런스</a>
-          <a href="#tokens">05 토큰</a>
-          <a href="#designmd">06 Design.md</a>
-          <a href="#skill-merge">07 통합</a>
-          <a href="#apply">08 구현 & QA</a>
-          <a href="#portfolio">09 포트폴리오</a>
+        <aside class="detail-sidebar">
+          <nav class="detail-toc" aria-label="Intermediate 목차">
+            <a href="#overview">개요</a>
+            <a href="#skill">01 SKILL 설계</a>
+            <a href="#team">02 에이전트팀</a>
+            <a href="#prd">03 PRD</a>
+            <a href="#reference">04 레퍼런스</a>
+            <a href="#tokens">05 토큰</a>
+            <a href="#designmd">06 Design.md</a>
+            <a href="#skill-merge">07 통합</a>
+            <a href="#apply">08 구현 & QA</a>
+            <a href="#portfolio">09 포트폴리오</a>
+          </nav>
+          <div class="design-md-tools" data-design-md-builder>
+            <a class="design-md-button primary" href="jyoung-uiux.md" download="jyoung-uiux.md">J.영 Design.md 다운받기</a>
+            <a class="design-md-button secondary" href="custom-design-md.html">Custom Design.md 생성하기</a>
+          </div>
         </aside>
 
         <article class="detail-content">
@@ -400,24 +406,33 @@ Spacing & Shape Tokens
           </section>
 
           <section id="designmd">
-            <h2>06. Design.md 작성</h2>
+            <h2>06. Custom Design.md 사용</h2>
             <p>
-              Design.md는 AI가 따를 프로젝트 전용 디자인 헌법입니다. 서비스 정체성,
-              디자인 철학, 토큰 사용 기준, 컴포넌트 규칙, 금지 목록을 문서화해 매번
-              설명하지 않아도 같은 기준으로 작업하게 만듭니다.
+              Intermediate에서는 빈 문서에서 Design.md를 새로 쓰기보다, 왼쪽의
+              <strong>Custom Design.md 생성하기</strong> 버튼으로 기본 J.영 UIUX 기준에
+              프로젝트 폰트, 컬러, 라운드, 추가 규칙을 더한 custom.md를 먼저 만듭니다.
+              이 파일을 PRD, tokens.css와 함께 넣어야 AI가 같은 디자인 기준으로 화면을 확장합니다.
             </p>
 
-            <h3>Design.md 전체 초안 생성</h3>
+            <h3>Custom Design.md 보강 프롬프트</h3>
             <div class="prompt-box">
               <button class="copy-button" type="button" data-copy-target="intermediate-designmd-draft">복사</button>
-              <pre id="intermediate-designmd-draft"><code>다음 정보로 Design.md 파일을 작성해줘.
-AI가 읽고 즉시 따를 수 있는 규칙 형식으로 써줘.
+              <pre id="intermediate-designmd-draft"><code>아래 custom.md를 내 Intermediate 프로젝트 기준으로 보강해줘.
+custom.md의 기존 규칙은 유지하고, PRD와 레퍼런스 분석을 반영해 실제 구현에서 바로 따를 수 있는 규칙으로 정리해줘.
 
-서비스명: [서비스명]
-레퍼런스 요약: [비교 결정 내용]
-토큰 파일: [tokens.css 내용 붙여넣기]
+custom.md:
+[Custom Design.md 생성하기에서 만든 custom.md 전체 붙여넣기]
 
-다음 9개 섹션으로 작성해줘:
+PRD 요약:
+[서비스 목표, 핵심 사용자, 주요 화면, 핵심 기능 붙여넣기]
+
+레퍼런스 분석:
+[참고 사이트 3개와 참고할 점 붙여넣기]
+
+tokens.css:
+[컬러, 타이포, spacing, radius 토큰 붙여넣기]
+
+다음 9개 섹션을 custom.md 아래에 추가하거나 기존 섹션을 보강해줘:
 
 ## 1. 서비스 정체성
 이 서비스가 어떤 느낌이어야 하는지 3문장
@@ -447,14 +462,18 @@ AI가 읽고 즉시 따를 수 있는 규칙 형식으로 써줘.
 모든 화면의 필수 요소
 
 중요:
+새 파일을 처음부터 다시 쓰지 말고 custom.md를 기준으로 확장해줘.
 모든 규칙은 "해줘"가 아니라 "한다 / 하지 않는다" 형식으로 작성해줘.
-AI가 요청이 아니라 규칙으로 인식하도록 작성해줘.</code></pre>
+AI가 요청이 아니라 규칙으로 인식하도록 작성해줘.
+마지막에 "Claude/Codex에 붙여넣을 핵심 요약 12줄"을 별도로 만들어줘.</code></pre>
             </div>
 
-            <h3>Design.md 예시 구조</h3>
+            <h3>Custom Design.md 확장 구조</h3>
             <div class="prompt-box">
               <button class="copy-button" type="button" data-copy-target="intermediate-designmd-example">복사</button>
-              <pre id="intermediate-designmd-example"><code># Design.md — [서비스명]
+              <pre id="intermediate-designmd-example"><code># Custom Design.md Extension — [서비스명]
+이 섹션은 custom.md 아래에 추가한다.
+
 ## [서비스 카테고리] / [무드] / 모바일 우선
 
 ## 1. 서비스 정체성

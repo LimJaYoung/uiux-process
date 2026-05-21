@@ -76,6 +76,10 @@ document.querySelectorAll("[data-ai-diagnosis]").forEach((diagnosis) => {
     const question = questions[currentIndex];
     const area = areas[question.area];
     const progress = Math.round(((currentIndex + 1) / questions.length) * 100);
+    const title = diagnosis.querySelector("[data-ai-question-title]");
+    const questionMarkIndex = question.title.indexOf("?");
+    const questionLead = questionMarkIndex >= 0 ? question.title.slice(0, questionMarkIndex + 1) : "";
+    const questionBody = questionMarkIndex >= 0 ? question.title.slice(questionMarkIndex + 1).trim() : question.title;
 
     diagnosis.querySelector("[data-ai-progress-label]").textContent = `${currentIndex + 1} / ${questions.length}`;
     diagnosis.querySelector("[data-ai-progress-fill]").style.width = `${progress}%`;
@@ -84,7 +88,16 @@ document.querySelectorAll("[data-ai-diagnosis]").forEach((diagnosis) => {
     chip.style.background = area.bg;
     chip.style.color = area.color;
     diagnosis.querySelector("[data-ai-question-area]").textContent = area.name;
-    diagnosis.querySelector("[data-ai-question-title]").textContent = question.title;
+    title.textContent = "";
+
+    if (questionLead) {
+      const lead = document.createElement("span");
+      lead.textContent = questionLead;
+      title.append(lead, questionBody);
+    } else {
+      title.textContent = questionBody;
+    }
+
     diagnosis.querySelector("[data-ai-question-sub]").textContent = question.sub;
 
     const choiceList = diagnosis.querySelector("[data-ai-choices]");
@@ -207,6 +220,27 @@ document.querySelectorAll("[data-ai-diagnosis]").forEach((diagnosis) => {
   });
 });
 
+const scrollToLevelProcess = () => {
+  if (window.location.hash !== "#level-process") return;
+
+  const levelProcess = document.getElementById("level-process");
+  if (!levelProcess) return;
+
+  window.requestAnimationFrame(() => {
+    const offset = 96;
+    const top = levelProcess.getBoundingClientRect().top + window.scrollY - offset;
+
+    window.scrollTo({ top, behavior: "auto" });
+  });
+};
+
+scrollToLevelProcess();
+window.addEventListener("load", () => {
+  scrollToLevelProcess();
+  window.setTimeout(scrollToLevelProcess, 250);
+  window.setTimeout(scrollToLevelProcess, 800);
+});
+
 document.querySelectorAll(".hero-card_swiper").forEach((swiper) => {
   const track = swiper.querySelector(".swiper-wrapper");
   if (!track) return;
@@ -277,8 +311,13 @@ document.querySelectorAll("[data-level-tabs]").forEach((tabs) => {
   };
 
   tabButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      activateTab(button.dataset.levelTab);
+    button.addEventListener("click", (event) => {
+      const isActive = button.classList.contains("is-active");
+
+      if (!isActive) {
+        event.preventDefault();
+        activateTab(button.dataset.levelTab);
+      }
     });
 
     button.addEventListener("keydown", (event) => {
@@ -684,7 +723,10 @@ document.querySelectorAll("[data-design-md-builder]").forEach((builder) => {
   const toggleButton = builder.querySelector("[data-design-md-toggle]");
   const form = builder.querySelector("[data-design-md-form]");
   const downloadButton = builder.querySelector("[data-design-md-download]");
+  const output = builder.querySelector("[data-design-md-output]");
   const fields = Array.from(builder.querySelectorAll("[data-design-md-field]"));
+  const baseDesignMdPath = builder.dataset.designMdBase || "jyoung-uiux.md";
+  let baseDesignMdPromise;
 
   const getValues = () =>
     fields.reduce((values, field) => {
@@ -692,11 +734,37 @@ document.querySelectorAll("[data-design-md-builder]").forEach((builder) => {
       return values;
     }, {});
 
-  const createCustomDesignMd = (values) => `# Custom Design.md
+  const loadBaseDesignMd = async () => {
+    try {
+      const response = await fetch(baseDesignMdPath);
+
+      if (!response.ok) {
+        throw new Error(`Failed to load ${baseDesignMdPath}`);
+      }
+
+      return response.text();
+    } catch (error) {
+      console.warn(error);
+      return `# JYOUNG UIUX AI PROJECT SYSTEM
+
+Base file could not be loaded from ${baseDesignMdPath}.`;
+    }
+  };
+
+  const getBaseDesignMd = () => {
+    baseDesignMdPromise ||= loadBaseDesignMd();
+    return baseDesignMdPromise;
+  };
+
+  const createCustomDesignMd = (values, baseDesignMd) => `${baseDesignMd.trim()}
+
+---
+
+# Custom Design.md
 
 ## Based on
 
-- Base file: Jyoung.md
+- Base file: ${baseDesignMdPath}
 - Purpose: AI가 UIUX 프로젝트를 만들 때 흔들리지 않도록 디자인 기준을 먼저 고정한다.
 
 ---
@@ -719,7 +787,7 @@ font-weight: ${values.fontWeight || "400 / 600 / 800"};
 }
 \`\`\`
 
-## Jyoung.md Additional Rules
+## ${baseDesignMdPath} Additional Rules
 
 ${values.extraRules || "Minimal, Clean, Professional, Spacious, Modern, Editorial 톤을 유지한다."}
 
@@ -729,9 +797,17 @@ ${values.extraRules || "Minimal, Clean, Professional, Spacious, Modern, Editoria
 
 - 감성적인 표현보다 CSS 속성 기반으로 판단한다.
 - 색상, 폰트, 여백, 카드 반경, 버튼 상태를 먼저 고정한다.
-- 화면을 만들 때 이 custom.md와 Jyoung.md를 함께 기준으로 사용한다.
+- 화면을 만들 때 이 custom.md와 ${baseDesignMdPath}를 함께 기준으로 사용한다.
 - 결과물이 흔들리면 이 파일의 Typography와 Color Tokens를 우선 적용한다.
 `;
+
+  const updateDesignMdOutput = async () => {
+    if (!output) return "";
+
+    const markdown = createCustomDesignMd(getValues(), await getBaseDesignMd());
+    output.textContent = markdown;
+    return markdown;
+  };
 
   toggleButton?.addEventListener("click", () => {
     if (!form) return;
@@ -740,8 +816,15 @@ ${values.extraRules || "Minimal, Clean, Professional, Spacious, Modern, Editoria
     toggleButton.textContent = form.hidden ? "Custom Design.md 생성하기" : "Custom 입력 닫기";
   });
 
-  downloadButton?.addEventListener("click", () => {
-    const blob = new Blob([createCustomDesignMd(getValues())], {
+  fields.forEach((field) => {
+    field.addEventListener("input", updateDesignMdOutput);
+  });
+
+  updateDesignMdOutput();
+
+  downloadButton?.addEventListener("click", async () => {
+    const markdown = (await updateDesignMdOutput()) || createCustomDesignMd(getValues(), await getBaseDesignMd());
+    const blob = new Blob([markdown], {
       type: "text/markdown;charset=utf-8",
     });
     const url = URL.createObjectURL(blob);
@@ -865,18 +948,4 @@ if (lessonHero && !diagnosisTool) {
   `;
   lessonHero.insertAdjacentElement("afterend", progressPanel);
 
-  const practicePanel = document.createElement("section");
-  practicePanel.className = "practice-panel";
-  practicePanel.innerHTML = `
-    <div>
-      <p class="eyebrow">Practice Flow</p>
-      <h2>이 실습은 이렇게 진행합니다</h2>
-    </div>
-    <ol>
-      <li><strong>사이트에서 읽기</strong><span>목표, 준비물, 프롬프트를 확인합니다.</span></li>
-      <li><strong>AI 도구에서 실행</strong><span>프롬프트를 복사해 프로젝트에 적용합니다.</span></li>
-      <li><strong>브라우저에서 검수</strong><span>체크리스트로 결과를 보고 다시 개선합니다.</span></li>
-    </ol>
-  `;
-  progressPanel.insertAdjacentElement("afterend", practicePanel);
 }
