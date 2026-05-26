@@ -493,6 +493,7 @@ const setupServiceScroll = () => {
   let ticking = false;
 
   const clamp = (value, min = 0, max = 1) => Math.min(max, Math.max(min, value));
+  const isCompactService = () => window.matchMedia("(max-width: 760px)").matches;
   const setPxProperty = (element, property, value) => {
     const nextValue = `${Math.max(0, Math.ceil(value))}px`;
     if (element.style.getPropertyValue(property) !== nextValue) {
@@ -505,6 +506,14 @@ const setupServiceScroll = () => {
       const track = strip.querySelector("[data-service-track]");
       const sticky = strip.querySelector(".service-sticky");
       if (!track) return;
+
+      if (isCompactService()) {
+        setPxProperty(strip, "--service-distance", 0);
+        strip.dataset.distance = "0";
+        track.style.transform = "translate3d(0, 0, 0)";
+        track.dataset.serviceX = "0";
+        return;
+      }
 
       const viewport = sticky || strip;
       const viewportStyles = window.getComputedStyle(viewport);
@@ -553,6 +562,40 @@ const setupServiceScroll = () => {
     window.requestAnimationFrame(update);
   };
 
+  const getCompactActiveSticky = () => {
+    if (!isCompactService()) return null;
+
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    return strips
+      .map((strip) => {
+        const sticky = strip.querySelector(".service-sticky");
+        if (!sticky) return null;
+
+        const rect = strip.getBoundingClientRect();
+        const visibleTop = Math.max(rect.top, 0);
+        const visibleBottom = Math.min(rect.bottom, viewportHeight);
+        const visibleHeight = Math.max(0, visibleBottom - visibleTop);
+        const isReadablePosition = rect.top < viewportHeight * 0.72 && rect.bottom > viewportHeight * 0.24;
+
+        return isReadablePosition && visibleHeight > 80 ? sticky : null;
+      })
+      .find(Boolean);
+  };
+
+  const scrollCompactSticky = (sticky, rawDelta) => {
+    const maxScroll = sticky.scrollWidth - sticky.clientWidth;
+    if (maxScroll <= 0 || !rawDelta) return false;
+
+    const current = sticky.scrollLeft;
+    const delta = rawDelta * 1.1;
+    const canScrollBack = delta < 0 && current > 0;
+    const canScrollForward = delta > 0 && current < maxScroll - 1;
+    if (!canScrollBack && !canScrollForward) return false;
+
+    sticky.scrollLeft = clamp(current + delta, 0, maxScroll);
+    return true;
+  };
+
   measure();
   update();
 
@@ -561,6 +604,45 @@ const setupServiceScroll = () => {
     measure();
     requestUpdate();
   });
+
+  strips.forEach((strip) => {
+    const sticky = strip.querySelector(".service-sticky");
+    if (!sticky || sticky.dataset.serviceWheelBound === "true") return;
+
+    sticky.dataset.serviceWheelBound = "true";
+    sticky.addEventListener(
+      "wheel",
+      (event) => {
+        if (!isCompactService()) return;
+
+        const maxScroll = sticky.scrollWidth - sticky.clientWidth;
+        if (maxScroll <= 0) return;
+
+        const delta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
+        if (!scrollCompactSticky(sticky, delta)) return;
+
+        event.preventDefault();
+      },
+      { passive: false },
+    );
+  });
+
+  if (document.documentElement.dataset.serviceWindowWheelBound !== "true") {
+    document.documentElement.dataset.serviceWindowWheelBound = "true";
+    window.addEventListener(
+      "wheel",
+      (event) => {
+        const sticky = getCompactActiveSticky();
+        if (!sticky) return;
+
+        const delta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
+        if (!scrollCompactSticky(sticky, delta)) return;
+
+        event.preventDefault();
+      },
+      { passive: false },
+    );
+  }
 
   if ("ResizeObserver" in window) {
     serviceScrollResizeObserver?.disconnect();
