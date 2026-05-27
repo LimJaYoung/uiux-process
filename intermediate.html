@@ -1,12 +1,12 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Intermediate 서비스형 포트폴리오 가이드 | AI Product Design Lab</title>
+    <title>Intermediate 서비스형 포트폴리오 커리큘럼 | AI Product Design Lab</title>
     <meta
       name="description"
-      content="SKILL, 에이전트팀, PRD, Design.md, 디자인 시스템으로 서비스형 포트폴리오를 만드는 Intermediate 프롬프트 가이드입니다."
+      content="Intermediate 수준에서 아이템 전략, 리서치, 문제 정의, PRD, UX 설계, 디자인 시스템, 시안 시각화, 개발, React 리팩토링, 인터랙티브 웹 구현, 배포, 케이스 스터디까지 순차적으로 완주하는 서비스형 포트폴리오 커리큘럼입니다."
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
@@ -31,17 +31,29 @@
     <main>
       <section class="detail-hero lesson-hero">
         <a class="back-link" href="index.html#level-process">← 레벨 프로세스로</a>
-        <p class="eyebrow">Intermediate · Harness Production</p>
-        <h1>AI와 팀처럼 일하는 서비스형 포트폴리오</h1>
+        <h1>기획부터 배포까지 완성하는 서비스형 포트폴리오</h1>
         <p>
-          Beginner가 작은 MVP를 완주하는 과정이라면, Intermediate는 SKILL, 에이전트팀,
-          PRD, 레퍼런스 분석, Design.md를 연결해 다중 화면과 디자인 시스템이 있는
-          실무형 포트폴리오를 만드는 과정입니다.
+          Intermediate는 Beginner의 작은 MVP를 반복하는 단계가 아닙니다. 하나의 서비스 문제를
+          전략적으로 정의하고, 리서치와 PRD를 기준으로 UX 설계, 디자인 시스템, 시안 시각화,
+          개발 구현, React 리팩토링, 인터랙티브 웹 구현, QA, 배포, 케이스 스터디까지 연결하는
+          중급 포트폴리오 제작 과정입니다.
         </p>
         <div class="meta-row">
-          <span>대상 MVP 이후 구조화가 필요한 디자이너</span>
-          <span>도구 Claude · ChatGPT · Codex · Figma</span>
-          <span>결과물 PRD + Design.md + 배포 URL + 케이스</span>
+          <span>
+            <strong>01</strong>
+            <b>대상</b>
+            <i>기본 MVP 이후 실무형 구조와 반응형 웹 포트폴리오가 필요한 디자이너</i>
+          </span>
+          <span>
+            <strong>02</strong>
+            <b>도구</b>
+            <i>ChatGPT · Claude · Codex · Figma · React · Vercel</i>
+          </span>
+          <span>
+            <strong>03</strong>
+            <b>결과물</b>
+            <i><em>Service Portfolio</em>PRD + UX 설계서 + 디자인 시스템 + React 앱 + 배포 URL</i>
+          </span>
         </div>
       </section>
 
@@ -49,15 +61,18 @@
         <aside class="detail-sidebar">
           <nav class="detail-toc" aria-label="Intermediate 목차">
             <a href="#overview">개요</a>
-            <a href="#skill">01 SKILL 설계</a>
-            <a href="#team">02 에이전트팀</a>
-            <a href="#prd">03 PRD</a>
-            <a href="#reference">04 레퍼런스</a>
-            <a href="#tokens">05 토큰</a>
-            <a href="#designmd">06 Design.md</a>
-            <a href="#skill-merge">07 통합</a>
-            <a href="#apply">08 구현 & QA</a>
-            <a href="#portfolio">09 포트폴리오</a>
+            <a href="#strategy">01 기획 전략</a>
+            <a href="#research">02 리서치</a>
+            <a href="#problem">03 문제 정의</a>
+            <a href="#prd">04 PRD</a>
+            <a href="#ux">05 UX 설계</a>
+            <a href="#design">06 디자인 시스템</a>
+            <a href="#visual">07 시안 시각화</a>
+            <a href="#build">08 개발 구현</a>
+            <a href="#react">09 React 리팩토링</a>
+            <a href="#interactive">10 인터랙티브 웹 구현</a>
+            <a href="#qa">11 QA와 배포</a>
+            <a href="#case">12 케이스 스터디</a>
           </nav>
           <div class="design-md-tools" data-design-md-builder>
             <a class="design-md-button primary" href="jyoung-uiux.md" download="jyoung-uiux.md">J.영 Design.md 다운받기</a>
@@ -67,624 +82,903 @@
 
         <article class="detail-content">
           <section id="overview">
-            <h2>Intermediate에서 달라지는 것</h2>
+            <h2>Intermediate에서 만들어야 할 것</h2>
             <p>
-              즉흥적으로 AI에게 요청하는 방식에서 벗어나, 역할과 문서를 먼저 설계합니다.
-              한 대화에서 모든 것을 처리하지 않고 기획자, 디자이너, 개발자, QA처럼
-              역할을 나눠 산출물을 넘겨가며 작업합니다.
+              이 레벨의 목표는 "작동하는 화면"이 아니라 "서비스를 설계하고 완성하는 과정"을
+              증명하는 것입니다. 기획의 깊이, 문제 정의의 논리, 설계의 일관성, 구현의 완성도,
+              배포와 QA까지 모두 포트폴리오 평가 대상이 됩니다.
             </p>
             <ul class="deliverables">
-              <li>SKILL로 역할과 금지 규칙을 먼저 정의합니다.</li>
-              <li>PRD를 기준으로 설계와 구현 범위를 고정합니다.</li>
-              <li>레퍼런스를 Design.md와 tokens.css로 변환합니다.</li>
-              <li>다중 화면, 상태 화면, QA 리포트까지 포트폴리오에 포함합니다.</li>
+              <li>서비스 기획서: 타깃, 문제, 포지셔닝, 핵심 가치 제안</li>
+              <li>리서치 요약: 경쟁 서비스, 사용자 시나리오, 기회 영역</li>
+              <li>PRD: 기능 우선순위, 요구사항, 성공 지표, 제외 범위</li>
+              <li>UX 설계서: IA, 핵심 플로우, 화면 명세, 상태 정의</li>
+              <li>디자인 시스템: 토큰, 컴포넌트, Design.md, 레퍼런스 기준</li>
+              <li>시안 시각화: 핵심 화면, 상태 화면, 플로우 검증용 목업</li>
+              <li>개발 결과물: 다중 화면, 상태 화면, 반응형, 배포 URL</li>
+              <li>React 리팩토링: 컴포넌트 구조, props, state, route 설계</li>
+              <li>인터랙티브 웹: 필터, 입력, 전환, 저장, 피드백, 마이크로인터랙션</li>
+              <li>케이스 스터디: 의사결정, AI 활용 워크플로우, 결과와 회고</li>
             </ul>
           </section>
 
-          <section id="skill">
-            <h2>01. SKILL 설계</h2>
+          <section id="strategy">
+            <h2>01. 기획 전략 수립</h2>
             <p>
-              SKILL은 Claude Projects의 Instructions나 대화 첫머리에 붙이는 역할 지시문입니다.
-              실무의 Design.md, 작업 규칙, 에이전트 역할표처럼 작동합니다. 핵심은
-              Role → Context → Rules → Never → Output Format 순서로 짧고 명확하게 쓰는 것입니다.
+              Intermediate 기획은 아이디어를 많이 뽑는 것보다, 포트폴리오에서 설명 가능한
+              문제를 고르는 데 집중합니다. 서비스는 최소 3개 이상의 화면과 명확한 사용자
+              여정을 가져야 하고, 기능보다 문제 해결 구조가 먼저 보여야 합니다.
             </p>
+            <ul class="deliverables">
+              <li>서비스 카테고리와 타깃 사용자 선정</li>
+              <li>문제 상황, 사용 맥락, 기존 대안의 한계 정리</li>
+              <li>핵심 가치 제안과 포트폴리오 차별점 정의</li>
+            </ul>
 
-            <h3>SKILL 01. 기획자 Claude</h3>
+            <h3>중급 프로젝트 아이템 검토</h3>
             <div class="prompt-box">
-              <button class="copy-button" type="button" data-copy-target="intermediate-skill-planner">복사</button>
-              <pre id="intermediate-skill-planner"><code>## Role
-너는 시니어 프로덕트 매니저(PM)이자 UX 전략가야.
-UIUX 디자이너가 AI로 포트폴리오 프로젝트를 기획할 때 전략적 조언을 해줘.
+              <button class="copy-button" type="button" data-copy-target="intermediate-idea-audit">복사</button>
+              <pre id="intermediate-idea-audit"><code>너는 시니어 프로덕트 매니저이자 UX 포트폴리오 멘토야.
 
-## Project Context
-- 프로젝트: [서비스명]
-- 타깃 사용자: [구체적 페르소나]
-- 핵심 문제: [HMW 문장]
-- 제작 범위: 다중 화면 + 디자인 시스템 포함
+내가 Intermediate 수준의 서비스형 포트폴리오를 만들려고 해.
+아래 후보 아이디어를 중급 포트폴리오 기준으로 평가해줘.
 
-## Rules
-- 모든 제안은 포트폴리오 설명 가능성을 기준으로 판단
-- 기능 추가 제안 시 반드시 우선순위(P0/P1/P2) 함께 표시
-- 불명확한 요구사항은 구현 전에 반드시 질문
-- 결과물은 항상 마크다운 형식으로 정리
+후보 아이디어:
+1. [아이디어 A]
+2. [아이디어 B]
+3. [아이디어 C]
 
-## Never
-- 구현 난이도 무시한 과도한 기능 제안 금지
-- 근거 없는 "사용자가 원할 것 같다" 추측 금지
-- 기획서 없이 바로 코드 작성 금지
+평가 기준:
+- 실제 사용자 문제가 명확한가?
+- 리서치와 경쟁 분석으로 근거를 만들 수 있는가?
+- 핵심 화면 8~12개로 서비스 흐름과 상태를 설계할 수 있는가?
+- 디자인 시스템을 보여주기 좋은가?
+- 개발 난이도가 2~4주 안에 가능한가?
+- 케이스 스터디에서 의사결정을 설명하기 좋은가?
 
-## Output Format
-제안 → 근거 → 우선순위 → 다음 액션 순서로 작성</code></pre>
+출력 형식:
+| 아이디어 | 문제 명확성 | 설계 확장성 | 구현 현실성 | 포트폴리오 설명력 | 총평 |
+
+마지막에 가장 추천하는 아이디어 1개와 추천 이유, 리스크, 보완 방향을 작성해줘.</code></pre>
             </div>
 
-            <h3>SKILL 02. UI 디자이너 Claude</h3>
+            <h3>서비스 포지셔닝 정의</h3>
             <div class="prompt-box">
-              <button class="copy-button" type="button" data-copy-target="intermediate-skill-designer">복사</button>
-              <pre id="intermediate-skill-designer"><code>## Role
-너는 시니어 UI 디자이너야.
-UIUX 포트폴리오 프로젝트의 디자인 시스템과 화면 설계를 담당해줘.
+              <button class="copy-button" type="button" data-copy-target="intermediate-positioning">복사</button>
+              <pre id="intermediate-positioning"><code>선택한 서비스 아이디어를 Intermediate 수준의 포트폴리오 기획으로 구체화해줘.
 
-## Design System
-아래 기준을 모든 화면에 일관되게 적용해줘:
-- Primary Color: [예: #5B8FFF]
-- Background: [예: #0D1117]
-- Font: [예: Pretendard / Noto Sans KR]
-- Border Radius: [예: 12px]
-- Spacing Unit: [예: 8px 기반]
+서비스명: [서비스명]
+타깃 사용자: [대상]
+초기 아이디어: [한 줄 설명]
 
-## Rules
-- 모든 코드는 CSS 변수(:root) 활용
-- 모바일 우선, 375px 기준
-- 빈 상태, 로딩, 에러 화면 반드시 포함
-- Google Fonts 또는 Pretendard CDN만 사용
+다음 항목으로 정리해줘:
+1. 서비스 한 줄 정의
+2. 핵심 사용자 2개 세그먼트
+3. 사용자가 겪는 대표 상황 3가지
+4. 기존 대안과 그 한계
+5. 이 서비스가 제공할 핵심 가치
+6. 포트폴리오에서 보여줄 차별 포인트
+7. 제외해야 할 과도한 범위
 
-## Never
-- 인라인 스타일 남발 금지
-- 디자인 시스템 기준 무시한 임의 색상 금지
-- 접근성 대비 4.5:1 미달 색상 금지
-
-## Output Format
-HTML + CSS 분리 출력. 파일명을 명시하고, 수정 요청 시 변경 부분만 명시</code></pre>
-            </div>
-
-            <h3>SKILL 03. 개발자 Claude</h3>
-            <div class="prompt-box">
-              <button class="copy-button" type="button" data-copy-target="intermediate-skill-developer">복사</button>
-              <pre id="intermediate-skill-developer"><code>## Role
-너는 시니어 프론트엔드 개발자야.
-HTML / CSS / Vanilla JS만 사용해서 실제 작동하는 화면을 만들어줘.
-프레임워크, 빌드 도구 없이 브라우저에서 바로 열리는 코드로 작성해줘.
-
-## Tech Stack
-- HTML5 시맨틱 태그
-- CSS: 변수 기반, Flexbox / Grid
-- JavaScript: ES6+, 외부 라이브러리 최소화
-- 이미지: 안전한 원격 이미지 또는 placeholder 사용
-
-## Rules
-- 모든 JS 함수에 한국어 주석 필수
-- 에러 상태와 빈 상태 처리 코드 항상 포함
-- 더미 데이터는 실제처럼 구체적으로 작성
-
-## Never
-- jQuery, Bootstrap 등 외부 CDN 남발 금지
-- !important 남발 금지
-- div 중첩 5단계 이상 금지
-
-## Output Format
-파일명 → 코드 블록 → 연결 방법 한 줄 설명 순서</code></pre>
-            </div>
-
-            <h3>SKILL 04. QA 검수자 Claude</h3>
-            <div class="prompt-box">
-              <button class="copy-button" type="button" data-copy-target="intermediate-skill-qa">복사</button>
-              <pre id="intermediate-skill-qa"><code>## Role
-너는 시니어 디자인 QA 전문가야.
-완성된 화면을 디자이너 관점에서 꼼꼼하게 검수해줘.
-
-## QA 체크 기준
-1. 레이아웃: 간격, 정렬, 여백 일관성
-2. 타이포그래피: 위계, 크기, 행간 적절성
-3. 컬러: 대비, 디자인 시스템 준수 여부
-4. 인터랙션: 버튼 상태, 호버, 포커스
-5. 반응형: 375px / 1280px 레이아웃
-6. 상태 화면: 빈 상태, 로딩, 에러 존재 여부
-
-## Output Format
-✅ 통과 / ⚠️ 개선 필요 / ❌ 필수 수정
-각 항목은 어디서 / 무엇이 / 왜 / 어떻게 고치나 순서로 작성
-
-## Never
-- "예쁘다", "잘 됐다" 같은 주관적 평가만 작성 금지
-- 근거 없는 수정 제안 금지</code></pre>
+각 항목은 실제 PRD로 이어질 수 있게 구체적으로 작성해줘.</code></pre>
             </div>
           </section>
 
-          <section id="team">
-            <h2>02. 에이전트팀 구성</h2>
+          <section id="research">
+            <h2>02. 리서치와 인사이트 도출</h2>
             <p>
-              같은 AI라도 한 대화에서 모든 일을 맡기면 품질이 흐려집니다. 기획자, UI
-              디자이너, 개발자, QA, 콘텐츠, 케이스 스터디 작성자처럼 대화를 분리하고
-              이전 산출물을 다음 역할에게 넘기는 방식으로 작업합니다.
+              중급 리서치는 자료를 모으는 데서 끝나지 않습니다. 경쟁 서비스가 어떤 흐름으로
+              문제를 해결하는지, 사용자가 어디서 막히는지, 내 서비스가 들어갈 기회 영역이
+              무엇인지까지 도출해야 합니다.
             </p>
             <ul class="deliverables">
-              <li>기획자 Claude: PRD, 기능 우선순위, 사용자 시나리오</li>
-              <li>디자이너 Claude: 디자인 시스템, 컴포넌트, 레이아웃</li>
-              <li>개발자 Claude/Codex: HTML/CSS/JS 구현, 반응형, 인터랙션</li>
-              <li>QA Claude: 디자인 QA, 접근성, 배포 전 체크</li>
-              <li>케이스 Claude: 케이스 스터디, 면접 답변, 발표 스크립트</li>
+              <li>경쟁 서비스 3~5개 비교표</li>
+              <li>사용자 시나리오와 주요 불편</li>
+              <li>인사이트 3개와 디자인 기회 영역</li>
             </ul>
 
-            <h3>에이전트 대화 시작 프롬프트</h3>
+            <h3>경쟁 서비스 분석</h3>
             <div class="prompt-box">
-              <button class="copy-button" type="button" data-copy-target="intermediate-agent-start">복사</button>
-              <pre id="intermediate-agent-start"><code>[skill-planner.md / skill-designer.md / skill-developer.md / skill-qa.md 중 해당 역할의 SKILL 전체 붙여넣기]
+              <button class="copy-button" type="button" data-copy-target="intermediate-competitor">복사</button>
+              <pre id="intermediate-competitor"><code>[서비스명]과 유사한 경쟁 서비스 3~5개를 분석해줘.
 
----
+서비스 카테고리: [카테고리]
+타깃 사용자: [타깃]
+내가 해결하려는 문제: [문제]
 
-오늘 작업: [단계명: PRD 작성 / 화면 설계 / 코드 구현 / QA 검수]
-프로젝트: [서비스명]
-이전 단계 결과: [이전 단계 핵심 결과물 요약 또는 붙여넣기]
+표로 정리해줘:
+| 서비스 | 주요 사용자 | 핵심 기능 | 온보딩 방식 | 강점 | 약점 | 내가 참고할 점 | 피해야 할 점 |
 
-오늘 이 역할로 다음 작업을 진행해줘:
-[구체적 요청 사항]
-
-출력 형식: [마크다운 문서 / 코드 / 표 / 체크리스트]</code></pre>
+분석 후 아래도 작성해줘:
+1. 경쟁 서비스들이 공통적으로 잘하는 것
+2. 경쟁 서비스들이 놓치는 사용자 불편
+3. 내 서비스가 차별화할 수 있는 UX 기회
+4. PRD에 반드시 반영해야 할 기능 후보
+5. 실제 검색으로 검증해야 할 항목</code></pre>
             </div>
 
-            <h3>역할 전환 프롬프트</h3>
+            <h3>가상 사용자 리서치 시뮬레이션</h3>
             <div class="prompt-box">
-              <button class="copy-button" type="button" data-copy-target="intermediate-agent-switch">복사</button>
-              <pre id="intermediate-agent-switch"><code>이제 역할을 바꿔줘.
+              <button class="copy-button" type="button" data-copy-target="intermediate-user-research">복사</button>
+              <pre id="intermediate-user-research"><code>너는 UX 리서처야.
+[서비스명]의 타깃 사용자 3명을 가상으로 설정하고 인터뷰 인사이트를 도출해줘.
 
-지금까지 [기획자 Claude]로 작업했고, 다음 산출물이 완성됐어:
-[이전 단계 결과물 핵심 내용 붙여넣기]
+서비스 설명: [서비스 설명]
+타깃 사용자: [타깃]
+가정한 문제: [문제]
 
-이제부터 너는 [UI 디자이너 Claude]야.
-위 결과물을 인풋으로 받아서 다음 작업을 해줘:
-[다음 단계 요청 사항]
+각 사용자마다 아래 항목을 작성해줘:
+- 프로필: 나이, 직업, 상황
+- 현재 해결 방식
+- 불편을 느끼는 순간
+- 가장 중요한 니즈
+- 기능에 대한 기대
+- 사용을 포기할 수 있는 이유
 
-이전 단계 결과물과 일관성을 반드시 유지해줘.</code></pre>
+마지막에 3명의 공통 패턴을 종합해서:
+1. 핵심 인사이트 3개
+2. HMW 질문 3개
+3. 디자인 원칙 3개
+4. 검증이 필요한 가설 3개
+를 작성해줘.</code></pre>
+            </div>
+          </section>
+
+          <section id="problem">
+            <h2>03. 문제 정의와 솔루션 방향</h2>
+            <p>
+              문제 정의는 "무엇을 만들까"가 아니라 "왜 이 흐름이 필요한가"를 설명하는
+              기준입니다. 리서치 결과를 HMW, 사용자 여정, 핵심 가설로 압축한 뒤 솔루션의
+              방향을 정합니다.
+            </p>
+            <ul class="deliverables">
+              <li>HMW 문제 정의문</li>
+              <li>사용자 여정의 핵심 마찰 지점</li>
+              <li class="has-bottom-space">솔루션 컨셉과 핵심 가설</li>
+            </ul>
+            <p class="detail-note">
+              HMW는 <strong>How Might We</strong>의 줄임말로, 리서치에서 발견한 문제를
+              "어떻게 하면 우리가 [사용자]가 [상황]에서 [목표]를 달성하도록 도울 수 있을까?"
+              형태의 기회 질문으로 바꾸는 방법입니다. 너무 넓으면 방향이 흐려지고, 너무 좁으면
+              바로 기능명이 되어버리므로 사용자, 상황, 목표가 함께 드러나야 합니다.
+            </p>
+
+            <h3>문제 정의서 작성</h3>
+            <div class="prompt-box">
+              <button class="copy-button" type="button" data-copy-target="intermediate-problem-doc">복사</button>
+              <pre id="intermediate-problem-doc"><code>지금까지의 기획과 리서치 내용을 바탕으로 문제 정의서를 작성해줘.
+
+기획 요약:
+[서비스 포지셔닝 붙여넣기]
+
+리서치 요약:
+[경쟁 분석, 사용자 인사이트 붙여넣기]
+
+문제 정의서는 아래 구조로 작성해줘:
+1. Background: 왜 이 문제가 지금 중요한가
+2. Target User: 누구의 문제인가
+3. Current Behavior: 현재 사용자는 어떻게 해결하고 있나
+4. Pain Point: 어디에서 불편이 생기나
+5. Root Cause: 근본 원인은 무엇인가
+6. HMW Statement: 어떻게 하면 [사용자]가 [상황]에서 [목표]를 달성하도록 도울 수 있을까?
+7. Opportunity: 이 문제를 해결하면 어떤 가치가 생기나
+
+포트폴리오 케이스 스터디에 그대로 넣을 수 있게 작성해줘.</code></pre>
+            </div>
+
+            <h3>솔루션 컨셉 선택</h3>
+            <div class="prompt-box">
+              <button class="copy-button" type="button" data-copy-target="intermediate-solution-concept">복사</button>
+              <pre id="intermediate-solution-concept"><code>문제 정의서를 바탕으로 솔루션 컨셉을 5개 제안하고, 그중 Intermediate 포트폴리오에 가장 적합한 1개를 선택해줘.
+
+문제 정의서:
+[붙여넣기]
+
+각 컨셉은 아래 항목으로 작성해줘:
+- 컨셉명
+- 해결하는 핵심 문제
+- 핵심 기능 3개
+- 주요 화면 8~12개
+- 사용자 가치
+- 구현 난이도
+- 디자인 시스템으로 보여줄 수 있는 요소
+
+마지막에 추천 컨셉 1개를 선택하고, 선택하지 않은 컨셉을 제외한 이유도 설명해줘.</code></pre>
             </div>
           </section>
 
           <section id="prd">
-            <h2>03. PRD 문서 제작</h2>
+            <h2>04. PRD와 기능 우선순위</h2>
             <p>
-              PRD는 무엇을 왜 만들고, 어떤 기능이 어떤 우선순위로 필요한지 정의하는
-              문서입니다. Intermediate 포트폴리오에서는 PRD가 설계, 디자인 시스템,
-              구현, QA의 기준점이 됩니다.
+              PRD는 중급 프로젝트의 중심 문서입니다. 이후 UX 설계, UI 디자인, 개발, QA는
+              모두 PRD의 범위와 우선순위를 기준으로 진행됩니다.
             </p>
             <ul class="deliverables">
-              <li>Overview: 프로젝트 배경, 목적, 범위, 기간, 내 역할</li>
-              <li>Problem Statement: HMW 문제 정의와 리서치 근거</li>
-              <li>User Persona: 상황, 니즈, 불편, 목표</li>
-              <li>Feature Requirements: P0/P1/P2 우선순위</li>
-              <li>User Stories, Success Metrics, Out of Scope</li>
+              <li>목표, 사용자, 문제, 핵심 가설</li>
+              <li>P0/P1/P2 기능 우선순위</li>
+              <li>성공 지표, 제외 범위, 릴리즈 기준</li>
             </ul>
 
-            <h3>PRD 전체 초안 생성</h3>
+            <h3>PRD v1.0 작성</h3>
             <div class="prompt-box">
-              <button class="copy-button" type="button" data-copy-target="intermediate-prd-draft">복사</button>
-              <pre id="intermediate-prd-draft"><code>다음 정보를 바탕으로 포트폴리오 제출용 PRD 문서를 작성해줘.
+              <button class="copy-button" type="button" data-copy-target="intermediate-prd">복사</button>
+              <pre id="intermediate-prd"><code>다음 자료를 기반으로 Intermediate 포트폴리오용 PRD v1.0을 작성해줘.
 
-서비스명: [서비스명]
-핵심 문제: [HMW 문장]
-타깃 사용자: [페르소나 요약]
-핵심 기능: [확정한 기능 목록]
-제외 기능: [의도적으로 안 만든 것들]
+서비스 포지셔닝:
+[붙여넣기]
 
-7개 섹션으로 작성해줘:
+문제 정의서:
+[붙여넣기]
+
+선택한 솔루션 컨셉:
+[붙여넣기]
+
+PRD 구조:
 1. Overview
-2. Problem Statement
-3. User Persona
-4. Feature Requirements: P0/P1/P2 분류 포함
-5. User Stories: 기능당 1~2개
-6. Success Metrics
-7. Out of Scope
+2. Product Goal
+3. Target User
+4. Problem Statement
+5. Core User Journey
+6. Functional Requirements
+   - P0: 반드시 구현
+   - P1: 가능하면 구현
+   - P2: 케이스 스터디에서 다음 버전으로 제안
+7. Non-functional Requirements
+8. Success Metrics
+9. Out of Scope
+10. Release Criteria
 
-조건:
-- 포트폴리오 심사자가 읽을 문서라서 간결하고 논리적으로 작성
-- Notion에 붙여넣기 쉬운 마크다운 형식</code></pre>
+개발자와 디자이너가 이 문서만 보고 다음 단계로 넘어갈 수 있을 정도로 구체적으로 작성해줘.</code></pre>
             </div>
 
-            <h3>P0 기능 상세 명세</h3>
+            <h3>기능 명세 상세화</h3>
             <div class="prompt-box">
-              <button class="copy-button" type="button" data-copy-target="intermediate-p0-spec">복사</button>
-              <pre id="intermediate-p0-spec"><code>PRD의 P0 기능을 상세화해줘.
+              <button class="copy-button" type="button" data-copy-target="intermediate-feature-spec">복사</button>
+              <pre id="intermediate-feature-spec"><code>PRD의 P0 기능을 개발 가능한 수준으로 상세 명세해줘.
 
-P0 기능 목록: [목록 나열]
+P0 기능:
+[목록 붙여넣기]
 
-각 기능에 대해 다음 항목을 작성해줘:
-- 설명: 이 기능이 하는 것 1~2줄
-- 트리거: 어떤 상황에서 작동하나
-- Happy Path: 정상 동작 흐름 단계별
-- Edge Case: 예외 상황 2~3가지
-- UI 요소: 필요한 화면 컴포넌트 목록
-- 완료 기준: 완성됐다고 볼 수 있는 조건
+각 기능마다 아래를 작성해줘:
+- 기능 목적
+- 사용자 입력
+- 시스템 처리
+- 출력 결과
+- Happy Path
+- Empty State
+- Loading State
+- Error State
+- 필요한 UI 컴포넌트
+- 완료 기준
 
-개발자 Claude나 Codex가 질문 없이 바로 구현할 수 있는 수준으로 써줘.</code></pre>
+표와 번호 목록을 섞어서 읽기 쉽게 작성해줘.</code></pre>
             </div>
           </section>
 
-          <section id="reference">
-            <h2>04. 레퍼런스 사이트 분석</h2>
+          <section id="ux">
+            <h2>05. UX 설계와 화면 구조</h2>
             <p>
-              레퍼런스는 따라 만드는 자료가 아니라 디자인 결정의 근거입니다. 최소 3개를
-              비교해 컬러, 타이포, 레이아웃, 컴포넌트, 상태 처리 기준을 추출합니다.
+              Intermediate의 UX 설계는 단일 화면 명세가 아니라 서비스 흐름 전체를 설계하는
+              단계입니다. IA, 사용자 플로우, 화면별 목적, 상태 화면까지 연결해야 합니다.
             </p>
             <ul class="deliverables">
-              <li>제품 레퍼런스: 동일 카테고리 서비스의 UX 흐름과 정보 구조</li>
-              <li>비주얼 레퍼런스: 컬러, 타이포, 여백, 무드</li>
-              <li>컴포넌트 레퍼런스: 버튼, 카드, 내비게이션, 상태 처리</li>
+              <li>IA 사이트맵</li>
+              <li>핵심 사용자 플로우 2~3개</li>
+              <li>화면별 목적, 컴포넌트, 상태 정의</li>
             </ul>
 
-            <h3>레퍼런스 디자인 분석</h3>
+            <h3>IA와 내비게이션 설계</h3>
             <div class="prompt-box">
-              <button class="copy-button" type="button" data-copy-target="intermediate-reference-analysis">복사</button>
-              <pre id="intermediate-reference-analysis"><code>너는 시니어 UI 디자이너야.
-다음 레퍼런스를 디자인 시스템 관점에서 분석해줘.
+              <button class="copy-button" type="button" data-copy-target="intermediate-ia">복사</button>
+              <pre id="intermediate-ia"><code>PRD를 바탕으로 [서비스명]의 IA와 내비게이션 구조를 설계해줘.
 
-분석 대상: [사이트명 또는 URL / 첨부 스크린샷]
-내 서비스 성격: [예: K-POP 팬 커뮤니티 앱]
+PRD:
+[붙여넣기]
 
-1. 컬러 시스템: Primary / Background / Text 색상 추정, 감정적 인상
-2. 타이포그래피: 폰트 추정, 크기 비율, 굵기 패턴
-3. 레이아웃 & 여백: 그리드 패턴, 여백 감각, 정보 우선순위
-4. 컴포넌트 패턴: 버튼, 카드, 내비게이션 스타일
-5. 내 서비스 적용 가능성:
-   - 그대로 가져올 패턴 3가지
-   - 안 맞는 부분과 이유
-   - 참고하되 변형할 아이디어
+요구사항:
+- 핵심 화면 8~12개
+- 상태 화면은 별도로 포함: 빈 상태, 로딩, 에러, 성공/완료 상태
+- 각 화면의 목적이 겹치지 않게 구성
+- 사용자가 처음 진입해서 핵심 가치를 경험하기까지의 경로를 짧게 설계
+- 모바일 우선 내비게이션 기준
 
-마지막에 이 사이트 디자인 철학을 한 문장으로 요약해줘.</code></pre>
+출력:
+1. 사이트맵
+2. 주요 내비게이션 구조
+3. 화면 목록 표
+| 화면명 | 목적 | 주요 콘텐츠 | 주요 액션 | 연결되는 화면 |
+4. 제외한 화면과 이유</code></pre>
             </div>
 
-            <h3>레퍼런스 3개 비교와 방향 결정</h3>
+            <h3>핵심 플로우 설계</h3>
             <div class="prompt-box">
-              <button class="copy-button" type="button" data-copy-target="intermediate-reference-compare">복사</button>
-              <pre id="intermediate-reference-compare"><code>레퍼런스 3개를 비교해서 내 서비스 디자인 방향을 결정해줘.
+              <button class="copy-button" type="button" data-copy-target="intermediate-flow">복사</button>
+              <pre id="intermediate-flow"><code>[서비스명]의 핵심 사용자 플로우를 설계해줘.
 
-레퍼런스:
-- A: [사이트명] — [한 줄 특징]
-- B: [사이트명] — [한 줄 특징]
-- C: [사이트명] — [한 줄 특징]
+IA:
+[붙여넣기]
 
-내 서비스 무드: [예: 에너지 넘치는 / 신뢰감 있는 / 따뜻한]
+P0 기능:
+[붙여넣기]
 
-항목별로 A/B/C 중 어떤 레퍼런스를 참고할지 표로 정리해줘:
+다음 플로우를 작성해줘:
+1. 신규 사용자가 처음 가치를 경험하는 플로우
+2. 반복 사용자가 핵심 작업을 완료하는 플로우
+3. 빈 상태에서 첫 데이터를 만드는 플로우
 
-| 항목 | 선택 | 이유 |
-|------|------|------|
-| 전체 컬러 무드 | | |
-| 타이포그래피 스타일 | | |
-| 레이아웃 밀도 | | |
-| 버튼/카드 스타일 | | |
-| 내비게이션 방식 | | |
-
-마지막에 우리 서비스만의 차별 디자인 요소 1~2가지를 제안해줘.</code></pre>
-            </div>
-          </section>
-
-          <section id="tokens">
-            <h2>05. 디자인 토큰 추출</h2>
-            <p>
-              레퍼런스 분석과 방향 결정을 CSS 변수로 변환합니다. 토큰이 있어야 여러
-              화면이 같은 제품처럼 보이고, AI가 임의 색상과 간격을 만들지 않습니다.
-            </p>
-
-            <h3>tokens.css 전체 생성</h3>
-            <div class="prompt-box">
-              <button class="copy-button" type="button" data-copy-target="intermediate-tokens">복사</button>
-              <pre id="intermediate-tokens"><code>다음 방향으로 tokens.css 파일을 만들어줘.
-
-서비스: [서비스명]
-무드: [예: 다크 테마, 에너지 넘치는, 네온 포인트]
-참고 레퍼런스: [A/B/C 결정 내용 요약]
-
-다음 토큰을 포함한 :root {} CSS 파일을 작성해줘:
-
-Color Tokens
---color-primary / --color-primary-soft / --color-secondary / --color-accent
---bg-base / --bg-surface / --bg-raised
---tx-primary / --tx-secondary / --tx-muted
---bd-default / --bd-strong
---color-success / --color-warning / --color-error / --color-info
-
-Typography Tokens
---font-heading / --font-body / --font-mono
---text-xs ~ --text-3xl
-
-Spacing & Shape Tokens
---space-1(4px) ~ --space-12(48px)
---radius-sm / --radius-md / --radius-lg / --radius-full
---shadow-sm / --shadow-md
-
-각 토큰 옆에 사용 예시 주석을 달아줘.
-마지막에 Google Fonts import 코드도 포함해줘.</code></pre>
-            </div>
-          </section>
-
-          <section id="designmd">
-            <h2>06. Custom Design.md 사용</h2>
-            <p>
-              Intermediate에서는 빈 문서에서 Design.md를 새로 쓰기보다, 왼쪽의
-              <strong>Custom Design.md 생성하기</strong> 버튼으로 기본 J.영 UIUX 기준에
-              프로젝트 폰트, 컬러, 라운드, 추가 규칙을 더한 custom.md를 먼저 만듭니다.
-              이 파일을 PRD, tokens.css와 함께 넣어야 AI가 같은 디자인 기준으로 화면을 확장합니다.
-            </p>
-
-            <h3>Custom Design.md 보강 프롬프트</h3>
-            <div class="prompt-box">
-              <button class="copy-button" type="button" data-copy-target="intermediate-designmd-draft">복사</button>
-              <pre id="intermediate-designmd-draft"><code>아래 custom.md를 내 Intermediate 프로젝트 기준으로 보강해줘.
-custom.md의 기존 규칙은 유지하고, PRD와 레퍼런스 분석을 반영해 실제 구현에서 바로 따를 수 있는 규칙으로 정리해줘.
-
-custom.md:
-[Custom Design.md 생성하기에서 만든 custom.md 전체 붙여넣기]
-
-PRD 요약:
-[서비스 목표, 핵심 사용자, 주요 화면, 핵심 기능 붙여넣기]
-
-레퍼런스 분석:
-[참고 사이트 3개와 참고할 점 붙여넣기]
-
-tokens.css:
-[컬러, 타이포, spacing, radius 토큰 붙여넣기]
-
-다음 9개 섹션을 custom.md 아래에 추가하거나 기존 섹션을 보강해줘:
-
-## 1. 서비스 정체성
-이 서비스가 어떤 느낌이어야 하는지 3문장
-
-## 2. 디자인 철학
-3가지 원칙, 각 한 문장 + 이유
-
-## 3. 컬러 시스템
-토큰 사용 기준. 언제 어떤 색을 쓰는지
-
-## 4. 타이포그래피 규칙
-계층별 크기, 굵기, 색상 기준
-
-## 5. 컴포넌트 원칙
-버튼, 카드, 인풋, 내비게이션
-
-## 6. 레이아웃 & 여백
-그리드, 패딩, 마진 기준
-
-## 7. 레퍼런스 사이트
-3개 사이트와 각각 무엇을 참고했는지
-
-## 8. 절대 금지 목록
-10가지. 구체적으로
-
-## 9. 항상 포함할 것
-모든 화면의 필수 요소
-
-중요:
-새 파일을 처음부터 다시 쓰지 말고 custom.md를 기준으로 확장해줘.
-모든 규칙은 "해줘"가 아니라 "한다 / 하지 않는다" 형식으로 작성해줘.
-AI가 요청이 아니라 규칙으로 인식하도록 작성해줘.
-마지막에 "Claude/Codex에 붙여넣을 핵심 요약 12줄"을 별도로 만들어줘.</code></pre>
+각 플로우마다:
+- 시작 조건
+- 단계별 사용자 행동
+- 화면 전환
+- 시스템 피드백
+- 실패/예외 상황
+- UX 리스크와 개선 아이디어
+를 작성해줘.</code></pre>
             </div>
 
-            <h3>Custom Design.md 확장 구조</h3>
+            <h3>화면 상세 명세</h3>
             <div class="prompt-box">
-              <button class="copy-button" type="button" data-copy-target="intermediate-designmd-example">복사</button>
-              <pre id="intermediate-designmd-example"><code># Custom Design.md Extension — [서비스명]
-이 섹션은 custom.md 아래에 추가한다.
-
-## [서비스 카테고리] / [무드] / 모바일 우선
-
-## 1. 서비스 정체성
-[서비스가 어떤 느낌이어야 하는지 3문장]
-
-## 2. 디자인 철학
-① [원칙명]: [이유]
-② [원칙명]: [이유]
-③ [원칙명]: [이유]
-
-## 3. 컬러 시스템
-Primary: [HEX] → 버튼, 링크, 선택된 탭, 강조 텍스트
-Accent: [HEX] → 알림, 배지, 이벤트 강조
-BG Base: [HEX] → 페이지 배경
-Surface: [HEX] → 카드, 패널, 모달
-Text Primary: [HEX] → 제목, 주요 텍스트
-Text Secondary: [HEX] → 본문, 설명
-
-## 4. 타이포그래피
-Font:
-제목:
-본문:
-캡션:
-강조:
-
-## 5. 컴포넌트 원칙
-Button Primary:
-Button Ghost:
-Card:
-Input:
-
-## 6. 레이아웃 & 여백
-모바일 기준:
-섹션 간격:
-카드 내부 패딩:
-
-## 7. 레퍼런스 사이트
-[사이트 A] → [무엇 참고]
-[사이트 B] → [무엇 참고]
-[사이트 C] → [무엇 참고]
-
-## 8. 절대 금지
-- 토큰 외 임의 색상 코드 사용 금지
-- !important 사용 금지
-- 빈 상태 화면 없이 납품 금지
-- 접근성 대비 4.5:1 미달 텍스트 금지
-- 로딩 상태 없는 비동기 액션 금지
-
-## 9. 항상 포함
-- 모든 리스트 화면: Empty State
-- 모든 버튼 액션: Loading 상태
-- 모든 화면: 모바일 375px 반응형
-- 모든 폼: 에러 메시지 + 성공 피드백</code></pre>
-            </div>
-          </section>
-
-          <section id="skill-merge">
-            <h2>07. SKILL + Design.md 통합</h2>
-            <p>
-              Design.md 전체를 SKILL에 넣으면 너무 길어질 수 있습니다. 핵심 규칙은
-              SKILL에 통합하고, Design.md와 tokens.css 전체는 Claude Project Knowledge
-              또는 프로젝트 문서로 분리해두는 것이 좋습니다.
-            </p>
-
-            <h3>skill-designer.md 통합 최종본 생성</h3>
-            <div class="prompt-box">
-              <button class="copy-button" type="button" data-copy-target="intermediate-skill-merge">복사</button>
-              <pre id="intermediate-skill-merge"><code>내 서비스의 Design.md를 디자이너 Claude SKILL에 통합해줘.
-
-인풋:
-[Design.md 전체 붙여넣기]
-
-조건:
-- SKILL 총 길이 500토큰 또는 약 400단어 이내 유지
-- 절대 금지 목록과 컬러 토큰은 반드시 포함
-- 레퍼런스 3개 명시. 각각 무엇을 참고했는지 한 줄로
-- Role 섹션에 내 서비스명 포함
-- 출력 형식 섹션에 "한국어 주석 포함" 명시
-
-결과를 skill-designer.md 통합 최종본으로 출력해줘.
-Claude Project Instructions에 바로 붙여넣을 수 있는 형식으로 작성해줘.</code></pre>
-            </div>
-
-            <h3>Claude Project 등록 순서</h3>
-            <div class="prompt-box">
-              <button class="copy-button" type="button" data-copy-target="intermediate-project-setup">복사</button>
-              <pre id="intermediate-project-setup"><code>Claude Project 또는 대화 세팅 순서를 정리해줘.
-
-보유 자료:
-- skill-designer.md 통합본
-- design.md
-- tokens.css
-- 레퍼런스 분석서
-
-정리할 내용:
-1. 프로젝트 이름 추천
-2. Project Instructions에 넣을 내용
-3. Knowledge 또는 참고 자료로 둘 파일 목록
-4. 무료 플랜에서 대체하는 방법
-5. 새 대화를 시작할 때 붙여넣을 첫 프롬프트
-
-초보자도 그대로 따라할 수 있게 단계별로 써줘.</code></pre>
-            </div>
-          </section>
-
-          <section id="apply">
-            <h2>08. 화면 구현 & QA 검수</h2>
-            <p>
-              구현은 PRD 기능 명세, tokens.css, Design.md를 함께 넣고 요청해야 합니다.
-              화면 하나마다 Happy Path, Empty State, Loading, Error를 함께 만들어야
-              서비스형 포트폴리오처럼 보입니다.
-            </p>
-
-            <h3>화면 구현 마스터 프롬프트</h3>
-            <div class="prompt-box">
-              <button class="copy-button" type="button" data-copy-target="intermediate-build-master">복사</button>
-              <pre id="intermediate-build-master"><code>화면 구현 요청: [화면명]
-
-인풋 자료:
-[1] PRD 기능 명세:
-[해당 화면의 PRD 내용 붙여넣기]
-
-[2] 디자인 토큰:
-[tokens.css 붙여넣기]
-
-[3] 사용할 컴포넌트:
-[이 화면에 필요한 컴포넌트 목록]
-
-구현 요청:
-- Happy Path 화면: 데이터가 있는 정상 상태
-- Empty State 화면: 처음 진입했을 때
-- Loading State 화면
-- Error State 화면
-- 모바일 375px 기준, 반응형
-
-더미 데이터는 한국어로, 실제처럼 채워줘.
-사람 이름, 날짜, 금액, 상태값 모두 구체적으로 작성해줘.</code></pre>
-            </div>
-
-            <h3>Design.md 기준 QA 검수</h3>
-            <div class="prompt-box">
-              <button class="copy-button" type="button" data-copy-target="intermediate-qa">복사</button>
-              <pre id="intermediate-qa"><code>다음 화면 코드를 Design.md 기준으로 QA 검수해줘.
+              <button class="copy-button" type="button" data-copy-target="intermediate-screen-spec">복사</button>
+              <pre id="intermediate-screen-spec"><code>아래 화면을 개발과 디자인이 가능한 수준으로 상세 명세해줘.
 
 화면명: [화면명]
-코드: [HTML + CSS 전체 붙여넣기]
-Design.md 핵심 규칙: [붙여넣기]
+이 화면의 목적: [목적]
+관련 PRD 기능: [기능명]
 
-추가 체크:
-- 디자인 토큰 변수 사용 비율. 임의 HEX가 있으면 위치 표시
-- 절대 금지 목록 10가지 위반 여부
-- Empty State / Loading State / Error 피드백 존재 여부
-- 모바일 375px 대응 여부
-- 접근성 대비와 포커스 상태
+작성 항목:
+1. 화면의 핵심 메시지
+2. 정보 구조
+3. 주요 컴포넌트
+4. 사용자 액션
+5. 데이터 상태
+   - 기본 상태
+   - 빈 상태
+   - 로딩 상태
+   - 에러 상태
+6. 반응형 고려사항
+7. 접근성 고려사항
+8. 디자이너가 특히 보여줘야 할 포트폴리오 포인트
 
-결과는 ✅ 통과 / ⚠️ 개선 / ❌ 필수 수정 3단계로 분류해줘.
-❌ 항목은 수정 코드까지 함께 제공해줘.</code></pre>
+와이어프레임을 텍스트 구조로 표현해줘.</code></pre>
             </div>
           </section>
 
-          <section id="portfolio" class="next-panel">
-            <h2>09. 포트폴리오 완성</h2>
+          <section id="design">
+            <h2>06. 디자인 시스템과 Design.md</h2>
             <p>
-              마지막에는 단순히 화면을 보여주는 것이 아니라, AI 에이전트팀을 어떻게 설계했고
-              PRD, Design.md, QA를 어떻게 연결했는지 케이스 스터디로 설명합니다.
+              디자인은 PRD와 UX 설계를 시각 언어로 바꾸는 단계입니다. 레퍼런스를 분석하고,
+              토큰과 컴포넌트 규칙을 만든 뒤 Design.md에 정리해야 AI가 일관된 화면을 확장할
+              수 있습니다.
+            </p>
+            <ul class="deliverables">
+              <li>레퍼런스 3개 분석과 디자인 방향 결정</li>
+              <li>컬러, 타이포, spacing, radius, shadow 토큰</li>
+              <li>버튼, 카드, 인풋, 내비게이션 컴포넌트 규칙</li>
+              <li>Custom Design.md 확장본</li>
+            </ul>
+
+            <h3>레퍼런스 기반 디자인 방향</h3>
+            <div class="prompt-box">
+              <button class="copy-button" type="button" data-copy-target="intermediate-design-direction">복사</button>
+              <pre id="intermediate-design-direction"><code>너는 시니어 UI 디자이너야.
+아래 PRD와 UX 설계를 바탕으로 서비스 디자인 방향을 정의해줘.
+
+PRD 요약:
+[붙여넣기]
+
+UX 설계 요약:
+[붙여넣기]
+
+참고 레퍼런스:
+- A: [사이트명 / 참고할 점]
+- B: [사이트명 / 참고할 점]
+- C: [사이트명 / 참고할 점]
+
+출력:
+1. 디자인 컨셉 한 문장
+2. 감정 키워드 5개
+3. 컬러 방향
+4. 타이포그래피 방향
+5. 레이아웃 밀도
+6. 컴포넌트 스타일
+7. 피해야 할 스타일
+8. 포트폴리오에서 강조할 디자인 의사결정 3개</code></pre>
+            </div>
+
+            <h3>tokens.css 생성</h3>
+            <div class="prompt-box">
+              <button class="copy-button" type="button" data-copy-target="intermediate-tokens">복사</button>
+              <pre id="intermediate-tokens"><code>아래 디자인 방향을 기반으로 tokens.css를 작성해줘.
+
+디자인 방향:
+[붙여넣기]
+
+포함할 토큰:
+- color: primary, secondary, accent, background, surface, text, border, status
+- typography: font family, xs~display size, weight, line-height
+- spacing: 4px 기반 1~12 단계
+- radius: sm, md, lg, xl, full
+- shadow: sm, md, lg
+- layout: content width, mobile padding, desktop padding
+
+조건:
+- :root CSS 변수로 작성
+- 각 토큰 옆에 용도 주석 작성
+- 임의 색상 사용을 줄일 수 있게 충분히 구체적으로 작성
+- 마지막에 사용 예시 컴포넌트 CSS 2개를 추가</code></pre>
+            </div>
+
+            <h3>Custom Design.md 확장</h3>
+            <div class="prompt-box">
+              <button class="copy-button" type="button" data-copy-target="intermediate-designmd">복사</button>
+              <pre id="intermediate-designmd"><code>아래 자료를 바탕으로 Custom Design.md를 Intermediate 프로젝트용으로 확장해줘.
+
+기본 custom.md:
+[왼쪽 Custom Design.md 생성하기에서 만든 문서 붙여넣기]
+
+PRD:
+[붙여넣기]
+
+UX 설계:
+[붙여넣기]
+
+tokens.css:
+[붙여넣기]
+
+추가할 섹션:
+1. 서비스 정체성
+2. 디자인 원칙 3가지
+3. 레퍼런스 적용 기준
+4. 컬러 사용 규칙
+5. 타이포그래피 위계
+6. 컴포넌트 규칙
+7. 상태 화면 규칙
+8. 반응형 규칙
+9. 절대 금지 목록
+10. Claude/Codex에 붙여넣을 12줄 요약
+
+문장은 "한다 / 하지 않는다" 형태의 규칙으로 작성해줘.</code></pre>
+            </div>
+          </section>
+
+          <section id="visual">
+            <h2>07. 시안 시각화와 화면 검증</h2>
+            <p>
+              디자인 시스템이 완성되면 바로 개발하지 않고, 먼저 핵심 화면을 시안으로
+              시각화합니다. 이 단계에서는 PRD와 UX 설계가 실제 화면에서 설득력 있게 보이는지,
+              디자인 토큰과 컴포넌트가 여러 화면에 일관되게 적용되는지 확인합니다.
+            </p>
+            <ul class="deliverables">
+              <li>핵심 플로우 기준 주요 화면 시안 4~6개</li>
+              <li>상태 화면 샘플: 빈 상태, 로딩, 에러, 성공/완료</li>
+              <li>모바일 390px 프레임과 데스크톱 1920px 프레임 대표 시안</li>
+              <li>데스크톱 콘텐츠 컨테이너 최대폭 1440px 기준</li>
+              <li>개발 핸드오프용 화면별 컴포넌트/상태 메모</li>
+            </ul>
+
+            <h3>핵심 화면 시안 구성</h3>
+            <div class="prompt-box">
+              <button class="copy-button" type="button" data-copy-target="intermediate-visual-plan">복사</button>
+              <pre id="intermediate-visual-plan"><code>너는 시니어 프로덕트 디자이너야.
+아래 자료를 바탕으로 개발 전에 시각화해야 할 핵심 화면 시안 구성을 정리해줘.
+
+PRD:
+[붙여넣기]
+
+IA와 핵심 플로우:
+[붙여넣기]
+
+Design.md와 tokens.css:
+[붙여넣기]
+
+출력:
+1. 반드시 시안으로 만들어야 할 핵심 화면 4~6개
+2. 각 화면의 목적과 대표 사용자 상황
+3. 각 화면에 포함할 주요 컴포넌트
+4. 상태 화면 샘플로 만들 화면 4종: 빈 상태, 로딩, 에러, 성공/완료
+5. 모바일 390px 프레임과 데스크톱 1920px 프레임 중 어떤 뷰포트로 먼저 만들지와 이유
+6. 데스크톱 콘텐츠 컨테이너를 최대 1440px 안에서 어떻게 정렬할지
+7. 개발 전에 시안에서 검증해야 할 UX 리스크
+
+주의:
+전체 8~12개 화면을 모두 고해상도 시안으로 만들 필요는 없어.
+핵심 플로우와 상태를 대표하는 화면을 먼저 시각화하고, 나머지는 화면 명세와 디자인 시스템으로 확장해.</code></pre>
+            </div>
+
+            <h3>Figma 시안 제작 프롬프트</h3>
+            <div class="prompt-box">
+              <button class="copy-button" type="button" data-copy-target="intermediate-figma-brief">복사</button>
+              <pre id="intermediate-figma-brief"><code>아래 기준으로 [화면명]의 Figma 시안 제작 브리프를 작성해줘.
+
+화면 명세:
+[붙여넣기]
+
+Design.md 핵심 규칙:
+[붙여넣기]
+
+tokens.css:
+[붙여넣기]
+
+작성 항목:
+1. 프레임 크기: 모바일 390px / 데스크톱 1920px 중 선택
+2. 화면 목표
+3. 상단부터 하단까지 섹션 구조
+4. 사용할 컴포넌트
+5. 텍스트 카피 초안
+6. 상태별 차이: 기본 / 빈 상태 / 로딩 / 에러
+7. 오토레이아웃과 spacing 기준
+8. 데스크톱 콘텐츠 최대폭 1440px 기준 정렬 방식
+9. 개발자에게 넘길 주석
+
+Figma에서 바로 만들 수 있게 구체적인 레이아웃 지시문으로 작성해줘.</code></pre>
+            </div>
+
+            <h3>시안 리뷰와 개발 핸드오프</h3>
+            <div class="prompt-box">
+              <button class="copy-button" type="button" data-copy-target="intermediate-visual-review">복사</button>
+              <pre id="intermediate-visual-review"><code>완성된 시안을 개발 전 기준으로 리뷰해줘.
+
+시안 설명 또는 캡처:
+[붙여넣기]
+
+PRD / UX 설계 / Design.md:
+[붙여넣기]
+
+검토 항목:
+- PRD의 핵심 가치가 첫 화면에서 드러나는가?
+- 사용자가 다음 행동을 바로 이해할 수 있는가?
+- 디자인 시스템이 화면마다 일관되게 적용되었는가?
+- 상태 화면이 실제 서비스처럼 설계되었는가?
+- 개발 시 모호한 컴포넌트나 인터랙션이 남아 있는가?
+- 포트폴리오에서 의사결정으로 설명할 만한 부분이 있는가?
+
+출력:
+1. 시안 통과 여부
+2. 개발 전 필수 수정
+3. 개발자에게 넘길 화면별 핸드오프 메모
+4. 케이스 스터디에 기록할 디자인 의사결정</code></pre>
+            </div>
+          </section>
+
+          <section id="build">
+            <h2>08. 개발 구현</h2>
+            <p>
+              구현 단계에서는 PRD, 화면 명세, 시안, tokens.css, Design.md를 함께 넣고
+              작업합니다. Codex는 실제 파일 수정과 브라우저 검증에 사용하고, Claude나
+              ChatGPT는 화면별 코드 초안과 상태 설계를 보조하도록 나눕니다.
+            </p>
+            <ul class="deliverables">
+              <li>HTML/CSS/JS 파일 구조</li>
+              <li>핵심 화면 8~12개</li>
+              <li>빈 상태, 로딩, 에러, 성공 피드백</li>
+              <li>모바일/데스크톱 반응형</li>
+            </ul>
+
+            <h3>구현 마스터 프롬프트</h3>
+            <div class="prompt-box">
+              <button class="copy-button" type="button" data-copy-target="intermediate-build">복사</button>
+              <pre id="intermediate-build"><code>다음 자료를 기준으로 [화면명]을 구현해줘.
+
+PRD 기능 명세:
+[붙여넣기]
+
+화면 상세 명세:
+[붙여넣기]
+
+시안 또는 핸드오프 메모:
+[붙여넣기]
+
+tokens.css:
+[붙여넣기]
+
+Design.md 핵심 규칙:
+[붙여넣기]
+
+구현 조건:
+- HTML / CSS / Vanilla JS
+- 모바일 390px 기준으로 먼저 설계
+- desktop 1920px 프레임에서 자연스럽게 확장
+- 데스크톱 본문 콘텐츠는 최대 1440px 컨테이너 안에 정렬
+- 기본 상태, 빈 상태, 로딩 상태, 에러 상태 포함
+- 버튼 hover, focus-visible, disabled 상태 포함
+- 더미 데이터는 실제 서비스처럼 구체적으로 작성
+
+출력:
+1. 필요한 파일 목록
+2. HTML 코드
+3. CSS 코드
+4. JS 코드
+5. 브라우저에서 확인할 QA 체크리스트</code></pre>
+            </div>
+
+            <h3>Codex 수정 요청 프롬프트</h3>
+            <div class="prompt-box">
+              <button class="copy-button" type="button" data-copy-target="intermediate-codex">복사</button>
+              <pre id="intermediate-codex"><code>현재 프로젝트 파일을 보고 [화면명]을 Intermediate PRD 기준으로 구현해줘.
+
+기준 문서:
+- PRD: [요약 붙여넣기]
+- 화면 명세: [붙여넣기]
+- Design.md 핵심 규칙: [붙여넣기]
+
+수정 요청:
+1. 기존 디자인 시스템과 충돌하지 않게 구현
+2. 상태 화면 4종 포함: 기본 / 빈 상태 / 로딩 / 에러
+3. 모바일 390px, 데스크톱 1920px 프레임에서 깨짐 없이 확인
+4. 데스크톱 본문 콘텐츠는 최대 1440px 컨테이너 안에 정렬
+5. 구현 후 브라우저에서 직접 확인하고 문제를 수정
+
+완료 후 변경 파일과 검증 결과를 짧게 보고해줘.</code></pre>
+            </div>
+          </section>
+
+          <section id="react">
+            <h2>09. React 리팩토링</h2>
+            <p>
+              정적 HTML/CSS/JS 구현이 완료되면 React 구조로 리팩토링합니다. 이 단계의 목적은
+              화면을 컴포넌트 단위로 분리하고, 반복 UI를 재사용 가능하게 만들며, 상태와 데이터
+              흐름을 포트폴리오에서 설명 가능한 구조로 정리하는 것입니다.
+            </p>
+            <ul class="deliverables">
+              <li>컴포넌트 구조도와 폴더 구조</li>
+              <li>공통 UI 컴포넌트: Button, Card, Input, Modal, EmptyState</li>
+              <li>props와 state 기준 문서</li>
+              <li>화면별 route와 데이터 mock 구조</li>
+            </ul>
+
+            <h3>React 전환 설계</h3>
+            <div class="prompt-box">
+              <button class="copy-button" type="button" data-copy-target="intermediate-react-plan">복사</button>
+              <pre id="intermediate-react-plan"><code>너는 시니어 프론트엔드 개발자이자 UI 시스템 설계자야.
+현재 HTML/CSS/Vanilla JS로 구현한 Intermediate 포트폴리오를 React 앱으로 리팩토링하려고 해.
+
+기존 구현 요약:
+[화면 목록, 주요 기능, 파일 구조 붙여넣기]
+
+Design.md / tokens.css:
+[붙여넣기]
+
+요청:
+1. React 컴포넌트 구조를 설계해줘.
+2. 공통 컴포넌트와 화면 전용 컴포넌트를 분리해줘.
+3. props로 받을 값과 state로 관리할 값을 구분해줘.
+4. route 구조를 제안해줘.
+5. mock data 파일 구조를 제안해줘.
+6. 리팩토링 순서를 단계별로 정리해줘.
+
+출력 형식:
+- 폴더 구조
+- 컴포넌트 목록 표
+- 상태 관리 기준
+- 리팩토링 순서
+- 리팩토링 중 깨지기 쉬운 위험 요소</code></pre>
+            </div>
+
+            <h3>Codex React 리팩토링 요청</h3>
+            <div class="prompt-box">
+              <button class="copy-button" type="button" data-copy-target="intermediate-react-codex">복사</button>
+              <pre id="intermediate-react-codex"><code>현재 정적 HTML/CSS/JS 구현을 React 구조로 리팩토링해줘.
+
+기준:
+- 기존 UI와 시각적 결과는 유지
+- Design.md와 tokens.css 기준 유지
+- 반복 UI는 컴포넌트로 분리
+- 화면별 데이터는 mock data로 분리
+- 상태가 필요한 인터랙션은 useState 기준으로 구현
+- 라우팅이 필요하면 React Router 또는 Next.js App Router 중 현재 프로젝트 구조에 맞는 방식을 제안
+
+완료 기준:
+1. 기존 화면이 React 컴포넌트로 분리되어 있다.
+2. props/state 역할이 명확하다.
+3. 모바일 390px, 데스크톱 1920px 프레임에서 레이아웃이 유지된다.
+4. 콘솔 에러가 없다.
+5. 변경 파일과 실행 방법을 보고한다.</code></pre>
+            </div>
+          </section>
+
+          <section id="interactive">
+            <h2>10. 인터랙티브 웹 구현</h2>
+            <p>
+              React 리팩토링 후에는 사용자가 실제로 조작할 수 있는 경험을 붙입니다. 단순
+              애니메이션보다 서비스 목적에 맞는 상호작용이 중요합니다. 필터, 검색, 폼 입력,
+              저장, 단계 전환, 토스트, 모달, 상태 피드백처럼 사용자의 행동에 반응하는 흐름을
+              구현합니다.
+            </p>
+            <ul class="deliverables">
+              <li>핵심 인터랙션 3~5개</li>
+              <li>검색, 필터, 정렬, 탭, 모달, 폼 중 서비스에 맞는 기능</li>
+              <li>로딩, 에러, 성공 토스트와 입력 검증</li>
+              <li>마이크로인터랙션과 접근성 포커스 상태</li>
+            </ul>
+
+            <h3>인터랙션 우선순위 정의</h3>
+            <div class="prompt-box">
+              <button class="copy-button" type="button" data-copy-target="intermediate-interaction-plan">복사</button>
+              <pre id="intermediate-interaction-plan"><code>아래 서비스에 필요한 인터랙션을 Intermediate 포트폴리오 기준으로 정의해줘.
+
+서비스 설명:
+[붙여넣기]
+
+PRD의 P0/P1 기능:
+[붙여넣기]
+
+현재 구현된 화면:
+[화면 목록 붙여넣기]
+
+요청:
+1. 반드시 구현해야 할 핵심 인터랙션 3~5개
+2. 각 인터랙션의 사용자 목적
+3. 필요한 state
+4. 빈 상태 / 로딩 / 에러 / 성공 피드백
+5. 접근성 고려사항
+6. 포트폴리오에서 설명할 수 있는 UX 의사결정
+
+출력은 우선순위 P0/P1/P2 표로 정리해줘.</code></pre>
+            </div>
+
+            <h3>인터랙티브 구현 요청</h3>
+            <div class="prompt-box">
+              <button class="copy-button" type="button" data-copy-target="intermediate-interactive-build">복사</button>
+              <pre id="intermediate-interactive-build"><code>React 앱에 다음 인터랙션을 구현해줘.
+
+구현할 인터랙션:
+[예: 검색 + 필터 + 상세 모달 + 저장 토스트]
+
+현재 컴포넌트 구조:
+[붙여넣기]
+
+요구사항:
+- 사용자의 행동에 따라 화면 상태가 즉시 바뀌어야 함
+- 빈 결과, 로딩, 에러, 성공 피드백 포함
+- 키보드 접근성과 focus-visible 상태 포함
+- 모바일 390px, 데스크톱 1920px 프레임에서 모두 자연스럽게 작동
+- 애니메이션은 서비스 이해를 돕는 수준으로만 사용
+
+완료 후:
+1. 변경 파일
+2. 구현한 state 목록
+3. 테스트한 사용자 흐름
+4. 남은 리스크
+를 보고해줘.</code></pre>
+            </div>
+          </section>
+
+          <section id="qa">
+            <h2>11. QA, 배포, 릴리즈 정리</h2>
+            <p>
+              중급 결과물은 "만들었다"보다 "검수하고 배포했다"가 중요합니다. 디자인 QA,
+              기능 QA, 반응형 QA, 접근성 체크를 통과한 뒤 배포 URL과 릴리즈 노트를 정리합니다.
+            </p>
+            <ul class="deliverables">
+              <li>디자인 QA 리포트</li>
+              <li>기능 QA 체크리스트</li>
+              <li>모바일/데스크톱 스크린샷</li>
+              <li>배포 URL과 릴리즈 노트</li>
+            </ul>
+
+            <h3>디자인/기능 QA 요청</h3>
+            <div class="prompt-box">
+              <button class="copy-button" type="button" data-copy-target="intermediate-qa">복사</button>
+              <pre id="intermediate-qa"><code>완성된 화면을 Intermediate 포트폴리오 기준으로 QA 검수해줘.
+
+검수 대상:
+[화면 캡처 또는 코드 붙여넣기]
+
+기준 문서:
+- PRD: [붙여넣기]
+- Design.md: [붙여넣기]
+
+검수 항목:
+1. PRD 기능 요구사항 충족 여부
+2. 사용자 플로우가 끊기는 지점
+3. 디자인 토큰 준수 여부
+4. 컴포넌트 일관성
+5. 모바일 390px / 데스크톱 1920px 프레임 반응형
+6. 데스크톱 본문 콘텐츠 최대 1440px 컨테이너 정렬
+7. 접근성: 대비, 포커스, 키보드 탐색
+8. 상태 화면: 빈 상태, 로딩, 에러, 성공 피드백
+9. 포트폴리오에서 설명하기 약한 부분
+
+결과는 ❌ 필수 수정 / ⚠️ 개선 권장 / ✅ 통과로 분류하고, 필수 수정은 수정 방법까지 써줘.</code></pre>
+            </div>
+
+            <h3>배포 전 체크</h3>
+            <div class="prompt-box">
+              <button class="copy-button" type="button" data-copy-target="intermediate-release">복사</button>
+              <pre id="intermediate-release"><code>내 Intermediate 서비스형 포트폴리오를 배포하기 전 체크리스트를 만들어줘.
+
+프로젝트 구성:
+[파일 구조 또는 화면 목록 붙여넣기]
+
+배포 방식:
+[GitHub Pages / Vercel / Netlify 등]
+
+체크리스트는 다음 기준으로 작성해줘:
+- 파일 구조
+- 링크와 내비게이션
+- 모바일 반응형
+- 이미지와 폰트 로딩
+- 접근성
+- 성능
+- 브라우저 콘솔 에러
+- README 또는 케이스 스터디 연결
+- 배포 URL 확인
+
+각 항목마다 확인 방법과 통과 기준을 함께 작성해줘.</code></pre>
+            </div>
+          </section>
+
+          <section id="case" class="next-panel">
+            <h2>12. 케이스 스터디 완성</h2>
+            <p>
+              마지막 산출물은 화면 모음이 아니라 의사결정의 기록입니다. 기획부터 배포까지
+              어떤 기준으로 결정했고, AI를 어떤 역할로 나눠 활용했으며, 결과가 어떤 사용자
+              가치로 이어졌는지 설명해야 합니다.
             </p>
 
-            <h3>실무형 케이스 스터디 작성</h3>
+            <h3>케이스 스터디 작성</h3>
             <div class="prompt-box">
-              <button class="copy-button" type="button" data-copy-target="intermediate-case-study">복사</button>
-              <pre id="intermediate-case-study"><code>너는 포트폴리오 케이스 스터디 작성 전문가야.
+              <button class="copy-button" type="button" data-copy-target="intermediate-case">복사</button>
+              <pre id="intermediate-case"><code>너는 UX 포트폴리오 케이스 스터디 에디터야.
+아래 자료를 바탕으로 Intermediate 수준의 케이스 스터디를 작성해줘.
 
-제공 자료:
-- PRD 문서: [붙여넣기]
+자료:
+- 서비스 기획서: [붙여넣기]
+- 리서치 요약: [붙여넣기]
+- 문제 정의서: [붙여넣기]
+- PRD: [붙여넣기]
+- UX 설계서: [붙여넣기]
 - Design.md: [붙여넣기]
+- 시안과 핸드오프 메모: [붙여넣기]
+- React 리팩토링 구조: [붙여넣기]
+- 인터랙션 구현 요약: [붙여넣기]
 - QA 리포트: [붙여넣기]
-- 배포 URL: [URL]
-- 작업 기간: [예: 3주]
-- 사용 AI 도구: Claude 에이전트팀, Codex, Figma 등
+- 배포 URL: [붙여넣기]
 
-케이스 스터디 구성:
-1. Headline: 이 프로젝트 핵심을 말하는 한 문장
-2. Problem: 리서치 기반 문제
-3. My Role & Process: PRD → Design System → 구현 → QA → 배포 + 에이전트팀 활용 방식
-4. Key Decisions: 핵심 의사결정 3가지. 왜 다른 방법을 선택하지 않았는지
-5. Result: 완성 화면과 배포 URL
-6. Reflection: 배운 점과 다음 버전 개선 방향
+구성:
+1. Project Summary
+2. Problem
+3. Research Insight
+4. Product Strategy
+5. UX Flow & IA
+6. Design System
+7. Visual Design & Prototype
+8. Static Implementation
+9. React Refactoring
+10. Interactive Web Experience
+11. QA & Deployment
+12. Result
+13. AI Workflow: 어떤 AI를 어떤 역할로 썼는지
+14. Reflection & Next Step
 
-심사자가 "이 사람은 AI를 진짜 업무 파트너로 쓸 줄 안다"고 느끼도록 써줘.
-AI 활용을 도구 사용이 아니라 워크플로우 설계 관점으로 설명해줘.</code></pre>
+조건:
+- "AI로 만들었다"가 아니라 "AI를 업무 시스템으로 설계했다"는 관점으로 작성
+- 의사결정 이유를 강조
+- 포트폴리오 면접에서 말할 수 있는 문장으로 작성</code></pre>
             </div>
 
             <h3>Intermediate 완주 체크리스트</h3>
             <div class="checklist">
-              <label><input type="checkbox" /> SKILL 파일 4종이 완성되어 있다.</label>
-              <label><input type="checkbox" /> 에이전트팀 역할별로 대화를 분리해서 작업했다.</label>
-              <label><input type="checkbox" /> PRD v1.0 문서가 7개 섹션으로 완성되어 있다.</label>
-              <label><input type="checkbox" /> 레퍼런스 사이트 3개를 분석하고 비교표를 완성했다.</label>
-              <label><input type="checkbox" /> tokens.css 파일이 완성되어 있다.</label>
-              <label><input type="checkbox" /> Design.md에 절대 금지 목록과 레퍼런스 3개가 명시되어 있다.</label>
-              <label><input type="checkbox" /> skill-designer.md에 Design.md 핵심 규칙이 통합되어 있다.</label>
-              <label><input type="checkbox" /> QA 검수에서 필수 수정 항목이 해결됐다.</label>
-              <label><input type="checkbox" /> 케이스 스터디에 에이전트팀 활용 방식이 설명되어 있다.</label>
-              <label><input type="checkbox" /> Vercel 배포 URL이 작동한다.</label>
+              <label><input type="checkbox" /> 서비스 포지셔닝과 핵심 가치 제안이 정리되어 있다.</label>
+              <label><input type="checkbox" /> 경쟁 서비스 분석과 사용자 인사이트가 있다.</label>
+              <label><input type="checkbox" /> HMW 문제 정의와 솔루션 컨셉이 명확하다.</label>
+              <label><input type="checkbox" /> PRD v1.0에 P0/P1/P2 기능 우선순위가 있다.</label>
+              <label><input type="checkbox" /> IA, 핵심 플로우, 화면 상세 명세가 완성되어 있다.</label>
+              <label><input type="checkbox" /> tokens.css와 Custom Design.md가 프로젝트 기준으로 작성되어 있다.</label>
+              <label><input type="checkbox" /> 핵심 플로우 시안과 상태 화면 샘플을 시각화했다.</label>
+              <label><input type="checkbox" /> 핵심 화면 8~12개와 상태 화면이 구현되어 있다.</label>
+              <label><input type="checkbox" /> 정적 구현을 React 컴포넌트 구조로 리팩토링했다.</label>
+              <label><input type="checkbox" /> 핵심 인터랙션 3~5개가 실제로 작동한다.</label>
+              <label><input type="checkbox" /> 모바일과 데스크톱에서 QA를 완료했다.</label>
+              <label><input type="checkbox" /> 배포 URL이 정상 작동한다.</label>
+              <label><input type="checkbox" /> 케이스 스터디에 기획, 설계, 시안, React 리팩토링, 인터랙션, 배포 과정이 순서대로 설명되어 있다.</label>
             </div>
-            <a class="button primary ink-button" href="build.html">다음: 구현 단계 실습 보기</a>
+            <a class="button primary ink-button" href="advanced.html">다음: Advanced 자동화 워크플로우 보기</a>
           </section>
         </article>
       </section>
     </main>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=detail-anchor-20260527-no-progress-flow"></script>
   </body>
 </html>

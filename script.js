@@ -441,6 +441,34 @@ document.querySelectorAll(".detail-toc").forEach((toc) => {
   if (!items.length) return;
 
   let ticking = false;
+  let scrollingToHash = false;
+
+  const getScrollOffset = () => {
+    const header = document.querySelector(".site-header");
+    const headerBottom = header ? header.getBoundingClientRect().bottom : 0;
+    return Math.ceil(Math.max(headerBottom + 18, window.innerWidth <= 760 ? 88 : 92));
+  };
+
+  const scrollToSection = (section, behavior = "smooth") => {
+    const top = section.getBoundingClientRect().top + window.scrollY - getScrollOffset();
+    scrollingToHash = true;
+    window.scrollTo({ top, behavior });
+    window.setTimeout(() => {
+      scrollingToHash = false;
+      requestUpdate();
+    }, behavior === "smooth" ? 500 : 80);
+  };
+
+  const scrollToCurrentHash = (behavior = "auto") => {
+    const id = decodeURIComponent(window.location.hash.slice(1));
+    if (!id) return;
+
+    const item = items.find(({ section }) => section.id === id);
+    if (!item) return;
+
+    setActiveLink(item.link);
+    scrollToSection(item.section, behavior);
+  };
 
   const setActiveLink = (activeLink) => {
     items.forEach(({ link }) => {
@@ -455,7 +483,7 @@ document.querySelectorAll(".detail-toc").forEach((toc) => {
   };
 
   const updateActiveLink = () => {
-    const offset = Math.min(180, window.innerHeight * 0.32);
+    const offset = getScrollOffset() + 24;
     let current = items[0];
 
     items.forEach((item) => {
@@ -475,13 +503,33 @@ document.querySelectorAll(".detail-toc").forEach((toc) => {
   };
 
   links.forEach((link) => {
-    link.addEventListener("click", () => setActiveLink(link));
+    link.addEventListener("click", (event) => {
+      const id = decodeURIComponent(link.getAttribute("href").slice(1));
+      const item = items.find(({ section }) => section.id === id);
+      if (!item) return;
+
+      event.preventDefault();
+      setActiveLink(link);
+      history.pushState(null, "", `#${id}`);
+      scrollToSection(item.section);
+    });
   });
 
   updateActiveLink();
   window.addEventListener("scroll", requestUpdate, { passive: true });
   window.addEventListener("resize", requestUpdate);
-  window.addEventListener("hashchange", requestUpdate);
+  window.addEventListener("hashchange", () => {
+    if (scrollingToHash) return;
+    scrollToCurrentHash();
+  });
+  window.addEventListener("load", () => {
+    scrollToCurrentHash();
+    window.setTimeout(scrollToCurrentHash, 250);
+    window.setTimeout(scrollToCurrentHash, 900);
+    window.setTimeout(scrollToCurrentHash, 1600);
+    window.setTimeout(scrollToCurrentHash, 2600);
+  });
+  window.setTimeout(scrollToCurrentHash, 0);
 });
 
 let serviceScrollResizeObserver;
@@ -921,6 +969,58 @@ ${values.extraRules || "Minimal, Clean, Professional, Spacious, Modern, Editoria
   });
 });
 
+const escapePromptHtml = (value) =>
+  value
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;");
+
+const highlightPromptLine = (line) => {
+  const escapedLine = escapePromptHtml(line);
+  const trimmed = line.trim();
+
+  if (!trimmed) return "";
+  if (/^---$/.test(trimmed)) {
+    return `<span class="prompt-token-delimiter">${escapedLine}</span>`;
+  }
+  if (/^#{1,3}\s/.test(trimmed)) {
+    return `<span class="prompt-token-heading">${escapedLine}</span>`;
+  }
+  if (/^#/.test(trimmed)) {
+    return `<span class="prompt-token-comment">${escapedLine}</span>`;
+  }
+
+  let highlighted = escapedLine.replace(
+    /(\[[^\]]+\])/g,
+    '<span class="prompt-token-placeholder">$1</span>',
+  );
+
+  highlighted = highlighted.replace(
+    /^(\s*)(\d+\.)/,
+    '$1<span class="prompt-token-number">$2</span>',
+  );
+  highlighted = highlighted.replace(
+    /^(\s*)([-–])/,
+    '$1<span class="prompt-token-bullet">$2</span>',
+  );
+  highlighted = highlighted.replace(
+    /^(\s*)([A-Za-z_][\w-]*)(:)/,
+    '$1<span class="prompt-token-key">$2$3</span>',
+  );
+  highlighted = highlighted.replace(
+    /^(\s*)((?:node|npm|claude|cd|mkdir|code|\/agents|\/help|\/clear|\/quit)\b[^\n]*)/,
+    '$1<span class="prompt-token-command">$2</span>',
+  );
+
+  return highlighted;
+};
+
+document.querySelectorAll(".prompt-box code").forEach((code) => {
+  if (code.dataset.promptHighlighted === "true") return;
+  code.innerHTML = code.textContent.split("\n").map(highlightPromptLine).join("\n");
+  code.dataset.promptHighlighted = "true";
+});
+
 document.querySelectorAll(".copy-button").forEach((button) => {
   button.addEventListener("click", async () => {
     const targetId = button.getAttribute("data-copy-target");
@@ -995,7 +1095,9 @@ if (diagnosisTool) {
 
 const lessonHero = document.querySelector(".lesson-hero");
 
-if (lessonHero && !diagnosisTool) {
+const currentLessonFile = window.location.pathname.split("/").pop() || "index.html";
+
+if (lessonHero && !diagnosisTool && currentLessonFile !== "intermediate.html") {
   const courseSteps = [
     { file: "first-product.html", label: "기획", progress: 15 },
     { file: "structure.html", label: "설계", progress: 30 },
@@ -1005,10 +1107,9 @@ if (lessonHero && !diagnosisTool) {
     { file: "launch.html", label: "배포", progress: 94 },
     { file: "automation.html", label: "자동화", progress: 100 },
   ];
-  const currentFile = window.location.pathname.split("/").pop() || "index.html";
   const currentStepIndex = Math.max(
     0,
-    courseSteps.findIndex((step) => step.file === currentFile),
+    courseSteps.findIndex((step) => step.file === currentLessonFile),
   );
   const currentStep = courseSteps[currentStepIndex] || courseSteps[0];
   const progressPanel = document.createElement("section");
