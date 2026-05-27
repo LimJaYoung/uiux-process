@@ -23,6 +23,7 @@
   --radius-card: 16px;
   --radius-button: 12px;
   --site-width: 1740px;
+  --hero-width: 1344px;
   --site-gutter: 40px;
   --section-gap: clamp(84px, 9.8vw, 140px);
 }
@@ -205,9 +206,16 @@ main > section:first-child {
   margin-top: 52px;
 }
 
+main > section.hero {
+  width: min(calc(100% - var(--site-gutter)), var(--hero-width));
+  margin-right: auto;
+  margin-left: auto;
+}
+
 .hero {
   display: grid;
   grid-template-columns: minmax(0, 0.86fr) minmax(520px, 1.14fr);
+  justify-content: center;
   justify-items: stretch;
   gap: clamp(42px, 6vw, 92px);
   align-items: center;
@@ -6646,6 +6654,13 @@ h2,
   }
 }
 
+@media (min-width: 981px) and (max-width: 1180px) {
+  .hero {
+    grid-template-columns: minmax(0, 0.92fr) minmax(440px, 1.08fr);
+    gap: clamp(32px, 4.8vw, 54px);
+  }
+}
+
 @media (min-width: 760px) and (max-width: 980px) {
   .menu-toggle {
     display: block;
@@ -7450,6 +7465,12 @@ h2,
     margin-bottom: 64px;
   }
 
+  main > section.hero {
+    width: min(calc(100% - 24px), 560px);
+    margin-right: auto;
+    margin-left: auto;
+  }
+
   .container-1344 {
     width: min(calc(100% - var(--site-gutter)), 1344px);
   }
@@ -7468,6 +7489,8 @@ h2,
   .hero-copy {
     min-width: 0;
     max-width: 100%;
+    margin-right: auto;
+    margin-left: auto;
   }
 
   .hero h1,
@@ -7570,7 +7593,7 @@ h2,
   }
 
   .hero-actions {
-    padding-right: 8px;
+    padding-right: 0;
   }
 
   .button,
