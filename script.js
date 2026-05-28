@@ -1097,7 +1097,12 @@ const lessonHero = document.querySelector(".lesson-hero");
 
 const currentLessonFile = window.location.pathname.split("/").pop() || "index.html";
 
-if (lessonHero && !diagnosisTool && currentLessonFile !== "intermediate.html") {
+if (
+  lessonHero &&
+  !diagnosisTool &&
+  currentLessonFile !== "intermediate.html" &&
+  currentLessonFile !== "advanced.html"
+) {
   const courseSteps = [
     { file: "first-product.html", label: "기획", progress: 15 },
     { file: "structure.html", label: "설계", progress: 30 },

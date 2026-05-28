@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>휴리스틱 사용성 평가 — JYOUNG UIUX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root {
+  --primary: #111111;
+  --accent: #2563eb;
+  --accent-light: #eff6ff;
+  --accent-mid: #dbeafe;
+  --good: #0a7c42;
+  --good-bg: #edfaf3;
+  --bad: #c0392b;
+  --bad-bg: #fdf0ee;
+  --bg: #ffffff;
+  --bg-soft: #f8f8f8;
+  --bg-mid: #f2f2f2;
+  --border: #111111;
+  --border-light: #e0e0e0;
+  --text: #111111;
+  --text-muted: #555555;
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --font: "NexonLv2Gothic", "Noto Sans KR", -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  background: var(--bg);
+}
+
+/* ── HEADER ── */
+header {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  padding: 0 clamp(20px, 5vw, 48px);
+}
+.header-inner {
+  max-width: 1100px; margin: 0 auto;
+  height: 64px;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+}
+.header-badge {
+  text-decoration: none;
+  font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  background: var(--primary); color: #fff;
+  padding: 5px 12px; border-radius: var(--radius-sm);
+}
+.header-nav { display: flex; gap: 6px; flex-wrap: wrap; }
+.header-nav a {
+  font-size: 12px; font-weight: 600; color: var(--text-muted);
+  text-decoration: none; padding: 5px 10px;
+  border: 1px solid var(--border-light); border-radius: var(--radius-sm);
+  transition: all 0.15s; white-space: nowrap;
+}
+.header-nav a:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
+@media (max-width: 640px) { .header-nav { display: none; } }
+
+/* ── CONTAINER ── */
+.container {
+  max-width: 1000px; width: 90%;
+  margin: 0 auto;
+  padding-inline: clamp(20px, 5vw, 24px);
+}
+
+/* ── HERO ── */
+.hero { padding-block: clamp(72px, 10vw, 120px); border-bottom: 1px solid var(--border); }
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 20px;
+}
+.hero-eyebrow::before { content:''; display:block; width:24px; height:2px; background:var(--accent); }
+.hero-title {
+  font-size: clamp(36px, 6vw, 68px); font-weight: 800;
+  line-height: 1.05; letter-spacing: -0.03em;
+  margin-bottom: 20px; max-width: 720px;
+}
+.hero-title em { font-style: normal; color: var(--accent); }
+.hero-desc {
+  font-size: 16px; color: var(--text-muted);
+  max-width: 580px; line-height: 1.75; margin-bottom: 36px;
+}
+.hero-chips { display: flex; flex-wrap: wrap; gap: 10px; }
+.chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  border: 1px solid var(--border); border-radius: var(--radius-sm);
+  padding: 8px 14px; font-size: 13px; font-weight: 600; min-height: 44px;
+}
+.chip i { color: var(--accent); font-size: 12px; }
+
+/* ── SECTION ── */
+section { padding-block: clamp(64px, 10vw, 104px); border-bottom: 1px solid #e8e8e8; }
+.section-label {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 14px;
+}
+.section-title {
+  font-size: clamp(24px, 3.5vw, 38px); font-weight: 800;
+  line-height: 1.15; letter-spacing: -0.025em;
+  margin-bottom: 14px; max-width: 680px;
+}
+.section-desc {
+  font-size: 16px; color: var(--text-muted);
+  max-width: 640px; line-height: 1.75; margin-bottom: 48px;
+}
+
+/* ── INTRO CARDS ── */
+.intro-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: clamp(12px, 2vw, 20px);
+}
+.intro-card {
+  border: 1px solid var(--border); border-radius: var(--radius-lg);
+  padding: clamp(20px, 2.5vw, 28px);
+  transition: background 0.2s;
+}
+.intro-card:hover { background: var(--bg-soft); }
+.intro-icon {
+  width: 44px; height: 44px; min-width: 44px; min-height: 44px;
+  border: 1px solid var(--border); border-radius: var(--radius-md);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; color: var(--accent); margin-bottom: 16px;
+}
+.intro-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; line-height: 1.35; }
+.intro-card p { font-size: 15px; color: var(--text-muted); line-height: 1.7; }
+
+/* ── TIP BOX ── */
+.tip-box {
+  display: flex; gap: 14px;
+  background: #f7f7f8; border: 1px solid #dddddd;
+  border-radius: var(--radius-lg); padding: 20px 24px; margin-top: 28px;
+}
+.tip-icon { flex-shrink: 0; font-size: 18px; color: #555555; margin-top: 2px; }
+.tip-box h4 { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+.tip-box p { font-size: 15px; color: var(--text-muted); line-height: 1.7; }
+
+/* ── HEURISTIC ACCORDION ── */
+.h-list { display: flex; flex-direction: column; gap: 3px; margin-top: 40px; }
+.h-item {
+  border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden;
+  transition: box-shadow 0.2s;
+}
+.h-item:hover { box-shadow: 4px 4px 0 var(--primary); }
+.h-item.open { box-shadow: 4px 4px 0 var(--accent); border-color: var(--accent); }
+
+.h-header {
+  display: flex; align-items: center; gap: 18px;
+  padding: clamp(16px, 2.5vw, 22px) clamp(20px, 3vw, 28px);
+  cursor: pointer; user-select: none;
+}
+.h-num {
+  flex-shrink: 0;
+  width: 44px; height: 44px; min-width: 44px; min-height: 44px;
+  border-radius: var(--radius-md);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 800;
+  background: var(--primary); color: #fff;
+  transition: background 0.2s;
+}
+.h-item.open .h-num { background: var(--accent); }
+
+.h-header-text { flex: 1; min-width: 0; }
+.h-en {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--text-muted); margin-bottom: 3px;
+}
+.h-header-text h3 {
+  font-size: clamp(15px, 1.8vw, 17px); font-weight: 700;
+  letter-spacing: -0.02em; line-height: 1.3;
+}
+.h-toggle {
+  flex-shrink: 0; width: 32px; height: 32px; min-height: 32px; min-width: 32px;
+  border: 1px solid var(--border-light); border-radius: var(--radius-sm);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; color: var(--text-muted);
+  transition: transform 0.25s, background 0.2s, border-color 0.2s;
+}
+.h-item.open .h-toggle {
+  transform: rotate(180deg);
+  background: var(--accent); color: #fff; border-color: var(--accent);
+}
+
+.h-body {
+  display: none;
+  padding: 0 clamp(20px, 3vw, 28px) clamp(22px, 3vw, 30px);
+  padding-left: calc(clamp(20px, 3vw, 28px) + 44px + 18px);
+}
+.h-item.open .h-body { display: block; }
+
+/* 본문 내용 블록 */
+.h-def {
+  font-size: 16px; color: var(--text);
+  line-height: 1.8; margin-bottom: 20px;
+  padding-bottom: 20px; border-bottom: 1px solid var(--border-light);
+}
+.h-def strong { color: var(--accent); font-weight: 700; }
+
+/* 나쁜예/좋은예 인라인 */
+.h-cases {
+  display: flex; flex-direction: column; gap: 10px;
+  margin-bottom: 20px;
+}
+.h-case {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 15px; line-height: 1.65;
+}
+.case-badge {
+  flex-shrink: 0;
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
+  padding: 3px 9px; border-radius: var(--radius-sm);
+  margin-top: 2px; white-space: nowrap;
+}
+.bad-badge { background: var(--bad-bg); color: var(--bad); border: 1px solid #f5b7b1; }
+.good-badge { background: var(--good-bg); color: var(--good); border: 1px solid #a9dfc4; }
+.h-case p { color: var(--text-muted); }
+
+/* 실무 앱 태그 */
+.app-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 20px; }
+.app-tag {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 13px; font-weight: 600;
+  background: var(--bg-mid); border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm); padding: 5px 12px; min-height: 44px;
+}
+.app-tag i { color: var(--accent); font-size: 11px; }
+
+/* 평가 포인트 */
+.check-pts {
+  background: var(--bg-soft); border: 1px solid var(--border-light);
+  border-radius: var(--radius-md); padding: 18px 20px;
+}
+.check-pts strong {
+  display: block; font-size: 12px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 10px;
+}
+.check-pts ol { padding-left: 18px; display: flex; flex-direction: column; gap: 6px; }
+.check-pts ol li { font-size: 15px; line-height: 1.65; }
+
+/* ── 심각도 ── */
+.sev-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: clamp(10px, 1.5vw, 18px); margin-top: 40px;
+}
+.sev-card {
+  border: 1px solid var(--border); border-radius: var(--radius-lg);
+  padding: 22px; display: flex; flex-direction: column; gap: 10px;
+}
+.sev-badge {
+  display: inline-flex; align-items: center;
+  padding: 5px 11px; border-radius: var(--radius-sm);
+  font-size: 12px; font-weight: 700; width: fit-content;
+}
+.s0-b { background: #f4f4f5; color: #898989; }
+.s1-b { background: #ececee; color: #6b7280; }
+.s2-b { background: #e5e7eb; color: #555555; }
+.s3-b { background: #dddddd; color: #242424; }
+.s4-b { background: var(--primary); color: #fff; }
+.sev-card h3 { font-size: 16px; font-weight: 700; line-height: 1.3; }
+.sev-card p { font-size: 15px; color: var(--text-muted); line-height: 1.65; }
+.sev-action {
+  font-size: 12px; font-weight: 700; padding: 4px 10px;
+  border-radius: var(--radius-sm); width: fit-content;
+}
+.s0-a { background: #f7f7f8; color: #898989; }
+.s1-a { background: #f4f4f5; color: #6b7280; }
+.s2-a { background: #ececee; color: #555555; }
+.s3-a { background: #dddddd; color: #242424; }
+.s4-a { background: var(--primary); color: #fff; }
+
+/* ── 프로세스 ── */
+.proc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: clamp(12px, 2vw, 20px); margin-top: 40px;
+}
+.proc-step {
+  border: 1px solid var(--border); border-radius: var(--radius-lg);
+  padding: clamp(20px, 2.5vw, 26px); position: relative; overflow: hidden;
+}
+.proc-bg-num {
+  position: absolute; right: 14px; top: 10px;
+  font-size: 52px; font-weight: 800; color: #f0f0f0;
+  line-height: 1; letter-spacing: -0.04em;
+  pointer-events: none; user-select: none;
+}
+.proc-num {
+  width: 32px; height: 32px; min-height: 32px; min-width: 32px;
+  border: 1px solid var(--border); border-radius: var(--radius-sm);
+  background: var(--primary); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 800; margin-bottom: 14px;
+}
+.proc-step h3 { font-size: 16px; font-weight: 700; margin-bottom: 10px; }
+.proc-step ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.proc-step ul li {
+  font-size: 15px; color: var(--text-muted); line-height: 1.65;
+  padding-left: 14px; position: relative;
+}
+.proc-step ul li::before { content: '·'; position: absolute; left: 0; font-weight: 700; color: var(--accent); }
+
+/* ── 비교표 ── */
+.table-wrap {
+  overflow-x: auto; margin-top: 40px;
+  border: 1px solid var(--border); border-radius: var(--radius-lg);
+}
+table { width: 100%; border-collapse: collapse; font-size: 15px; }
+thead tr { background: var(--primary); color: #fff; }
+thead th { padding: 15px 18px; text-align: left; font-weight: 700; font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase; white-space: nowrap; }
+tbody tr { border-bottom: 1px solid #eee; }
+tbody tr:last-child { border-bottom: none; }
+tbody tr:hover { background: var(--bg-soft); }
+tbody td { padding: 14px 18px; vertical-align: top; line-height: 1.65; }
+tbody td:first-child { font-weight: 700; white-space: nowrap; color: var(--text-muted); font-size: 14px; }
+
+.download-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 40px;
+  border: 1px solid #dddddd;
+  border-radius: var(--radius-lg);
+  padding: clamp(22px, 3vw, 30px);
+  background: #f7f7f8;
+}
+.download-panel h3 {
+  font-size: clamp(18px, 2vw, 22px);
+  line-height: 1.3;
+  margin-bottom: 8px;
+}
+.download-panel p {
+  max-width: 620px;
+  color: var(--text-muted);
+  font-size: 15px;
+  line-height: 1.65;
+}
+.download-button {
+  display: inline-flex;
+  min-height: 46px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: var(--radius-sm);
+  padding: 0 18px;
+  background: var(--primary);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.download-button i { font-size: 13px; }
+
+/* ── 체크리스트 ── */
+.cl-wrap { margin-top: 40px; border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+.cl-head {
+  background: var(--primary); color: #fff;
+  padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+}
+.cl-head h3 { font-size: 15px; font-weight: 700; }
+.cl-progress { display: flex; align-items: center; gap: 10px; }
+.cl-count { font-size: 13px; color: #aaa; }
+.cl-bar { width: 100px; height: 5px; background: #333; border-radius: 3px; overflow: hidden; }
+.cl-fill { height: 100%; background: var(--accent); border-radius: 3px; transition: width 0.3s; width: 0%; }
+.cl-rows { display: flex; flex-direction: column; }
+.cl-group {
+  padding: 9px 24px 7px;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  color: #555555; background: #f4f4f5;
+  border-bottom: 1px solid #e5e7eb;
+}
+.cl-row {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 15px 24px; border-bottom: 1px solid #f0f0f0;
+  cursor: pointer; transition: background 0.15s;
+}
+.cl-row:last-child { border-bottom: none; }
+.cl-row:hover { background: var(--bg-soft); }
+.cl-box {
+  flex-shrink: 0; width: 22px; height: 22px; min-height: 22px; min-width: 22px;
+  border: 2px solid #c0c0c0; border-radius: 6px; margin-top: 1px;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.15s;
+}
+.cl-box i { font-size: 10px; color: #fff; display: none; }
+.cl-row.checked .cl-box { background: var(--accent); border-color: var(--accent); }
+.cl-row.checked .cl-box i { display: block; }
+.cl-row.checked .cl-text { text-decoration: line-through; color: #bbb; }
+.cl-text { font-size: 15px; line-height: 1.6; }
+
+/* ── FOOTER ── */
+footer { padding-block: 44px; }
+.footer-inner {
+  max-width: 1000px; width: 90%; margin: 0 auto;
+  padding-inline: clamp(20px, 5vw, 24px);
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px;
+}
+.footer-brand { font-size: 14px; font-weight: 700; }
+.footer-brand span { color: var(--accent); }
+.footer-meta { font-size: 13px; color: var(--text-muted); }
+
+@media (max-width: 640px) {
+  .download-panel {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .download-button { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a class="header-badge" href="index.html">JYOUNG UX LAB</a>
+    <nav class="header-nav">
+      <a href="resources.html">자료실</a>
+      <a href="#overview">개요</a>
+      <a href="#heuristics">10가지 원칙</a>
+      <a href="#severity">심각도</a>
+      <a href="#process">평가 절차</a>
+      <a href="#checklist">체크리스트</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="container">
+  <div class="hero">
+    <div class="hero-eyebrow">UX Evaluation · Lecture Note</div>
+    <h1 class="hero-title">휴리스틱<br><em>사용성 평가</em></h1>
+    <p class="hero-desc">
+      Jakob Nielsen의 10가지 원칙을 기준으로 전문가가 UI를 직접 탐색하며 사용성 문제를 찾아내는 평가 방법입니다.
+      사용자 없이 빠르고 저비용으로 수행할 수 있어 실무에서 가장 많이 활용됩니다.
+    </p>
+    <div class="hero-chips">
+      <div class="chip"><i class="fa-solid fa-clock"></i> 120분</div>
+      <div class="chip"><i class="fa-solid fa-layer-group"></i> UX Research</div>
+      <div class="chip"><i class="fa-solid fa-user-tie"></i> Jakob Nielsen · 1994</div>
+      <div class="chip"><i class="fa-solid fa-signal"></i> 초급 → 중급</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── SECTION 1: 개요 ── -->
+<section id="overview">
+  <div class="container">
+    <div class="section-label"><i class="fa-solid fa-circle-info"></i> Overview</div>
+    <h2 class="section-title">휴리스틱 평가란?</h2>
+    <p class="section-desc">
+      "Heuristic"은 경험에서 도출된 원칙을 뜻합니다.
+      UX에서는 <strong>Jakob Nielsen의 10가지 원칙</strong>을 기준으로 전문가가 UI를 직접 탐색하며 문제를 찾아내는 방식입니다.
+      실제 사용자 없이도 핵심 사용성 문제를 빠르게 발견할 수 있습니다.
+    </p>
+    <div class="intro-grid">
+      <div class="intro-card">
+        <div class="intro-icon"><i class="fa-solid fa-user-tie"></i></div>
+        <h3>전문가가 수행</h3>
+        <p>UX 전문가 3~5명이 독립적으로 UI를 탐색합니다. 사용자를 섭외할 필요가 없습니다.</p>
+      </div>
+      <div class="intro-card">
+        <div class="intro-icon"><i class="fa-solid fa-bolt"></i></div>
+        <h3>빠르고 저비용</h3>
+        <p>1~2일 안에 주요 문제를 발견할 수 있습니다. 초기 프로토타입 검토에 특히 유용합니다.</p>
+      </div>
+      <div class="intro-card">
+        <div class="intro-icon"><i class="fa-solid fa-list-check"></i></div>
+        <h3>10가지 기준 사용</h3>
+        <p>검증된 10개 원칙으로 평가하므로 평가자마다 기준이 달라지는 혼선이 없습니다.</p>
+      </div>
+      <div class="intro-card">
+        <div class="intro-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+        <h3>심각도 분류</h3>
+        <p>발견한 문제를 0~4등급으로 분류해 개선 우선순위를 명확하게 정할 수 있습니다.</p>
+      </div>
+    </div>
+    <div class="tip-box">
+      <div class="tip-icon"><i class="fa-solid fa-lightbulb"></i></div>
+      <div>
+        <h4>언제 사용하나요?</h4>
+        <p>프로토타입 완성 직후 / 사용자 테스트 전 사전 점검 / 경쟁 앱 분석 / 기존 서비스 개선 검토 시 활용합니다. 사용자 테스트와 함께 쓰면 더욱 강력한 인사이트를 얻을 수 있습니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 2: 10 HEURISTICS ── -->
+<section id="heuristics">
+  <div class="container">
+    <div class="section-label"><i class="fa-solid fa-hashtag"></i> Core Principles</div>
+    <h2 class="section-title">Jakob Nielsen의 10가지 휴리스틱</h2>
+    <p class="section-desc">각 항목을 클릭하면 설명, 사례, 평가 포인트를 확인할 수 있습니다.</p>
+
+    <div class="h-list">
+
+      <!-- H1 -->
+      <div class="h-item open">
+        <div class="h-header" onclick="toggleH(this)">
+          <div class="h-num">H1</div>
+          <div class="h-header-text">
+            <div class="h-en">Visibility of System Status</div>
+            <h3>시스템 상태의 가시성</h3>
+          </div>
+          <div class="h-toggle"><i class="fa-solid fa-chevron-down"></i></div>
+        </div>
+        <div class="h-body">
+          <p class="h-def">
+            시스템은 지금 <strong>무슨 일이 일어나고 있는지</strong> 항상 사용자에게 알려야 합니다.<br>
+            버튼 클릭, 로딩, 저장, 전송 등 모든 행동에 적절한 피드백이 필요합니다.<br>
+            피드백이 없으면 사용자는 시스템이 반응하는지 알 수 없어 혼란을 느낍니다.
+          </p>
+          <div class="h-cases">
+            <div class="h-case">
+              <span class="case-badge bad-badge"><i class="fa-solid fa-xmark"></i> 나쁜 예</span>
+              <p>업로드 버튼을 눌렀는데 아무 반응이 없음 — 진행 중인지, 오류인지 알 수 없음</p>
+            </div>
+            <div class="h-case">
+              <span class="case-badge good-badge"><i class="fa-solid fa-check"></i> 좋은 예</span>
+              <p>파일 업로드 시 진행률 바(%) 표시 + 완료 시 "✓ 저장되었습니다" 토스트 메시지</p>
+            </div>
+          </div>
+          <div class="app-tags">
+            <span class="app-tag"><i class="fa-solid fa-star"></i> 카카오톡 읽음 확인 '1'</span>
+            <span class="app-tag"><i class="fa-solid fa-star"></i> 토스 결제 완료 화면</span>
+            <span class="app-tag"><i class="fa-solid fa-star"></i> 배민 주문 단계 표시</span>
+          </div>
+          <div class="check-pts">
+            <strong><i class="fa-solid fa-magnifying-glass"></i> 평가 포인트</strong>
+            <ol>
+              <li>버튼 클릭 시 즉각적인 시각 피드백(색상 변화, 스피너)이 있는가?</li>
+              <li>시간이 걸리는 작업에서 로딩/진행 상태를 알 수 있는가?</li>
+              <li>작업 완료 또는 실패 결과를 명확하게 안내하는가?</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <!-- H2 -->
+      <div class="h-item">
+        <div class="h-header" onclick="toggleH(this)">
+          <div class="h-num">H2</div>
+          <div class="h-header-text">
+            <div class="h-en">Match Between System and the Real World</div>
+            <h3>시스템과 현실 세계의 일치</h3>
+          </div>
+          <div class="h-toggle"><i class="fa-solid fa-chevron-down"></i></div>
+        </div>
+        <div class="h-body">
+          <p class="h-def">
+            시스템은 사용자에게 <strong>익숙한 언어, 단어, 개념, 은유</strong>를 사용해야 합니다.<br>
+            개발 전문 용어 대신 사용자 언어로 소통하고, 현실 세계의 관습을 따라야 합니다.<br>
+            사용자가 이미 아는 개념을 UI에 적용하면 별도 학습 없이 직관적으로 사용할 수 있습니다.
+          </p>
+          <div class="h-cases">
+            <div class="h-case">
+              <span class="case-badge bad-badge"><i class="fa-solid fa-xmark"></i> 나쁜 예</span>
+              <p>오류 메시지에 "HTTP 500 Internal Server Error" 그대로 표시</p>
+            </div>
+            <div class="h-case">
+              <span class="case-badge good-badge"><i class="fa-solid fa-check"></i> 좋은 예</span>
+              <p>쇼핑몰 '장바구니' 아이콘 — 실제 장바구니 메타포로 설명 없이도 바로 이해</p>
+            </div>
+          </div>
+          <div class="app-tags">
+            <span class="app-tag"><i class="fa-solid fa-star"></i> 장바구니 아이콘</span>
+            <span class="app-tag"><i class="fa-solid fa-star"></i> 달력(Date Picker) UI</span>
+            <span class="app-tag"><i class="fa-solid fa-star"></i> 저장 = 플로피 디스크 아이콘</span>
+          </div>
+          <div class="check-pts">
+            <strong><i class="fa-solid fa-magnifying-glass"></i> 평가 포인트</strong>
+            <ol>
+              <li>버튼·메뉴 레이블이 사용자에게 익숙한 단어를 사용하는가?</li>
+              <li>아이콘이 일반적으로 통용되는 의미를 가지는가?</li>
+              <li>에러 메시지에 기술 용어나 오류 코드가 없는가?</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <!-- H3 -->
+      <div class="h-item">
+        <div class="h-header" onclick="toggleH(this)">
+          <div class="h-num">H3</div>
+          <div class="h-header-text">
+            <div class="h-en">User Control and Freedom</div>
+            <h3>사용자 통제권과 자유</h3>
+          </div>
+          <div class="h-toggle"><i class="fa-solid fa-chevron-down"></i></div>
+        </div>
+        <div class="h-body">
+          <p class="h-def">
+            사용자는 언제든 실수를 합니다. 원하지 않는 상태에서 <strong>쉽게 빠져나올 수 있는 비상구</strong>가 필요합니다.<br>
+            실행 취소(Undo), 취소 버튼, 뒤로 가기 등이 항상 명확하게 제공되어야 합니다.<br>
+            탈출구가 있으면 사용자는 심리적 안전감을 느끼고 서비스를 더 적극적으로 탐색합니다.
+          </p>
+          <div class="h-cases">
+            <div class="h-case">
+              <span class="case-badge bad-badge"><i class="fa-solid fa-xmark"></i> 나쁜 예</span>
+              <p>긴 회원가입 폼에서 뒤로가기를 누르면 입력 내용이 모두 사라짐</p>
+            </div>
+            <div class="h-case">
+              <span class="case-badge good-badge"><i class="fa-solid fa-check"></i> 좋은 예</span>
+              <p>Gmail 이메일 삭제 후 하단에 5초간 '실행 취소' 버튼 표시</p>
+            </div>
+          </div>
+          <div class="app-tags">
+            <span class="app-tag"><i class="fa-solid fa-star"></i> Gmail 실행 취소</span>
+            <span class="app-tag"><i class="fa-solid fa-star"></i> Figma Ctrl+Z</span>
+            <span class="app-tag"><i class="fa-solid fa-star"></i> 모달 X 버튼 / ESC</span>
+          </div>
+          <div class="check-pts">
+            <strong><i class="fa-solid fa-magnifying-glass"></i> 평가 포인트</strong>
+            <ol>
+              <li>모달·팝업에 닫기(X) 버튼이 명확하게 있는가?</li>
+              <li>다단계 플로우에서 이전 단계로 돌아갈 수 있는가?</li>
+              <li>비가역적 행동(삭제, 탈퇴) 전에 확인 단계 또는 취소 방법이 있는가?</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <!-- H4 -->
+      <div class="h-item">
+        <div class="h-header" onclick="toggleH(this)">
+          <div class="h-num">H4</div>
+          <div class="h-header-text">
+            <div class="h-en">Consistency and Standards</div>
+            <h3>일관성과 표준</h3>
+          </div>
+          <div class="h-toggle"><i class="fa-solid fa-chevron-down"></i></div>
+        </div>
+        <div class="h-body">
+          <p class="h-def">
+            같은 단어, 상황, 행동은 <strong>항상 같은 의미</strong>를 가져야 합니다.<br>
+            앱 내 일관성(버튼 위치·색상·레이블 통일)과 플랫폼 표준(iOS/Android 가이드라인) 모두 중요합니다.<br>
+            일관성이 높을수록 사용자의 학습 비용이 줄고 사용 속도가 빨라집니다.
+          </p>
+          <div class="h-cases">
+            <div class="h-case">
+              <span class="case-badge bad-badge"><i class="fa-solid fa-xmark"></i> 나쁜 예</span>
+              <p>어떤 화면에서는 '확인' 버튼이 오른쪽, 다른 화면에서는 왼쪽에 위치</p>
+            </div>
+            <div class="h-case">
+              <span class="case-badge good-badge"><i class="fa-solid fa-check"></i> 좋은 예</span>
+              <p>토스 — 앱 전체에서 Primary CTA는 항상 하단 중앙에 동일한 스타일로 배치</p>
+            </div>
+          </div>
+          <div class="app-tags">
+            <span class="app-tag"><i class="fa-solid fa-star"></i> iOS HIG 뒤로가기 좌상단</span>
+            <span class="app-tag"><i class="fa-solid fa-star"></i> 토스 디자인 시스템</span>
+            <span class="app-tag"><i class="fa-solid fa-star"></i> Material Design</span>
+          </div>
+          <div class="check-pts">
+            <strong><i class="fa-solid fa-magnifying-glass"></i> 평가 포인트</strong>
+            <ol>
+              <li>같은 기능의 버튼이 화면마다 동일한 위치·색·레이블을 유지하는가?</li>
+              <li>같은 행동에 다른 용어를 혼용하지 않는가? (예: '삭제' vs '지우기' 혼용)</li>
+              <li>플랫폼(iOS/Android) 관례를 따르는가?</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <!-- H5 -->
+      <div class="h-item">
+        <div class="h-header" onclick="toggleH(this)">
+          <div class="h-num">H5</div>
+          <div class="h-header-text">
+            <div class="h-en">Error Prevention</div>
+            <h3>오류 예방</h3>
+          </div>
+          <div class="h-toggle"><i class="fa-solid fa-chevron-down"></i></div>
+        </div>
+        <div class="h-body">
+          <p class="h-def">
+            좋은 오류 메시지도 중요하지만, <strong>처음부터 오류가 발생하지 않도록 설계</strong>하는 것이 더 중요합니다.<br>
+            실수하기 어려운 UI가 가장 좋은 UI입니다.<br>
+            오류 발생 조건을 제거하거나, 행동 전에 사용자가 확인하도록 유도해야 합니다.
+          </p>
+          <div class="h-cases">
+            <div class="h-case">
+              <span class="case-badge bad-badge"><i class="fa-solid fa-xmark"></i> 나쁜 예</span>
+              <p>폼을 제출한 후에야 이메일 형식 오류를 알려줌 — 입력 중 검사가 없음</p>
+            </div>
+            <div class="h-case">
+              <span class="case-badge good-badge"><i class="fa-solid fa-check"></i> 좋은 예</span>
+              <p>날짜 피커에서 선택 불가능한 과거 날짜를 회색으로 비활성화 처리</p>
+            </div>
+          </div>
+          <div class="app-tags">
+            <span class="app-tag"><i class="fa-solid fa-star"></i> 인라인 유효성 검사</span>
+            <span class="app-tag"><i class="fa-solid fa-star"></i> 비밀번호 강도 표시기</span>
+            <span class="app-tag"><i class="fa-solid fa-star"></i> 삭제 확인 다이얼로그</span>
+          </div>
+          <div class="check-pts">
+            <strong><i class="fa-solid fa-magnifying-glass"></i> 평가 포인트</strong>
+            <ol>
+              <li>입력 필드에 실시간 유효성 검사(인라인 에러)가 있는가?</li>
+              <li>선택 불가능한 옵션이 시각적으로 비활성화되어 있는가?</li>
+              <li>비가역적 행동(삭제, 결제 확정) 전에 확인 단계가 있는가?</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <!-- H6 -->
+      <div class="h-item">
+        <div class="h-header" onclick="toggleH(this)">
+          <div class="h-num">H6</div>
+          <div class="h-header-text">
+            <div class="h-en">Recognition Rather Than Recall</div>
+            <h3>기억보다 인식</h3>
+          </div>
+          <div class="h-toggle"><i class="fa-solid fa-chevron-down"></i></div>
+        </div>
+        <div class="h-body">
+          <p class="h-def">
+            사용자가 <strong>기억해야 하는 부담을 최소화</strong>해야 합니다.<br>
+            보기를 보고 '아, 맞아!' 하는 Recognition이, 아무 단서 없이 기억해야 하는 Recall보다 훨씬 쉽습니다.<br>
+            필요한 옵션과 정보는 눈에 보이게 제공하고, 시스템이 사용자의 이전 행동을 기억해야 합니다.
+          </p>
+          <div class="h-cases">
+            <div class="h-case">
+              <span class="case-badge bad-badge"><i class="fa-solid fa-xmark"></i> 나쁜 예</span>
+              <p>검색창에 최근 검색어나 자동완성이 없어 매번 처음부터 직접 입력해야 함</p>
+            </div>
+            <div class="h-case">
+              <span class="case-badge good-badge"><i class="fa-solid fa-check"></i> 좋은 예</span>
+              <p>배달의민족 — 최근 주문한 메뉴 상단 노출로 재주문 원클릭 가능</p>
+            </div>
+          </div>
+          <div class="app-tags">
+            <span class="app-tag"><i class="fa-solid fa-star"></i> 쿠팡 최근 검색어</span>
+            <span class="app-tag"><i class="fa-solid fa-star"></i> 배민 최근 주문</span>
+            <span class="app-tag"><i class="fa-solid fa-star"></i> 비밀번호 보기 토글</span>
+          </div>
+          <div class="check-pts">
+            <strong><i class="fa-solid fa-magnifying-glass"></i> 평가 포인트</strong>
+            <ol>
+              <li>이전에 했던 행동(최근 검색, 최근 방문)이 화면에 표시되는가?</li>
+              <li>선택 가능한 옵션이 드롭다운·체크박스 등 보이는 형태로 제공되는가?</li>
+              <li>아이콘 단독이 아닌 텍스트 레이블도 함께 제공하는가?</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <!-- H7 -->
+      <div class="h-item">
+        <div class="h-header" onclick="toggleH(this)">
+          <div class="h-num">H7</div>
+          <div class="h-header-text">
+            <div class="h-en">Flexibility and Efficiency of Use</div>
+            <h3>유연성과 효율성</h3>
+          </div>
+          <div class="h-toggle"><i class="fa-solid fa-chevron-down"></i></div>
+        </div>
+        <div class="h-body">
+          <p class="h-def">
+            초보자에게는 친절한 가이드가, 숙련자에게는 <strong>빠른 경로(단축키, 즐겨찾기 등)</strong>가 필요합니다.<br>
+            두 유형의 사용자를 모두 배려하는 설계가 중요합니다.<br>
+            숙련자를 위한 기능이 초보자의 경험을 방해하지 않도록 설계해야 합니다.
+          </p>
+          <div class="h-cases">
+            <div class="h-case">
+              <span class="case-badge bad-badge"><i class="fa-solid fa-xmark"></i> 나쁜 예</span>
+              <p>반복 주문 기능이 없어 동일 상품을 매번 처음부터 검색·선택·담기를 반복해야 함</p>
+            </div>
+            <div class="h-case">
+              <span class="case-badge good-badge"><i class="fa-solid fa-check"></i> 좋은 예</span>
+              <p>Figma 단축키 — R(사각형), T(텍스트), V(선택) 으로 도구 전환 즉시 가능</p>
+            </div>
+          </div>
+          <div class="app-tags">
+            <span class="app-tag"><i class="fa-solid fa-star"></i> Figma 키보드 단축키</span>
+            <span class="app-tag"><i class="fa-solid fa-star"></i> 배민 단골가게</span>
+            <span class="app-tag"><i class="fa-solid fa-star"></i> 은행 자주 쓰는 계좌</span>
+          </div>
+          <div class="check-pts">
+            <strong><i class="fa-solid fa-magnifying-glass"></i> 평가 포인트</strong>
+            <ol>
+              <li>자주 쓰는 기능에 빠르게 접근할 수 있는 바로가기·즐겨찾기가 있는가?</li>
+              <li>반복 작업을 한 번에 처리하는 기능이 있는가? (재주문, 일괄 처리 등)</li>
+              <li>숙련자용 기능이 초보자 경험을 방해하지 않는가?</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <!-- H8 -->
+      <div class="h-item">
+        <div class="h-header" onclick="toggleH(this)">
+          <div class="h-num">H8</div>
+          <div class="h-header-text">
+            <div class="h-en">Aesthetic and Minimalist Design</div>
+            <h3>심미적이고 미니멀한 디자인</h3>
+          </div>
+          <div class="h-toggle"><i class="fa-solid fa-chevron-down"></i></div>
+        </div>
+        <div class="h-body">
+          <p class="h-def">
+            화면에는 사용자 목표에 <strong>꼭 필요한 정보만</strong> 있어야 합니다.<br>
+            불필요한 요소는 중요한 정보의 가시성을 낮추고 인지 부담을 높입니다.<br>
+            미니멀 디자인은 '예쁘게'가 아니라 '불필요한 것을 제거하는 것'입니다.
+          </p>
+          <div class="h-cases">
+            <div class="h-case">
+              <span class="case-badge bad-badge"><i class="fa-solid fa-xmark"></i> 나쁜 예</span>
+              <p>앱 실행 시 광고 팝업 3개가 연속으로 표시되어 핵심 콘텐츠 진입을 막음</p>
+            </div>
+            <div class="h-case">
+              <span class="case-badge good-badge"><i class="fa-solid fa-check"></i> 좋은 예</span>
+              <p>토스 각 화면 — 하나의 핵심 행동(CTA)만 존재, 불필요한 메뉴·배너 없음</p>
+            </div>
+          </div>
+          <div class="app-tags">
+            <span class="app-tag"><i class="fa-solid fa-star"></i> 토스 단일 CTA</span>
+            <span class="app-tag"><i class="fa-solid fa-star"></i> Apple 제품 페이지</span>
+            <span class="app-tag"><i class="fa-solid fa-star"></i> Google 홈 화면</span>
+          </div>
+          <div class="check-pts">
+            <strong><i class="fa-solid fa-magnifying-glass"></i> 평가 포인트</strong>
+            <ol>
+              <li>한 화면에 CTA가 1~2개로 집중되어 있는가?</li>
+              <li>화면의 모든 요소가 현재 사용자 목표에 필요한가?</li>
+              <li>광고·팝업이 핵심 콘텐츠를 가리지 않는가?</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <!-- H9 -->
+      <div class="h-item">
+        <div class="h-header" onclick="toggleH(this)">
+          <div class="h-num">H9</div>
+          <div class="h-header-text">
+            <div class="h-en">Help Users Recognize, Diagnose, and Recover from Errors</div>
+            <h3>오류 인식·진단·복구 지원</h3>
+          </div>
+          <div class="h-toggle"><i class="fa-solid fa-chevron-down"></i></div>
+        </div>
+        <div class="h-body">
+          <p class="h-def">
+            오류 메시지는 <strong>① 무슨 문제인지 / ② 왜 발생했는지 / ③ 어떻게 해결하는지</strong>를 알려야 합니다.<br>
+            기술 용어나 오류 코드 없이 사용자 언어로 작성해야 합니다.<br>
+            명확한 오류 안내는 사용자를 이탈 없이 목표 달성으로 다시 안내합니다.
+          </p>
+          <div class="h-cases">
+            <div class="h-case">
+              <span class="case-badge bad-badge"><i class="fa-solid fa-xmark"></i> 나쁜 예</span>
+              <p>"오류가 발생했습니다." — 무슨 오류인지, 어떻게 해결하는지 전혀 알 수 없음</p>
+            </div>
+            <div class="h-case">
+              <span class="case-badge good-badge"><i class="fa-solid fa-check"></i> 좋은 예</span>
+              <p>"이메일 또는 비밀번호가 일치하지 않습니다. [비밀번호 찾기]" — 원인 + 해결 링크 제공</p>
+            </div>
+          </div>
+          <div class="app-tags">
+            <span class="app-tag"><i class="fa-solid fa-star"></i> 인라인 폼 에러 메시지</span>
+            <span class="app-tag"><i class="fa-solid fa-star"></i> 404 페이지 + 홈으로</span>
+            <span class="app-tag"><i class="fa-solid fa-star"></i> 네트워크 오류 + 재시도</span>
+          </div>
+          <div class="check-pts">
+            <strong><i class="fa-solid fa-magnifying-glass"></i> 평가 포인트</strong>
+            <ol>
+              <li>오류 메시지에 기술 용어·오류 코드가 없는가?</li>
+              <li>어떤 필드·항목이 문제인지 구체적으로 알려주는가?</li>
+              <li>오류 이후 다음 행동(재시도, 수정, 관련 링크)을 안내하는가?</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <!-- H10 -->
+      <div class="h-item">
+        <div class="h-header" onclick="toggleH(this)">
+          <div class="h-num">H10</div>
+          <div class="h-header-text">
+            <div class="h-en">Help and Documentation</div>
+            <h3>도움말과 문서화</h3>
+          </div>
+          <div class="h-toggle"><i class="fa-solid fa-chevron-down"></i></div>
+        </div>
+        <div class="h-body">
+          <p class="h-def">
+            도움말 없이도 쓸 수 있는 UI가 이상적이지만, 복잡한 기능에는 <strong>맥락에 맞는 도움말</strong>이 필요합니다.<br>
+            도움말은 쉽게 찾을 수 있어야 하고, 작업 중심으로 구체적인 단계를 안내해야 합니다.<br>
+            방대한 매뉴얼보다 지금 이 순간 바로 쓸 수 있는 인라인 가이드가 효과적입니다.
+          </p>
+          <div class="h-cases">
+            <div class="h-case">
+              <span class="case-badge bad-badge"><i class="fa-solid fa-xmark"></i> 나쁜 예</span>
+              <p>복잡한 설정 화면에 아무런 설명이 없고, 도움말 링크를 클릭하면 PDF 매뉴얼이 다운로드됨</p>
+            </div>
+            <div class="h-case">
+              <span class="case-badge good-badge"><i class="fa-solid fa-check"></i> 좋은 예</span>
+              <p>입력 필드 아래 "예: 사업자번호는 000-00-00000 형식입니다" helper text 즉시 표시</p>
+            </div>
+          </div>
+          <div class="app-tags">
+            <span class="app-tag"><i class="fa-solid fa-star"></i> 온보딩 툴팁</span>
+            <span class="app-tag"><i class="fa-solid fa-star"></i> 인라인 Helper Text</span>
+            <span class="app-tag"><i class="fa-solid fa-star"></i> Notion 도움말 센터</span>
+          </div>
+          <div class="check-pts">
+            <strong><i class="fa-solid fa-magnifying-glass"></i> 평가 포인트</strong>
+            <ol>
+              <li>복잡한 기능 옆에 인라인 설명(helper text, 툴팁)이 있는가?</li>
+              <li>처음 사용자를 위한 온보딩 가이드가 제공되는가?</li>
+              <li>도움말·FAQ를 쉽게 찾을 수 있고 검색이 가능한가?</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 3: 심각도 ── -->
+<section id="severity">
+  <div class="container">
+    <div class="section-label"><i class="fa-solid fa-gauge-high"></i> Severity Rating</div>
+    <h2 class="section-title">심각도 평가 척도 (0~4)</h2>
+    <p class="section-desc">발견한 문제를 5단계로 분류해 개선 우선순위를 결정합니다. 수치화해야 팀이 행동할 수 있습니다.</p>
+    <div class="sev-grid">
+      <div class="sev-card">
+        <div class="sev-badge s0-b">등급 0</div>
+        <h3>문제 없음</h3>
+        <p>다른 평가자가 지적했으나 실제로는 사용성 문제가 아닌 경우입니다.</p>
+        <div class="sev-action s0-a">수정 불필요</div>
+      </div>
+      <div class="sev-card">
+        <div class="sev-badge s1-b">등급 1</div>
+        <h3>표면적 문제</h3>
+        <p>발생 빈도 낮고 사용자가 쉽게 우회할 수 있습니다. 여유 있을 때 개선합니다.</p>
+        <div class="sev-action s1-a">여유 시 수정</div>
+      </div>
+      <div class="sev-card">
+        <div class="sev-badge s2-b">등급 2</div>
+        <h3>중간 심각도</h3>
+        <p>불편하지만 해결 방법을 찾을 수 있습니다. 다음 릴리즈에 반드시 포함합니다.</p>
+        <div class="sev-action s2-a">다음 릴리즈 수정</div>
+      </div>
+      <div class="sev-card">
+        <div class="sev-badge s3-b">등급 3</div>
+        <h3>심각한 문제</h3>
+        <p>사용자가 해결 방법을 찾기 어렵거나 포기 가능성이 높습니다. 출시 전 필수 수정합니다.</p>
+        <div class="sev-action s3-a">출시 전 필수 수정</div>
+      </div>
+      <div class="sev-card">
+        <div class="sev-badge s4-b">등급 4</div>
+        <h3>치명적 문제</h3>
+        <p>핵심 태스크를 완료할 수 없게 만드는 차단(Blocker) 문제입니다.</p>
+        <div class="sev-action s4-a">즉시 수정 필수</div>
+      </div>
+    </div>
+    <div class="tip-box">
+      <div class="tip-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+      <div>
+        <h4>심각도 결정 3요소</h4>
+        <p><strong>빈도</strong> — 얼마나 많은 사용자가 자주 겪는가?&nbsp;&nbsp;<strong>영향</strong> — 문제를 극복하기 얼마나 어려운가?&nbsp;&nbsp;<strong>지속성</strong> — 한 번 겪으면 계속 방해받는가?</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 4: 절차 ── -->
+<section id="process">
+  <div class="container">
+    <div class="section-label"><i class="fa-solid fa-diagram-project"></i> Evaluation Process</div>
+    <h2 class="section-title">평가 수행 5단계</h2>
+    <p class="section-desc">처음 수행하는 팀도 이 순서를 따르면 체계적으로 평가할 수 있습니다.</p>
+    <div class="proc-grid">
+      <div class="proc-step">
+        <div class="proc-bg-num">01</div>
+        <div class="proc-num">01</div>
+        <h3>평가 계획</h3>
+        <ul>
+          <li>평가할 화면·플로우 선정</li>
+          <li>평가자 3~5명 선정</li>
+          <li>10가지 원칙 사전 공유</li>
+          <li>평가 시트(템플릿) 준비</li>
+        </ul>
+      </div>
+      <div class="proc-step">
+        <div class="proc-bg-num">02</div>
+        <div class="proc-num">02</div>
+        <h3>개별 평가</h3>
+        <ul>
+          <li>평가자 간 교류 없이 독립 수행</li>
+          <li>10원칙 하나씩 대조하며 탐색</li>
+          <li>위반 원칙(H1~H10)과 함께 기록</li>
+          <li>화면 캡처 병행</li>
+        </ul>
+      </div>
+      <div class="proc-step">
+        <div class="proc-bg-num">03</div>
+        <div class="proc-num">03</div>
+        <h3>결과 취합</h3>
+        <ul>
+          <li>전체 발견 사항 스프레드시트에 병합</li>
+          <li>중복 항목 통합</li>
+          <li>화면별·원칙별로 분류</li>
+          <li>이 단계에서 처음으로 공유</li>
+        </ul>
+      </div>
+      <div class="proc-step">
+        <div class="proc-bg-num">04</div>
+        <div class="proc-num">04</div>
+        <h3>심각도 평가</h3>
+        <ul>
+          <li>각 항목에 0~4 심각도 부여</li>
+          <li>빈도·영향·지속성 기준으로 합의</li>
+          <li>심각도 내림차순 정렬</li>
+          <li>우선순위 목록 완성</li>
+        </ul>
+      </div>
+      <div class="proc-step">
+        <div class="proc-bg-num">05</div>
+        <div class="proc-num">05</div>
+        <h3>보고서 작성</h3>
+        <ul>
+          <li>스크린샷 + 원칙 + 심각도 + 개선안</li>
+          <li>팀이 실행할 수 있는 액션 아이템</li>
+          <li>팀 리뷰 미팅 발표</li>
+          <li>수정 후 재평가 일정 논의</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tip-box">
+      <div class="tip-icon"><i class="fa-solid fa-users"></i></div>
+      <div>
+        <h4>평가자는 몇 명이 적당한가?</h4>
+        <p>Nielsen 연구에 따르면 <strong>1명은 약 35%</strong>, <strong>5명은 약 75~85%</strong>의 문제를 발견합니다. 6명 이상부터는 발견 비율이 크게 늘지 않아 실무에서는 <strong>3~5명</strong>이 적정입니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 5: 체크리스트 ── -->
+<section id="checklist">
+  <div class="container">
+    <div class="section-label"><i class="fa-solid fa-clipboard-check"></i> Practice</div>
+    <h2 class="section-title">실습용 체크리스트</h2>
+    <p class="section-desc">실제 앱 화면을 열고 항목을 하나씩 확인해보세요. 클릭하면 체크됩니다.</p>
+    <div class="cl-wrap">
+      <div class="cl-head">
+        <h3><i class="fa-solid fa-list-check"></i>&nbsp; 휴리스틱 평가 체크리스트</h3>
+        <div class="cl-progress">
+          <div class="cl-bar"><div class="cl-fill" id="cl-fill"></div></div>
+          <span class="cl-count" id="cl-count">0 / 20 완료</span>
+        </div>
+      </div>
+      <div class="cl-rows">
+        <div class="cl-group">H1 · 시스템 상태 가시성</div>
+        <div class="cl-row" onclick="ck(this)"><div class="cl-box"><i class="fa-solid fa-check"></i></div><div class="cl-text">버튼·링크 클릭 시 즉각적인 시각 피드백이 있는가?</div></div>
+        <div class="cl-row" onclick="ck(this)"><div class="cl-box"><i class="fa-solid fa-check"></i></div><div class="cl-text">로딩이 필요한 작업에서 진행 상태를 알 수 있는가?</div></div>
+
+        <div class="cl-group">H2 · 시스템과 현실의 일치</div>
+        <div class="cl-row" onclick="ck(this)"><div class="cl-box"><i class="fa-solid fa-check"></i></div><div class="cl-text">아이콘과 레이블이 사용자에게 익숙한 언어를 사용하는가?</div></div>
+        <div class="cl-row" onclick="ck(this)"><div class="cl-box"><i class="fa-solid fa-check"></i></div><div class="cl-text">오류 메시지에 기술 용어나 오류 코드가 없는가?</div></div>
+
+        <div class="cl-group">H3 · 사용자 통제권</div>
+        <div class="cl-row" onclick="ck(this)"><div class="cl-box"><i class="fa-solid fa-check"></i></div><div class="cl-text">모달·팝업에 닫기 버튼이 명확하게 있는가?</div></div>
+        <div class="cl-row" onclick="ck(this)"><div class="cl-box"><i class="fa-solid fa-check"></i></div><div class="cl-text">다단계 플로우에서 이전 단계로 돌아갈 수 있는가?</div></div>
+
+        <div class="cl-group">H4 · 일관성과 표준</div>
+        <div class="cl-row" onclick="ck(this)"><div class="cl-box"><i class="fa-solid fa-check"></i></div><div class="cl-text">같은 기능의 버튼이 화면마다 동일한 위치·색·레이블인가?</div></div>
+        <div class="cl-row" onclick="ck(this)"><div class="cl-box"><i class="fa-solid fa-check"></i></div><div class="cl-text">플랫폼 관례(iOS/Android 가이드라인)를 따르는가?</div></div>
+
+        <div class="cl-group">H5 · 오류 예방</div>
+        <div class="cl-row" onclick="ck(this)"><div class="cl-box"><i class="fa-solid fa-check"></i></div><div class="cl-text">입력 필드에 실시간 유효성 검사가 있는가?</div></div>
+        <div class="cl-row" onclick="ck(this)"><div class="cl-box"><i class="fa-solid fa-check"></i></div><div class="cl-text">비가역적 행동 전에 확인 단계가 있는가?</div></div>
+
+        <div class="cl-group">H6 · 기억보다 인식</div>
+        <div class="cl-row" onclick="ck(this)"><div class="cl-box"><i class="fa-solid fa-check"></i></div><div class="cl-text">최근 검색어·최근 방문 등이 화면에 표시되는가?</div></div>
+        <div class="cl-row" onclick="ck(this)"><div class="cl-box"><i class="fa-solid fa-check"></i></div><div class="cl-text">아이콘에 텍스트 레이블이 함께 제공되는가?</div></div>
+
+        <div class="cl-group">H7 · 유연성과 효율성</div>
+        <div class="cl-row" onclick="ck(this)"><div class="cl-box"><i class="fa-solid fa-check"></i></div><div class="cl-text">자주 쓰는 기능에 빠르게 접근할 수 있는 바로가기가 있는가?</div></div>
+
+        <div class="cl-group">H8 · 미니멀한 디자인</div>
+        <div class="cl-row" onclick="ck(this)"><div class="cl-box"><i class="fa-solid fa-check"></i></div><div class="cl-text">한 화면에 핵심 CTA가 1~2개로 집중되어 있는가?</div></div>
+        <div class="cl-row" onclick="ck(this)"><div class="cl-box"><i class="fa-solid fa-check"></i></div><div class="cl-text">광고·팝업이 핵심 콘텐츠를 가리지 않는가?</div></div>
+
+        <div class="cl-group">H9 · 오류 복구 지원</div>
+        <div class="cl-row" onclick="ck(this)"><div class="cl-box"><i class="fa-solid fa-check"></i></div><div class="cl-text">오류 메시지가 "무엇이 문제인지 + 어떻게 해결하는지"를 알려주는가?</div></div>
+        <div class="cl-row" onclick="ck(this)"><div class="cl-box"><i class="fa-solid fa-check"></i></div><div class="cl-text">오류가 있는 필드를 인라인으로 구체적으로 표시하는가?</div></div>
+
+        <div class="cl-group">H10 · 도움말</div>
+        <div class="cl-row" onclick="ck(this)"><div class="cl-box"><i class="fa-solid fa-check"></i></div><div class="cl-text">복잡한 기능 옆에 인라인 도움말(툴팁, helper text)이 있는가?</div></div>
+        <div class="cl-row" onclick="ck(this)"><div class="cl-box"><i class="fa-solid fa-check"></i></div><div class="cl-text">온보딩 가이드가 제공되는가?</div></div>
+        <div class="cl-row" onclick="ck(this)"><div class="cl-box"><i class="fa-solid fa-check"></i></div><div class="cl-text">도움말·FAQ를 쉽게 찾고 검색할 수 있는가?</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 6: 비교표 ── -->
+<section>
+  <div class="container">
+    <div class="section-label"><i class="fa-solid fa-arrow-right-arrow-left"></i> Comparison</div>
+    <h2 class="section-title">사용성 평가 방법 비교</h2>
+    <p class="section-desc">상황에 맞는 평가 방법을 선택하면 더 효율적인 UX 리서치가 가능합니다.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>구분</th><th>휴리스틱 평가</th><th>사용자 테스트</th><th>인지적 워크스루</th><th>설문 조사</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>수행자</td><td>UX 전문가 3~5명</td><td>실제 사용자 5~8명</td><td>UX 전문가 1~2명</td><td>사용자 다수</td></tr>
+          <tr><td>비용</td><td>낮음</td><td>높음</td><td>낮음</td><td>중간</td></tr>
+          <tr><td>소요 시간</td><td>1~2일</td><td>1~2주</td><td>1~3일</td><td>2~4주</td></tr>
+          <tr><td>주로 발견하는 문제</td><td>원칙 위반, 일관성, 가시성</td><td>실제 사용 패턴, 멘탈 모델</td><td>학습 용이성, 신규 사용자</td><td>전반적 만족도</td></tr>
+          <tr><td>적합한 시점</td><td>프로토타입 완성 후, 출시 전</td><td>주요 의사결정, 출시 후</td><td>온보딩 플로우 검토 시</td><td>대규모 의사결정 시</td></tr>
+          <tr><td>한계</td><td>실제 사용자 행동 반영 어려움</td><td>비용·시간 많이 소요</td><td>신규 사용자 관점에 한정</td><td>표면적 의견만 수집</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="download-panel">
+      <div>
+        <h3>사용성 평가 테스트 파일</h3>
+        <p>휴리스틱 원칙별 문제 기록, 심각도 평가, 개선 우선순위 정리에 바로 사용할 수 있는 엑셀 템플릿입니다.</p>
+      </div>
+      <a
+        class="download-button"
+        href="downloads/ljy_heuristic_usability_evaluation_bw.xlsx"
+        data-download-file
+      >
+        <i class="fa-solid fa-file-arrow-down"></i>
+        테스트 파일 다운로드
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">J.영의 <span>AX Lab</span></div>
+    <div class="footer-meta">JYOUNG UIUX · 휴리스틱 사용성 평가 교안 · Jakob Nielsen's 10 Heuristics, 1994</div>
+  </div>
+</footer>
+
+<script>
+  function toggleH(header) {
+    header.closest('.h-item').classList.toggle('open');
+  }
+  const TOTAL = 20;
+  function ck(row) {
+    row.classList.toggle('checked');
+    const done = document.querySelectorAll('.cl-row.checked').length;
+    document.getElementById('cl-count').textContent = done + ' / ' + TOTAL + ' 완료';
+    document.getElementById('cl-fill').style.width = (done / TOTAL * 100) + '%';
+  }
+  document.querySelector('[data-download-file]')?.addEventListener('click', async (event) => {
+    event.preventDefault();
+    const link = event.currentTarget;
+    const fileUrl = link.getAttribute('href');
+    const fileName = 'ljy_휴리스틱_사용성평가_BW.xlsx';
+
+    try {
+      const response = await fetch(fileUrl);
+      if (!response.ok) throw new Error('download failed');
+      const blob = await response.blob();
+      const objectUrl = URL.createObjectURL(blob);
+      const tempLink = document.createElement('a');
+      tempLink.href = objectUrl;
+      tempLink.download = fileName;
+      document.body.appendChild(tempLink);
+      tempLink.click();
+      tempLink.remove();
+      URL.revokeObjectURL(objectUrl);
+    } catch (error) {
+      window.location.href = fileUrl;
+    }
+  });
+</script>
+</body>
+</html>

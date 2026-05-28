@@ -1,18 +1,19 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Advanced 자동화 포트폴리오 가이드 | AI Product Design Lab</title>
+    <title>AI Automatic 자동화 도구 가이드 | J.영의 AX Lab</title>
     <meta
       name="description"
-      content="병렬 에이전트팀, 코디네이터 SKILL, n8n 자동화, GitHub Actions, Claude Code로 운영형 포트폴리오를 만드는 Advanced 프롬프트 가이드입니다."
+      content="n8n, Playwright, Pillow, FFmpeg, Remotion, 파일 자동화, MCP를 기존 사이트 레이아웃 안에서 이해하고 적용하는 AI Automatic 상세 가이드입니다."
     />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css?v=advanced-consistency-20260528" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
   </head>
   <body>
     <header class="site-header">
-      <a class="brand" href="index.html" aria-label="AI Product Design Lab 홈">
+      <a class="brand" href="index.html" aria-label="J.영의 AX Lab 홈">
         <img class="brand-mark" src="images/logo.png" alt="" />
         <span>J.영의 AX Lab</span>
       </a>
@@ -29,673 +30,831 @@
     </header>
 
     <main>
-      <section class="detail-hero lesson-hero">
+      <section class="detail-hero lesson-hero automation-hero">
         <a class="back-link" href="index.html#level-process">← 레벨 프로세스로</a>
-        <p class="eyebrow">Advanced · Harness + n8n</p>
-        <h1>AI 팀을 자동으로 돌리는 운영형 포트폴리오</h1>
+        <p class="eyebrow">AI Automatic · 자동화 도구</p>
+        <h1><span>여러가지 다양한</span>AI자동화 도구</h1>
         <p>
-          Intermediate가 AI 팀과 협업하는 방식이라면, Advanced는 병렬 에이전트,
-          n8n 자동화, GitHub Actions, Claude Code를 연결해 사람이 매번 손대지 않아도
-          업데이트되는 시스템을 설계하는 과정입니다.
+          이 페이지는 첨부 자료의 상세 설명을 유지하면서, JYOUNG UX LAB의 기존 레이아웃 안에서 다시 정리한 자동화 도구 가이드입니다.
+          각 도구는 개별적으로 사용할 수 있고, 필요한 경우 프로젝트 흐름에 맞게 차례대로 연결합니다.
         </p>
         <div class="meta-row">
-          <span>대상 자동화와 운영까지 보여주고 싶은 디자이너</span>
-          <span>도구 Claude · Codex · n8n · GitHub Actions</span>
-          <span>결과물 자동 배포 시스템 + Advanced 케이스</span>
+          <span>읽는 방식 먼저 전체 이해 후 필요한 도구만 선택</span>
+          <span>도구 n8n · Playwright · Pillow · FFmpeg · Remotion · MCP</span>
+          <span>결과물 자동화 요청 공식과 실전 프롬프트</span>
         </div>
       </section>
 
-      <section class="detail-layout">
+      <section class="detail-layout automation-layout">
         <aside class="detail-sidebar">
-          <nav class="detail-toc" aria-label="Advanced 목차">
-            <a href="#overview">개요</a>
-            <a href="#harness">Harness 개념</a>
-            <a href="#parallel">01 병렬 에이전트</a>
-            <a href="#coord">02 코디네이터</a>
-            <a href="#skill-adv">03 자동화 SKILL</a>
-            <a href="#n8n-intro">04 n8n 시작</a>
-            <a href="#n8n-flows">05 자동화 3종</a>
-            <a href="#n8n-claude">06 Claude 연동</a>
-            <a href="#github">07 GitHub Actions</a>
-            <a href="#claude-code">08 Claude Code</a>
-            <a href="#portfolio">09 케이스 스터디</a>
+          <nav class="detail-toc" aria-label="AI Automatic 목차">
+            <a href="#how-to-use">읽는 방법</a>
+            <a href="#n8n">n8n</a>
+            <a href="#playwright">Playwright</a>
+            <a href="#pillow">Pillow / OpenCV</a>
+            <a href="#ffmpeg">FFmpeg</a>
+            <a href="#remotion">Remotion</a>
+            <a href="#file">파일 자동화</a>
+            <a href="#mcp">MCP</a>
+            <a href="#formula">요청 공식</a>
           </nav>
-          <div class="design-md-tools" data-design-md-builder>
-            <a class="design-md-button primary" href="jyoung-uiux.md" download="jyoung-uiux.md">J.영 Design.md 다운받기</a>
-            <a class="design-md-button secondary" href="custom-design-md.html">Custom Design.md 생성하기</a>
-          </div>
         </aside>
 
-        <article class="detail-content">
-          <section id="overview">
-            <h2>Advanced에서 달라지는 것</h2>
-            <p>
-              Advanced의 핵심은 “무엇을 만들었나”보다 “어떤 운영 시스템을 설계했나”입니다.
-              병렬 에이전트가 동시에 산출물을 만들고, 코디네이터가 충돌을 해결하며,
-              n8n과 GitHub Actions가 콘텐츠 업데이트와 배포를 자동화합니다.
-            </p>
-            <ul class="deliverables">
-              <li>코디네이터 Claude가 병렬 에이전트 결과를 취합합니다.</li>
-              <li>n8n이 콘텐츠 수집, 요약, 저장, 알림 흐름을 자동화합니다.</li>
-              <li>GitHub Actions가 JSON 검증과 Vercel 배포를 실행합니다.</li>
-              <li>Claude Code 또는 Codex가 반복 코드 수정과 QA를 돕습니다.</li>
-            </ul>
-          </section>
-
-          <section id="harness">
-            <h2>Anthropic Harness 개념</h2>
-            <p>
-              Harness는 AI 에이전트가 원하는 방향으로만 움직이도록 역할, 기준, 반복 루프를 묶어두는 제어 구조입니다.
-              단순히 “UI 만들어줘”라고 맡기는 대신, 생성자와 평가자를 분리하고 결과가 기준에 미달하면 다시 수정하게 만듭니다.
-            </p>
-            <ul class="deliverables">
-              <li>Generator: 화면, 컴포넌트, 문서 초안을 생성합니다.</li>
-              <li>Evaluator: 디자인 품질, 독창성, 완성도, 사용성을 기준으로 결과를 평가합니다.</li>
-              <li>Refiner: 평가 결과를 반영해 다음 버전을 다시 생성합니다.</li>
-              <li>Human: 최종 판단 기준과 프로젝트 맥락을 제공합니다.</li>
-            </ul>
-
-            <h3>Harness 평가 기준</h3>
-            <ul class="deliverables">
-              <li>Design Quality: 색상, 타이포, 레이아웃이 하나의 분위기와 정체성을 만드는가?</li>
-              <li>Originality: AI 기본 패턴이 아니라 프로젝트에 맞춘 커스텀 결정이 보이는가?</li>
-              <li>Craft: 타이포 위계, 여백 리듬, 명도 대비, 반응형 기준을 충족하는가?</li>
-              <li>Functionality: 사용자가 주요 액션을 직관적으로 이해하고 수행할 수 있는가?</li>
-            </ul>
-
-            <h3>프롬프트 내장형 Harness 템플릿</h3>
-            <div class="prompt-box">
-              <button class="copy-button" type="button" data-copy-target="advanced-harness-template">복사</button>
-              <pre id="advanced-harness-template"><code>너는 UIUX 프론트엔드 Harness다.
-하나의 요청을 Generator → Evaluator → Refiner 순서로 처리한다.
-
-프로젝트:
-- 서비스명: [서비스명]
-- 목표 사용자: [사용자]
-- 만들어야 할 화면/컴포넌트: [대상]
-- 브랜드 톤: [예: 차분함, 실험적, 신뢰감, 에디토리얼]
-
-1. Generator
-먼저 화면/컴포넌트 초안을 만든다.
-구조, 주요 섹션, 인터랙션 상태, 반응형 기준을 포함한다.
-
-2. Evaluator
-아래 기준으로 1~5점 평가하고, 미달 항목을 구체적으로 적는다.
-- Design Quality
-- Originality
-- Craft
-- Functionality
-- Accessibility
-
-3. Refiner
-Evaluator에서 4점 미만인 항목을 수정한 개선안을 다시 제시한다.
-수정 이유와 변경 전/후 차이를 함께 설명한다.
-
-출력 형식:
-### Generator 초안
-### Evaluator 채점표
-### Refiner 개선안
-### 다음 구현 지시문</code></pre>
-            </div>
-
-            <h3>두 번의 Claude 호출로 분리하기</h3>
-            <div class="prompt-box">
-              <button class="copy-button" type="button" data-copy-target="advanced-harness-two-call">복사</button>
-              <pre id="advanced-harness-two-call"><code>첫 번째 Claude:
-너는 Generator다. 아래 조건으로 UI 초안을 만들어줘.
-[서비스/화면/사용자/브랜드 톤/필수 섹션/제약 조건]
-
-두 번째 Claude:
-너는 Evaluator다. 아래 Generator 결과물을 평가해줘.
-평가 기준은 Design Quality, Originality, Craft, Functionality, Accessibility다.
-각 항목을 1~5점으로 채점하고, 4점 미만 항목은 구체적인 수정 지시로 바꿔줘.
-
-세 번째 요청:
-너는 Refiner다. Evaluator의 수정 지시를 반영해 개선안을 다시 작성해줘.
-개선된 구조, 문구, 스타일 방향, 구현 지시문을 함께 정리해줘.</code></pre>
-            </div>
-          </section>
-
-          <section id="parallel">
-            <h2>01. 순차 vs 병렬 에이전트</h2>
-            <p>
-              Intermediate에서는 기획, 디자인, 개발, QA를 순서대로 넘겼다면 Advanced에서는
-              여러 대화창 또는 작업 에이전트를 동시에 움직입니다. 기획자가 PRD를 쓰는 동안
-              디자이너는 Design.md를 정리하고, 개발자는 컴포넌트 구조를 설계합니다.
-            </p>
-
-            <h3>병렬 작업 시작 프롬프트</h3>
-            <div class="prompt-box">
-              <button class="copy-button" type="button" data-copy-target="advanced-parallel-start">복사</button>
-              <pre id="advanced-parallel-start"><code>대화창 A — 기획자 Claude
-[Planner SKILL 붙여넣기]
-
-오늘 병렬 작업 시작. 나는 동시에 3개 AI 에이전트와 작업 중이야.
-너는 기획자 역할로 다음을 담당해줘.
-
-서비스: [서비스명]
-네 담당: PRD 전체 + P0 기능 상세 명세
-마감: 이 대화에서 완성
-완성 신호: 마지막에 "기획 완료 — [요약 3줄]"로 끝내줘.
-
----
-
-대화창 B — 디자이너 Claude
-[Designer SKILL 붙여넣기]
-
-오늘 병렬 작업 시작.
-너는 디자이너 역할로 다음을 담당해줘.
-
-서비스: [서비스명]
-레퍼런스: [이미 분석된 3개 사이트]
-네 담당: Design.md 완성 + tokens.css 생성
-완성 신호: 마지막에 "디자인 시스템 완료 — [컬러/폰트/규칙 요약]"으로 끝내줘.
-
----
-
-대화창 C — 개발자 Claude 또는 Codex
-[Developer SKILL 붙여넣기]
-
-오늘 병렬 작업 시작.
-너는 개발자 역할로 다음을 담당해줘.
-
-서비스: [서비스명]
-화면 목록: [예상 5개 화면 이름]
-네 담당: HTML 파일 구조 + 공통 컴포넌트 초안
-완성 신호: "개발 구조 완료 — [파일 목록]"으로 끝내줘.</code></pre>
-            </div>
-          </section>
-
-          <section id="coord">
-            <h2>02. 코디네이터 SKILL</h2>
-            <p>
-              코디네이터는 병렬 에이전트가 만든 결과를 받아 충돌을 확인하고, 어떤 결정을
-              우선할지 정리한 뒤 다음 단계의 인풋 패키지로 합칩니다.
-            </p>
-
-            <h3>skill-coordinator.md</h3>
-            <div class="prompt-box">
-              <button class="copy-button" type="button" data-copy-target="advanced-skill-coordinator">복사</button>
-              <pre id="advanced-skill-coordinator"><code>## Role
-너는 AI 프로젝트 코디네이터야.
-병렬로 작업한 여러 에이전트의 결과물을 취합하고 통합해서 다음 단계를 지휘해줘.
-
-## 작업 순서
-1. 수신: 각 에이전트의 완성 결과물을 입력으로 받기
-2. 충돌 체크: 기획, 디자인, 개발 사이 불일치 항목 찾기
-3. 해결: 충돌 항목을 논리적으로 조정하고 이유 명시
-4. 통합: 하나의 마스터 문서로 합치기
-5. 지시: 다음 단계 에이전트에게 명확한 인풋 전달
-
-## 충돌 해결 기준
-- 기능 vs 디자인 충돌: 사용자 경험 우선
-- 디자인 vs 개발 충돌: 구현 가능성 우선, 단 이유 설명
-- 기획 vs 개발 충돌: MVP 또는 운영 범위 우선
-
-## Output Format
-### 통합 완료
-### 충돌 해결 항목: 항목별 원인 + 결정
-### 통합 마스터 문서
-### 다음 단계 지시사항
-
-## Never
-- 충돌을 숨기거나 임의로 한쪽 삭제 금지
-- 근거 없이 특정 에이전트 결과 우선 금지
-- 다음 단계 지시 없이 마무리 금지</code></pre>
-            </div>
-
-            <h3>코디네이터 취합 프롬프트</h3>
-            <div class="prompt-box">
-              <button class="copy-button" type="button" data-copy-target="advanced-coordinate-results">복사</button>
-              <pre id="advanced-coordinate-results"><code>병렬 작업이 완료됐어. 다음 3개 결과물을 취합해줘.
-
---- 기획자 결과 ---
-[기획자 Claude 대화의 최종 결과 붙여넣기]
-
---- 디자이너 결과 ---
-[디자이너 Claude 대화의 최종 결과 붙여넣기]
-
---- 개발자 결과 ---
-[개발자 Claude 또는 Codex 작업 결과 붙여넣기]
-
-처리 순서:
-1. 충돌 항목을 찾고 해결해줘. 이유 포함
-2. 통합 마스터 문서를 만들어줘
-3. 다음 단계 구현 또는 QA 에이전트에게 줄 인풋 패키지를 정리해줘</code></pre>
-            </div>
-          </section>
-
-          <section id="skill-adv">
-            <h2>03. 자동화 전용 SKILL</h2>
-            <p>
-              n8n, GitHub Actions, JSON 데이터 가공처럼 운영 자동화가 들어가면 별도의
-              자동화 역할이 필요합니다. API 키는 코드에 쓰지 않고 Credentials 또는
-              GitHub Secrets에 저장해야 합니다.
-            </p>
-
-            <h3>skill-automation.md</h3>
-            <div class="prompt-box">
-              <button class="copy-button" type="button" data-copy-target="advanced-skill-automation">복사</button>
-              <pre id="advanced-skill-automation"><code>## Role
-너는 AI 자동화 엔지니어야.
-n8n 워크플로우, GitHub Actions, JSON 데이터 가공을 담당해서 웹사이트가 자동으로 업데이트되도록 설계해줘.
-
-## 자동화 대상
-- 웹사이트: [서비스명 + Vercel URL]
-- 업데이트 주기: [예: 매일 오전 9시]
-- 데이터 소스: [예: RSS 피드 / YouTube API / 뉴스 API]
-- 저장 위치: [GitHub 저장소 경로]
-
-## Rules
-- 모든 n8n 노드는 한국어 이름으로 설명
-- JSON 데이터는 반드시 유효성 검증 노드 포함
-- 에러 발생 시 Slack 또는 이메일 알림 설정
-- GitHub commit은 자동 메시지 형식 준수
-  예: auto: [날짜] 콘텐츠 업데이트
-
-## Output Format
-- n8n 워크플로우: 노드 목록 + 연결 구조 + 각 노드 설정값
-- GitHub Actions: .yml 파일 전체 코드
-- 에러 처리: 실패 시 대응 흐름
-
-## Never
-- API 키를 코드에 직접 하드코딩 금지
-- 에러 처리 없는 HTTP 요청 금지
-- 테스트 없이 바로 프로덕션 적용 금지</code></pre>
-            </div>
-          </section>
-
-          <section id="n8n-intro">
-            <h2>04. n8n 시작하기</h2>
-            <p>
-              n8n은 여러 서비스와 API를 연결해 자동화를 만드는 도구입니다. 플랜과 기능은
-              바뀔 수 있으므로 가입 전 공식 사이트에서 현재 조건을 확인하고, API 키는
-              n8n Credentials에 저장합니다.
-            </p>
-
-            <h3>n8n 설정 방법 안내 요청</h3>
-            <div class="prompt-box">
-              <button class="copy-button" type="button" data-copy-target="advanced-n8n-setup">복사</button>
-              <pre id="advanced-n8n-setup"><code>n8n을 처음 시작하는 방법을 알려줘.
-
-내 상황:
-- 컴퓨터: [Mac / Windows]
-- 목표: Vercel에 배포된 웹사이트 콘텐츠를 자동 업데이트
-- 데이터 소스: [예: RSS 피드 / YouTube / 뉴스 API]
-- 업데이트 주기: [예: 매일 오전 9시]
-
-다음 순서로 설명해줘:
-
-1. n8n 클라우드 또는 셀프호스팅 선택 기준
-2. 첫 워크플로우 화면 구조
-3. 핵심 노드 3가지 설명:
-   Schedule Trigger, HTTP Request, Set 또는 Code 노드
-4. 내 자동화에 필요한 노드 목록
-5. API 키를 Credentials에 저장하는 방법
-6. 테스트 실행과 에러 확인 방법
-
-코딩 비전공자도 따라할 수 있게 설명해줘.</code></pre>
-            </div>
-          </section>
-
-          <section id="n8n-flows">
-            <h2>05. 핵심 자동화 워크플로우 3종</h2>
-            <p>
-              Advanced 포트폴리오에서 가장 설득력 있는 자동화는 실제 운영 흐름입니다.
-              콘텐츠 자동 업데이트, YouTube 영상 연동, 폼 제출 자동 처리를 기본 3종으로
-              설계합니다.
-            </p>
-
-            <h3>워크플로우 01. 뉴스/콘텐츠 자동 업데이트</h3>
-            <div class="prompt-box">
-              <button class="copy-button" type="button" data-copy-target="advanced-flow-news">복사</button>
-              <pre id="advanced-flow-news"><code>내 웹사이트에 뉴스/콘텐츠를 매일 자동 업데이트하는 n8n 워크플로우를 설계해줘.
-
-설정 정보:
-- 데이터 소스: [RSS URL 또는 API 엔드포인트]
-- 수집 항목: [예: 제목, 링크, 날짜, 썸네일]
-- Claude 가공: [예: 3줄 요약 + 한국어 번역 + 태그 3개 추출]
-- 저장 파일: [예: /data/news.json]
-- GitHub 저장소: [저장소 이름]
-- 실행 주기: [예: 매일 오전 9시]
-- 에러 알림: [Slack / Gmail]
-
-다음 형식으로 설계해줘:
-1. Schedule Trigger: cron 설정값
-2. HTTP Request: URL, method, headers
-3. Code Node: 데이터 파싱 JS 코드
-4. Claude AI: system prompt + user prompt 설정
-5. Set Node: JSON 구조 정의
-6. GitHub: 파일 경로, 커밋 메시지 형식
-7. Error Trigger: 실패 시 알림 설정
-
-각 노드의 실제 설정값을 n8n에 입력할 수 있게 구체적으로 써줘.</code></pre>
-            </div>
-
-            <h3>워크플로우 02. YouTube 영상 자동 연동</h3>
-            <div class="prompt-box">
-              <button class="copy-button" type="button" data-copy-target="advanced-flow-youtube">복사</button>
-              <pre id="advanced-flow-youtube"><code>YouTube 채널 새 영상을 자동으로 웹사이트에 추가하는 n8n 워크플로우를 설계해줘.
-
-설정 정보:
-- YouTube 채널 ID: [채널 ID]
-- API 키: [YouTube Data API v3 키. n8n Credential로 저장]
-- 체크 주기: [예: 3시간마다]
-- Claude 처리: [예: 제목 한국어화 + 카테고리 자동 분류 + 추천 이유 1줄]
-- 저장 파일: [예: /data/videos.json]
-- 중복 방지: 이미 추가된 videoId는 스킵
-
-노드 설계:
-1. Schedule Trigger 설정
-2. YouTube API 호출: 최신 10개
-3. IF Node: 신규 영상만 통과
-4. Claude AI: 메타데이터 가공
-5. Read/Write JSON: 기존 파일 로드 → 신규 항목 추가 → 저장
-6. GitHub Push
-
-중복 체크 로직을 JS 코드로 작성해줘.
-기존 videos.json의 videoId 배열과 비교하는 방식으로.</code></pre>
-            </div>
-
-            <h3>워크플로우 03. 폼 제출 자동 처리</h3>
-            <div class="prompt-box">
-              <button class="copy-button" type="button" data-copy-target="advanced-flow-form">복사</button>
-              <pre id="advanced-flow-form"><code>웹사이트 폼 제출을 자동으로 처리하는 n8n 워크플로우를 설계해줘.
-
-설정 정보:
-- 폼 유형: [예: 강의 수강 신청 / 포트폴리오 피드백 문의]
-- 폼 필드: [이름, 이메일, 내용 등]
-- Claude 처리: [문의 유형 분류 + 자동 답변 초안 생성]
-- 발송 이메일: [Gmail 계정]
-- 저장 시트: [Google Sheets 이름]
-- 관리자 알림: [Slack 채널명]
-
-노드 설계:
-1. Webhook: URL 생성 + 폼과 연결 방법
-2. Claude AI: 분류 prompt + 답변 생성 prompt
-3. Gmail: 신청자 확인 메일 템플릿
-4. Google Sheets: 헤더 구조 + 행 추가 설정
-5. Slack: 메시지 포맷
-
-Claude AI 노드의 system prompt와 user prompt를 실제 사용 가능한 형태로 작성해줘.
-Gmail 자동 발송 메일 본문도 한국어로 완성해줘.</code></pre>
-            </div>
-          </section>
-
-          <section id="n8n-claude">
-            <h2>06. n8n + Claude API 연동</h2>
-            <p>
-              n8n 안에서 Claude를 호출할 때는 내장 Anthropic/Claude 노드 또는 HTTP Request
-              노드를 사용할 수 있습니다. 모델명과 API 형식은 바뀔 수 있으므로 실제 적용 전
-              공식 문서를 확인하고, 출력은 파싱 가능한 JSON으로 제한하는 것이 좋습니다.
-            </p>
-
-            <h3>n8n Claude 노드 설정 프롬프트</h3>
-            <div class="prompt-box">
-              <button class="copy-button" type="button" data-copy-target="advanced-n8n-claude">복사</button>
-              <pre id="advanced-n8n-claude"><code>n8n 워크플로우에서 Claude API를 연동하는 방법을 알려줘.
-
-내 상황:
-- n8n 버전: [클라우드 / 셀프호스팅]
-- 사용 목적: [예: 뉴스 요약 생성]
-- 입력 데이터: [이전 노드에서 오는 데이터 구조 설명]
-- 원하는 출력: [예: JSON 형태의 요약 + 태그]
-
-다음 두 가지 방법을 모두 알려줘:
-
-방법 A: Anthropic 또는 Claude 내장 노드 사용
-- Credentials 등록 방법
-- 모델 선택 기준
-- System Prompt 설정
-- 이전 노드 데이터를 User Message에 넣는 방법
-
-방법 B: HTTP Request 노드로 직접 호출
-- URL, Method, Headers 설정
-- Body JSON 구조
-- 응답 데이터 파싱 방법
-
-출력이 반드시 파싱 가능한 JSON으로 나오도록 System Prompt와 User Prompt를 작성해줘.
-API 키는 코드에 직접 쓰지 않고 Credentials에 저장하는 방식으로 설명해줘.</code></pre>
-            </div>
-
-            <h3>HTTP Request Body 예시</h3>
-            <div class="prompt-box">
-              <button class="copy-button" type="button" data-copy-target="advanced-http-body">복사</button>
-              <pre id="advanced-http-body"><code>{
-  "model": "[현재 사용 가능한 Claude 모델명]",
-  "max_tokens": 1000,
-  "system": "너는 콘텐츠 큐레이터야. 입력된 뉴스 기사를 분석해서 반드시 JSON만 반환해줘. 다른 텍스트는 포함하지 마.",
-  "messages": [
-    {
-      "role": "user",
-      "content": "다음 기사를 분석해줘:\\n제목: {{ $json.title }}\\n내용: {{ $json.description }}\\n\\n다음 JSON 형식으로만 반환해줘:\\n{\"summary\": \"3줄 요약\", \"tags\": [\"태그1\", \"태그2\"], \"category\": \"분류\"}"
+        <article class="detail-content automation-guide">
+<section id="how-to-use" class="automation-orientation">
+  <h2>이 페이지는 순서대로 모두 실행하는 강의가 아니라, 필요한 자동화 도구를 골라 쓰는 사용 설명서입니다.</h2>
+  <p>
+    앞 페이지의 Harness가 “AI 팀을 어떤 구조로 운영할지”를 다뤘다면, 이 페이지는 실제 작업에서 쓰는 자동화 도구를 하나씩 이해하는 자료입니다.
+    n8n, Playwright, Pillow, FFmpeg, Remotion, 파일 자동화, MCP는 각각 따로 사용할 수 있고, 프로젝트가 커질 때 서로 연결해서 하나의 자동화 흐름으로 만들 수 있습니다.
+  </p>
+  <ul class="deliverables automation-reading-order">
+    <li><strong>처음 읽을 때:</strong> n8n부터 요청 공식까지 위에서 아래로 한 번 읽어 도구의 역할을 이해합니다.</li>
+    <li><strong>실제 적용할 때:</strong> 지금 필요한 작업에 맞는 도구만 골라 프롬프트 예시를 바꿔 사용합니다.</li>
+    <li><strong>포트폴리오에 넣을 때:</strong> 어떤 문제를 자동화했고, 어떤 도구를 선택했고, 결과물이 어디에 저장됐는지 기록합니다.</li>
+    <li><strong>여러 도구를 연결할 때:</strong> n8n은 흐름을 예약하고 연결하며, 웹 수집은 Playwright, 이미지 처리는 Pillow, 영상 변환은 FFmpeg처럼 역할을 나눠 파이프라인으로 묶습니다.</li>
+  </ul>
+</section>
+<!-- ════════════════════════════════ -->
+<!-- 00. N8N -->
+<!-- ════════════════════════════════ -->
+<div id="n8n" class="section-head">
+  <div class="section-icon"><i class="fa-solid fa-diagram-project" aria-hidden="true"></i></div>
+  <div>
+    <h2>00. n8n — 자동화 흐름을 연결하는 운영 도구</h2>
+    <p>시간, 데이터, AI 처리, 저장, 알림을 하나의 워크플로우로 묶는 도구</p>
+  </div>
+</div>
+
+<div class="whatbox">
+  <div class="whatbox-label">이게 뭔가요?</div>
+  <p>
+    n8n은 여러 서비스를 선으로 연결해서 <strong>반복 작업이 자동으로 실행되게 만드는 워크플로우 도구</strong>입니다.<br>
+    예를 들어 매일 오전 9시에 데이터를 가져오고, Claude로 요약하고, JSON 파일로 저장하고, GitHub에 업데이트한 뒤, 관리자에게 알림을 보내는 흐름을 만들 수 있습니다.
+  </p>
+</div>
+
+<div class="analogy">
+  <div class="analogy-icon"><i class="fa-solid fa-route" aria-hidden="true"></i></div>
+  <div class="analogy-text">
+    <strong>쉽게 말하면?</strong><br>
+    Playwright, Pillow, FFmpeg가 각각 손과 도구라면, n8n은 <strong>언제 어떤 도구를 어떤 순서로 실행할지 정하는 작업 관리자</strong>입니다.
+    그래서 n8n은 혼자 쓰기보다 다른 도구와 연결될 때 더 강력합니다.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">n8n은 언제 쓰나요? <span class="tag">사용 기준</span></div>
+  <div class="usecase-grid">
+    <div class="usecase-item">
+      <div class="ui-icon"><i class="fa-regular fa-clock" aria-hidden="true"></i></div>
+      <strong>정해진 시간에 실행</strong>
+      <p>매일, 매주, 3시간마다처럼 사람이 직접 시작하지 않아도 자동 실행합니다.</p>
+    </div>
+    <div class="usecase-item">
+      <div class="ui-icon"><i class="fa-solid fa-link" aria-hidden="true"></i></div>
+      <strong>여러 서비스를 연결</strong>
+      <p>RSS, YouTube, Claude API, Google Sheets, GitHub, Slack을 한 흐름으로 묶습니다.</p>
+    </div>
+    <div class="usecase-item">
+      <div class="ui-icon"><i class="fa-solid fa-code-branch" aria-hidden="true"></i></div>
+      <strong>조건에 따라 분기</strong>
+      <p>새 데이터만 통과시키거나, 실패하면 알림을 보내는 조건 처리를 만듭니다.</p>
+    </div>
+    <div class="usecase-item">
+      <div class="ui-icon"><i class="fa-solid fa-rotate" aria-hidden="true"></i></div>
+      <strong>반복 운영 자동화</strong>
+      <p>포트폴리오 콘텐츠 업데이트, 문의 처리, 뉴스 요약, 영상 목록 갱신을 자동화합니다.</p>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">기본 노드 역할 <span class="tag">핵심 구조</span></div>
+  <table class="method-table">
+    <thead>
+      <tr><th>노드</th><th>역할</th><th>예시</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Schedule Trigger</td><td>정해진 시간에 워크플로우 시작</td><td>매일 오전 9시 실행</td></tr>
+      <tr><td>Webhook</td><td>외부 폼이나 사이트에서 요청을 받음</td><td>문의 폼 제출 처리</td></tr>
+      <tr><td>HTTP Request</td><td>외부 API에서 데이터를 가져옴</td><td>RSS, YouTube, 뉴스 API 호출</td></tr>
+      <tr><td>AI / Claude</td><td>텍스트 요약, 분류, 태그 생성</td><td>기사 3줄 요약과 카테고리 추출</td></tr>
+      <tr><td>Code</td><td>데이터를 원하는 JSON 구조로 정리</td><td>중복 제거, 날짜 정렬, 필드명 변경</td></tr>
+      <tr><td>GitHub</td><td>파일 저장과 커밋</td><td>data/news.json 업데이트</td></tr>
+      <tr><td>Slack / Gmail</td><td>성공 또는 실패 알림</td><td>관리자에게 실행 결과 전송</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="card">
+  <div class="card-title">대표 자동화 흐름 <span class="tag">workflow</span></div>
+  <div class="flow">
+    <div class="flow-item">1. Schedule</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-item">2. API 수집</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-item">3. Claude 요약</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-item">4. JSON 정리</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-item">5. GitHub 저장</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-item">6. 배포/알림</div>
+  </div>
+  <p>
+    이 흐름은 “콘텐츠 자동 업데이트”에 가장 많이 쓰입니다. 포트폴리오 사이트라면 뉴스, 강의 자료, YouTube 영상 목록, 수강생 결과물 목록을 자동 갱신하는 구조로 설명할 수 있습니다.
+  </p>
+</div>
+
+<div class="prompt-box">
+  <div class="prompt-label">n8n 워크플로우를 이렇게 요청하세요</div>
+  <div class="prompt-text">
+    <em>"내 웹사이트의 data/news.json을 매일 오전 9시에 자동 업데이트하는 n8n 워크플로우를 설계해줘.<br>
+    데이터 소스는 [RSS 또는 API URL]이고, Claude로 제목/요약/태그를 만들고,<br>
+    중복된 URL은 제거한 뒤 GitHub에 커밋하고, 실패하면 Gmail로 알림이 오게 해줘.<br>
+    각 노드 이름, 입력값, 출력 JSON 구조, 에러 처리까지 n8n에 그대로 만들 수 있게 정리해줘."</em>
+  </div>
+</div>
+
+<div class="tip">
+  <span class="tip-icon"><i class="fa-regular fa-lightbulb" aria-hidden="true"></i></span>
+  <p>
+    <strong>적용 순서:</strong> 먼저 n8n으로 전체 흐름을 설계하고, 웹 조작이 필요하면 Playwright를 붙이고, 이미지/영상 가공이 필요하면 Pillow나 FFmpeg를 뒤에 연결합니다.
+  </p>
+</div>
+
+<!-- ════════════════════════════════ -->
+<!-- 01. PLAYWRIGHT -->
+<!-- ════════════════════════════════ -->
+<div id="playwright" class="section-head blue">
+  <div class="section-icon"><i class="fa-solid fa-globe" aria-hidden="true"></i></div>
+  <div>
+    <h2>01. Playwright — 웹 자동화</h2>
+    <p>웹사이트를 사람 대신 자동으로 조작하는 도구</p>
+  </div>
+</div>
+
+<div class="whatbox">
+  <div class="whatbox-label">이게 뭔가요?</div>
+  <p>
+    Playwright는 <strong>컴퓨터가 사람 대신 인터넷 브라우저를 조작</strong>하게 해주는 도구입니다.<br>
+    우리가 손으로 하는 "주소창에 URL 입력 → 버튼 클릭 → 글자 입력 → 결과 복사" 같은 작업을,
+    코드 한 줄이 자동으로 해줍니다.
+  </p>
+</div>
+
+<div class="analogy">
+  <div class="analogy-icon"><i class="fa-solid fa-robot" aria-hidden="true"></i></div>
+  <div class="analogy-text">
+    <strong>쉽게 말하면?</strong><br>
+    내가 매일 아침 네이버에 들어가서 날씨를 확인하고 메모장에 적는 작업을 한다고 해봐요.
+    Playwright는 <strong>"나 대신 이 작업을 자동으로 해주는 로봇 손"</strong>이에요.
+    클릭도 하고, 글도 쓰고, 내용도 긁어와요.
+  </div>
+</div>
+
+<div class="card blue">
+  <div class="card-title">할 수 있는 것들 <span class="tag">기능 목록</span></div>
+  <div class="usecase-grid">
+    <div class="usecase-item">
+      <div class="ui-icon"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></div>
+      <strong>정보 수집 (크롤링)</strong>
+      <p>쇼핑몰 가격, 뉴스 제목, 블로그 글 등 원하는 정보를 자동으로 모아옴</p>
+    </div>
+    <div class="usecase-item">
+      <div class="ui-icon"><i class="fa-regular fa-pen-to-square" aria-hidden="true"></i></div>
+      <strong>자동 입력</strong>
+      <p>폼 작성, 검색어 입력, 로그인 자동화 등 반복 입력 작업 처리</p>
+    </div>
+    <div class="usecase-item">
+      <div class="ui-icon"><i class="fa-solid fa-camera" aria-hidden="true"></i></div>
+      <strong>화면 캡처</strong>
+      <p>특정 웹페이지를 PNG/PDF로 자동 저장. 포트폴리오 스크린샷도 가능</p>
+    </div>
+    <div class="usecase-item">
+      <div class="ui-icon"><i class="fa-solid fa-database" aria-hidden="true"></i></div>
+      <strong>데이터 저장</strong>
+      <p>수집한 정보를 CSV, JSON 파일로 자동 정리해서 저장</p>
+    </div>
+  </div>
+</div>
+
+<div class="card blue">
+  <div class="card-title">주요 명령어 (메서드) 설명 <span class="tag">핵심 코드</span></div>
+  <table class="method-table">
+    <thead>
+      <tr><th>명령어</th><th>뜻 (쉽게)</th><th>예시</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>page.goto()</td><td>브라우저 주소창에 URL 입력하기</td><td>네이버 열기</td></tr>
+      <tr><td>locator.click()</td><td>버튼이나 링크 클릭하기</td><td>검색 버튼 누르기</td></tr>
+      <tr><td>locator.fill()</td><td>입력창에 글자 채워넣기</td><td>검색창에 키워드 입력</td></tr>
+      <tr><td>locator.textContent()</td><td>화면의 글자 내용 가져오기</td><td>상품 가격 텍스트 읽기</td></tr>
+      <tr><td>page.screenshot()</td><td>현재 화면을 이미지로 저장</td><td>결과 페이지 캡처</td></tr>
+      <tr><td>page.locator()</td><td>화면에서 특정 요소 찾기</td><td>버튼, 표, 링크 등 선택</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="card blue">
+  <div class="card-title">실제 사용 흐름 <span class="tag">step by step</span></div>
+  <div class="flow">
+    <div class="flow-item">1. 사이트 열기</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-item">2. 검색창 찾기</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-item">3. 키워드 입력</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-item">4. 결과 읽기</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-item">5. CSV 저장</div>
+  </div>
+  <div class="code-wrap">
+    <div class="code-label">
+      <div class="code-dots"><i class="r"></i><i class="y"></i><i class="g"></i></div>
+      <span>playwright — 네이버 뉴스 제목 수집 예시</span>
+    </div>
+    <pre><code><span class="cm">// 1단계: 브라우저를 열고 네이버로 이동</span>
+<span class="kw">await</span> page.<span class="fn">goto</span>(<span class="str">'https://www.naver.com'</span>);
+
+<span class="cm">// 2단계: 검색창을 찾아서 키워드 입력</span>
+<span class="kw">await</span> page.<span class="fn">locator</span>(<span class="str">'#query'</span>).<span class="fn">fill</span>(<span class="str">'디자인 트렌드 2025'</span>);
+
+<span class="cm">// 3단계: 검색 버튼 클릭</span>
+<span class="kw">await</span> page.<span class="fn">locator</span>(<span class="str">'button[type=submit]'</span>).<span class="fn">click</span>();
+
+<span class="cm">// 4단계: 결과 제목들 모두 가져오기</span>
+<span class="kw">const</span> <span class="var">titles</span> = <span class="kw">await</span> page.<span class="fn">locator</span>(<span class="str">'.news_title'</span>).<span class="fn">allTextContents</span>();
+
+<span class="cm">// 5단계: 화면 캡처해서 PNG로 저장</span>
+<span class="kw">await</span> page.<span class="fn">screenshot</span>({ path: <span class="str">'results/result.png'</span> });
+</code></pre>
+  </div>
+</div>
+
+<div class="prompt-box">
+  <div class="prompt-label">Claude Code에게 이렇게 요청하세요</div>
+  <div class="prompt-text">
+    <em>"네이버에 접속해서 '디자인 트렌드 2025' 검색하고,<br>
+    뉴스 제목 상위 10개를 titles.csv 파일로 저장해줘.<br>
+    결과 화면도 screenshot.png로 캡처해줘."</em>
+  </div>
+</div>
+
+<div class="result-box">
+  <div class="result-label">이 요청으로 만들어지는 결과물</div>
+  <p>
+    <i class="fa-regular fa-file-lines" aria-hidden="true"></i> <strong>titles.csv</strong> — 뉴스 제목 10개가 정리된 스프레드시트 파일<br>
+    <i class="fa-regular fa-image" aria-hidden="true"></i> <strong>screenshot.png</strong> — 검색 결과 화면 이미지
+  </p>
+</div>
+
+<div class="tip">
+  <span class="tip-icon"><i class="fa-regular fa-lightbulb" aria-hidden="true"></i></span>
+  <p><strong>중요!</strong> Playwright를 쓰려면 Claude Code에 MCP로 연결해야 해요.
+  Claude Code에서 <code>npx @playwright/mcp@latest</code>를 설치하고,
+  설정 파일에 등록하면 바로 자연어로 요청할 수 있어요.</p>
+</div>
+
+<hr class="divider" />
+
+<!-- ════════════════════════════════ -->
+<!-- 02. PILLOW / IMAGE -->
+<!-- ════════════════════════════════ -->
+<div id="pillow" class="section-head green-v">
+  <div class="section-icon"><i class="fa-regular fa-image" aria-hidden="true"></i></div>
+  <div>
+    <h2>02. Pillow · OpenCV — 이미지 자동화</h2>
+    <p>이미지를 코드로 만들고, 자르고, 꾸미는 도구</p>
+  </div>
+</div>
+
+<div class="whatbox">
+  <div class="whatbox-label">이게 뭔가요?</div>
+  <p>
+    Pillow는 <strong>Python으로 이미지를 다루는 도구</strong>예요.<br>
+    포토샵을 손으로 켜지 않아도, 코드가 알아서 이미지를 자르고, 크기를 바꾸고, 글씨도 넣어줍니다.
+    카드뉴스 9장을 한 번에 만들 수도 있어요!
+  </p>
+</div>
+
+<div class="analogy">
+  <div class="analogy-icon"><i class="fa-solid fa-scissors" aria-hidden="true"></i></div>
+  <div class="analogy-text">
+    <strong>쉽게 말하면?</strong><br>
+    포토샵 작업을 매번 손으로 하는 대신, <strong>"이 템플릿으로 카드 10장 자동 생성해줘"</strong>라고 하면
+    Pillow가 알아서 이미지 10장을 뚝딱 만들어내는 거예요.
+  </div>
+</div>
+
+<div class="card green-v">
+  <div class="card-title">주요 명령어 설명 <span class="tag">핵심 코드</span></div>
+  <table class="method-table">
+    <thead>
+      <tr><th>명령어</th><th>뜻 (쉽게)</th><th>예시</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Image.open()</td><td>이미지 파일 열기</td><td>배경 사진 불러오기</td></tr>
+      <tr><td>Image.new()</td><td>새 빈 캔버스 만들기</td><td>1080x1080 흰 배경 생성</td></tr>
+      <tr><td>resize()</td><td>이미지 크기 바꾸기</td><td>썸네일 크기로 축소</td></tr>
+      <tr><td>crop()</td><td>이미지 특정 부분 잘라내기</td><td>얼굴 부분만 크롭</td></tr>
+      <tr><td>paste()</td><td>이미지 위에 다른 이미지 붙이기</td><td>로고 삽입</td></tr>
+      <tr><td>draw.text()</td><td>이미지에 글자 넣기</td><td>제목 텍스트 추가</td></tr>
+      <tr><td>save()</td><td>완성된 이미지 저장하기</td><td>PNG, JPG로 내보내기</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="card green-v">
+  <div class="card-title">실제 사용 흐름 <span class="tag">카드뉴스 9장 만들기</span></div>
+  <div class="flow">
+    <div class="flow-item">1. 원고 준비</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-item">2. 배경 생성</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-item">3. 텍스트 삽입</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-item">4. PNG 저장</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-item">5. 폴더 정리</div>
+  </div>
+  <div class="code-wrap">
+    <div class="code-label">
+      <div class="code-dots"><i class="r"></i><i class="y"></i><i class="g"></i></div>
+      <span>pillow — 카드뉴스 자동 생성 예시</span>
+    </div>
+    <pre><code><span class="kw">from</span> PIL <span class="kw">import</span> Image, ImageDraw, ImageFont
+
+<span class="cm"># 1단계: 1080x1080 흰 배경 새 캔버스 만들기</span>
+img = Image.<span class="fn">new</span>(<span class="str">'RGB'</span>, (<span class="num">1080</span>, <span class="num">1080</span>), color=<span class="str">'#1a3fc4'</span>)
+
+<span class="cm"># 2단계: 글씨 쓸 준비 (draw 도구 꺼내기)</span>
+draw = ImageDraw.<span class="fn">Draw</span>(img)
+
+<span class="cm"># 3단계: 제목 텍스트 이미지 중앙에 넣기</span>
+draw.<span class="fn">text</span>((<span class="num">540</span>, <span class="num">400</span>), <span class="str">"AI 자동화 시대가 왔다"</span>,
+       fill=<span class="str">'white'</span>, anchor=<span class="str">'mm'</span>)
+
+<span class="cm"># 4단계: outputs 폴더에 PNG로 저장</span>
+img.<span class="fn">save</span>(<span class="str">'outputs/01_카드.png'</span>)
+</code></pre>
+  </div>
+</div>
+
+<div class="prompt-box">
+  <div class="prompt-label">Claude Code에게 이렇게 요청하세요</div>
+  <div class="prompt-text">
+    <em>"content.txt 파일의 내용을 바탕으로<br>
+    1080x1080 카드뉴스 이미지 9장을 만들어줘.<br>
+    배경은 파란색, 텍스트는 흰색으로 하고<br>
+    outputs/ 폴더에 01_카드.png ~ 09_카드.png로 저장해줘."</em>
+  </div>
+</div>
+
+<div class="result-box">
+  <div class="result-label">이 요청으로 만들어지는 결과물</div>
+  <p>
+    <i class="fa-regular fa-image" aria-hidden="true"></i> <strong>outputs/01_카드.png ~ 09_카드.png</strong> — 카드뉴스 이미지 9장이 자동 생성
+  </p>
+</div>
+
+<hr class="divider" />
+
+<!-- ════════════════════════════════ -->
+<!-- 03. FFMPEG -->
+<!-- ════════════════════════════════ -->
+<div id="ffmpeg" class="section-head orange-v">
+  <div class="section-icon"><i class="fa-solid fa-film" aria-hidden="true"></i></div>
+  <div>
+    <h2>03. FFmpeg · MoviePy — 영상 자동화</h2>
+    <p>영상을 자르고, 붙이고, 변환하는 영상 편집 엔진</p>
+  </div>
+</div>
+
+<div class="whatbox">
+  <div class="whatbox-label">이게 뭔가요?</div>
+  <p>
+    FFmpeg는 <strong>영상 파일을 다루는 전문 엔진</strong>이에요.<br>
+    프리미어 프로를 열지 않아도 터미널 명령어 한 줄로 영상을 자르고, 합치고, 변환할 수 있어요.
+    유튜브 쇼츠용 세로 영상 변환, BGM 합치기도 자동으로 됩니다.
+  </p>
+</div>
+
+<div class="analogy">
+  <div class="analogy-icon"><i class="fa-solid fa-scissors" aria-hidden="true"></i></div>
+  <div class="analogy-text">
+    <strong>쉽게 말하면?</strong><br>
+    영상 편집 프로그램 없이 <strong>"이 영상 앞뒤 1초씩 잘라서 세로 영상으로 바꿔줘"</strong>라고 하면
+    FFmpeg가 몇 초 만에 처리해버려요. 100개 영상도 한 번에 가능해요!
+  </div>
+</div>
+
+<div class="card orange-v">
+  <div class="card-title">주요 명령어 설명 <span class="tag">핵심 코드</span></div>
+  <table class="method-table">
+    <thead>
+      <tr><th>명령어 옵션</th><th>뜻 (쉽게)</th><th>예시</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>ffmpeg -i</td><td>입력 파일 지정하기</td><td>원본 영상 불러오기</td></tr>
+      <tr><td>-ss 00:00:05</td><td>영상의 시작 지점 설정</td><td>5초 지점부터 자르기</td></tr>
+      <tr><td>-t 00:00:30</td><td>영상 길이 설정</td><td>30초짜리로 만들기</td></tr>
+      <tr><td>-vf scale=1080:1920</td><td>영상 해상도 변경</td><td>세로 영상(릴스) 크기로</td></tr>
+      <tr><td>-c:v libx264</td><td>영상 인코딩 방식 설정</td><td>고품질 MP4 출력</td></tr>
+      <tr><td>-shortest</td><td>가장 짧은 트랙 기준으로 자르기</td><td>BGM 합칠 때 길이 맞추기</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="card orange-v">
+  <div class="card-title">실제 코드 예시 <span class="tag">세로 영상 변환</span></div>
+  <div class="code-wrap">
+    <div class="code-label">
+      <div class="code-dots"><i class="r"></i><i class="y"></i><i class="g"></i></div>
+      <span>ffmpeg — 세로 영상 변환 + 앞뒤 1초 자르기</span>
+    </div>
+    <pre><code><span class="cm"># 원본 영상을 세로(1080x1920)로 변환하고</span>
+<span class="cm"># 앞에서 1초, 뒤에서 1초 잘라내기</span>
+
+ffmpeg -i <span class="str">input.mp4</span> \
+  -vf <span class="str">scale=1080:1920</span> \
+  -ss <span class="num">00:00:01</span> \
+  -t <span class="num">00:00:28</span> \
+  -c:v libx264 -c:a aac \
+  -y <span class="str">output_세로.mp4</span>
+
+<span class="cm"># videos/ 폴더 안의 모든 mp4를 한 번에 변환하려면:</span>
+<span class="kw">for</span> f <span class="kw">in</span> videos/*.mp4; <span class="kw">do</span>
+  ffmpeg -i <span class="str">"$f"</span> -vf scale=<span class="num">1080:1920</span> <span class="str">"outputs/${f%.mp4}_세로.mp4"</span>
+<span class="kw">done</span></code></pre>
+  </div>
+</div>
+
+<div class="prompt-box">
+  <div class="prompt-label">Claude Code에게 이렇게 요청하세요</div>
+  <div class="prompt-text">
+    <em>"videos/ 폴더 안의 mp4 파일을 모두<br>
+    1080x1920 세로 영상으로 바꾸고,<br>
+    앞뒤 1초씩 잘라서 outputs/ 폴더에 저장해줘."</em>
+  </div>
+</div>
+
+<div class="tip">
+  <span class="tip-icon"><i class="fa-regular fa-lightbulb" aria-hidden="true"></i></span>
+  <p>
+    <strong>옵션 외울 필요 없어요!</strong> Claude Code에 "세로 영상으로 변환해줘"라고 말하면
+    ffmpeg 명령어를 알아서 만들어줘요. 옵션의 <em>의미만 알면</em> 요청이 훨씬 정확해져요.
+  </p>
+</div>
+
+<hr class="divider" />
+
+<!-- ════════════════════════════════ -->
+<!-- 04. REMOTION -->
+<!-- ════════════════════════════════ -->
+<div id="remotion" class="section-head purple-v">
+  <div class="section-icon"><i class="fa-solid fa-video" aria-hidden="true"></i></div>
+  <div>
+    <h2>04. Remotion · HyperFrames — 코드로 영상 만들기</h2>
+    <p>React/HTML 코드를 영상(MP4)으로 출력하는 도구</p>
+  </div>
+</div>
+
+<div class="whatbox">
+  <div class="whatbox-label">이게 뭔가요?</div>
+  <p>
+    Remotion은 <strong>웹 개발하듯이 영상을 만드는 도구</strong>예요.<br>
+    HTML과 CSS로 화면을 디자인하면, 그게 그대로 MP4 영상이 됩니다.
+    애니메이션 효과, 타이틀 카드, 자막 영상 등을 코드로 정밀하게 제어할 수 있어요.
+  </p>
+</div>
+
+<div class="analogy">
+  <div class="analogy-icon"><i class="fa-solid fa-palette" aria-hidden="true"></i></div>
+  <div class="analogy-text">
+    <strong>쉽게 말하면?</strong><br>
+    파워포인트 슬라이드를 만들면 그게 영상이 되는 것과 비슷해요.
+    <strong>카드 5장을 순서대로 보여주는 30초 쇼츠 영상</strong>을 코드 한 번 작성으로 뚝딱 만들 수 있어요.
+  </div>
+</div>
+
+<div class="card purple-v">
+  <div class="card-title">Remotion vs HyperFrames 차이 <span class="tag">비교</span></div>
+  <table class="method-table">
+    <thead>
+      <tr><th>도구</th><th>기반</th><th>언제 쓰나요?</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Remotion</td><td>React (JSX)</td><td>React를 아는 사람, 정밀한 애니메이션 제어</td></tr>
+      <tr><td>HyperFrames</td><td>HTML/CSS/JS</td><td>HTML만 알아도 영상 만들기 가능</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="card purple-v">
+  <div class="card-title">실제 코드 예시 <span class="tag">카드 등장 애니메이션</span></div>
+  <div class="code-wrap">
+    <div class="code-label">
+      <div class="code-dots"><i class="r"></i><i class="y"></i><i class="g"></i></div>
+      <span>remotion — 카드 순서대로 등장하는 쇼츠 영상</span>
+    </div>
+    <pre><code><span class="kw">import</span> { useCurrentFrame, interpolate, Sequence } <span class="kw">from</span> <span class="str">'remotion'</span>;
+
+<span class="cm">// 카드 1장 컴포넌트: 프레임에 따라 페이드인 효과</span>
+<span class="kw">const</span> <span class="fn">Card</span> = ({ title, color }) => {
+  <span class="kw">const</span> frame = <span class="fn">useCurrentFrame</span>(); <span class="cm">// 현재 몇 번째 프레임인지</span>
+  <span class="kw">const</span> opacity = <span class="fn">interpolate</span>(frame, [<span class="num">0</span>, <span class="num">15</span>], [<span class="num">0</span>, <span class="num">1</span>]); <span class="cm">// 0→1 페이드인</span>
+
+  <span class="kw">return</span> (
+    &lt;div style={{ opacity, background: color, padding: <span class="str">'40px'</span> }}&gt;
+      &lt;h1&gt;{title}&lt;/h1&gt;
+    &lt;/div&gt;
+  );
+};
+
+<span class="cm">// 카드 5장을 각 90프레임(3초)씩 순서대로 재생</span>
+<span class="kw">export const</span> <span class="fn">MyVideo</span> = () => (
+  &lt;&gt;
+    &lt;Sequence from={<span class="num">0</span>}  durationInFrames={<span class="num">90</span>}&gt;&lt;Card title=<span class="str">"카드 1"</span> color=<span class="str">"#1a3fc4"</span>/&gt;&lt;/Sequence&gt;
+    &lt;Sequence from={<span class="num">90</span>} durationInFrames={<span class="num">90</span>}&gt;&lt;Card title=<span class="str">"카드 2"</span> color=<span class="str">"#ff4d6d"</span>/&gt;&lt;/Sequence&gt;
+  &lt;/&gt;
+);</code></pre>
+  </div>
+</div>
+
+<div class="prompt-box">
+  <div class="prompt-label">Claude Code에게 이렇게 요청하세요</div>
+  <div class="prompt-text">
+    <em>"Remotion으로 카드 5장이 3초씩 순서대로 페이드인 되며 등장하는<br>
+    15초짜리 쇼츠 템플릿 영상을 만들어줘.<br>
+    각 카드에 제목과 설명 텍스트가 들어가게 해줘."</em>
+  </div>
+</div>
+
+<hr class="divider" />
+
+<!-- ════════════════════════════════ -->
+<!-- 05. FILE -->
+<!-- ════════════════════════════════ -->
+<div id="file" class="section-head red-v">
+  <div class="section-icon"><i class="fa-regular fa-folder-open" aria-hidden="true"></i></div>
+  <div>
+    <h2>05. 파일 자동화</h2>
+    <p>폴더 안의 파일을 찾고, 이름 바꾸고, 분류하기</p>
+  </div>
+</div>
+
+<div class="whatbox">
+  <div class="whatbox-label">이게 뭔가요?</div>
+  <p>
+    파일 자동화는 <strong>컴퓨터 폴더 안을 청소부처럼 정리해주는 기능</strong>이에요.<br>
+    downloads 폴더에 막 쌓인 파일들을 이미지/영상/문서로 자동 분류하고,
+    파일명에 날짜도 자동으로 붙여줍니다.
+  </p>
+</div>
+
+<div class="analogy">
+  <div class="analogy-icon"><i class="fa-solid fa-folder-tree" aria-hidden="true"></i></div>
+  <div class="analogy-text">
+    <strong>쉽게 말하면?</strong><br>
+    책상 위 뒤섞인 서류를 <strong>"이건 이미지, 이건 영상, 이건 문서"</strong>로
+    자동 분류해서 각 폴더로 옮겨주는 정리 로봇이에요.
+  </div>
+</div>
+
+<div class="card red-v">
+  <div class="card-title">실제 코드 예시 <span class="tag">파일 자동 분류 + 날짜 추가</span></div>
+  <div class="code-wrap">
+    <div class="code-label">
+      <div class="code-dots"><i class="r"></i><i class="y"></i><i class="g"></i></div>
+      <span>python — downloads 폴더 자동 정리</span>
+    </div>
+    <pre><code><span class="kw">import</span> os, shutil
+<span class="kw">from</span> datetime <span class="kw">import</span> date
+
+today = date.today().<span class="fn">strftime</span>(<span class="str">"%Y-%m-%d"</span>)  <span class="cm"># 오늘 날짜: 2025-05-27</span>
+
+<span class="cm"># 파일 종류별 폴더 지정</span>
+folders = {
+  <span class="str">'이미지'</span>: [<span class="str">'.jpg'</span>, <span class="str">'.png'</span>, <span class="str">'.gif'</span>, <span class="str">'.webp'</span>],
+  <span class="str">'영상'</span>:  [<span class="str">'.mp4'</span>, <span class="str">'.mov'</span>, <span class="str">'.avi'</span>],
+  <span class="str">'문서'</span>:  [<span class="str">'.pdf'</span>, <span class="str">'.docx'</span>, <span class="str">'.pptx'</span>],
+}
+
+<span class="kw">for</span> file <span class="kw">in</span> os.<span class="fn">listdir</span>(<span class="str">'downloads'</span>):
+  ext = os.path.<span class="fn">splitext</span>(file)[<span class="num">1</span>].<span class="fn">lower</span>()  <span class="cm"># 확장자 확인</span>
+
+  <span class="kw">for</span> folder, exts <span class="kw">in</span> folders.<span class="fn">items</span>():
+    <span class="kw">if</span> ext <span class="kw">in</span> exts:
+      os.<span class="fn">makedirs</span>(folder, exist_ok=<span class="kw">True</span>)  <span class="cm"># 폴더 없으면 생성</span>
+      new_name = <span class="str">f"{today}_{file}"</span>          <span class="cm"># 날짜 앞에 붙이기</span>
+      shutil.<span class="fn">move</span>(<span class="str">f"downloads/{file}"</span>, <span class="str">f"{folder}/{new_name}"</span>)
+</code></pre>
+  </div>
+</div>
+
+<div class="prompt-box">
+  <div class="prompt-label">Claude Code에게 이렇게 요청하세요</div>
+  <div class="prompt-text">
+    <em>"downloads 폴더의 파일을 이미지, 영상, 문서 폴더로 분류하고<br>
+    각 파일명 앞에 오늘 날짜(YYYY-MM-DD)를 붙여줘."</em>
+  </div>
+</div>
+
+<div class="result-box">
+  <div class="result-label">이 요청으로 만들어지는 결과물</div>
+  <p>
+    <i class="fa-regular fa-folder-open" aria-hidden="true"></i> <strong>이미지/2025-05-27_photo.jpg</strong><br>
+    <i class="fa-regular fa-folder-open" aria-hidden="true"></i> <strong>영상/2025-05-27_video.mp4</strong><br>
+    <i class="fa-regular fa-folder-open" aria-hidden="true"></i> <strong>문서/2025-05-27_report.pdf</strong>
+  </p>
+</div>
+
+<hr class="divider" />
+
+<!-- ════════════════════════════════ -->
+<!-- 06. MCP -->
+<!-- ════════════════════════════════ -->
+<div id="mcp" class="section-head teal-v">
+  <div class="section-icon"><i class="fa-solid fa-plug" aria-hidden="true"></i></div>
+  <div>
+    <h2>06. MCP — 외부 서비스 연결</h2>
+    <p>Notion, Google Drive, GitHub 등을 Claude Code에 연결하기</p>
+  </div>
+</div>
+
+<div class="whatbox">
+  <div class="whatbox-label">이게 뭔가요?</div>
+  <p>
+    MCP(Model Context Protocol)는 <strong>Claude Code가 외부 서비스를 직접 사용할 수 있게 해주는 연결 플러그</strong>예요.<br>
+    Notion에 글을 쓰거나, Google Drive에서 파일을 읽거나, GitHub 이슈를 확인하는 것을
+    말 한마디로 할 수 있게 됩니다.
+  </p>
+</div>
+
+<div class="analogy">
+  <div class="analogy-icon"><i class="fa-solid fa-plug" aria-hidden="true"></i></div>
+  <div class="analogy-text">
+    <strong>쉽게 말하면?</strong><br>
+    스마트폰에 앱을 설치하면 기능이 늘어나죠?
+    MCP는 <strong>Claude Code에 앱을 설치하는 것</strong>과 같아요.
+    Notion MCP를 연결하면 Claude가 Notion을 직접 조작할 수 있어요.
+  </div>
+</div>
+
+<div class="card teal-v">
+  <div class="card-title">MCP 연결 방법 <span class="tag">설정 파일</span></div>
+  <ul class="steps">
+    <li>
+      <div class="step-dot">1</div>
+      <div class="step-content">
+        <strong>설정 파일 열기</strong>
+        <span>~/.claude/claude_desktop_config.json 파일을 텍스트 에디터로 열어요</span>
+      </div>
+    </li>
+    <li>
+      <div class="step-dot">2</div>
+      <div class="step-content">
+        <strong>MCP 서버 정보 추가</strong>
+        <span>연결하고 싶은 서비스(Notion, GitHub 등)의 MCP 설정 코드를 붙여넣어요</span>
+      </div>
+    </li>
+    <li>
+      <div class="step-dot">3</div>
+      <div class="step-content">
+        <strong>Claude Code 재시작</strong>
+        <span>설정을 저장하고 Claude Code를 껐다가 다시 켜면 연결 완료!</span>
+      </div>
+    </li>
+  </ul>
+  <div class="code-wrap">
+    <div class="code-label">
+      <div class="code-dots"><i class="r"></i><i class="y"></i><i class="g"></i></div>
+      <span>claude_desktop_config.json — Notion + Playwright MCP 연결 예시</span>
+    </div>
+    <pre><code>{
+  <span class="str">"mcpServers"</span>: {
+    <span class="cm">// Notion MCP 연결</span>
+    <span class="str">"notion"</span>: {
+      <span class="str">"command"</span>: <span class="str">"npx"</span>,
+      <span class="str">"args"</span>: [<span class="str">"-y"</span>, <span class="str">"@notionhq/notion-mcp-server"</span>],
+      <span class="str">"env"</span>: { <span class="str">"NOTION_API_KEY"</span>: <span class="str">"your_notion_key"</span> }
+    },
+    <span class="cm">// Playwright (웹 자동화) MCP 연결</span>
+    <span class="str">"playwright"</span>: {
+      <span class="str">"command"</span>: <span class="str">"npx"</span>,
+      <span class="str">"args"</span>: [<span class="str">"@playwright/mcp@latest"</span>]
     }
-  ]
+  }
 }</code></pre>
-            </div>
-          </section>
+  </div>
+</div>
 
-          <section id="github">
-            <h2>07. GitHub Actions 자동 배포</h2>
-            <p>
-              n8n이 JSON 파일을 GitHub에 커밋하면 GitHub Actions가 JSON을 검증하고
-              Vercel 배포를 실행합니다. Secrets에는 Vercel 토큰과 프로젝트 ID를 저장하고,
-              실패 시 알림이 오도록 설계합니다.
-            </p>
+<div class="prompt-box">
+  <div class="prompt-label">MCP 연결 후 이렇게 요청하세요</div>
+  <div class="prompt-text">
+    <em>"오늘 작업 완료 목록을 Notion에 정리해줘.<br>
+    제목은 '2025-05-27 작업일지'로 하고<br>
+    완료한 항목 3개를 체크리스트로 추가해줘."</em>
+  </div>
+</div>
 
-            <h3>GitHub Actions .yml 생성</h3>
-            <div class="prompt-box">
-              <button class="copy-button" type="button" data-copy-target="advanced-github-actions">복사</button>
-              <pre id="advanced-github-actions"><code>내 프로젝트에 맞는 GitHub Actions .yml 파일을 만들어줘.
+<div class="warn-box">
+  <span class="warn-icon"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i></span>
+  <p>MCP 서비스마다 API 키나 로그인 연동이 필요해요. 각 서비스(Notion, GitHub 등)에서 API 키를 발급받아 설정 파일에 입력해야 합니다.</p>
+</div>
 
-프로젝트 정보:
-- 저장소: [GitHub 저장소 이름]
-- 트리거: data/ 폴더 내 JSON 파일이 push될 때
-- 빌드: [순수 HTML/CSS/JS — 빌드 없음 / 또는 빌드 명령어]
-- 배포: Vercel CLI 사용
-- 브랜치: main
+<hr class="divider" />
 
-다음을 포함한 완성된 .yml 파일을 만들어줘:
-1. 트리거 설정
-   - push 이벤트, paths: ['data/**']
-   - 수동 실행 workflow_dispatch 포함
-2. 작업 단계
-   - checkout
-   - JSON 유효성 검증
-   - Vercel 배포. VERCEL_TOKEN Secret 사용
-   - 배포 성공/실패 Slack 알림
-3. 필요한 GitHub Secrets 이름과 값 설명
+<!-- ════════════════════════════════ -->
+<!-- FORMULA -->
+<!-- ════════════════════════════════ -->
+<div id="formula">
+  <div class="section-head blue">
+    <div class="section-icon"><i class="fa-regular fa-clipboard" aria-hidden="true"></i></div>
+    <div>
+      <h2>요청 공식 — 이 5가지만 말하면 됩니다</h2>
+      <p>Claude Code에게 자동화를 요청할 때 이 순서로 말하면 정확해요</p>
+    </div>
+  </div>
 
-파일 경로는 .github/workflows/auto-deploy.yml 로 안내해줘.
-주석을 한국어로 달아줘.</code></pre>
-            </div>
+  <div class="card">
+    <ul class="steps">
+      <li>
+        <div class="step-dot">1</div>
+        <div class="step-content">
+          <strong>어떤 영역인지</strong>
+          <span>웹 조작? 이미지 만들기? 영상 편집? 파일 정리? MCP 연결?</span>
+        </div>
+      </li>
+      <li>
+        <div class="step-dot">2</div>
+        <div class="step-content">
+          <strong>어떤 도구를 쓸지</strong>
+          <span>Playwright / Pillow / FFmpeg / Remotion / Python / MCP</span>
+        </div>
+      </li>
+      <li>
+        <div class="step-dot">3</div>
+        <div class="step-content">
+          <strong>어떤 기능을 실행할지</strong>
+          <span>열기, 클릭, 입력, 추출 / 만들기, 자르기, 텍스트 넣기 / 변환, 합치기 등</span>
+        </div>
+      </li>
+      <li>
+        <div class="step-dot">4</div>
+        <div class="step-content">
+          <strong>어떤 형식으로 저장할지</strong>
+          <span>CSV, PNG, MP4, GIF, PDF, JSON, XLSX 중에서</span>
+        </div>
+      </li>
+      <li>
+        <div class="step-dot">5</div>
+        <div class="step-content">
+          <strong>어느 폴더에 저장할지</strong>
+          <span>outputs/, videos/, images/, results/ 등 폴더명까지 지정</span>
+        </div>
+      </li>
+    </ul>
+  </div>
 
-            <h3>auto-deploy.yml 예시</h3>
-            <div class="prompt-box">
-              <button class="copy-button" type="button" data-copy-target="advanced-yml-example">복사</button>
-              <pre id="advanced-yml-example"><code>name: Auto Deploy on Data Update
+  <div class="prompt-box">
+    <div class="prompt-label">5가지를 다 담은 완벽한 요청 예시</div>
+    <div class="prompt-text">
+      <em>"[웹 영역] Playwright로<br>
+      [도구] 네이버에 접속해서 '디자인 트렌드' 검색하고<br>
+      [기능] 뉴스 제목 10개를 추출해서<br>
+      [형식] CSV 파일로<br>
+      [폴더] results/ 폴더에 저장해줘."</em>
+    </div>
+  </div>
+</div>
 
-on:
-  push:
-    branches: [main]
-    paths:
-      - 'data/**'
-  workflow_dispatch:
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: 저장소 체크아웃
-        uses: actions/checkout@v4
-
-      - name: JSON 유효성 검증
-        run: |
-          for file in data/*.json; do
-            python3 -c "import json; json.load(open('$file'))"
-            echo "$file 검증 통과"
-          done
-
-      - name: Vercel 배포
-        env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-        run: |
-          npm install -g vercel
-          vercel --prod --token=$VERCEL_TOKEN</code></pre>
-            </div>
-          </section>
-
-          <section id="claude-code">
-            <h2>08. Claude Code / Codex 실전 자동화</h2>
-            <p>
-              원본은 Claude Code를 기준으로 설명하지만, 이 사이트 제작 환경에서는 Codex도
-              같은 역할을 할 수 있습니다. 핵심은 프로젝트 루트에 작업 규칙을 두고, 반복
-              수정, 검증, 커밋을 일관된 명령으로 처리하는 것입니다.
-            </p>
-
-            <h3>설치와 세팅 가이드 요청</h3>
-            <div class="prompt-box">
-              <button class="copy-button" type="button" data-copy-target="advanced-code-setup">복사</button>
-              <pre id="advanced-code-setup"><code>Claude Code 또는 Codex를 처음 설치하고 사용하는 방법을 알려줘.
-
-내 환경:
-- OS: [Mac / Windows]
-- Node.js 설치 여부: [있음 / 없음]
-- 프로젝트: [서비스명, 순수 HTML/CSS/JS]
-- 저장소: [GitHub 연결됨]
-
-다음 순서로 설명해줘:
-1. 설치 또는 실행 준비
-2. 프로젝트 폴더에서 시작하기
-3. CLAUDE.md 또는 AGENTS.md 같은 프로젝트 지시 파일이란 무엇인지
-4. 좋은 작업 요청 예시 vs 나쁜 요청 예시
-5. 파일 수정 후 확인하는 방법
-6. commit + push 하는 방법
-
-코딩 비전공자도 따라할 수 있게 설명해줘.</code></pre>
-            </div>
-
-            <h3>CLAUDE.md / AGENTS.md 예시</h3>
-            <div class="prompt-box">
-              <button class="copy-button" type="button" data-copy-target="advanced-claude-md">복사</button>
-              <pre id="advanced-claude-md"><code># 프로젝트 지시서 — [서비스명]
-
-## 프로젝트 개요
-- 서비스명: [서비스명]
-- 기술 스택: 순수 HTML / CSS / Vanilla JS
-- 배포: Vercel
-- 저장소: [GitHub 저장소 URL]
-
-## 파일 구조
-index.html: 메인 페이지
-styles.css: 전체 스타일과 디자인 시스템
-script.js: 인터랙션 로직
-data/news.json: n8n이 업데이트하는 뉴스 데이터
-data/videos.json: n8n이 업데이트하는 영상 데이터
-
-## 디자인 시스템
-- 모든 컬러는 styles.css의 :root 변수 사용
-- 임의 HEX 코드 직접 사용 금지
-- 새 컴포넌트는 기존 패턴과 일관성 유지
-
-## 코드 규칙
-- JS 함수에 필요한 경우 한국어 주석 추가
-- !important 사용 금지
-- 수정 후 반드시 작동 여부 확인
-
-## Git 커밋 형식
-- auto: [날짜] 콘텐츠 업데이트
-- feat: [기능명] 추가
-- fix: [문제] 수정
-- style: [요소] 디자인 변경
-
-## 절대 하지 말 것
-- .env 파일 수정 금지
-- API 키를 코드에 직접 작성 금지
-- 사용자 변경사항을 임의로 되돌리지 말 것</code></pre>
-            </div>
-
-            <h3>반복 작업 자동화 프롬프트</h3>
-            <div class="prompt-box">
-              <button class="copy-button" type="button" data-copy-target="advanced-repeat-automation">복사</button>
-              <pre id="advanced-repeat-automation"><code>코딩 에이전트로 다음 반복 작업을 자동화하는 방법을 알려줘.
-
-내 프로젝트: [서비스명]
-자동화할 작업:
-1. [예: data/news.json이 업데이트되면 index.html의 뉴스 섹션 자동 렌더링]
-2. [예: 매주 월요일 Design.md 기준으로 CSS 스타일 일관성 체크]
-3. [예: 새 화면 추가 시 네비게이션 자동 업데이트]
-
-각 작업에 대해:
-1. 터미널 또는 에이전트에게 입력할 정확한 명령
-2. shell script 또는 npm script로 등록하는 방법
-3. n8n Execute Command 노드로 호출하는 방법
-4. 실패했을 때 확인할 로그와 롤백 기준
-
-실제 터미널에 입력하는 명령 형식으로 작성해줘.</code></pre>
-            </div>
-          </section>
-
-          <section id="portfolio" class="next-panel">
-            <h2>09. Advanced 케이스 스터디</h2>
-            <p>
-              Advanced 케이스 스터디는 화면 결과물보다 시스템 설계가 중심입니다.
-              병렬 에이전트 구조, n8n 워크플로우, GitHub Actions 로그, 자동화 전후
-              비교 수치를 증거로 보여줍니다.
-            </p>
-
-            <h3>Advanced 케이스 스터디 작성</h3>
-            <div class="prompt-box">
-              <button class="copy-button" type="button" data-copy-target="advanced-case-study">복사</button>
-              <pre id="advanced-case-study"><code>Advanced 레벨 포트폴리오 케이스 스터디를 작성해줘.
-
-제공 자료:
-- 서비스명 & 배포 URL: [URL]
-- 병렬 에이전트 구조: [에이전트 수, 역할, 코디네이터 방식]
-- n8n 워크플로우: [구축한 워크플로우 목록]
-- GitHub Actions: [자동 배포 설정 여부]
-- 자동화 결과: [예: 매일 XX건 자동 업데이트, 수동 작업 시간 XX% 절감]
-
-케이스 스터디 구성:
-1. System Overview
-   이 시스템이 어떻게 작동하는지 한 페이지 다이어그램 설명
-2. Why Parallel Agents?
-   순차 방식 대비 병렬의 장점. 실제 시간 단축 수치 포함
-3. Automation Architecture
-   n8n 플로우 + GitHub Actions + 코드 에이전트 연결 구조 설명
-4. Key Engineering Decisions
-   핵심 결정 3가지와 에러 처리 전략
-5. Results & Metrics
-   자동화 전/후 비교, GitHub 커밋 로그, n8n 실행 기록
-6. Reflection
-   가장 어려웠던 점, 해결 방법, 다음 버전 개선 방향
-
-심사자가 "이 사람은 AI로 시스템을 설계할 줄 안다"고 느끼도록 써줘.
-단순 도구 사용이 아니라 아키텍처 설계 관점에서 설명해줘.</code></pre>
-            </div>
-
-            <h3>Advanced 완주 체크리스트</h3>
-            <div class="checklist">
-              <label><input type="checkbox" /> 코디네이터 SKILL이 완성되어 있다.</label>
-              <label><input type="checkbox" /> 자동화 SKILL이 완성되어 있다.</label>
-              <label><input type="checkbox" /> 병렬 작업을 실제로 3개 이상 역할로 진행해봤다.</label>
-              <label><input type="checkbox" /> n8n 계정 또는 실행 환경이 준비됐다.</label>
-              <label><input type="checkbox" /> 콘텐츠 자동 수집 워크플로우가 동작한다.</label>
-              <label><input type="checkbox" /> n8n → GitHub → Vercel 자동 배포 파이프라인이 연결됐다.</label>
-              <label><input type="checkbox" /> GitHub Actions .yml 파일이 저장소에 등록됐다.</label>
-              <label><input type="checkbox" /> 프로젝트 지시 파일이 루트에 있다.</label>
-              <label><input type="checkbox" /> 최소 1개 이상의 반복 작업이 자동화됐다.</label>
-              <label><input type="checkbox" /> 케이스 스터디에 자동화 전/후 수치 비교가 있다.</label>
-              <label><input type="checkbox" /> GitHub 커밋 로그 또는 n8n 실행 기록이 증거로 있다.</label>
-            </div>
-            <a class="button primary ink-button" href="automation.html">자동화 기본 실습 보기</a>
-          </section>
+<!-- SUMMARY -->
+<div class="summary">
+  <h2>핵심 정리</h2>
+  <p>자동화는 도구를 외우는 게 아니라, <strong>흐름을 설계하는 능력</strong>이에요</p>
+  <div class="formula">
+    <div class="formula-item"><i class="fa-solid fa-globe" aria-hidden="true"></i> Playwright<br><span>웹 조작</span></div>
+    <div class="formula-plus">+</div>
+    <div class="formula-item"><i class="fa-regular fa-image" aria-hidden="true"></i> Pillow<br><span>이미지</span></div>
+    <div class="formula-plus">+</div>
+    <div class="formula-item"><i class="fa-solid fa-film" aria-hidden="true"></i> FFmpeg<br><span>영상</span></div>
+    <div class="formula-plus">+</div>
+    <div class="formula-item"><i class="fa-regular fa-folder-open" aria-hidden="true"></i> 파일<br><span>정리</span></div>
+    <div class="formula-plus">+</div>
+    <div class="formula-item"><i class="fa-solid fa-plug" aria-hidden="true"></i> MCP<br><span>외부연결</span></div>
+    <div class="formula-eq">=</div>
+    <div class="formula-result"><i class="fa-solid fa-bolt" aria-hidden="true"></i> 완전 자동화</div>
+  </div>
+  <p>
+    이제는 AI에게 묻는 사람에서, AI 작업 흐름을 설계하는 사람으로.
+  </p>
+</div>
         </article>
       </section>
     </main>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=no-course-progress-20260528"></script>
   </body>
 </html>

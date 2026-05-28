@@ -7183,7 +7183,8 @@ h2,
   line-height: 1.16;
 }
 
-.harness-hero h1 > span {
+.harness-hero h1 > span,
+.lesson-hero h1 > span {
   display: block;
   margin-bottom: 8px;
   font-size: 0.52em;
@@ -7921,5 +7922,484 @@ h2,
   .portfolio-intro.light {
     min-width: 84vw;
     flex-basis: 84vw;
+  }
+}
+
+.automation-layout {
+  grid-template-columns: 230px minmax(0, 940px);
+}
+
+.automation-hero .meta-row span {
+  display: flex;
+  min-height: 118px;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(18px, 2.5vw, 28px);
+  font-size: clamp(14px, 1.2vw, 16px);
+  line-height: 1.55;
+  text-align: center;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+.automation-guide {
+  gap: 18px;
+}
+
+.automation-guide > .section-head,
+.automation-guide > .card,
+.automation-guide > .whatbox,
+.automation-guide > .analogy,
+.automation-guide > .prompt-box,
+.automation-guide > .result-box,
+.automation-guide > .warn-box,
+.automation-guide > .tip,
+.automation-guide > .summary,
+.automation-guide > #formula {
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  background: var(--paper);
+  box-shadow: var(--shadow);
+}
+
+.automation-guide > .section-head,
+.automation-guide > .card,
+.automation-guide > .whatbox,
+.automation-guide > .analogy,
+.automation-guide > .result-box,
+.automation-guide > .warn-box,
+.automation-guide > .tip,
+.automation-guide > .summary,
+.automation-guide > #formula {
+  margin: 0;
+  padding: clamp(20px, 3vw, 30px);
+}
+
+.automation-guide .automation-orientation {
+  padding: clamp(24px, 4vw, 36px);
+}
+
+.automation-guide .automation-orientation h2 {
+  margin-bottom: 18px;
+  font-size: clamp(24px, 2.7vw, 34px);
+}
+
+.automation-guide .automation-orientation p:not(.eyebrow) {
+  color: var(--graphite);
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.automation-guide .automation-reading-order {
+  margin-top: 24px;
+}
+
+.automation-guide .automation-reading-order li {
+  display: block;
+  min-height: 0;
+  padding: 0 0 0 48px;
+}
+
+.automation-guide .automation-reading-order li::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: grid;
+}
+
+.automation-guide .automation-reading-order strong {
+  display: inline;
+}
+
+.automation-guide .section-head {
+  align-items: center;
+  gap: 14px;
+}
+
+.automation-guide .section-icon {
+  display: grid;
+  width: 46px;
+  height: 46px;
+  flex: 0 0 46px;
+  place-items: center;
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  background: #f4f4f5;
+  color: var(--ink);
+  font-size: 21px;
+}
+
+.automation-guide .section-icon i,
+.automation-guide .ui-icon i,
+.automation-guide .analogy-icon i,
+.automation-guide .tip-icon i,
+.automation-guide .warn-icon i,
+.automation-guide .formula-item i,
+.automation-guide .formula-result i {
+  color: currentColor;
+  line-height: 1;
+}
+
+.automation-guide .ui-icon,
+.automation-guide .analogy-icon,
+.automation-guide .tip-icon,
+.automation-guide .warn-icon {
+  display: inline-grid;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+  place-items: center;
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 15px;
+}
+
+.automation-guide .ui-icon {
+  margin-bottom: 10px;
+}
+
+.automation-guide .section-head h2 {
+  margin: 0 0 5px;
+  color: var(--ink);
+  font-size: clamp(23px, 2.5vw, 32px);
+  line-height: 1.25;
+}
+
+.automation-guide .section-head p,
+.automation-guide .card p,
+.automation-guide .whatbox p,
+.automation-guide .analogy-text,
+.automation-guide .result-box p,
+.automation-guide .warn-box p,
+.automation-guide .tip p {
+  color: var(--graphite);
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.automation-guide .whatbox,
+.automation-guide .analogy,
+.automation-guide .result-box,
+.automation-guide .warn-box,
+.automation-guide .tip,
+.automation-guide .usecase-item,
+.automation-guide .flow {
+  background: #f7f7f8;
+}
+
+.automation-guide .whatbox,
+.automation-guide .analogy,
+.automation-guide .result-box,
+.automation-guide .warn-box,
+.automation-guide .tip {
+  border-color: var(--card-border);
+}
+
+.automation-guide .whatbox-label,
+.automation-guide .prompt-label,
+.automation-guide .result-label {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.automation-guide .whatbox strong,
+.automation-guide .analogy-text strong,
+.automation-guide .tip strong,
+.automation-guide .card-title,
+.automation-guide .usecase-item strong,
+.automation-guide .step-content strong {
+  color: var(--ink);
+}
+
+.automation-guide .card-title {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 14px;
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.automation-guide .tag,
+.automation-guide .card-title .tag {
+  border: 1px solid var(--card-border);
+  border-radius: 999px;
+  padding: 3px 9px;
+  background: #f4f4f5;
+  color: var(--graphite);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.automation-guide .usecase-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.automation-guide .usecase-item {
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.automation-guide .method-table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  background: var(--paper);
+}
+
+.automation-guide .method-table th,
+.automation-guide .method-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--card-border);
+  color: var(--graphite);
+  font-size: 14px;
+  line-height: 1.55;
+  text-align: left;
+}
+
+.automation-guide .method-table th {
+  background: #f4f4f5;
+  color: var(--ink);
+  font-weight: 800;
+}
+
+.automation-guide .method-table tr:last-child td {
+  border-bottom: 0;
+}
+
+.automation-guide .flow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 14px;
+}
+
+.automation-guide .flow-item {
+  border: 1px solid var(--card-border);
+  border-radius: 999px;
+  padding: 7px 12px;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.automation-guide .flow-arrow {
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.automation-guide .code-wrap {
+  overflow: hidden;
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  background: var(--ink);
+}
+
+.automation-guide .code-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  color: #d4d4d8;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.automation-guide .code-dots {
+  display: flex;
+  gap: 5px;
+}
+
+.automation-guide .code-dots i {
+  display: block;
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: #71717a;
+}
+
+.automation-guide .code-wrap pre {
+  margin: 0;
+  overflow-x: auto;
+  padding: 18px;
+  background: var(--ink);
+  color: #e8e8e8;
+  font-size: 13px;
+  line-height: 1.65;
+  white-space: pre;
+}
+
+.automation-guide .code-wrap code {
+  color: #e8e8e8;
+}
+
+.automation-guide .kw,
+.automation-guide .fn,
+.automation-guide .str,
+.automation-guide .cm,
+.automation-guide .num,
+.automation-guide .var {
+  color: #e8e8e8;
+}
+
+.automation-guide .prompt-box {
+  position: relative;
+  margin: 0;
+  padding: 54px 20px 20px;
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.automation-guide .prompt-box::before {
+  content: "Prompt";
+  position: absolute;
+  top: 18px;
+  left: 20px;
+  color: #a1a1aa;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.automation-guide .prompt-text,
+.automation-guide .prompt-text em {
+  color: #e8e8e8;
+  font-style: normal;
+  line-height: 1.75;
+}
+
+.automation-guide .steps {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.automation-guide .steps li {
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  gap: 12px;
+  align-items: start;
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 14px;
+  background: #f7f7f8;
+}
+
+.automation-guide .steps li::before {
+  display: none;
+}
+
+.automation-guide .step-dot {
+  display: grid;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+  border-radius: 8px;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.automation-guide .step-content span {
+  display: block;
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.automation-guide .divider {
+  width: 100%;
+  height: 1px;
+  margin: 14px 0;
+  border: 0;
+  background: var(--card-border);
+}
+
+.automation-guide .summary {
+  display: grid;
+  gap: 16px;
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.automation-guide .summary h2,
+.automation-guide .summary p {
+  margin: 0;
+  color: var(--paper);
+}
+
+.automation-guide .formula {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.automation-guide .formula-item,
+.automation-guide .formula-result {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  padding: 7px 12px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--paper);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.automation-guide .formula-plus,
+.automation-guide .formula-eq {
+  color: #a1a1aa;
+  font-weight: 800;
+}
+
+@media (max-width: 720px) {
+  .automation-hero .meta-row {
+    grid-template-columns: 1fr;
+  }
+
+  .automation-hero .meta-row span {
+    min-height: auto;
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  .automation-guide .usecase-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .automation-guide .section-head {
+    align-items: flex-start;
+  }
+
+  .automation-guide .method-table {
+    display: block;
+    overflow-x: auto;
+  }
+}
+
+@media (max-width: 980px) {
+  .automation-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .automation-layout .detail-sidebar {
+    position: static;
   }
 }
