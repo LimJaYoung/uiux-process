@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>팬덤앱 개발일지 | AURORA:NE Fan Orbit</title>
+    <meta
+      name="description"
+      content="Advanced 팬덤 모바일웹 제작 가이드를 실제 프로젝트로 검증하고 디벨롭하는 작업일지입니다."
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" href="styles.css?v=mobile-web-dev-log-flow-margin-20260603" />
+  </head>
+  <body class="intermediate-page advanced-mobile-page dev-log-page">
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="AI Product Design Lab 홈">
+        <img class="brand-mark" src="images/logo.png" alt="" />
+        <span>J.영의 AX Lab</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="nav-links detail-nav" aria-label="상세 메뉴">
+        <a href="index.html">홈</a>
+        <a href="advanced.html">Advanced</a>
+        <a href="resources.html">자료실</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="detail-hero lesson-hero intermediate-hero advanced-mobile-hero">
+        <a class="back-link" href="advanced.html">← Advanced 상세페이지로</a>
+        <h1><span>Portfolio Production Flow</span>팬덤앱 개발일지</h1>
+        <p>
+          이 페이지는 Advanced UIUX 모바일웹 프로세스 가이드를 테스트 페이지로 개발 진행 과정을 기록하였습니다.
+        </p>
+        <div class="meta-row">
+          <span>
+            <strong>01</strong>
+            <b>프로젝트</b>
+            <i>AURORA:NE Fan Orbit · 팬덤앱형 430px 모바일웹</i>
+          </span>
+          <span>
+            <strong>02</strong>
+            <b>스택</b>
+            <i>React · TypeScript · Tailwind CSS 기준 설계 + 정적 배포 검증</i>
+          </span>
+          <span>
+            <strong>03</strong>
+            <b>검증</b>
+            <i>Production 배포 및 430px 모바일 QA 완료</i>
+          </span>
+        </div>
+      </section>
+
+      <section class="detail-layout">
+        <aside class="detail-sidebar">
+          <nav class="detail-toc" aria-label="팬덤앱 개발일지 목차">
+            <a href="#origin">시작 프롬프트</a>
+            <a href="#step-1">Step.1 결과물</a>
+            <a href="#proof">검증 기록</a>
+            <a href="#step-2">Step.2 디벨롭</a>
+            <a href="#roadmap">다음 개선 로드맵</a>
+          </nav>
+          <div class="design-md-tools">
+            <a class="design-md-button primary" href="https://dist-flame-mu.vercel.app" target="_blank" rel="noopener noreferrer">최종 포트폴리오</a>
+            <a class="design-md-button secondary" href="fandom-mobile-web-project/docs/process.md">프로세스 문서 보기</a>
+          </div>
+        </aside>
+
+        <article class="detail-content">
+          <section id="origin">
+            <h2 class="overview-process-title"><span>Origin Prompt</span> 시작 프롬프트</h2>
+            <p>
+              사용자는 Advanced 프로세스 가이드가 실제 결과물로 증명될 수 있는지 확인하기 위해,
+              이 경로 안에 새 폴더를 만들고 자유 주제의 모바일 팬덤 웹을
+              <strong>1번 아이템 선정부터 배포까지 빠짐없이 진행</strong>하라고 요청했습니다.
+            </p>
+            <div class="prompt-box">
+              <pre><code>너는 이제부터 이 프로세스 가이드내용을 증명하기 위해서
+이 경로 내에 폴더를 하나 만들어서
+모바일 팬덤 웹을 만드는데 주제는 자유야
+
+1번 아이템부터~ 배포까지 단계를 빠짐없이 진행해서
+최상급 퀄리티의 모바일웹 팬덤웹을 만들어!</code></pre>
+            </div>
+          </section>
+
+          <section id="step-1">
+            <h2>1차 프로세스 진행</h2>
+            <div class="prompt-box step-prompt-box">
+              <h3>Step.1 제작 프롬프트</h3>
+              <pre><code>너는 이제부터 이 프로세스 가이드내용을 증명하기 위해서
+이 경로 내에 폴더를 하나 만들어서
+모바일 팬덤 웹을 만드는데  주제는  자유야
+
+1번 아이템부터~ 배포까지 단계를 빠짐없이 진행해서 최상급 퀄리티의 모바일웹 팬덤웹을 만들어!</code></pre>
+            </div>
+            <p>
+              Portfolio Production Flow의 Step.1에서는 가상의 4인조 퍼포먼스 그룹 <strong>AURORA:NE</strong>와 팬덤
+              <strong>Orbit</strong>을 주제로 선정했습니다. 실제 아이돌 이미지에 의존하지 않고,
+              자체 팬덤 세계관과 기능 구조를 만들어 저작권 리스크 없이 포트폴리오로 설명 가능한 방향을 선택했습니다.
+            </p>
+            <ul class="deliverables strategy-deliverables">
+              <li>
+                <span>
+                  <strong class="deliverable-label">새 프로젝트 폴더 생성</strong>
+                  <small class="deliverable-sub">fandom-mobile-web-project</small>
+                </span>
+              </li>
+              <li><span>1-17단계 전체 과정 문서화: 아이템 선정, IA, 와이어프레임, 디자인, 구현, 배포, 케이스스터디</span></li>
+              <li><span>React/TypeScript 소스 작성: AppShell, Feed, Vote, Chat, Member, Live 기능 구조</span></li>
+              <li><span>채팅창 구현: Chat List, Chat Room, Chat Bubble, Chat Input, Message Status, Safety UX</span></li>
+              <li>
+                <span>
+                  <strong class="deliverable-label">검증용 정적 결과물 생성</strong>
+                  <small class="deliverable-sub">dist/index.html 기준으로 로컬 QA 완료</small>
+                </span>
+              </li>
+            </ul>
+            <div class="completion-card">
+              <h3>Step.1 산출물</h3>
+              <ul class="deliverables">
+                <li><a href="fandom-mobile-web-project/docs/process.md">1-17단계 프로세스 문서</a></li>
+                <li><a href="fandom-mobile-web-project/src/App.tsx">React/TypeScript 구현 소스</a></li>
+                <li><a href="fandom-mobile-web-project/src/data/fandom.ts">팬덤 데이터 타입 설계</a></li>
+                <li><a href="fandom-mobile-web-project/docs/qa-result.md">QA 결과 문서</a></li>
+                <li><a href="fandom-mobile-web-project/docs/deploy-info.md">배포 정보 문서</a></li>
+              </ul>
+            </div>
+          </section>
+
+          <section id="proof">
+            <h2>검증 기록</h2>
+            <p>
+              Step.1 결과물이 실제로 확인 가능한 수준인지 로컬 파일과 배포 URL에서 나눠 검증했습니다.
+              아래 표는 포트폴리오에 넣을 수 있도록 검증 목적, 확인 기준, 최종 결과를 분리해 정리한 QA 기록입니다.
+            </p>
+            <div class="qa-summary-card">
+              <strong>배포 확인 주소</strong>
+              <a href="https://dist-flame-mu.vercel.app">https://dist-flame-mu.vercel.app</a>
+              <span>Vercel Production 배포 후 접속 상태와 주요 인터랙션을 확인했습니다.</span>
+            </div>
+            <div class="qa-table-wrap" aria-label="검증 기록 표">
+              <table class="method-table qa-check-table">
+                <thead>
+                  <tr>
+                    <th>검증한 것</th>
+                    <th>확인 기준</th>
+                    <th>결과</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>배포 접속</strong></td>
+                    <td>배포 URL을 열었을 때 페이지가 정상 로드되는가</td>
+                    <td><span class="qa-pass">통과</span> 200 OK</td>
+                  </tr>
+                  <tr>
+                    <td><strong>모바일 프레임</strong></td>
+                    <td>팬덤앱형 모바일웹 기준인 430px 이하 화면에서 동작하는가</td>
+                    <td><span class="qa-pass">통과</span> 430px 프레임 확인</td>
+                  </tr>
+                  <tr>
+                    <td><strong>탭 이동</strong></td>
+                    <td>Home, Vote, Chat 등 주요 탭을 눌렀을 때 화면이 전환되는가</td>
+                    <td><span class="qa-pass">통과</span> 주요 탭 이동 확인</td>
+                  </tr>
+                  <tr>
+                    <td><strong>투표 UX</strong></td>
+                    <td>Vote 탭에서 선택 후 진행률과 참여 상태가 바뀌는가</td>
+                    <td><span class="qa-pass">통과</span> 선택 후 진행률 변경</td>
+                  </tr>
+                  <tr>
+                    <td><strong>채팅 UX</strong></td>
+                    <td>채팅방, 말풍선, 입력창, 메시지 상태, 안전 안내가 포함되는가</td>
+                    <td><span class="qa-pass">통과</span> 팬덤앱 채팅 구조 구현</td>
+                  </tr>
+                  <tr>
+                    <td><strong>레이아웃 안정성</strong></td>
+                    <td>모바일 화면에서 가로 스크롤이나 화면 밖으로 튀는 요소가 없는가</td>
+                    <td><span class="qa-pass">통과</span> 가로 오버플로 없음</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section id="step-2">
+            <h2>Step.2 지금부터의 디벨롭</h2>
+            <p>
+              Step.2부터는 현재 배포된 결과물을 기준으로 사용자가 확인한 뒤,
+              실제 포트폴리오 완성도를 더 높이기 위한 개선을 누적합니다. 이 페이지는 앞으로 그 여정을 계속 기록하는 기준 페이지입니다.
+            </p>
+            <div class="ai-answer-example">
+              <h4>Step.2에서 기록할 것</h4>
+              <ul class="deliverables strategy-deliverables">
+                <li>사용자가 배포 URL을 보고 남긴 피드백</li>
+                <li>디자인 밀도, 화면 구성, 카피, 인터랙션에 대한 개선 결정</li>
+                <li>채팅창 UX의 다음 상태: 입력 중, 실패, 신고/차단 플로우, 이미지 메시지</li>
+                <li>React 컴포넌트 리팩토링과 TypeScript 타입 보강</li>
+                <li>배포 URL 재검증 결과</li>
+              </ul>
+            </div>
+          </section>
+
+          <section id="roadmap">
+            <h2>다음 개선 로드맵</h2>
+            <p>
+              Step.1은 “가이드가 실제 결과물로 이어지는가”를 증명한 단계입니다. 다음은 최종 포트폴리오 제출물처럼 보이도록
+              화면 수, 상태 수, 케이스스터디 설득력을 더 높이는 단계입니다.
+            </p>
+            <ol class="deliverables strategy-deliverables">
+              <li>Home 화면의 비주얼 완성도 강화: 실제 앨범/라이브 느낌의 그래픽 레이어 추가</li>
+              <li>Members 상세 화면 추가: 멤버별 팬 피드, 대표 영상, 응원 CTA</li>
+              <li>Chat UX 고도화: typing 상태, failed 상태, 이미지/이모지 메시지, 신고/차단 모달</li>
+              <li>Vote UX 고도화: 투표 완료 축하 모션, 랭킹 변화, 참여 배지</li>
+              <li>케이스스터디 페이지 추가: Problem, IA, Design System, React Build, QA Result</li>
+              <li>Vercel 재배포 및 QA 로그 업데이트</li>
+            </ol>
+          </section>
+        </article>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <strong>J.영의 AX Lab</strong>
+        <p>팬덤 모바일웹 제작과 디벨롭 과정을 기록하는 작업일지</p>
+      </div>
+    </footer>
+
+    <button class="floating-top-button" type="button" aria-label="페이지 상단으로 이동">
+      <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+      <span>TOP</span>
+    </button>
+
+    <script src="script.js?v=mobile-web-dev-log-20260603"></script>
+  </body>
+</html>

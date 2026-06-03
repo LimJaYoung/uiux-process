@@ -1,0 +1,542 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AURORA:NE Fan Orbit | Fandom Mobile Web</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --night: #060711;
+        --panel: #090a18;
+        --card: rgba(255, 255, 255, 0.065);
+        --line: rgba(255, 255, 255, 0.11);
+        --text: #ffffff;
+        --muted: rgba(255, 255, 255, 0.64);
+        --blue: #9be7ff;
+        --lime: #e9ff6a;
+        --pink: #ff7ab8;
+        --violet: #bda8ff;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background:
+          radial-gradient(circle at 15% 10%, rgba(155, 231, 255, 0.18), transparent 28%),
+          radial-gradient(circle at 88% 12%, rgba(255, 122, 184, 0.14), transparent 25%),
+          var(--night);
+        color: var(--text);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+      button, input { font: inherit; }
+      button { border: 0; cursor: pointer; }
+      .app {
+        width: min(100%, 430px);
+        min-height: 100vh;
+        margin: 0 auto;
+        background: var(--panel);
+        box-shadow: 0 30px 90px rgba(0, 0, 0, 0.45);
+        position: relative;
+        overflow: hidden;
+      }
+      .top {
+        position: sticky;
+        top: 0;
+        z-index: 5;
+        padding: 14px 16px;
+        border-bottom: 1px solid var(--line);
+        background: rgba(9, 10, 24, 0.92);
+        backdrop-filter: blur(18px);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .kicker {
+        margin: 0;
+        color: var(--blue);
+        font-size: 11px;
+        font-weight: 900;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+      }
+      h1, h2, h3, p { margin: 0; }
+      .top h1 { font-size: 22px; line-height: 1; }
+      .live-pill {
+        border: 1px solid rgba(233, 255, 106, 0.5);
+        background: rgba(233, 255, 106, 0.1);
+        color: var(--lime);
+        border-radius: 999px;
+        padding: 8px 10px;
+        font-size: 12px;
+        font-weight: 900;
+      }
+      .screen {
+        display: none;
+        padding: 14px 16px 106px;
+        min-height: calc(100vh - 64px);
+        overflow-y: auto;
+      }
+      .screen.is-active { display: block; }
+      .hero {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 30px;
+        padding: 22px;
+        background:
+          radial-gradient(circle at 18% 8%, rgba(155, 231, 255, 0.36), transparent 34%),
+          radial-gradient(circle at 88% 20%, rgba(255, 122, 184, 0.36), transparent 28%),
+          linear-gradient(145deg, #171941, #080913);
+      }
+      .hero::after {
+        content: "";
+        position: absolute;
+        right: -18px;
+        top: 18px;
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        background: rgba(255, 255, 255, 0.08);
+        filter: blur(3px);
+      }
+      .hero h2 {
+        margin-top: 18px;
+        max-width: 320px;
+        font-size: 42px;
+        letter-spacing: -0.04em;
+        line-height: 0.95;
+      }
+      .hero p {
+        margin-top: 16px;
+        max-width: 285px;
+        color: rgba(255, 255, 255, 0.72);
+        font-size: 14px;
+        line-height: 1.7;
+      }
+      .hero-actions, .row-actions {
+        display: flex;
+        gap: 8px;
+        margin-top: 18px;
+      }
+      .primary {
+        border-radius: 999px;
+        background: var(--lime);
+        color: #080913;
+        padding: 12px 16px;
+        font-weight: 950;
+      }
+      .secondary {
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.07);
+        color: #fff;
+        padding: 12px 16px;
+        font-weight: 800;
+      }
+      .section-title { margin: 22px 0 12px; }
+      .section-title h2 {
+        margin-top: 4px;
+        font-size: 25px;
+        letter-spacing: -0.03em;
+      }
+      .card {
+        border: 1px solid var(--line);
+        background: var(--card);
+        border-radius: 24px;
+        padding: 16px;
+        margin-bottom: 12px;
+      }
+      .live-card {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+      }
+      .tag {
+        width: max-content;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.7);
+        padding: 6px 9px;
+        font-size: 11px;
+        font-weight: 800;
+      }
+      .muted { color: var(--muted); }
+      .vote-option {
+        width: 100%;
+        display: block;
+        text-align: left;
+        color: #fff;
+        background: transparent;
+        padding: 0;
+        margin: 0 0 14px;
+      }
+      .vote-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 8px;
+        font-size: 14px;
+      }
+      .bar {
+        height: 8px;
+        overflow: hidden;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.12);
+      }
+      .bar i {
+        display: block;
+        height: 100%;
+        border-radius: inherit;
+        background: var(--lime);
+        transition: width 240ms ease;
+      }
+      .member-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+      .member-visual {
+        aspect-ratio: 1;
+        border-radius: 22px;
+        padding: 12px;
+        display: flex;
+        align-items: end;
+        color: rgba(0, 0, 0, 0.42);
+        font-size: 32px;
+        font-weight: 950;
+      }
+      .feed-art {
+        height: 104px;
+        border-radius: 20px;
+        margin: 12px 0;
+        opacity: 0.86;
+      }
+      .blue { background: var(--blue); }
+      .pink { background: var(--pink); }
+      .lime { background: var(--lime); }
+      .chat-head {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .avatar {
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: var(--lime);
+        color: #080913;
+        font-weight: 950;
+      }
+      .chat-log {
+        min-height: 410px;
+        border: 1px solid var(--line);
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 24px;
+        padding: 12px;
+      }
+      .day {
+        width: max-content;
+        margin: 0 auto 12px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 6px 10px;
+        color: rgba(255, 255, 255, 0.55);
+        font-size: 11px;
+      }
+      .bubble-row {
+        display: flex;
+        margin-bottom: 10px;
+      }
+      .bubble-row.me { justify-content: flex-end; }
+      .bubble {
+        max-width: 78%;
+        border-radius: 22px;
+        padding: 11px 14px;
+        font-size: 14px;
+        line-height: 1.55;
+        background: rgba(255, 255, 255, 0.1);
+      }
+      .me .bubble {
+        border-bottom-right-radius: 5px;
+        background: var(--lime);
+        color: #080913;
+      }
+      .them .bubble { border-bottom-left-radius: 5px; }
+      .system {
+        margin-bottom: 10px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 8px 10px;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.58);
+        font-size: 11px;
+      }
+      .time {
+        display: block;
+        margin-top: 4px;
+        font-size: 10px;
+        opacity: 0.56;
+      }
+      .safe {
+        border: 1px solid rgba(255, 122, 184, 0.28);
+        background: rgba(255, 122, 184, 0.1);
+        border-radius: 18px;
+        padding: 11px;
+        color: rgba(255, 255, 255, 0.72);
+        font-size: 12px;
+        line-height: 1.5;
+      }
+      .chat-input {
+        position: sticky;
+        bottom: 84px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: #101226;
+        padding: 8px;
+        margin-top: 12px;
+      }
+      .chat-input input {
+        min-width: 0;
+        flex: 1;
+        border: 0;
+        outline: 0;
+        background: transparent;
+        color: #fff;
+        font-size: 14px;
+      }
+      .icon-btn {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+      }
+      .bottom-tabs {
+        position: fixed;
+        left: 50%;
+        bottom: 0;
+        z-index: 10;
+        width: min(100%, 430px);
+        transform: translateX(-50%);
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 4px;
+        border-top: 1px solid var(--line);
+        background: rgba(9, 10, 24, 0.96);
+        padding: 10px 12px 12px;
+        backdrop-filter: blur(18px);
+      }
+      .tab {
+        border-radius: 16px;
+        background: transparent;
+        color: rgba(255, 255, 255, 0.52);
+        padding: 8px 0;
+        font-size: 10px;
+        font-weight: 850;
+      }
+      .tab span {
+        display: block;
+        font-size: 16px;
+        margin-bottom: 2px;
+      }
+      .tab.is-active {
+        background: #fff;
+        color: #080913;
+      }
+      @media (min-width: 431px) {
+        body { padding: 22px 0; }
+        .app { min-height: calc(100vh - 44px); border-radius: 32px; }
+        .bottom-tabs { bottom: 22px; border-radius: 0 0 32px 32px; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="app">
+      <header class="top">
+        <div>
+          <p class="kicker">AURORA:NE</p>
+          <h1>Fan Orbit</h1>
+        </div>
+        <span class="live-pill">LIVE 20:30</span>
+      </header>
+
+      <section class="screen is-active" data-screen="home">
+        <article class="hero">
+          <p class="kicker" style="color: var(--lime)">Tonight mission</p>
+          <h2>Orbit gathers before the light.</h2>
+          <p>라이브 전, 같은 마음의 팬들과 먼저 모이고 오늘의 응원을 완성하세요.</p>
+          <div class="hero-actions">
+            <button class="primary" data-go="chat">채팅방 입장</button>
+            <button class="secondary" data-go="vote">응원 투표</button>
+          </div>
+        </article>
+        <div class="section-title"><p class="kicker">Live</p><h2>오늘의 라이브 일정</h2></div>
+        <article class="card live-card">
+          <div><p class="kicker">soon</p><h3>Comeback Countdown Live</h3><p class="muted">오늘 20:30</p></div>
+          <button class="secondary notify-btn">알림</button>
+        </article>
+        <article class="card live-card">
+          <div><p class="kicker">scheduled</p><h3>Backstage Voice Room</h3><p class="muted">오늘 21:10</p></div>
+          <button class="primary notify-btn">알림 ON</button>
+        </article>
+        <div class="section-title"><p class="kicker">Vote</p><h2>오프닝 응원 문구</h2></div>
+        <article class="card vote-card"></article>
+        <div class="section-title"><p class="kicker">Fan feed</p><h2>지금 올라온 Orbit 반응</h2></div>
+        <article class="card">
+          <div style="display:flex;justify-content:space-between"><b>nari.loop</b><span class="tag">#live</span></div>
+          <div class="feed-art lime"></div>
+          <p class="muted">Tonight live chat room opens 20 minutes early. Bring your lightstick emoji.</p>
+          <button class="primary cheer-btn" style="margin-top:12px">응원 완료 · 1643</button>
+        </article>
+      </section>
+
+      <section class="screen" data-screen="members">
+        <div class="section-title"><p class="kicker">Members</p><h2>4개의 빛, 하나의 궤도</h2></div>
+        <div class="member-grid" id="members"></div>
+      </section>
+
+      <section class="screen" data-screen="feed">
+        <div class="section-title"><p class="kicker">Fan feed</p><h2>Orbit 반응 모아보기</h2></div>
+        <div id="feed"></div>
+      </section>
+
+      <section class="screen" data-screen="vote">
+        <div class="section-title"><p class="kicker">Vote</p><h2>오늘 라이브 오프닝 응원 문구</h2></div>
+        <article class="card vote-card"></article>
+      </section>
+
+      <section class="screen" data-screen="live">
+        <div class="section-title"><p class="kicker">Live</p><h2>라이브와 알림</h2></div>
+        <div id="liveList"></div>
+      </section>
+
+      <section class="screen" data-screen="chat">
+        <article class="card chat-head">
+          <span class="avatar">CO</span>
+          <div><h2>Countdown Orbit Room</h2><p style="color: var(--lime); font-size: 12px;">Live room open · 8 unread</p></div>
+        </article>
+        <div class="chat-log" id="chatLog">
+          <p class="day">Today 20:00</p>
+          <p class="system">운영 안내: 서로를 존중하며 응원 메시지를 남겨주세요.</p>
+          <div class="bubble-row them"><div class="bubble">티저 보고 바로 들어왔어요. 오늘 색감 미쳤다.<span class="time">20:03</span></div></div>
+          <div class="bubble-row them"><div class="bubble">Orbit, we see your lights already ✦<span class="time">20:04</span></div></div>
+          <div class="bubble-row me"><div class="bubble">오프닝 투표도 완료. 라이브 시작 전에 다 모이자!<span class="time">20:05 · read</span></div></div>
+          <p class="safe">안전 안내: 불편한 메시지는 신고하거나 차단할 수 있습니다.</p>
+        </div>
+        <div class="chat-input">
+          <button class="icon-btn">＋</button>
+          <input id="chatInput" placeholder="Orbit에게 메시지 보내기" />
+          <button class="primary" id="sendBtn">전송</button>
+        </div>
+      </section>
+
+      <section class="screen" data-screen="my">
+        <div class="section-title"><p class="kicker">My Orbit</p><h2>오늘의 참여 기록</h2></div>
+        <article class="card"><h3>Vote result update</h3><p class="muted">오프닝 문구 1위가 3분 전 바뀌었어요.</p></article>
+        <article class="card"><h3>Live room opened</h3><p class="muted">Countdown Live 채팅방이 열렸습니다.</p></article>
+        <article class="card"><h3>Badge unlocked</h3><p class="muted">7일 연속 응원 배지를 획득했어요.</p></article>
+      </section>
+
+      <nav class="bottom-tabs">
+        <button class="tab is-active" data-tab="home"><span>✦</span>Home</button>
+        <button class="tab" data-tab="members"><span>◐</span>Members</button>
+        <button class="tab" data-tab="feed"><span>◫</span>Feed</button>
+        <button class="tab" data-tab="vote"><span>◉</span>Vote</button>
+        <button class="tab" data-tab="chat"><span>✉</span>Chat</button>
+        <button class="tab" data-tab="my"><span>◇</span>My</button>
+      </nav>
+    </main>
+
+    <script>
+      const members = [
+        ["LUNA", "Vocal / Moon Lead", "#9BE7FF", "2.4M cheers"],
+        ["NARI", "Dance / Prism Core", "#E9FF6A", "1.8M cheers"],
+        ["SERA", "Rap / Solar Pulse", "#FF7AB8", "2.1M cheers"],
+        ["IO", "Visual / Starlight", "#BDA8FF", "1.6M cheers"]
+      ];
+      const feed = [
+        ["orbit.mina", "teaser", "LUNA teaser color is unreal. The blue flare feels like the whole comeback concept.", "blue", 1248],
+        ["sera.zip", "vote", "Solar Pulse mission closes in 12 minutes. We can still flip the ranking.", "pink", 836],
+        ["nari.loop", "live", "Tonight live chat room opens 20 minutes early. Bring your lightstick emoji.", "lime", 1642]
+      ];
+      const poll = [
+        ["o1", "Orbit lights the night", 42],
+        ["o2", "AURORA begins here", 35],
+        ["o3", "Stay in our orbit", 23]
+      ];
+      const lives = [
+        ["Comeback Countdown Live", "오늘 20:30", "soon"],
+        ["Backstage Voice Room", "오늘 21:10", "scheduled"],
+        ["Afterglow Mini Talk", "내일 19:00", "scheduled"]
+      ];
+      let selectedVote = null;
+      const go = (tab) => {
+        document.querySelectorAll(".screen").forEach((screen) => screen.classList.toggle("is-active", screen.dataset.screen === tab));
+        document.querySelectorAll(".tab").forEach((button) => button.classList.toggle("is-active", button.dataset.tab === tab));
+      };
+      document.querySelectorAll("[data-tab]").forEach((button) => button.addEventListener("click", () => go(button.dataset.tab)));
+      document.querySelectorAll("[data-go]").forEach((button) => button.addEventListener("click", () => go(button.dataset.go)));
+      document.getElementById("members").innerHTML = members.map(([name, role, color, stat]) => `
+        <article class="card">
+          <div class="member-visual" style="background: radial-gradient(circle at 45% 25%, ${color}, #161735 62%)">${name.slice(0, 2)}</div>
+          <h3 style="margin-top:12px">${name}</h3><p class="muted">${role}</p>
+          <div style="display:flex;justify-content:space-between;margin-top:10px;font-size:11px"><span>fan aura</span><b style="color:${color}">${stat}</b></div>
+        </article>
+      `).join("");
+      document.getElementById("feed").innerHTML = feed.map(([author, tag, body, tone, cheers]) => `
+        <article class="card">
+          <div style="display:flex;justify-content:space-between"><b>${author}</b><span class="tag">#${tag}</span></div>
+          <div class="feed-art ${tone}"></div>
+          <p class="muted">${body}</p>
+          <button class="secondary cheer-btn" style="margin-top:12px">응원하기 · ${cheers}</button>
+        </article>
+      `).join("");
+      document.getElementById("liveList").innerHTML = lives.map(([title, time, state]) => `
+        <article class="card live-card"><div><p class="kicker">${state}</p><h3>${title}</h3><p class="muted">${time}</p></div><button class="secondary notify-btn">알림</button></article>
+      `).join("");
+      const renderPoll = () => {
+        document.querySelectorAll(".vote-card").forEach((card) => {
+          card.innerHTML = poll.map(([id, label, percent]) => {
+            const next = selectedVote === id ? Math.min(percent + 8, 78) : selectedVote ? Math.max(percent - 3, 12) : percent;
+            return `<button class="vote-option" data-vote="${id}"><div class="vote-head"><b>${label}</b><span style="color:${selectedVote === id ? "var(--lime)" : "rgba(255,255,255,.5)"}">${next}%</span></div><span class="bar"><i style="width:${next}%"></i></span></button>`;
+          }).join("");
+        });
+        document.querySelectorAll("[data-vote]").forEach((button) => button.addEventListener("click", () => {
+          selectedVote = button.dataset.vote;
+          renderPoll();
+        }));
+      };
+      renderPoll();
+      document.addEventListener("click", (event) => {
+        if (event.target.classList.contains("notify-btn")) {
+          event.target.classList.toggle("primary");
+          event.target.classList.toggle("secondary");
+          event.target.textContent = event.target.classList.contains("primary") ? "알림 ON" : "알림";
+        }
+        if (event.target.classList.contains("cheer-btn")) {
+          event.target.classList.toggle("primary");
+          event.target.classList.toggle("secondary");
+          event.target.textContent = event.target.classList.contains("primary") ? "응원 완료" : "응원하기";
+        }
+      });
+      document.getElementById("sendBtn").addEventListener("click", () => {
+        const input = document.getElementById("chatInput");
+        const text = input.value.trim();
+        if (!text) return;
+        const row = document.createElement("div");
+        row.className = "bubble-row me";
+        row.innerHTML = `<div class="bubble">${text}<span class="time">now · sent</span></div>`;
+        document.getElementById("chatLog").insertBefore(row, document.querySelector(".safe"));
+        input.value = "";
+      });
+    </script>
+  </body>
+</html>

@@ -1,3 +1,59 @@
+const SITE_AUTH_PASSWORD = "jy-lab";
+const SITE_AUTH_KEY = "jyoung-uiux-lab-session-auth-v2";
+
+const initSiteAuthGate = () => {
+  if (sessionStorage.getItem(SITE_AUTH_KEY) === SITE_AUTH_PASSWORD) {
+    document.body.classList.add("site-authenticated");
+    return;
+  }
+
+  document.body.classList.add("site-auth-locked");
+
+  const gate = document.createElement("section");
+  gate.className = "site-auth-gate";
+  gate.setAttribute("aria-label", "사이트 입장 비밀번호");
+  gate.innerHTML = `
+    <form class="site-auth-card" data-site-auth-form>
+      <div>
+        <p class="site-auth-kicker">Private Access</p>
+        <h1>J.영의 AX Lab</h1>
+        <p class="site-auth-copy">공유받은 비밀번호를 입력하면 사이트를 볼 수 있습니다.</p>
+      </div>
+      <label class="site-auth-field">
+        <span>비밀번호</span>
+        <input type="password" name="password" autocomplete="current-password" placeholder="비밀번호 입력" required />
+      </label>
+      <p class="site-auth-error" data-site-auth-error hidden>비밀번호가 맞지 않습니다.</p>
+      <button class="site-auth-button" type="submit">입장하기</button>
+    </form>
+  `;
+
+  document.body.append(gate);
+
+  const form = gate.querySelector("[data-site-auth-form]");
+  const input = gate.querySelector("input");
+  const error = gate.querySelector("[data-site-auth-error]");
+
+  form?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    if (input.value.trim() === SITE_AUTH_PASSWORD) {
+      sessionStorage.setItem(SITE_AUTH_KEY, SITE_AUTH_PASSWORD);
+      document.body.classList.remove("site-auth-locked");
+      document.body.classList.add("site-authenticated");
+      gate.remove();
+      return;
+    }
+
+    error.hidden = false;
+    input.value = "";
+    input.focus();
+  });
+
+  window.setTimeout(() => input?.focus(), 120);
+};
+
+initSiteAuthGate();
+
 const menuToggle = document.querySelector(".menu-toggle");
 const navLinks = document.querySelector(".nav-links");
 
@@ -11,6 +67,12 @@ navLinks?.addEventListener("click", (event) => {
     navLinks.classList.remove("is-open");
     menuToggle?.setAttribute("aria-expanded", "false");
   }
+});
+
+const floatingTopButton = document.querySelector(".floating-top-button");
+
+floatingTopButton?.addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
 document.querySelectorAll("[data-ai-diagnosis]").forEach((diagnosis) => {
@@ -1004,6 +1066,18 @@ const highlightPromptLine = (line) => {
     '$1<span class="prompt-token-bullet">$2</span>',
   );
   highlighted = highlighted.replace(
+    /(디자인 QA 체크 도구)/g,
+    '<span class="prompt-answer-blue">$1</span>',
+  );
+  highlighted = highlighted.replace(
+    /(입력자료에 다 명시할 것)/g,
+    '<span class="prompt-answer-blue">$1</span>',
+  );
+  highlighted = highlighted.replace(
+    /(입력 자료는 AI가 이전 단계 내용을 바탕으로 스스로 입력한다\.)/g,
+    '<span class="prompt-answer-blue">$1</span>',
+  );
+  highlighted = highlighted.replace(
     /^(\s*)([A-Za-z_][\w-]*)(:)/,
     '$1<span class="prompt-token-key">$2$3</span>',
   );
@@ -1021,6 +1095,37 @@ document.querySelectorAll(".prompt-box code").forEach((code) => {
   code.dataset.promptHighlighted = "true";
 });
 
+const copyTextToClipboard = async (text) => {
+  const textarea = document.createElement("textarea");
+  textarea.value = text;
+  textarea.setAttribute("readonly", "");
+  textarea.style.position = "fixed";
+  textarea.style.top = "0";
+  textarea.style.left = "0";
+  textarea.style.width = "1px";
+  textarea.style.height = "1px";
+  textarea.style.opacity = "0";
+  document.body.append(textarea);
+  textarea.focus();
+  textarea.select();
+  textarea.setSelectionRange(0, textarea.value.length);
+
+  try {
+    if (document.execCommand("copy")) return true;
+  } catch {
+    // Fall through to the async clipboard API below.
+  } finally {
+    textarea.remove();
+  }
+
+  if (navigator.clipboard?.writeText) {
+    await navigator.clipboard.writeText(text);
+    return true;
+  }
+
+  return false;
+};
+
 document.querySelectorAll(".copy-button").forEach((button) => {
   button.addEventListener("click", async () => {
     const targetId = button.getAttribute("data-copy-target");
@@ -1030,19 +1135,42 @@ document.querySelectorAll(".copy-button").forEach((button) => {
     if (!text) return;
 
     try {
-      await navigator.clipboard.writeText(text);
+      const copied = await copyTextToClipboard(text);
+      if (!copied) throw new Error("Copy failed");
       button.textContent = "복사됨";
       button.classList.add("is-copied");
     } catch {
-      button.textContent = "복사 실패";
-      button.classList.add("is-copy-failed");
+      const selection = window.getSelection();
+      const range = document.createRange();
+      range.selectNodeContents(target);
+      selection?.removeAllRanges();
+      selection?.addRange(range);
+      button.textContent = "선택됨";
+      button.title = "브라우저 권한 때문에 자동 복사가 차단되었습니다. 선택된 프롬프트를 Command+C로 복사하세요.";
+      button.classList.add("is-copied");
     }
 
     window.setTimeout(() => {
       button.textContent = "복사";
+      button.removeAttribute("title");
       button.classList.remove("is-copied", "is-copy-failed");
     }, 1600);
   });
+});
+
+const copyButtonObserver = new MutationObserver(() => {
+  document.querySelectorAll(".copy-button").forEach((button) => {
+    if (button.textContent?.trim() === "복사 실패") {
+      button.textContent = "선택됨";
+      button.title = "브라우저 권한 때문에 자동 복사가 차단되었습니다. 선택된 프롬프트를 Command+C로 복사하세요.";
+      button.classList.remove("is-copy-failed");
+      button.classList.add("is-copied");
+    }
+  });
+});
+
+document.querySelectorAll(".copy-button").forEach((button) => {
+  copyButtonObserver.observe(button, { childList: true, characterData: true, subtree: true });
 });
 
 const diagnosisTool = document.querySelector("[data-diagnosis]");
@@ -1068,9 +1196,9 @@ if (diagnosisTool) {
     {
       max: 6,
       level: "Advanced",
-      title: "Advanced: 자동으로 업데이트되는 운영 시스템을 설계하세요",
+      title: "Advanced: 팬덤 모바일웹 포트폴리오를 제작하세요",
       copy:
-        "이미 설계나 화면이 있다면 병렬 에이전트, n8n, GitHub Actions, 코드 에이전트를 연결해 자동화 포트폴리오로 고도화하세요.",
+        "이미 기획과 화면 제작 경험이 있다면 430px 이하 모바일 기준으로 팬덤앱 수준의 IA, Figma 시안, React/TypeScript/Tailwind CSS 구현, 배포 URL까지 완성하세요.",
       href: "advanced.html",
     },
   ];

@@ -274,7 +274,7 @@
               <p class="eyebrow">Process by Level</p>
               <h2 id="level-process-title"><span>레벨에 맞는</span> 프로세스</h2>
             </div>
-            <p>Beginner는 첫 MVP를 작게 완주하고, Intermediate는 기획부터 React 리팩토링과 인터랙티브 웹 구현까지 확장합니다.</p>
+            <p>Beginner는 첫 MVP를 작게 완주하고, Intermediate는 서비스형 포트폴리오를 확장하며, Advanced는 430px 이하 팬덤 모바일웹 제작까지 고도화합니다.</p>
           </div>
           <div class="level-tabs services-tabs" data-level-tabs>
             <div class="level-tab-list" role="tablist" aria-label="레벨별 프로세스">
@@ -286,13 +286,13 @@
                 <strong>Intermediate</strong>
                 <span>UIUX포트폴리오 제작 (중급)</span>
               </a>
+              <a class="level-tab" href="advanced.html" id="course-advanced" role="tab" aria-selected="false" aria-controls="level-panel-advanced" data-level-tab="advanced" tabindex="-1">
+                <strong>Advanced</strong>
+                <span>팬덤 모바일웹 제작</span>
+              </a>
               <a class="level-tab" href="harness-uiux-automatic.html" id="course-harness" role="tab" aria-selected="false" aria-controls="level-panel-harness" data-level-tab="harness" tabindex="-1">
                 <strong>Claude Code 자동화</strong>
                 <span>UIUX포트폴리오 자동화 파이프라인 (고급)</span>
-              </a>
-              <a class="level-tab" href="advanced.html" id="course-advanced" role="tab" aria-selected="false" aria-controls="level-panel-advanced" data-level-tab="advanced" tabindex="-1">
-                <strong>AI Automatic</strong>
-                <span>Harness + n8n</span>
               </a>
             </div>
             <div class="level-panel is-active" id="level-panel-beginner" role="tabpanel" aria-labelledby="course-beginner" data-level-panel="beginner">
@@ -331,6 +331,24 @@
                 <li><a href="intermediate.html#react">정적 구현을 React로 리팩토링하고 인터랙티브 웹 경험 구현</a></li>
               </ol>
             </div>
+            <div class="level-panel" id="level-panel-advanced" role="tabpanel" aria-labelledby="course-advanced" data-level-panel="advanced" hidden>
+              <div>
+                <span>Advanced · Fandom Mobile Web</span>
+                <h3><span>430px 이하 화면으로</span>팬덤 모바일웹 제작</h3>
+                <p>팬이 있는 그룹, 아티스트, 캐릭터, 스포츠팀, 크리에이터 등 팬덤 소재를 선정해 모바일 IA, Figma 시안, 팬덤앱 채팅창, React/TypeScript/Tailwind CSS 구현, 배포까지 완성합니다.</p>
+                <div class="level-proof-pills" aria-label="Advanced outputs">
+                  <b>Mobile IA</b>
+                  <b>React TS</b>
+                  <b>Chat UX</b>
+                </div>
+                <a class="card-link" href="advanced.html">Advanced 팬덤 모바일웹 전체 가이드 보기</a>
+              </div>
+              <ol>
+                <li><a href="advanced.html#item">팬덤 소재를 선정하고 팬 활동, 콘텐츠, 커뮤니티 흐름 정의</a></li>
+                <li><a href="advanced.html#figma">430px 이하 모바일 화면 기준으로 Figma 시안과 디자인 시스템 제작</a></li>
+                <li><a href="advanced.html#vibecoding">React/TypeScript/Tailwind CSS로 팬덤 모바일웹을 구현하고 배포 URL 완성</a></li>
+              </ol>
+            </div>
             <div class="level-panel" id="level-panel-harness" role="tabpanel" aria-labelledby="course-harness" data-level-panel="harness" hidden>
               <div>
                 <span>Advanced · Claude Code 자동화</span>
@@ -347,24 +365,6 @@
                 <li><a href="harness-uiux-automatic.html#install">Claude Code 설치와 프로젝트 폴더 실행 준비</a></li>
                 <li><a href="harness-uiux-automatic.html#harness">하네스 개념과 생성·평가·재수정 루프 이해</a></li>
                 <li><a href="harness-uiux-automatic.html#agents">AI 에이전트 팀 구성과 UIUX 리뷰 에이전트 만들기</a></li>
-              </ol>
-            </div>
-            <div class="level-panel" id="level-panel-advanced" role="tabpanel" aria-labelledby="course-advanced" data-level-panel="advanced" hidden>
-              <div>
-                <span>AI Automatic · Harness + n8n</span>
-                <h3><span>자동화로 운영되는</span>프로젝트 업데이트</h3>
-                <p>병렬 에이전트, 코디네이터 SKILL, n8n, GitHub Actions, 코드 에이전트를 연결해 운영 시스템을 설계합니다.</p>
-                <div class="level-proof-pills" aria-label="Advanced outputs">
-                  <b>Parallel AI</b>
-                  <b>n8n</b>
-                  <b>Auto deploy</b>
-                </div>
-                <a class="card-link" href="advanced.html">AI Automatic 전체 가이드 보기</a>
-              </div>
-              <ol>
-                <li><a href="advanced.html#parallel">병렬 에이전트와 코디네이터로 작업을 분산하고 취합</a></li>
-                <li><a href="advanced.html#n8n-flows">n8n으로 콘텐츠 수집, 영상 연동, 폼 처리를 자동화</a></li>
-                <li><a href="advanced.html#github">GitHub Actions와 Vercel로 자동 배포 파이프라인 구축</a></li>
               </ol>
             </div>
           </div>
@@ -763,6 +763,6 @@
       </div>
     </footer>
 
-    <script src="script.js?v=ai-portfolio-course2"></script>
+    <script src="script.js?v=site-auth-session-20260602"></script>
   </body>
 </html>
