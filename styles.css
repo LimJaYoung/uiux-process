@@ -9044,7 +9044,22 @@ h2,
 }
 
 .dev-log-page {
-  overflow-x: hidden;
+  overflow-x: clip;
+  overflow-y: visible;
+}
+
+.dev-log-page .detail-layout {
+  align-items: start;
+  overflow: visible;
+}
+
+.dev-log-page .detail-sidebar {
+  position: sticky;
+  top: 92px;
+  align-self: start;
+  height: max-content;
+  max-height: calc(100vh - 112px);
+  overflow-y: auto;
 }
 
 .dev-log-page .lesson-hero {
@@ -9089,6 +9104,11 @@ h2,
 .dev-log-page .deliverables a {
   overflow-wrap: anywhere;
   word-break: break-word;
+}
+
+.dev-log-page .meta-row .meta-emphasis {
+  color: var(--ink);
+  font-weight: 900;
 }
 
 .dev-log-page .deliverables:not(.harness-agent-list) li {
@@ -9308,6 +9328,23 @@ h2,
   font-size: 12px;
   font-weight: 900;
   line-height: 1;
+}
+
+@media (min-width: 901px) and (max-width: 1180px) {
+  .dev-log-page .detail-layout {
+    grid-template-columns: minmax(190px, 230px) minmax(0, 860px);
+    align-items: start;
+    overflow: visible;
+  }
+
+  .dev-log-page .detail-sidebar {
+    position: sticky;
+    top: 92px;
+    align-self: start;
+    width: auto;
+    max-height: calc(100vh - 112px);
+    overflow-y: auto;
+  }
 }
 
 @media (max-width: 900px) {
