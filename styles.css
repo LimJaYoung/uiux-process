@@ -2054,53 +2054,6 @@ main > section.proof-strip {
   line-height: 1.45;
 }
 
-.course-progress {
-  max-width: 1180px;
-  margin: -42px auto 0;
-  border: 1px solid var(--card-border);
-  border-radius: 18px;
-  padding: 18px;
-  background: var(--paper);
-}
-
-.course-progress-head {
-  display: flex;
-  justify-content: space-between;
-  gap: 16px;
-  color: var(--graphite);
-  font-size: 13px;
-  font-weight: 700;
-}
-
-.course-progress-track {
-  height: 10px;
-  margin-top: 12px;
-  overflow: hidden;
-  border-radius: 999px;
-  background: #e5e7eb;
-}
-
-.course-progress-track i {
-  display: block;
-  height: 100%;
-  border-radius: inherit;
-  background: var(--ink);
-}
-
-.course-progress-steps {
-  display: grid;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
-  gap: 8px;
-  margin-top: 12px;
-  color: var(--muted);
-  font-size: 12px;
-  font-weight: 700;
-}
-
-.course-progress-steps span.is-active {
-  color: var(--ink);
-}
-
 .designer-sites-section .choose-mosaic {
   margin-top: 28px;
 }
@@ -4825,8 +4778,9 @@ main > section.portfolio-process-section {
     url("awesomic-images/68c2a33d71ce477bc4cfa949_Graham Doig.avif") center 24% / cover;
 }
 
-.faq-section {
+main > section.faq-section {
   display: grid;
+  width: min(calc(100% - var(--site-gutter)), 1344px);
   gap: clamp(20px, 3vw, 34px);
 }
 

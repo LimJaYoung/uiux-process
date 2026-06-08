@@ -373,6 +373,13 @@ document.querySelectorAll("[data-level-tabs]").forEach((tabs) => {
   };
 
   tabButtons.forEach((button) => {
+    const activateHoveredTab = () => {
+      activateTab(button.dataset.levelTab);
+    };
+
+    button.addEventListener("pointerenter", activateHoveredTab);
+    button.addEventListener("mouseenter", activateHoveredTab);
+
     button.addEventListener("click", (event) => {
       const isActive = button.classList.contains("is-active");
 
@@ -1221,47 +1228,3 @@ if (diagnosisTool) {
   updateDiagnosis();
 }
 
-const lessonHero = document.querySelector(".lesson-hero");
-
-const currentLessonFile = window.location.pathname.split("/").pop() || "index.html";
-
-if (
-  lessonHero &&
-  !diagnosisTool &&
-  currentLessonFile !== "intermediate.html" &&
-  currentLessonFile !== "advanced.html"
-) {
-  const courseSteps = [
-    { file: "first-product.html", label: "기획", progress: 15 },
-    { file: "structure.html", label: "설계", progress: 30 },
-    { file: "design.html", label: "디자인", progress: 50 },
-    { file: "build.html", label: "코딩", progress: 70 },
-    { file: "review.html", label: "케이스", progress: 84 },
-    { file: "launch.html", label: "배포", progress: 94 },
-    { file: "automation.html", label: "자동화", progress: 100 },
-  ];
-  const currentStepIndex = Math.max(
-    0,
-    courseSteps.findIndex((step) => step.file === currentLessonFile),
-  );
-  const currentStep = courseSteps[currentStepIndex] || courseSteps[0];
-  const progressPanel = document.createElement("section");
-  progressPanel.className = "course-progress";
-  progressPanel.innerHTML = `
-    <div class="course-progress-head">
-      <span>Portfolio Production Flow</span>
-      <span>${currentStep.label} · ${currentStep.progress}%</span>
-    </div>
-    <div class="course-progress-track"><i style="width: ${currentStep.progress}%"></i></div>
-    <div class="course-progress-steps">
-      ${courseSteps
-        .map(
-          (step, index) =>
-            `<span class="${index <= currentStepIndex ? "is-active" : ""}">${step.label}</span>`,
-        )
-        .join("")}
-    </div>
-  `;
-  lessonHero.insertAdjacentElement("afterend", progressPanel);
-
-}
